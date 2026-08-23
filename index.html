@@ -1985,6 +1985,13 @@
         #0f1a12 !important;
       border: 1px solid rgba(47,191,90,.25) !important;
     }
+
+    .phone #cta .cta-band .ui-mock {
+      flex: 1 1 auto;
+      min-height: 120px;
+      max-height: 42%;
+      background: rgba(0,0,0,.35) !important;
+    }
     .phone #cta .cta-mid { display: flex; flex-direction: column; gap: 12px; }
     .phone #cta .cta-band h2 {
       font-size: clamp(28px, 7vw, 36px) !important;
@@ -2077,121 +2084,361 @@
       .phone #footer .footer-links a:last-child { border-right: 0; }
     }
 
-    .phone .wrap:has(.h-slider) {
-      display: flex;
-      flex-direction: column;
-      min-height: 0;
-    }
-    .phone .wrap:has(.h-slider) .section-head {
-      flex: 0 0 auto;
-    }
 
-    /* ========== HORIZONTAL INNER SLIDER ========== */
-    .phone .h-slider {
+    .phone .wrap:has(.carousel) {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    .phone .wrap:has(.carousel) .section-head { flex: 0 0 auto; }
+
+    /* ========== CLASSIC INNER CAROUSEL (no side-drag) ========== */
+    .phone .carousel {
       width: 100%;
       flex: 1 1 auto;
       min-height: 0;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      touch-action: pan-x;
-      user-select: none;
     }
-    .phone .h-slider-viewport {
-      overflow: hidden;
-      width: 100%;
+    .phone .carousel-stage {
+      position: relative;
       flex: 1 1 auto;
-      min-height: 160px;
-      border-radius: 14px;
+      min-height: 220px;
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
     }
-    .phone .h-slider-track {
-      display: flex;
-      height: 100%;
-      gap: 12px;
-      will-change: transform;
-      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .phone .h-slider.is-dragging .h-slider-track {
-      transition: none;
-    }
-    .phone .h-slide {
-      flex: 0 0 min(82%, 340px);
-      max-width: 340px;
-      height: 100%;
-      box-sizing: border-box;
-      padding: 16px !important;
+    .phone .slide-card {
+      position: absolute;
+      inset: 0;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      margin: 0 !important;
-      background: rgba(255,255,255,.05) !important;
-      border: 1px solid rgba(255,255,255,.1) !important;
-      border-radius: 14px !important;
+      gap: 12px;
+      padding: 14px;
+      box-sizing: border-box;
+      border-radius: 16px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px) scale(.985);
+      transition: opacity .45s ease, transform .45s ease;
     }
-    .phone .h-slide h3 {
-      font-size: 17px !important;
+    .phone .slide-card.is-active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: none;
+      z-index: 1;
+    }
+    .phone .slide-card h3 {
+      font-size: 18px !important;
       margin: 0 !important;
       color: #f3f7f4 !important;
     }
-    .phone .h-slide p {
+    .phone .slide-card p {
       font-size: 13px !important;
       color: rgba(243,247,244,.72) !important;
       margin: 0 !important;
-      display: block !important;
-      -webkit-line-clamp: unset !important;
-      overflow: visible !important;
     }
-    .phone .h-slide ul {
-      margin-top: auto;
-      padding-left: 0;
+    .phone .slide-card ul {
+      margin: 0;
+      padding: 0;
       list-style: none;
+      display: grid;
+      gap: 4px;
     }
-    .phone .h-slide li {
+    .phone .slide-card li {
       font-size: 13px !important;
       color: rgba(243,247,244,.75) !important;
-      padding: 4px 0;
     }
-    .phone .h-slide li::before {
+    .phone .slide-card li::before {
       content: "•";
       color: var(--accent);
       margin-right: 8px;
     }
-    .phone .h-slider-dots {
+    .phone .slide-copy {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .phone .slide-copy .ico {
+      width: 28px; height: 28px;
+      display: grid; place-items: center;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .phone .carousel-dots {
       display: flex;
       gap: 6px;
       justify-content: flex-start;
       align-items: center;
       min-height: 10px;
+      flex: 0 0 auto;
     }
-    .phone .h-slider-dots button {
-      width: 6px;
-      height: 6px;
-      border: 0;
-      padding: 0;
+    .phone .carousel-dots button {
+      width: 6px; height: 6px;
+      border: 0; padding: 0;
       border-radius: 999px;
       background: rgba(255,255,255,.25);
       cursor: pointer;
       transition: width .25s ease, background .2s;
     }
-    .phone .h-slider-dots button.active {
+    .phone .carousel-dots button.active {
       width: 18px;
       background: var(--accent);
     }
-    @media (min-width: 720px) {
-      .phone .h-slide {
-        flex-basis: min(46%, 360px);
-        max-width: 360px;
-        padding: 18px !important;
-      }
-    }
-    @media (min-width: 1100px) {
-      .phone .h-slide {
-        flex-basis: min(31%, 320px);
-        max-width: 320px;
-      }
-    }
     @media (prefers-reduced-motion: reduce) {
-      .phone .h-slider-track { transition: none; }
+      .phone .slide-card { transition: none; }
+    }
+
+    /* ========== UI MOCKS (admin / store / pay / …) ========== */
+    .phone .ui-mock {
+      flex: 1 1 auto;
+      min-height: 140px;
+      border-radius: 14px;
+      background: #0c100e;
+      border: 1px solid rgba(255,255,255,.1);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .phone .ui-mock .chrome {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 10px;
+      background: rgba(255,255,255,.04);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .phone .ui-mock .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(255,255,255,.2);
+    }
+    .phone .ui-mock .dot.g { background: var(--accent); }
+    .phone .ui-mock .title-bar {
+      margin-left: 6px;
+      font-size: 11px;
+      color: rgba(243,247,244,.55);
+      letter-spacing: .02em;
+    }
+    .phone .ui-mock .body {
+      flex: 1 1 auto;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0;
+    }
+    .phone .mock-row {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.06);
+    }
+    .phone .mock-row .thumb {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: linear-gradient(135deg, rgba(47,191,90,.55), rgba(47,191,90,.15));
+      flex: 0 0 auto;
+    }
+    .phone .mock-row .lines { flex: 1; display: grid; gap: 4px; }
+    .phone .mock-row .l1, .phone .mock-row .l2 {
+      height: 6px; border-radius: 4px;
+      background: rgba(255,255,255,.12);
+    }
+    .phone .mock-row .l1 { width: 62%; }
+    .phone .mock-row .l2 { width: 40%; background: rgba(255,255,255,.07); }
+    .phone .mock-row .badge {
+      font-size: 10px; color: #fff;
+      background: var(--accent);
+      padding: 3px 7px; border-radius: 999px;
+      font-weight: 600;
+    }
+    .phone .mock-kpi {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+    }
+    .phone .mock-kpi span {
+      padding: 8px;
+      border-radius: 10px;
+      background: rgba(47,191,90,.12);
+      border: 1px solid rgba(47,191,90,.22);
+      font-size: 11px;
+      color: rgba(243,247,244,.85);
+      text-align: center;
+    }
+    .phone .mock-kpi strong {
+      display: block;
+      font-size: 14px;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+
+    /* Storefront mock */
+    .phone .mock-store .hero-pic {
+      height: 72px;
+      border-radius: 12px;
+      background:
+        linear-gradient(180deg, transparent 40%, rgba(0,0,0,.65)),
+        linear-gradient(135deg, #1a3d28, #0d1a12 60%, #2fbf5a44);
+      position: relative;
+    }
+    .phone .mock-store .hero-pic::after {
+      content: "Sunset Rooftop";
+      position: absolute; left: 10px; bottom: 8px;
+      font-size: 12px; font-weight: 600; color: #fff;
+    }
+    .phone .mock-store .price-row {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: auto;
+    }
+    .phone .mock-store .price-row strong { color: #fff; font-size: 15px; }
+    .phone .mock-store .buy {
+      background: var(--accent); color: #fff;
+      border: 0; border-radius: 999px;
+      padding: 7px 12px; font-size: 11px; font-weight: 700;
+    }
+
+    /* Payment mock */
+    .phone .mock-pay .sheet {
+      margin-top: auto;
+      padding: 12px;
+      border-radius: 14px 14px 0 0;
+      background: #141a16;
+      border: 1px solid rgba(255,255,255,.1);
+      display: grid; gap: 8px;
+    }
+    .phone .mock-pay .pay-btn {
+      background: var(--accent); color: #fff;
+      text-align: center; padding: 10px;
+      border-radius: 12px; font-size: 12px; font-weight: 700;
+    }
+    .phone .mock-pay .cards {
+      display: flex; gap: 6px;
+    }
+    .phone .mock-pay .cards i {
+      flex: 1; height: 28px; border-radius: 8px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.1);
+      display: grid; place-items: center;
+      font-style: normal; font-size: 10px; color: rgba(255,255,255,.7);
+    }
+
+    /* Chat / group mock */
+    .phone .mock-chat .msg {
+      max-width: 78%;
+      padding: 8px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      line-height: 1.35;
+      color: rgba(243,247,244,.9);
+    }
+    .phone .mock-chat .msg.in {
+      background: rgba(255,255,255,.08);
+      align-self: flex-start;
+    }
+    .phone .mock-chat .msg.out {
+      background: rgba(47,191,90,.25);
+      align-self: flex-end;
+      border: 1px solid rgba(47,191,90,.35);
+    }
+    .phone .mock-chat .body { justify-content: flex-end; }
+
+    /* Scanner mock */
+    .phone .mock-scan .frame {
+      flex: 1;
+      margin: 8px;
+      border: 2px dashed rgba(47,191,90,.45);
+      border-radius: 14px;
+      display: grid; place-items: center;
+      position: relative;
+      background: radial-gradient(circle at 50% 45%, rgba(47,191,90,.15), transparent 55%);
+    }
+    .phone .mock-scan .qr {
+      width: 64px; height: 64px;
+      background:
+        linear-gradient(#fff 0 0) 0 0/40% 40%,
+        linear-gradient(#fff 0 0) 100% 0/40% 40%,
+        linear-gradient(#fff 0 0) 0 100%/40% 40%,
+        linear-gradient(#2fbf5a 0 0) 55% 55%/22% 22%;
+      background-repeat: no-repeat;
+      background-color: #0c100e;
+      border: 2px solid rgba(255,255,255,.2);
+      border-radius: 6px;
+      animation: scan-pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes scan-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(47,191,90,.35); }
+      50% { box-shadow: 0 0 0 10px rgba(47,191,90,0); }
+    }
+
+    /* Feed mock */
+    .phone .mock-feed .chip-row {
+      display: flex; gap: 6px; flex-wrap: wrap;
+    }
+    .phone .mock-feed .chip-row span {
+      font-size: 10px; padding: 4px 8px; border-radius: 999px;
+      background: rgba(255,255,255,.08); color: rgba(243,247,244,.7);
+    }
+    .phone .mock-feed .chip-row span.on {
+      background: rgba(47,191,90,.2); color: #7dff9f;
+    }
+
+    /* Event editor mock */
+    .phone .mock-event .field {
+      height: 28px; border-radius: 8px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      position: relative;
+    }
+    .phone .mock-event .field::after {
+      content: attr(data-ph);
+      position: absolute; left: 10px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 11px; color: rgba(255,255,255,.35);
+    }
+    .phone .mock-event .field.tall { height: 48px; }
+
+    /* Money / 100% mock */
+    .phone .mock-money .big {
+      margin: auto;
+      text-align: center;
+    }
+    .phone .mock-money .big strong {
+      display: block;
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 42px;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .phone .mock-money .big span {
+      font-size: 12px; color: rgba(243,247,244,.65);
+    }
+
+    @media (min-width: 720px) {
+      .phone .slide-card {
+        flex-direction: row;
+        align-items: stretch;
+        padding: 16px;
+        gap: 16px;
+      }
+      .phone .ui-mock {
+        flex: 1.15 1 0;
+        min-height: 0;
+      }
+      .phone .slide-copy {
+        flex: 0.85 1 0;
+        justify-content: center;
+        padding-right: 6px;
+      }
     }
 
     /* ========== ANIMATED STAGE AURORA ========== */
@@ -2433,32 +2680,37 @@
         <div class="section-head reveal">
           <h2>Для кого</h2>
         </div>
-        <div class="h-slider reveal" data-hslider data-autoplay="4500">
-          <div class="h-slider-viewport">
-            <div class="h-slider-track">
-              <article class="h-slide panel card">
-                <span class="tag">Свой круг</span>
-                <h3>Интересные ивенты без бизнеса</h3>
-                <p>До сотни гостей без ИП и кассы — объявили ивент и продаёте вход.</p>
-                <ul>
-                  <li>Старт за минуты</li>
-                  <li>Оплата с телефона</li>
-                  <li>Группа вокруг ивента</li>
-                </ul>
+        <div class="carousel reveal" data-carousel data-autoplay="4200">
+          <div class="carousel-stage">
+              <article class="slide-card">
+                <div class="ui-mock mock-event" aria-hidden="true"><div class="chrome"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="title-bar">Новый ивент</span></div><div class="body">
+          <div class="field" data-ph="Название ивента"></div>
+          <div class="field" data-ph="Цена билета"></div>
+          <div class="field tall" data-ph="Описание"></div>
+          <div class="mock-row"><div class="lines"><div class="l1"></div></div><span class="badge">Сохранить</span></div>
+        </div></div>
+                <div class="slide-copy">
+                  
+                  <h3>Интересные ивенты без бизнеса</h3>
+                  <p>До сотни гостей без ИП и кассы — объявили ивент и продаёте вход.</p>
+                  <span class="tag">Свой круг</span><ul><li>Старт за минуты</li><li>Оплата с телефона</li><li>Группа вокруг ивента</li></ul>
+                </div>
               </article>
-              <article class="h-slide panel card">
-                <span class="tag">Масштаб</span>
-                <h3>Агентства и площадки</h3>
-                <p>Серии ивентов и объём. FixedFee растёт вместе с вами.</p>
-                <ul>
-                  <li>Свой FixedFee</li>
-                  <li>Серии и объём</li>
-                  <li>Один кабинет на всё</li>
-                </ul>
+              <article class="slide-card">
+                <div class="ui-mock mock-admin" aria-hidden="true"><div class="chrome"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="title-bar">Кабинет · серии</span></div><div class="body">
+          <div class="mock-kpi"><span><strong>128</strong>продаж</span><span><strong>12.4M</strong>оборот</span><span><strong>Live</strong>сейчас</span></div>
+          <div class="mock-row"><div class="thumb"></div><div class="lines"><div class="l1"></div><div class="l2"></div></div><span class="badge">online</span></div>
+          <div class="mock-row"><div class="thumb"></div><div class="lines"><div class="l1"></div><div class="l2"></div></div><span class="badge">draft</span></div>
+        </div></div>
+                <div class="slide-copy">
+                  
+                  <h3>Агентства и площадки</h3>
+                  <p>Серии ивентов и объём. FixedFee растёт вместе с вами.</p>
+                  <span class="tag">Масштаб</span><ul><li>Свой FixedFee</li><li>Серии и объём</li><li>Один кабинет на всё</li></ul>
+                </div>
               </article>
-            </div>
           </div>
-          <div class="h-slider-dots" aria-hidden="true"></div>
+          <div class="carousel-dots" aria-hidden="true"></div>
         </div>
       </div>
     </section>
@@ -2533,37 +2785,78 @@
           <span class="eyebrow">Запуск</span>
           <h2>Путь за 5 минут</h2>
         </div>
-        <div class="h-slider reveal" data-hslider data-autoplay="3200">
-          <div class="h-slider-viewport">
-            <div class="h-slider-track">
-              <article class="h-slide panel flow-step">
-                <div class="ico">1</div>
-                <h3>Кабинет</h3>
-                <p>Бесплатно. Создаёте аккаунт и сразу видите продажи.</p>
+        <div class="carousel reveal" data-carousel data-autoplay="3400">
+          <div class="carousel-stage">
+              <article class="slide-card">
+                <div class="ui-mock mock-admin" aria-hidden="true"><div class="chrome"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="title-bar">Админка</span></div><div class="body">
+          <div class="mock-kpi"><span><strong>128</strong>продаж</span><span><strong>12.4M</strong>оборот</span><span><strong>Live</strong>сейчас</span></div>
+          <div class="mock-row"><div class="thumb"></div><div class="lines"><div class="l1"></div><div class="l2"></div></div><span class="badge">online</span></div>
+          <div class="mock-row"><div class="thumb"></div><div class="lines"><div class="l1"></div><div class="l2"></div></div><span class="badge">draft</span></div>
+        </div></div>
+                <div class="slide-copy">
+                  <div class="ico">1</div>
+                  <h3>Кабинет</h3>
+                  <p>Бесплатно. Создаёте аккаунт и сразу видите продажи.</p>
+                  
+                </div>
               </article>
-              <article class="h-slide panel flow-step">
-                <div class="ico">2</div>
-                <h3>Ивент</h3>
-                <p>Цены билетов — ваши. Черновик или сразу в продажу.</p>
+              <article class="slide-card">
+                <div class="ui-mock mock-event" aria-hidden="true"><div class="chrome"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="title-bar">Создание ивента</span></div><div class="body">
+          <div class="field" data-ph="Название ивента"></div>
+          <div class="field" data-ph="Цена билета"></div>
+          <div class="field tall" data-ph="Описание"></div>
+          <div class="mock-row"><div class="lines"><div class="l1"></div></div><span class="badge">Сохранить</span></div>
+        </div></div>
+                <div class="slide-copy">
+                  <div class="ico">2</div>
+                  <h3>Ивент</h3>
+                  <p>Цены билетов — ваши. Черновик или сразу в продажу.</p>
+                  
+                </div>
               </article>
-              <article class="h-slide panel flow-step">
-                <div class="ico">3</div>
-                <h3>Витрина</h3>
-                <p>Шторка + ⓘ. Одна smart-ссылка в Instagram и Telegram.</p>
+              <article class="slide-card">
+                <div class="ui-mock mock-store" aria-hidden="true"><div class="chrome"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="title-bar">Витрина ивента</span></div><div class="body">
+          <div class="hero-pic"></div>
+          <div class="mock-row"><div class="lines"><div class="l1"></div><div class="l2"></div></div></div>
+          <div class="price-row"><strong>100 000 сум</strong><span class="buy">Купить</span></div>
+        </div></div>
+                <div class="slide-copy">
+                  <div class="ico">3</div>
+                  <h3>Витрина</h3>
+                  <p>Шторка + ⓘ. Одна smart-ссылка в Instagram и Telegram.</p>
+                  
+                </div>
               </article>
-              <article class="h-slide panel flow-step">
-                <div class="ico">4</div>
-                <h3>Оплата</h3>
-                <p>Humo / Uzcard в браузере — без установки приложения.</p>
-              </article>
-              <article class="h-slide panel flow-step">
-                <div class="ico">5</div>
-                <h3>Группа</h3>
-                <p>Гости ивента в чате. Покупки и «хотят» рядом.</p>
-              </article>
-            </div>
+              <article class="slide-card">
+                <div class="ui-mock mock-pay" aria-hidden="true"><div class="chrome"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="title-bar">Чекаут</span></div><div class="body" style="justify-content:flex-end">
+          <div class="sheet">
+            <div class="mock-row"><div class="lines"><div class="l1"></div><div class="l2"></div></div><strong style="color:#fff;font-size:12px">105 000</strong></div>
+            <div class="cards"><i>Humo</i><i>Uzcard</i><i>Visa</i></div>
+            <div class="pay-btn">Оплатить</div>
           </div>
-          <div class="h-slider-dots" aria-hidden="true"></div>
+        </div></div>
+                <div class="slide-copy">
+                  <div class="ico">4</div>
+                  <h3>Оплата</h3>
+                  <p>Humo / Uzcard в браузере — без установки приложения.</p>
+                  
+                </div>
+              </article>
+              <article class="slide-card">
+                <div class="ui-mock mock-chat" aria-hidden="true"><div class="chrome"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="title-bar">Чат ивента</span></div><div class="body">
+          <div class="msg in">Кто ещё идёт на rooftop?</div>
+          <div class="msg out">Мы вдвоём, берём VIP</div>
+          <div class="msg in">Ок, встретимся у входа</div>
+        </div></div>
+                <div class="slide-copy">
+                  <div class="ico">5</div>
+                  <h3>Группа</h3>
+                  <p>Гости ивента в чате. Покупки и «хотят» рядом.</p>
+                  
+                </div>
+              </article>
+          </div>
+          <div class="carousel-dots" aria-hidden="true"></div>
         </div>
       </div>
     </section>
@@ -2574,52 +2867,110 @@
           <span class="eyebrow">Что даём</span>
           <h2>Всё для продаж — без лишнего</h2>
         </div>
-        <div class="h-slider reveal" data-hslider data-autoplay="3800">
-          <div class="h-slider-viewport">
-            <div class="h-slider-track">
-              <article class="h-slide panel">
-                <div class="ico">1</div>
-                <h3>100% цены билета</h3>
-                <p>Поставили 100 000 — получили 100 000. Сбор платит гость, не вы.</p>
+        <div class="carousel reveal" data-carousel data-autoplay="3800">
+          <div class="carousel-stage">
+              <article class="slide-card">
+                <div class="ui-mock mock-money" aria-hidden="true"><div class="chrome"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="title-bar">Экономика</span></div><div class="body"><div class="big"><strong>100%</strong><span>цены остаётся вам</span></div>
+          <div class="mock-kpi"><span><strong>0</strong>с билета</span><span><strong>1.5%</strong>гость</span><span><strong>fix</strong>гость</span></div>
+        </div></div>
+                <div class="slide-copy">
+                  <div class="ico">1</div>
+                  <h3>100% цены билета</h3>
+                  <p>Поставили 100 000 — получили 100 000. Сбор платит гость, не вы.</p>
+                  
+                </div>
               </article>
-              <article class="h-slide panel">
-                <div class="ico">2</div>
-                <h3>Горячий трафик</h3>
-                <p>Люди в Taneesh уже ищут, куда пойти сегодня — не холодная витрина.</p>
+              <article class="slide-card">
+                <div class="ui-mock mock-feed" aria-hidden="true"><div class="chrome"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="title-bar">Лента Taneesh</span></div><div class="body">
+          <div class="chip-row"><span class="on">Сегодня</span><span>Рядом</span><span>Концерты</span></div>
+          <div class="mock-row"><div class="thumb"></div><div class="lines"><div class="l1"></div><div class="l2"></div></div></div>
+          <div class="mock-row"><div class="thumb"></div><div class="lines"><div class="l1"></div><div class="l2"></div></div></div>
+        </div></div>
+                <div class="slide-copy">
+                  <div class="ico">2</div>
+                  <h3>Горячий трафик</h3>
+                  <p>Люди в Taneesh уже ищут, куда пойти сегодня — не холодная витрина.</p>
+                  
+                </div>
               </article>
-              <article class="h-slide panel">
-                <div class="ico">3</div>
-                <h3>Групповые чеки</h3>
-                <p>Матчинг компаний: гости идут вместе — средний чек выше.</p>
+              <article class="slide-card">
+                <div class="ui-mock mock-chat" aria-hidden="true"><div class="chrome"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="title-bar">Компании</span></div><div class="body">
+          <div class="msg in">Кто ещё идёт на rooftop?</div>
+          <div class="msg out">Мы вдвоём, берём VIP</div>
+          <div class="msg in">Ок, встретимся у входа</div>
+        </div></div>
+                <div class="slide-copy">
+                  <div class="ico">3</div>
+                  <h3>Групповые чеки</h3>
+                  <p>Матчинг компаний: гости идут вместе — средний чек выше.</p>
+                  
+                </div>
               </article>
-              <article class="h-slide panel">
-                <div class="ico">4</div>
-                <h3>Кабинет 0 сум</h3>
-                <p>Без абонентки. Продаёте — зарабатываете. Платформа бесплатна для бизнеса.</p>
+              <article class="slide-card">
+                <div class="ui-mock mock-admin" aria-hidden="true"><div class="chrome"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="title-bar">Кабинет</span></div><div class="body">
+          <div class="mock-kpi"><span><strong>128</strong>продаж</span><span><strong>12.4M</strong>оборот</span><span><strong>Live</strong>сейчас</span></div>
+          <div class="mock-row"><div class="thumb"></div><div class="lines"><div class="l1"></div><div class="l2"></div></div><span class="badge">online</span></div>
+          <div class="mock-row"><div class="thumb"></div><div class="lines"><div class="l1"></div><div class="l2"></div></div><span class="badge">draft</span></div>
+        </div></div>
+                <div class="slide-copy">
+                  <div class="ico">4</div>
+                  <h3>Кабинет 0 сум</h3>
+                  <p>Без абонентки. Продаёте — зарабатываете. Платформа бесплатна для бизнеса.</p>
+                  
+                </div>
               </article>
-              <article class="h-slide panel">
-                <div class="ico">5</div>
-                <h3>Кабинет и контроль</h3>
-                <p>Ивенты, продажи и возвраты в реальном времени. VIP-пропуски из кабинета.</p>
+              <article class="slide-card">
+                <div class="ui-mock mock-admin" aria-hidden="true"><div class="chrome"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="title-bar">Контроль продаж</span></div><div class="body">
+          <div class="mock-kpi"><span><strong>128</strong>продаж</span><span><strong>12.4M</strong>оборот</span><span><strong>Live</strong>сейчас</span></div>
+          <div class="mock-row"><div class="thumb"></div><div class="lines"><div class="l1"></div><div class="l2"></div></div><span class="badge">online</span></div>
+          <div class="mock-row"><div class="thumb"></div><div class="lines"><div class="l1"></div><div class="l2"></div></div><span class="badge">draft</span></div>
+        </div></div>
+                <div class="slide-copy">
+                  <div class="ico">5</div>
+                  <h3>Кабинет и контроль</h3>
+                  <p>Ивенты, продажи и возвраты в реальном времени. VIP-пропуски из кабинета.</p>
+                  
+                </div>
               </article>
-              <article class="h-slide panel">
-                <div class="ico">6</div>
-                <h3>Витрина и smart-link</h3>
-                <p>Своя страница с логотипом. Одна ссылка в Instagram, Telegram и рекламу.</p>
+              <article class="slide-card">
+                <div class="ui-mock mock-store" aria-hidden="true"><div class="chrome"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="title-bar">Витрина</span></div><div class="body">
+          <div class="hero-pic"></div>
+          <div class="mock-row"><div class="lines"><div class="l1"></div><div class="l2"></div></div></div>
+          <div class="price-row"><strong>100 000 сум</strong><span class="buy">Купить</span></div>
+        </div></div>
+                <div class="slide-copy">
+                  <div class="ico">6</div>
+                  <h3>Витрина и smart-link</h3>
+                  <p>Своя страница с логотипом. Одна ссылка в Instagram, Telegram и рекламу.</p>
+                  
+                </div>
               </article>
-              <article class="h-slide panel">
-                <div class="ico">7</div>
-                <h3>Покупка в 2 клика</h3>
-                <p>Гость платит в браузере — без регистрации и установки приложения.</p>
-              </article>
-              <article class="h-slide panel">
-                <div class="ico">8</div>
-                <h3>Сканер и безопасность</h3>
-                <p>Вход по билету. Холд средств и возврат в один клик при отмене.</p>
-              </article>
-            </div>
+              <article class="slide-card">
+                <div class="ui-mock mock-pay" aria-hidden="true"><div class="chrome"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="title-bar">Оплата</span></div><div class="body" style="justify-content:flex-end">
+          <div class="sheet">
+            <div class="mock-row"><div class="lines"><div class="l1"></div><div class="l2"></div></div><strong style="color:#fff;font-size:12px">105 000</strong></div>
+            <div class="cards"><i>Humo</i><i>Uzcard</i><i>Visa</i></div>
+            <div class="pay-btn">Оплатить</div>
           </div>
-          <div class="h-slider-dots" aria-hidden="true"></div>
+        </div></div>
+                <div class="slide-copy">
+                  <div class="ico">7</div>
+                  <h3>Покупка в 2 клика</h3>
+                  <p>Гость платит в браузере — без регистрации и установки приложения.</p>
+                  
+                </div>
+              </article>
+              <article class="slide-card">
+                <div class="ui-mock mock-scan" aria-hidden="true"><div class="chrome"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="title-bar">Сканер входа</span></div><div class="frame"><div class="qr"></div></div></div>
+                <div class="slide-copy">
+                  <div class="ico">8</div>
+                  <h3>Сканер и безопасность</h3>
+                  <p>Вход по билету. Холд средств и возврат в один клик при отмене.</p>
+                  
+                </div>
+              </article>
+          </div>
+          <div class="carousel-dots" aria-hidden="true"></div>
         </div>
       </div>
     </section>
@@ -2630,32 +2981,36 @@
           <span class="eyebrow">Организаторы</span>
           <h2>Принимаем и маленьких, и больших</h2>
         </div>
-        <div class="h-slider reveal" data-hslider data-autoplay="4500">
-          <div class="h-slider-viewport">
-            <div class="h-slider-track">
-              <article class="h-slide panel card">
-                <span class="tag">Свой круг</span>
-                <h3>Малые ивенты</h3>
-                <p>Клуб, ниша, вечер для друзей — до сотни гостей. Открыли витрину и продаёте вход.</p>
-                <ul>
-                  <li>Старт за минуты</li>
-                  <li>Оплата с телефона</li>
-                  <li>Группа вокруг события</li>
-                </ul>
+        <div class="carousel reveal" data-carousel data-autoplay="4200">
+          <div class="carousel-stage">
+              <article class="slide-card">
+                <div class="ui-mock mock-store" aria-hidden="true"><div class="chrome"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="title-bar">Витрина · малый ивент</span></div><div class="body">
+          <div class="hero-pic"></div>
+          <div class="mock-row"><div class="lines"><div class="l1"></div><div class="l2"></div></div></div>
+          <div class="price-row"><strong>100 000 сум</strong><span class="buy">Купить</span></div>
+        </div></div>
+                <div class="slide-copy">
+                  
+                  <h3>Малые ивенты</h3>
+                  <p>Клуб, ниша, вечер для друзей — до сотни гостей. Открыли витрину и продаёте вход.</p>
+                  <span class="tag">Свой круг</span><ul><li>Старт за минуты</li><li>Оплата с телефона</li><li>Группа вокруг события</li></ul>
+                </div>
               </article>
-              <article class="h-slide panel card">
-                <span class="tag">Масштаб</span>
-                <h3>Крупные орги</h3>
-                <p>Агентства и площадки. Тот же продукт — с объёмом и своим FixedFee.</p>
-                <ul>
-                  <li>Серии и много гостей</li>
-                  <li>Свой FixedFee в админке</li>
-                  <li>Один кабинет на все ивенты</li>
-                </ul>
+              <article class="slide-card">
+                <div class="ui-mock mock-admin" aria-hidden="true"><div class="chrome"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="title-bar">Кабинет · масштаб</span></div><div class="body">
+          <div class="mock-kpi"><span><strong>128</strong>продаж</span><span><strong>12.4M</strong>оборот</span><span><strong>Live</strong>сейчас</span></div>
+          <div class="mock-row"><div class="thumb"></div><div class="lines"><div class="l1"></div><div class="l2"></div></div><span class="badge">online</span></div>
+          <div class="mock-row"><div class="thumb"></div><div class="lines"><div class="l1"></div><div class="l2"></div></div><span class="badge">draft</span></div>
+        </div></div>
+                <div class="slide-copy">
+                  
+                  <h3>Крупные орги</h3>
+                  <p>Агентства и площадки. Тот же продукт — с объёмом и своим FixedFee.</p>
+                  <span class="tag">Масштаб</span><ul><li>Серии и много гостей</li><li>Свой FixedFee в админке</li><li>Один кабинет на все ивенты</li></ul>
+                </div>
               </article>
-            </div>
           </div>
-          <div class="h-slider-dots" aria-hidden="true"></div>
+          <div class="carousel-dots" aria-hidden="true"></div>
         </div>
       </div>
     </section>
@@ -2682,6 +3037,11 @@
       <div class="wrap fill-screen cta-wrap">
         <div class="cta-band reveal fill-grow">
           <span class="eyebrow">Старт</span>
+          <div class="ui-mock mock-store" aria-hidden="true"><div class="chrome"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="title-bar">Ваша витрина</span></div><div class="body">
+          <div class="hero-pic"></div>
+          <div class="mock-row"><div class="lines"><div class="l1"></div><div class="l2"></div></div></div>
+          <div class="price-row"><strong>100 000 сум</strong><span class="buy">Купить</span></div>
+        </div></div>
           <div class="cta-mid">
             <h2>Запустите продажи — цена билета ваша</h2>
             <p>Подключим кабинет, настроим чекаут и покажем, как выглядит сбор для гостя.</p>
@@ -2849,7 +3209,7 @@
       const done = () => {
         locked = false;
         enterSlide(slides[index]);
-        if (typeof syncHSliderAutoplay === 'function') syncHSliderAutoplay();
+        if (typeof syncCarouselAutoplay === 'function') syncCarouselAutoplay();
       };
       if (instant || reduceMotion) done();
       else setTimeout(done, 380);
@@ -2884,7 +3244,6 @@
     // Wheel → whole screen snaps (Instagram Reels)
     let wheelLock = false;
     reels.addEventListener('wheel', (e) => {
-      if (e.target.closest('.h-slider')) return;
       e.preventDefault();
       if (!canSwipe() || locked || wheelLock) return;
       if (Math.abs(e.deltaY) < 8) return;
@@ -2896,7 +3255,7 @@
     // Touch: drag the entire frame with all content
     reels.addEventListener('touchstart', (e) => {
       if (e.touches.length !== 1 || locked || !canSwipe()) return;
-      if (e.target.closest('a, button, input, label, .faq-layer, .h-slider')) return;
+      if (e.target.closest('a, button, input, label, .faq-layer')) return;
       dragging = true;
       reels.classList.add('is-dragging');
       startY = e.touches[0].clientY;
@@ -2931,7 +3290,7 @@
     // Desktop drag (mouse) — same as finger swipe
     reels.addEventListener('mousedown', (e) => {
       if (e.button !== 0 || locked || !canSwipe()) return;
-      if (e.target.closest('a, button, input, summary, details, label, .faq-layer, .h-slider')) return;
+      if (e.target.closest('a, button, input, summary, details, label, .faq-layer')) return;
       dragging = true;
       reels.classList.add('is-dragging');
       startY = e.clientY;
@@ -2999,28 +3358,22 @@
 
     // Hash deep-link (no native scroll — Reels uses transform)
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-    // Horizontal carousels inside content modules
-    function initHSliders() {
-      const roots = [...document.querySelectorAll('[data-hslider]')];
-      return roots.map((root) => {
-        const viewport = root.querySelector('.h-slider-viewport');
-        const trackEl = root.querySelector('.h-slider-track');
-        const slidesEl = [...root.querySelectorAll('.h-slide')];
-        const dotsWrap = root.querySelector('.h-slider-dots');
-        if (!viewport || !trackEl || !slidesEl.length) return null;
+    // Classic carousels (fade, dots, autoplay — no side-drag)
+    function initCarousels() {
+      return [...document.querySelectorAll('[data-carousel]')].map((root) => {
+        const cards = [...root.querySelectorAll('.slide-card')];
+        const dotsWrap = root.querySelector('.carousel-dots');
+        if (!cards.length) return null;
         let i = 0;
         let timer = null;
-        let drag = false;
-        let startX = 0;
-        let dx = 0;
         const autoMs = +(root.dataset.autoplay || 0);
         const dots = [];
         if (dotsWrap) {
           dotsWrap.innerHTML = '';
-          slidesEl.forEach((_, di) => {
+          cards.forEach((_, di) => {
             const b = document.createElement('button');
             b.type = 'button';
-            b.setAttribute('aria-label', 'Карточка ' + (di + 1));
+            b.setAttribute('aria-label', 'Слайд ' + (di + 1));
             b.addEventListener('click', (e) => {
               e.stopPropagation();
               go(di, true);
@@ -3029,102 +3382,35 @@
             dots.push(b);
           });
         }
-        function step() {
-          const gap = 12;
-          return slidesEl[0].getBoundingClientRect().width + gap;
-        }
-        function maxI() {
-          const vis = viewport.clientWidth;
-          const total = trackEl.scrollWidth;
-          const s = step();
-          if (s <= 0) return 0;
-          return Math.max(0, Math.round((total - vis) / s));
-        }
-        function apply(offset = 0) {
-          const x = -i * step() + offset;
-          trackEl.style.transform = `translate3d(${x}px, 0, 0)`;
-          dots.forEach((d, di) => d.classList.toggle('active', di === i));
-        }
         function go(ni, user) {
-          const m = maxI();
-          i = Math.max(0, Math.min(m, ni));
-          apply(0);
+          i = ((ni % cards.length) + cards.length) % cards.length;
+          cards.forEach((c, di) => c.classList.toggle('is-active', di === i));
+          dots.forEach((d, di) => d.classList.toggle('active', di === i));
           if (user) restart();
         }
-        function next() {
-          const m = maxI();
-          if (i >= m) go(0, false);
-          else go(i + 1, false);
-        }
+        function next() { go(i + 1, false); }
         function restart() {
           stop();
-          if (!autoMs || reduceMotion) return;
-          if (document.hidden) return;
+          if (!autoMs || reduceMotion || document.hidden) return;
           timer = setInterval(next, autoMs);
         }
         function stop() {
           if (timer) clearInterval(timer);
           timer = null;
         }
-        function onStart(clientX) {
-          drag = true;
-          root.classList.add('is-dragging');
-          startX = clientX;
-          dx = 0;
-          stop();
-        }
-        function onMove(clientX) {
-          if (!drag) return;
-          dx = clientX - startX;
-          apply(dx);
-        }
-        function onEnd() {
-          if (!drag) return;
-          drag = false;
-          root.classList.remove('is-dragging');
-          const th = Math.min(80, viewport.clientWidth * 0.18);
-          if (dx < -th) go(i + 1, true);
-          else if (dx > th) go(i - 1, true);
-          else go(i, true);
-          dx = 0;
-        }
-        const onWinMove = (e) => onMove(e.clientX);
-        const onWinUp = () => {
-          window.removeEventListener('mousemove', onWinMove);
-          window.removeEventListener('mouseup', onWinUp);
-          onEnd();
-        };
-        viewport.addEventListener('touchstart', (e) => {
-          if (e.touches.length !== 1) return;
-          onStart(e.touches[0].clientX);
-        }, { passive: true });
-        viewport.addEventListener('touchmove', (e) => {
-          if (!drag) return;
-          onMove(e.touches[0].clientX);
-        }, { passive: true });
-        viewport.addEventListener('touchend', onEnd);
-        viewport.addEventListener('touchcancel', onEnd);
-        viewport.addEventListener('mousedown', (e) => {
-          if (e.button !== 0) return;
-          onStart(e.clientX);
-          window.addEventListener('mousemove', onWinMove);
-          window.addEventListener('mouseup', onWinUp);
-          e.preventDefault();
-        });
-        window.addEventListener('resize', () => { go(Math.min(i, maxI()), false); });
         document.addEventListener('visibilitychange', () => {
           if (document.hidden) stop();
           else if (slides[index] && slides[index].contains(root)) restart();
         });
-        apply(0);
+        go(0, false);
         return { root, go, next, restart, stop };
       }).filter(Boolean);
     }
-    const hSliders = initHSliders();
+    const carousels = initCarousels();
 
-    function syncHSliderAutoplay() {
+    function syncCarouselAutoplay() {
       const active = slides[index];
-      hSliders.forEach((s) => {
+      carousels.forEach((s) => {
         if (active && active.contains(s.root)) s.restart();
         else s.stop();
       });
@@ -3149,7 +3435,7 @@
     requestAnimationFrame(killNativeScroll);
     setTimeout(killNativeScroll, 0);
     setTimeout(killNativeScroll, 50);
-    setTimeout(() => { if (typeof syncHSliderAutoplay === 'function') syncHSliderAutoplay(); }, 100);
+    setTimeout(() => { if (typeof syncCarouselAutoplay === 'function') syncCarouselAutoplay(); }, 100);
     // Hash scroll targets #reels (overflow) — lock it so transform isn't doubled
     if (reels) {
       reels.addEventListener('scroll', () => { if (reels.scrollTop) reels.scrollTop = 0; }, { passive: true });
