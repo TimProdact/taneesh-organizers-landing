@@ -1951,6 +1951,7 @@
 
     /* Fees */
     .phone #fees .calc-grid.fill-grow { display: flex !important; }
+    .phone #fees .fees-mock { margin-bottom: 4px; }
     .phone #fees .fees-panel {
       display: flex !important;
       flex-direction: column !important;
@@ -2157,6 +2158,7 @@
       color: var(--accent);
       margin-right: 8px;
     }
+    .phone .slide-copy .tag { align-self: flex-start; margin-bottom: 2px; }
     .phone .slide-copy {
       flex: 0 0 auto;
       display: flex;
@@ -2682,7 +2684,7 @@
         </div>
         <div class="carousel reveal" data-carousel data-autoplay="4200">
           <div class="carousel-stage">
-              <article class="slide-card">
+              <article class="slide-card is-active">
                 <div class="ui-mock mock-event" aria-hidden="true"><div class="chrome"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="title-bar">Новый ивент</span></div><div class="body">
           <div class="field" data-ph="Название ивента"></div>
           <div class="field" data-ph="Цена билета"></div>
@@ -2691,9 +2693,10 @@
         </div></div>
                 <div class="slide-copy">
                   
+                  <span class="tag">Свой круг</span>
                   <h3>Интересные ивенты без бизнеса</h3>
                   <p>До сотни гостей без ИП и кассы — объявили ивент и продаёте вход.</p>
-                  <span class="tag">Свой круг</span><ul><li>Старт за минуты</li><li>Оплата с телефона</li><li>Группа вокруг ивента</li></ul>
+                  <ul><li>Старт за минуты</li><li>Оплата с телефона</li><li>Группа вокруг ивента</li></ul>
                 </div>
               </article>
               <article class="slide-card">
@@ -2704,9 +2707,10 @@
         </div></div>
                 <div class="slide-copy">
                   
+                  <span class="tag">Масштаб</span>
                   <h3>Агентства и площадки</h3>
                   <p>Серии ивентов и объём. FixedFee растёт вместе с вами.</p>
-                  <span class="tag">Масштаб</span><ul><li>Свой FixedFee</li><li>Серии и объём</li><li>Один кабинет на всё</li></ul>
+                  <ul><li>Свой FixedFee</li><li>Серии и объём</li><li>Один кабинет на всё</li></ul>
                 </div>
               </article>
           </div>
@@ -2723,6 +2727,15 @@
         </div>
         <div class="calc-grid fill-grow">
           <div class="panel reveal fill-grow fees-panel">
+            <div class="ui-mock mock-pay fees-mock" aria-hidden="true" style="flex:0 0 auto;min-height:110px;max-height:130px">
+              <div class="chrome"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="title-bar">Чекаут гостя</span></div>
+              <div class="body" style="justify-content:flex-end;padding:8px">
+                <div class="sheet" style="padding:8px">
+                  <div class="cards"><i>Humo</i><i>Uzcard</i><i>Visa</i></div>
+                  <div class="pay-btn">Оплатить · сбор уже в сумме</div>
+                </div>
+              </div>
+            </div>
             <div class="slider-wrap">
               <label>
                 <span>Цена билета (ваша)</span>
@@ -2787,7 +2800,7 @@
         </div>
         <div class="carousel reveal" data-carousel data-autoplay="3400">
           <div class="carousel-stage">
-              <article class="slide-card">
+              <article class="slide-card is-active">
                 <div class="ui-mock mock-admin" aria-hidden="true"><div class="chrome"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="title-bar">Админка</span></div><div class="body">
           <div class="mock-kpi"><span><strong>128</strong>продаж</span><span><strong>12.4M</strong>оборот</span><span><strong>Live</strong>сейчас</span></div>
           <div class="mock-row"><div class="thumb"></div><div class="lines"><div class="l1"></div><div class="l2"></div></div><span class="badge">online</span></div>
@@ -2869,7 +2882,7 @@
         </div>
         <div class="carousel reveal" data-carousel data-autoplay="3800">
           <div class="carousel-stage">
-              <article class="slide-card">
+              <article class="slide-card is-active">
                 <div class="ui-mock mock-money" aria-hidden="true"><div class="chrome"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="title-bar">Экономика</span></div><div class="body"><div class="big"><strong>100%</strong><span>цены остаётся вам</span></div>
           <div class="mock-kpi"><span><strong>0</strong>с билета</span><span><strong>1.5%</strong>гость</span><span><strong>fix</strong>гость</span></div>
         </div></div>
@@ -2983,7 +2996,7 @@
         </div>
         <div class="carousel reveal" data-carousel data-autoplay="4200">
           <div class="carousel-stage">
-              <article class="slide-card">
+              <article class="slide-card is-active">
                 <div class="ui-mock mock-store" aria-hidden="true"><div class="chrome"><span class="dot g"></span><span class="dot"></span><span class="dot"></span><span class="title-bar">Витрина · малый ивент</span></div><div class="body">
           <div class="hero-pic"></div>
           <div class="mock-row"><div class="lines"><div class="l1"></div><div class="l2"></div></div></div>
@@ -2991,9 +3004,10 @@
         </div></div>
                 <div class="slide-copy">
                   
+                  <span class="tag">Свой круг</span>
                   <h3>Малые ивенты</h3>
                   <p>Клуб, ниша, вечер для друзей — до сотни гостей. Открыли витрину и продаёте вход.</p>
-                  <span class="tag">Свой круг</span><ul><li>Старт за минуты</li><li>Оплата с телефона</li><li>Группа вокруг события</li></ul>
+                  <ul><li>Старт за минуты</li><li>Оплата с телефона</li><li>Группа вокруг события</li></ul>
                 </div>
               </article>
               <article class="slide-card">
@@ -3004,9 +3018,10 @@
         </div></div>
                 <div class="slide-copy">
                   
+                  <span class="tag">Масштаб</span>
                   <h3>Крупные орги</h3>
                   <p>Агентства и площадки. Тот же продукт — с объёмом и своим FixedFee.</p>
-                  <span class="tag">Масштаб</span><ul><li>Серии и много гостей</li><li>Свой FixedFee в админке</li><li>Один кабинет на все ивенты</li></ul>
+                  <ul><li>Серии и много гостей</li><li>Свой FixedFee в админке</li><li>Один кабинет на все ивенты</li></ul>
                 </div>
               </article>
           </div>
