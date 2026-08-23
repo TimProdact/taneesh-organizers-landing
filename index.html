@@ -1918,6 +1918,57 @@
     .phone #why .save-banner {
       margin-top: auto !important;
       flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .phone #why .why-ticket-wrap {
+      margin: 0 0 4px;
+    }
+    .phone #why .why-ticket-wrap label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: rgba(243,247,244,.7);
+    }
+    .phone #why .why-ticket-wrap strong {
+      color: #fff;
+      font-size: 14px;
+    }
+    .phone #why .why-ticket-wrap input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+    .phone #why .why-compare {
+      display: grid;
+      gap: 8px;
+      margin: 4px 0 2px;
+    }
+    .phone #why .why-compare-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      font-size: 13px;
+      color: rgba(243,247,244,.72);
+    }
+    .phone #why .why-compare-row strong {
+      color: #fff;
+      font-variant-numeric: tabular-nums;
+    }
+    .phone #why .save-pack-line {
+      font-size: 13px;
+      color: rgba(255,255,255,.9);
+    }
+    .phone #why .save-pack-line b {
+      font-weight: 700;
     }
 
     /* Conversion */
@@ -2683,30 +2734,49 @@
         </div>
         <div class="grid-2 fill-grow">
           <div class="panel reveal lift fill-grow why-panel">
+            <div class="slider-wrap why-ticket-wrap">
+              <label>
+                <span>Цена билета на концерт</span>
+                <strong id="whyTicketLabel">100 000 сум</strong>
+              </label>
+              <input type="range" id="whyTicketPrice" min="20000" max="500000" step="1000" value="100000" />
+            </div>
             <div class="bars" data-bars>
               <div class="bar-row">
                 <div class="bar-meta">
-                  <strong>Агрегатор забирает 15%</strong>
-                  <span id="aggCostLabel">15 000 с билета 100k</span>
+                  <strong>Обычная касса / агрегатор · 15%</strong>
+                  <span id="aggCostLabel">−15 000 сум с билета</span>
                 </div>
-                <div class="bar-track"><div class="bar-fill bad" data-w="75"></div></div>
-                <div class="bar-note">Комиссия с организатора + жёсткие правила</div>
+                <div class="bar-track"><div class="bar-fill bad" id="aggBar" data-w="15" style="width:15%"></div></div>
+                <div class="bar-note">Комиссия с организатора от цены билета</div>
               </div>
-              <div class="bar-row" style="margin-top:20px">
+              <div class="bar-row">
                 <div class="bar-meta">
                   <strong>Taneesh · вам 100%</strong>
-                  <span id="tanCostLabel">0 сум с цены 100k</span>
+                  <span id="tanCostLabel">0 сум с цены билета</span>
                 </div>
-                <div class="bar-track"><div class="bar-fill good" data-w="8"></div></div>
-                <div class="bar-note">Сбор 1.5% + fix платит гость на чекауте</div>
+                <div class="bar-track"><div class="bar-fill good" id="tanBar" data-w="0" style="width:2%"></div></div>
+                <div class="bar-note">Сбор 1.5% + FixedFee платит гость на чекауте</div>
+              </div>
+            </div>
+            <div class="why-compare">
+              <div class="why-compare-row">
+                <span>Вы отдаёте кассе с 1 билета</span>
+                <strong id="aggPerTicket">15 000</strong>
+              </div>
+              <div class="why-compare-row">
+                <span>С Taneesh с 1 билета</span>
+                <strong id="tanPerTicket">0</strong>
               </div>
             </div>
             <div class="save-banner">
               <div>
                 <div class="big">+<span id="saveAmount">15 000</span> сум</div>
-                <span>остаётся у вас с билета vs 15% агрегатор</span>
+                <span>экономия с 1 билета vs 15% касса</span>
               </div>
-              <span>на 100 билетах ≈ <b id="savePack">1 500 000</b> сум</span>
+              <div class="save-pack-line">
+                на <b>100 билетах</b> ≈ <b id="savePack">1 500 000</b> сум
+              </div>
             </div>
           </div>
         </div>
@@ -3429,15 +3499,51 @@
       });
     }
 
-    // Fee calculator
+    // Fee calculator (guest checkout) + org economics vs 15% box office
     const ticket = document.getElementById('ticketPrice');
     const fix = document.getElementById('fixFee');
     const donut = document.getElementById('donut');
+    const whyTicket = document.getElementById('whyTicketPrice');
     const fmt = (n) => Math.round(n).toLocaleString('ru-RU');
     const round100 = (n) => Math.ceil(n / 100) * 100;
+    const AGG_RATE = 0.15;
+    const PACK = 100;
 
-    function recalc() {
-      if (!ticket || !fix || !donut) return;
+    function recalcWhy(ticketPrice) {
+      const t = Math.max(0, +ticketPrice || 0);
+      const agg = Math.round(t * AGG_RATE);
+      const save = agg;
+      const pack = save * PACK;
+
+      const whyLabel = document.getElementById('whyTicketLabel');
+      const saveEl = document.getElementById('saveAmount');
+      const packEl = document.getElementById('savePack');
+      const aggLabel = document.getElementById('aggCostLabel');
+      const tanLabel = document.getElementById('tanCostLabel');
+      const aggPer = document.getElementById('aggPerTicket');
+      const tanPer = document.getElementById('tanPerTicket');
+      const bad = document.getElementById('aggBar');
+      const good = document.getElementById('tanBar');
+
+      if (whyLabel) whyLabel.textContent = fmt(t) + ' сум';
+      if (aggLabel) aggLabel.textContent = '−' + fmt(agg) + ' сум с билета';
+      if (tanLabel) tanLabel.textContent = '0 сум с цены ' + fmt(t);
+      if (aggPer) aggPer.textContent = fmt(agg) + ' сум';
+      if (tanPer) tanPer.textContent = '0 сум';
+      if (saveEl) saveEl.textContent = fmt(save);
+      if (packEl) packEl.textContent = fmt(pack);
+      if (bad) {
+        bad.dataset.w = String(Math.round(AGG_RATE * 100));
+        bad.style.width = (AGG_RATE * 100) + '%';
+      }
+      if (good) {
+        good.dataset.w = '0';
+        good.style.width = '2%';
+      }
+    }
+
+    function recalcFees() {
+      if (!ticket || !fix) return;
       const t = +ticket.value;
       const f = +fix.value;
       const acq = t * 0.015;
@@ -3445,59 +3551,49 @@
       const total = t + feeTotal;
       const acqShown = round100(acq);
       const fixShown = feeTotal - acqShown;
-      const agg = Math.round(t * 0.15);
-      const save = agg;
 
-      document.getElementById('ticketLabel').textContent = fmt(t) + ' сум';
-      document.getElementById('fixLabel').textContent = fmt(f) + ' сум';
-      document.getElementById('outTicket').textContent = fmt(t);
-      const outOrg = document.getElementById('outOrg');
-      if (outOrg) outOrg.textContent = fmt(t);
-      document.getElementById('outAcq').textContent = fmt(acqShown);
-      document.getElementById('outFix').textContent = fmt(fixShown);
-      document.getElementById('outTotal').textContent = fmt(total);
-      document.getElementById('donutTotal').textContent = fmt(total);
+      const setText = (id, v) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = v;
+      };
+      setText('ticketLabel', fmt(t) + ' сум');
+      setText('fixLabel', fmt(f) + ' сум');
+      setText('outTicket', fmt(t));
+      setText('outOrg', fmt(t));
+      setText('outAcq', fmt(acqShown));
+      setText('outFix', fmt(fixShown));
+      setText('outTotal', fmt(total));
+      setText('donutTotal', fmt(total));
 
-      const saveEl = document.getElementById('saveAmount');
-      const packEl = document.getElementById('savePack');
-      const aggLabel = document.getElementById('aggCostLabel');
-      const tanLabel = document.getElementById('tanCostLabel');
-      if (saveEl) saveEl.textContent = fmt(save);
-      if (packEl) packEl.textContent = fmt(save * 100);
-      if (aggLabel) aggLabel.textContent = fmt(agg) + ' с билета ' + fmt(t);
-      if (tanLabel) tanLabel.textContent = '0 сум с цены ' + fmt(t);
-
-      const bad = document.querySelector('.bar-fill.bad');
-      const good = document.querySelector('.bar-fill.good');
-      if (bad && good) {
-        bad.dataset.w = '75';
-        good.dataset.w = '8';
-        if (bad.style.width && bad.style.width !== '0px' && bad.style.width !== '0%') {
-          bad.style.width = '75%';
-          good.style.width = '8%';
-        }
+      if (donut && total > 0) {
+        const pTicket = (t / total) * 100;
+        const pAcq = (acqShown / total) * 100;
+        const pFix = (fixShown / total) * 100;
+        setText('pctTicket', pTicket.toFixed(1) + '%');
+        setText('pctAcq', pAcq.toFixed(1) + '%');
+        setText('pctFix', pFix.toFixed(1) + '%');
+        const a1 = pAcq * 3.6;
+        const a2 = (pAcq + pFix) * 3.6;
+        donut.style.background = `conic-gradient(var(--accent) 0 ${a1}deg, #111 0 ${a2}deg, #e5e7eb 0)`;
       }
+    }
 
-      const pTicket = (t / total) * 100;
-      const pAcq = (acqShown / total) * 100;
-      const pFix = (fixShown / total) * 100;
-      document.getElementById('pctTicket').textContent = pTicket.toFixed(1) + '%';
-      document.getElementById('pctAcq').textContent = pAcq.toFixed(1) + '%';
-      document.getElementById('pctFix').textContent = pFix.toFixed(1) + '%';
+    function syncTicket(fromWhy) {
+      if (fromWhy && whyTicket && ticket) ticket.value = whyTicket.value;
+      if (!fromWhy && ticket && whyTicket) whyTicket.value = ticket.value;
+      recalcWhy(whyTicket ? whyTicket.value : (ticket && ticket.value));
+      recalcFees();
+    }
 
-      const a1 = pAcq * 3.6;
-      const a2 = (pAcq + pFix) * 3.6;
-      donut.style.background = `conic-gradient(var(--accent) 0 ${a1}deg, #111 0 ${a2}deg, #e5e7eb 0)`;
+    if (whyTicket) {
+      whyTicket.addEventListener('input', () => syncTicket(true));
+      recalcWhy(whyTicket.value);
     }
     if (ticket && fix) {
-      ticket.addEventListener('input', recalc);
-      fix.addEventListener('input', recalc);
-      recalc();
+      ticket.addEventListener('input', () => syncTicket(false));
+      fix.addEventListener('input', recalcFees);
+      recalcFees();
     }
-
-    // CTA / fees buttons inside hero
-    
-    });
   </script>
 
 </body>
