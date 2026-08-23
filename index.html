@@ -103,41 +103,38 @@
     }
 
     .reels {
-      position: relative;
+      position: absolute;
+      inset: 0;
       z-index: 1;
-      flex: 1 1 auto;
-      min-height: 0;
-      overflow-x: hidden;
-      overflow-y: auto;
-      background: transparent;
-      touch-action: pan-y;
-      cursor: auto;
-      -webkit-overflow-scrolling: touch;
+      overflow: hidden;
+      background: #000;
+      touch-action: none;
+      cursor: grab;
     }
     .reels.is-dragging { cursor: grabbing; }
     .reels-track {
       width: 100%;
+      will-change: transform;
+      transition: transform 0.38s var(--ease-settle);
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      height: auto;
     }
     .reels.is-dragging .reels-track {
       transition: none;
     }
     .reel {
-      height: auto;
+      height: var(--reel-h, 100%);
       width: 100%;
       flex: 0 0 auto;
       display: flex;
       flex-direction: column;
-      justify-content: stretch;
-      padding: 0;
+      justify-content: flex-end;
+      padding: 56px 0 88px;
       box-sizing: border-box;
       position: relative;
-      overflow: visible;
-      touch-action: auto;
-      user-select: text;
+      overflow: hidden;
+      touch-action: none;
+      user-select: none;
       background:
         linear-gradient(180deg, rgba(0,0,0,.35) 0%, transparent 28%, transparent 48%, rgba(0,0,0,.78) 100%),
         radial-gradient(ellipse 90% 70% at 50% 30%, rgba(47,191,90,.28), transparent 55%),
@@ -2535,7 +2532,9 @@
     }
 
 
-    /* ========== SCROLL MODE (not Instagram snap) ========== */
+    /* In scroll mode, content is readable immediately; motion is progressive enhancement */
+    .phone .reveal { opacity: 1; transform: none; will-change: auto; }
+
     .phone {
       display: flex !important;
       flex-direction: column !important;
@@ -3282,12 +3281,18 @@
     const scrollRoot = reels; // native scroll area
     let index = 0;
 
+    function sectionOffset(el) {
+      if (!el || !scrollRoot) return 0;
+      const er = el.getBoundingClientRect();
+      const sr = scrollRoot.getBoundingClientRect();
+      return er.top - sr.top + scrollRoot.scrollTop;
+    }
+
     function scrollToSlide(el, { instant = false } = {}) {
       if (!el || !scrollRoot) return;
       if (typeof closeFaq === 'function') closeFaq();
-      const top = el.offsetTop - 8;
       scrollRoot.scrollTo({
-        top: Math.max(0, top),
+        top: Math.max(0, sectionOffset(el) - 8),
         behavior: instant || reduceMotion ? 'auto' : 'smooth',
       });
     }
@@ -3297,7 +3302,7 @@
       const y = scrollRoot.scrollTop + scrollRoot.clientHeight * 0.28;
       let best = 0;
       slides.forEach((s, i) => {
-        if (s.offsetTop <= y) best = i;
+        if (sectionOffset(s) <= y) best = i;
       });
       if (best !== index) {
         index = best;
@@ -3350,8 +3355,20 @@
         if (el) scrollToSlide(el, { instant: true });
       }
       setActiveByScroll();
+      if (slides[0]) enterSlide(slides[0]);
       if (typeof syncCarouselAutoplay === 'function') syncCarouselAutoplay();
     });
+    // Fallback if GSAP/IO miss first paint
+    setTimeout(() => {
+      document.querySelectorAll('.reveal').forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && getComputedStyle(el).opacity === '0') {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        }
+      });
+      if (slides[0]) enterSlide(slides[0]);
+    }, 200);
 
 
     // Classic carousels (fade, dots, autoplay — no side-drag)
