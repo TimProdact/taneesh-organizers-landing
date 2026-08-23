@@ -1657,8 +1657,8 @@
     .phone .reel.hero > .wrap,
     .phone .reel#cta > .wrap,
     .phone .reel#footer > .wrap {
-      justify-content: flex-end !important;
-      padding-bottom: 22px !important;
+      justify-content: stretch !important;
+      padding-bottom: 18px !important;
     }
     .phone .hero h1 {
       font-size: clamp(28px, 7vw, 34px) !important;
@@ -1834,6 +1834,248 @@
     }
 
 
+
+
+    /* ========== FILL SCREEN (no empty voids) ========== */
+    .phone .reel > .wrap.fill-screen,
+    .phone .reel > .wrap {
+      justify-content: flex-start !important;
+      gap: 14px !important;
+    }
+    .phone .reel.hero > .wrap,
+    .phone .reel#cta > .wrap,
+    .phone .reel#footer > .wrap {
+      justify-content: stretch !important;
+      padding-bottom: 18px !important;
+    }
+    .phone .fill-grow {
+      flex: 1 1 auto !important;
+      min-height: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+    }
+    .phone .section-head {
+      flex: 0 0 auto !important;
+      margin-bottom: 0 !important;
+    }
+
+    /* Hero */
+    .phone .hero .hero-fill {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      width: 100%;
+    }
+    .phone .hero .hero-metric {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      flex: 1 1 0;
+    }
+    .phone .hero .hero-metric strong {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: clamp(28px, 8vw, 40px);
+      font-weight: 400;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .phone .hero .hero-metric span {
+      font-size: 13px;
+      color: rgba(243,247,244,.7);
+    }
+    .phone .hero .hero-copy {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+    @media (min-width: 720px) {
+      .phone .hero .hero-fill {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* Why */
+    .phone #why .grid-2.fill-grow { display: flex !important; }
+    .phone #why .why-panel {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      gap: 18px !important;
+      padding: 18px !important;
+      height: 100%;
+    }
+    .phone #why .bars { flex: 1 1 auto; display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+    .phone #why .bar-row { margin-top: 0 !important; }
+    .phone #why .save-banner {
+      margin-top: auto !important;
+      flex: 0 0 auto;
+    }
+
+    /* Conversion */
+    .phone #conversion .live-conv.fill-grow { display: flex !important; }
+    .phone #conversion .live-conv-hero {
+      display: flex !important;
+      flex-direction: column !important;
+      height: 100% !important;
+      justify-content: space-between !important;
+      gap: 14px !important;
+      padding: 18px !important;
+    }
+    .phone #conversion .live-stats {
+      flex: 1 1 auto;
+      align-content: stretch;
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 10px !important;
+    }
+    .phone #conversion .live-stat {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 64px;
+    }
+    .phone #conversion .spark {
+      flex: 0 0 auto;
+      height: 56px !important;
+      margin-top: 4px;
+    }
+
+    /* Fees */
+    .phone #fees .calc-grid.fill-grow { display: flex !important; }
+    .phone #fees .fees-panel {
+      display: flex !important;
+      flex-direction: column !important;
+      height: 100%;
+      justify-content: space-between !important;
+      gap: 12px !important;
+      padding: 16px !important;
+    }
+    .phone #fees .fees-panel > div:last-child {
+      margin-top: auto !important;
+    }
+    .phone #fees .legend-item {
+      padding: 12px 14px !important;
+    }
+
+    /* CTA */
+    .phone #cta .cta-wrap { padding: 0 !important; background: transparent !important; border: none !important; }
+    .phone #cta .cta-band.fill-grow {
+      height: 100% !important;
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 22px 18px !important;
+      box-sizing: border-box;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      gap: 16px;
+      border-radius: 18px !important;
+      background:
+        radial-gradient(ellipse 90% 70% at 15% 20%, rgba(47,191,90,.28), transparent 55%),
+        radial-gradient(ellipse 70% 60% at 90% 90%, rgba(47,191,90,.18), transparent 50%),
+        #0f1a12 !important;
+      border: 1px solid rgba(47,191,90,.25) !important;
+    }
+    .phone #cta .cta-mid { display: flex; flex-direction: column; gap: 12px; }
+    .phone #cta .cta-band h2 {
+      font-size: clamp(28px, 7vw, 36px) !important;
+      margin: 0 !important;
+      max-width: 14ch;
+    }
+    .phone #cta .cta-band p {
+      margin: 0 !important;
+      font-size: 14px !important;
+      color: rgba(243,247,244,.78) !important;
+      max-width: 36ch;
+    }
+    .phone #cta .btn-row { margin-top: 0 !important; flex-wrap: wrap; gap: 10px; }
+
+    /* Footer */
+    .phone #footer .footer-fill {
+      justify-content: space-between !important;
+      padding: 22px 18px !important;
+    }
+    .phone #footer .footer-brand .logo {
+      font-size: 22px;
+      font-style: italic;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .phone #footer .footer-brand {
+      padding: 18px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .phone #footer .footer-brand p {
+      margin: 0;
+      color: rgba(243,247,244,.7);
+      font-size: 14px;
+    }
+    .phone #footer .footer-links {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0 !important;
+      width: 100%;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.05);
+    }
+    .phone #footer .footer-links a {
+      padding: 16px 18px;
+      color: #f3f7f4 !important;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      font-size: 15px;
+    }
+    .phone #footer .footer-links a:last-child { border-bottom: 0; }
+    .phone #footer .footer-copy {
+      margin: 0;
+      color: rgba(243,247,244,.45);
+      font-size: 13px;
+    }
+
+    /* FAQ stretch */
+    .phone #faq .faq-list.fill-grow {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 10px !important;
+      justify-content: stretch;
+    }
+    .phone #faq .faq-list button.faq-q {
+      flex: 1 1 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      min-height: 64px;
+    }
+
+    @media (min-width: 720px) {
+      .phone .hero .hero-metric strong { font-size: 36px; }
+      .phone #cta .cta-band.fill-grow { padding: 36px 32px !important; }
+      .phone #cta .cta-band h2 { font-size: 40px !important; max-width: 18ch; }
+      .phone #footer .footer-links {
+        flex-direction: row !important;
+        flex-wrap: wrap;
+      }
+      .phone #footer .footer-links a {
+        flex: 1 1 auto;
+        border-bottom: 0;
+        border-right: 1px solid rgba(255,255,255,.08);
+        text-align: center;
+      }
+      .phone #footer .footer-links a:last-child { border-right: 0; }
+    }
 
     .phone .wrap:has(.h-slider) {
       display: flex;
@@ -2069,26 +2311,41 @@
   <div class="reels-track" id="reelsTrack">
     <section class="reel hero" id="slide-hero" data-slide>
       <div class="hero-bg" aria-hidden="true"></div>
-      <div class="wrap">
-        <div class="hero-badge float" aria-hidden="true">🎟️</div>
-        <h1 class="reveal">Продавайте билеты.<br /><span class="accent">Получайте 100%</span> цены</h1>
-        <p class="lead reveal reveal-delay-1">
-          Витрина за 5 минут. Сбор платит гость — вам 100% цены билета.
-        </p>
-        <div class="btn-row reveal reveal-delay-2" style="justify-content:flex-start">
-          <a class="btn btn-accent" href="#cta" data-goto="cta">Запустить продажи</a>
+      <div class="wrap fill-screen">
+        <div class="hero-fill reveal">
+          <div class="hero-metric">
+            <strong>100%</strong>
+            <span>цены билета вам</span>
+          </div>
+          <div class="hero-metric">
+            <strong>5 мин</strong>
+            <span>до первой витрины</span>
+          </div>
+          <div class="hero-metric">
+            <strong>0 сум</strong>
+            <span>абонентки орга</span>
+          </div>
+        </div>
+        <div class="hero-copy">
+          <h1 class="reveal">Продавайте билеты.<br /><span class="accent">Получайте 100%</span> цены</h1>
+          <p class="lead reveal reveal-delay-1">
+            Витрина за 5 минут. Сбор платит гость — вам 100% цены билета.
+          </p>
+          <div class="btn-row reveal reveal-delay-2" style="justify-content:flex-start">
+            <a class="btn btn-accent" href="#cta" data-goto="cta">Запустить продажи</a>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="reel" id="why" data-slide>
-      <div class="wrap">
+      <div class="wrap fill-screen">
         <div class="section-head reveal">
           <span class="eyebrow">Экономика орга</span>
           <h2>Не отдавайте 15% с билета</h2>
         </div>
-        <div class="grid-2">
-          <div class="panel reveal lift">
+        <div class="grid-2 fill-grow">
+          <div class="panel reveal lift fill-grow why-panel">
             <div class="bars" data-bars>
               <div class="bar-row">
                 <div class="bar-meta">
@@ -2120,14 +2377,14 @@
     </section>
 
     <section class="reel" id="conversion" data-slide>
-      <div class="wrap">
+      <div class="wrap fill-screen">
         <div class="section-head reveal">
           <span class="eyebrow">Открытость</span>
           <h2>Конверсия в реальном времени</h2>
         </div>
 
-        <div class="live-conv reveal">
-          <div class="live-conv-hero" data-live-conv>
+        <div class="live-conv reveal fill-grow">
+          <div class="live-conv-hero fill-grow" data-live-conv>
             <div class="live-pill"><span class="pulse-dot"></span> Live · платформа</div>
             <div class="rate">
               <span id="liveConvRate" data-live="34">0</span><small>%</small>
@@ -2172,7 +2429,7 @@
     </section>
 
     <section class="reel" id="audience" data-slide>
-      <div class="wrap">
+      <div class="wrap fill-screen">
         <div class="section-head reveal">
           <h2>Для кого</h2>
         </div>
@@ -2207,13 +2464,13 @@
     </section>
 
     <section class="reel" id="fees" data-slide>
-      <div class="wrap">
+      <div class="wrap fill-screen">
         <div class="section-head reveal">
           <span class="eyebrow">Сборы</span>
           <h2>Сбор платит гость</h2>
         </div>
-        <div class="calc-grid">
-          <div class="panel reveal">
+        <div class="calc-grid fill-grow">
+          <div class="panel reveal fill-grow fees-panel">
             <div class="slider-wrap">
               <label>
                 <span>Цена билета (ваша)</span>
@@ -2271,47 +2528,48 @@
     </section>
 
     <section class="reel" id="flow" data-slide>
-      <div class="wrap">
+      <div class="wrap fill-screen">
         <div class="section-head reveal">
           <span class="eyebrow">Запуск</span>
           <h2>Путь за 5 минут</h2>
         </div>
-        <div class="panel flow-panel reveal">
-          <svg class="flow-svg" viewBox="0 0 1100 150" role="img" aria-label="Схема запуска продаж">
-            <path class="flow-line" d="M130 70 H970" />
-            <circle class="flow-dot" r="5" cx="0" cy="0" style="offset-path:path('M130 70 H970')" />
-            <g transform="translate(40,30)">
-              <rect class="flow-node active" width="160" height="80" rx="16" />
-              <text class="flow-label" x="80" y="36" text-anchor="middle">Кабинет</text>
-              <text class="flow-sub" x="80" y="54" text-anchor="middle">бесплатно</text>
-            </g>
-            <g transform="translate(260,30)">
-              <rect class="flow-node" width="160" height="80" rx="16" />
-              <text class="flow-label" x="80" y="36" text-anchor="middle">Ивент</text>
-              <text class="flow-sub" x="80" y="54" text-anchor="middle">цены билетов</text>
-            </g>
-            <g transform="translate(480,30)">
-              <rect class="flow-node" width="160" height="80" rx="16" />
-              <text class="flow-label" x="80" y="36" text-anchor="middle">Витрина</text>
-              <text class="flow-sub" x="80" y="54" text-anchor="middle">шторка + ⓘ</text>
-            </g>
-            <g transform="translate(700,30)">
-              <rect class="flow-node" width="160" height="80" rx="16" />
-              <text class="flow-label" x="80" y="36" text-anchor="middle">Оплата</text>
-              <text class="flow-sub" x="80" y="54" text-anchor="middle">Humo / Uzcard</text>
-            </g>
-            <g transform="translate(920,30)">
-              <rect class="flow-node active" width="140" height="80" rx="16" />
-              <text class="flow-label" x="70" y="36" text-anchor="middle">Группа</text>
-              <text class="flow-sub" x="70" y="54" text-anchor="middle">гости ивента</text>
-            </g>
-          </svg>
+        <div class="h-slider reveal" data-hslider data-autoplay="3200">
+          <div class="h-slider-viewport">
+            <div class="h-slider-track">
+              <article class="h-slide panel flow-step">
+                <div class="ico">1</div>
+                <h3>Кабинет</h3>
+                <p>Бесплатно. Создаёте аккаунт и сразу видите продажи.</p>
+              </article>
+              <article class="h-slide panel flow-step">
+                <div class="ico">2</div>
+                <h3>Ивент</h3>
+                <p>Цены билетов — ваши. Черновик или сразу в продажу.</p>
+              </article>
+              <article class="h-slide panel flow-step">
+                <div class="ico">3</div>
+                <h3>Витрина</h3>
+                <p>Шторка + ⓘ. Одна smart-ссылка в Instagram и Telegram.</p>
+              </article>
+              <article class="h-slide panel flow-step">
+                <div class="ico">4</div>
+                <h3>Оплата</h3>
+                <p>Humo / Uzcard в браузере — без установки приложения.</p>
+              </article>
+              <article class="h-slide panel flow-step">
+                <div class="ico">5</div>
+                <h3>Группа</h3>
+                <p>Гости ивента в чате. Покупки и «хотят» рядом.</p>
+              </article>
+            </div>
+          </div>
+          <div class="h-slider-dots" aria-hidden="true"></div>
         </div>
       </div>
     </section>
 
     <section class="reel" id="included" data-slide>
-      <div class="wrap">
+      <div class="wrap fill-screen">
         <div class="section-head reveal">
           <span class="eyebrow">Что даём</span>
           <h2>Всё для продаж — без лишнего</h2>
@@ -2367,7 +2625,7 @@
     </section>
 
     <section class="reel" id="plus" data-slide>
-      <div class="wrap">
+      <div class="wrap fill-screen">
         <div class="section-head reveal">
           <span class="eyebrow">Организаторы</span>
           <h2>Принимаем и маленьких, и больших</h2>
@@ -2403,9 +2661,9 @@
     </section>
 
     <section class="reel" id="faq" data-slide>
-      <div class="wrap">
+      <div class="wrap fill-screen">
         <div class="section-head reveal"><h2>Частые вопросы</h2></div>
-        <div class="faq-list reveal">
+        <div class="faq-list reveal fill-grow">
           <button type="button" class="faq-q" data-faq="0">Можно ли продавать без ИП и «большой» кассы?</button>
           <button type="button" class="faq-q" data-faq="1">Кто платит 1.5% и FixedFee?</button>
           <button type="button" class="faq-q" data-faq="2">Есть ли условия для крупных партнёров?</button>
@@ -2421,11 +2679,14 @@
     </section>
 
     <section class="reel" id="cta" data-slide>
-      <div class="wrap">
-        <div class="cta-band reveal">
-          <h2>Запустите продажи — цена билета ваша</h2>
-          <p>Подключим кабинет, настроим чекаут и покажем, как выглядит сбор для гостя.</p>
-          <div class="btn-row" style="justify-content:center">
+      <div class="wrap fill-screen cta-wrap">
+        <div class="cta-band reveal fill-grow">
+          <span class="eyebrow">Старт</span>
+          <div class="cta-mid">
+            <h2>Запустите продажи — цена билета ваша</h2>
+            <p>Подключим кабинет, настроим чекаут и покажем, как выглядит сбор для гостя.</p>
+          </div>
+          <div class="btn-row" style="justify-content:flex-start">
             <a class="btn btn-accent" href="https://taneesh.uz">Запустить продажи</a>
             <a class="btn btn-ghost" href="https://taneesh.uz">taneesh.uz →</a>
           </div>
@@ -2434,9 +2695,9 @@
     </section>
 
     <footer class="reel" id="footer" data-slide>
-      <div class="wrap footer-grid" style="border:none;padding-top:0">
-        <div>
-          <div class="logo" style="margin-bottom:12px">TANEESH</div>
+      <div class="wrap fill-screen footer-fill">
+        <div class="footer-brand">
+          <div class="logo">TANEESH</div>
           <p>Тикетинг для организаторов</p>
         </div>
         <div class="footer-links">
@@ -2445,8 +2706,8 @@
           <a href="#plus" data-goto="plus">Организаторы</a>
           <a href="#cta" data-goto="cta">Заявка</a>
         </div>
+        <p class="footer-copy">© 2026 Taneesh</p>
       </div>
-      <div class="wrap" style="margin-top:24px;color:#9ca3af">© 2026 Taneesh</div>
     </footer>
   </div>
 </div>
