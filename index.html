@@ -103,38 +103,41 @@
     }
 
     .reels {
-      position: absolute;
-      inset: 0;
+      position: relative;
       z-index: 1;
-      overflow: hidden;
-      background: #000;
-      touch-action: none;
-      cursor: grab;
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+      background: transparent;
+      touch-action: pan-y;
+      cursor: auto;
+      -webkit-overflow-scrolling: touch;
     }
     .reels.is-dragging { cursor: grabbing; }
     .reels-track {
       width: 100%;
-      will-change: transform;
-      transition: transform 0.38s var(--ease-settle);
       display: flex;
       flex-direction: column;
+      gap: 10px;
+      height: auto;
     }
     .reels.is-dragging .reels-track {
       transition: none;
     }
     .reel {
-      height: var(--reel-h, 100%);
+      height: auto;
       width: 100%;
       flex: 0 0 auto;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 56px 0 88px;
+      justify-content: stretch;
+      padding: 0;
       box-sizing: border-box;
       position: relative;
-      overflow: hidden;
-      touch-action: none;
-      user-select: none;
+      overflow: visible;
+      touch-action: auto;
+      user-select: text;
       background:
         linear-gradient(180deg, rgba(0,0,0,.35) 0%, transparent 28%, transparent 48%, rgba(0,0,0,.78) 100%),
         radial-gradient(ellipse 90% 70% at 50% 30%, rgba(47,191,90,.28), transparent 55%),
@@ -2531,6 +2534,92 @@
       }
     }
 
+
+    /* ========== SCROLL MODE (not Instagram snap) ========== */
+    .phone {
+      display: flex !important;
+      flex-direction: column !important;
+      overflow: hidden !important;
+    }
+    .phone .header.mod-header,
+    .phone .header {
+      position: relative !important;
+      flex: 0 0 auto !important;
+      z-index: 40 !important;
+      top: auto !important;
+    }
+    .phone .reels {
+      position: relative !important;
+      inset: auto !important;
+      flex: 1 1 auto !important;
+      min-height: 0 !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+      touch-action: pan-y !important;
+      cursor: auto !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(47,191,90,.45) transparent;
+    }
+    .phone .reels::-webkit-scrollbar { width: 4px; }
+    .phone .reels::-webkit-scrollbar-thumb {
+      background: rgba(47,191,90,.4);
+      border-radius: 999px;
+    }
+    .phone .reels.is-dragging { cursor: auto !important; }
+    .phone .reels-track {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 10px !important;
+      height: auto !important;
+      transform: none !important;
+      transition: none !important;
+      will-change: auto !important;
+      padding-bottom: 12px;
+    }
+    .phone .reel {
+      height: auto !important;
+      min-height: 0 !important;
+      flex: 0 0 auto !important;
+      padding: 0 !important;
+      overflow: visible !important;
+      touch-action: auto !important;
+      user-select: text !important;
+      background: transparent !important;
+      justify-content: stretch !important;
+    }
+    .phone .reel > .wrap {
+      height: auto !important;
+      max-height: none !important;
+      min-height: 0 !important;
+      overflow: visible !important;
+    }
+    /* Sections keep card look but natural height */
+    .phone .reel > .wrap.fill-screen,
+    .phone .reel > .wrap {
+      min-height: 0 !important;
+    }
+    .phone .hero > .wrap {
+      min-height: min(72vh, 640px) !important;
+    }
+    .phone #conversion > .wrap,
+    .phone #why > .wrap,
+    .phone #fees > .wrap,
+    .phone #cta > .wrap {
+      min-height: min(58vh, 520px) !important;
+    }
+    .phone .carousel-stage {
+      min-height: 280px !important;
+    }
+    @media (min-width: 720px) {
+      .phone .hero > .wrap { min-height: 420px !important; }
+      .phone .carousel-stage { min-height: 300px !important; }
+    }
+
   </style>
 </head>
 <body>
@@ -3100,11 +3189,6 @@
     const hint = null;
     const hasGsap = typeof gsap !== 'undefined';
 
-    let index = 0;
-    let locked = false;
-    let dragY = 0;
-    let startY = 0;
-    let dragging = false;
     const entered = new WeakSet();
 
     function animateCount(el, to, dur = 900) {
@@ -3195,54 +3279,34 @@
     }
 
     const phone = document.getElementById('phone');
-    function reelH() {
-      return (reels && reels.clientHeight) || (phone && phone.clientHeight) || window.innerHeight;
-    }
+    const scrollRoot = reels; // native scroll area
+    let index = 0;
 
-    function syncReelHeight() {
-      document.documentElement.style.setProperty('--reel-h', reelH() + 'px');
-    }
-
-    function applyTransform(offsetPx = 0) {
-      const y = -index * reelH() + offsetPx;
-      track.style.transform = `translate3d(0, ${y}px, 0)`;
-    }
-
-    function setIndex(i, { instant = false } = {}) {
-      index = Math.max(0, Math.min(slides.length - 1, i));
+    function scrollToSlide(el, { instant = false } = {}) {
+      if (!el || !scrollRoot) return;
       if (typeof closeFaq === 'function') closeFaq();
-      if (reels) reels.scrollTop = 0;
-      if (instant || reduceMotion) track.style.transition = 'none';
-      applyTransform(0);
-      if (instant || reduceMotion) {
-        track.offsetHeight;
-        track.style.transition = '';
-      }
-      dots.forEach((d, di) => d.classList.toggle('active', di === index));
-      header.classList.toggle('is-scrolled', index > 0);
-      locked = true;
-      const done = () => {
-        locked = false;
+      const top = el.offsetTop - 8;
+      scrollRoot.scrollTo({
+        top: Math.max(0, top),
+        behavior: instant || reduceMotion ? 'auto' : 'smooth',
+      });
+    }
+
+    function setActiveByScroll() {
+      if (!scrollRoot || !slides.length) return;
+      const y = scrollRoot.scrollTop + scrollRoot.clientHeight * 0.28;
+      let best = 0;
+      slides.forEach((s, i) => {
+        if (s.offsetTop <= y) best = i;
+      });
+      if (best !== index) {
+        index = best;
+        header.classList.toggle('is-scrolled', index > 0);
         enterSlide(slides[index]);
         if (typeof syncCarouselAutoplay === 'function') syncCarouselAutoplay();
-      };
-      if (instant || reduceMotion) done();
-      else setTimeout(done, 380);
-    }
-
-    function next() { if (!locked) setIndex(index + 1); }
-    function prev() { if (!locked) setIndex(index - 1); }
-
-    const dots = [];
-    if (dotsRoot) {
-      slides.forEach((_, i) => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.setAttribute('aria-label', 'Рилс ' + (i + 1));
-        btn.addEventListener('click', () => setIndex(i));
-        dotsRoot.appendChild(btn);
-        dots.push(btn);
-      });
+      } else {
+        enterSlide(slides[index]);
+      }
     }
 
     document.querySelectorAll('[data-goto]').forEach((el) => {
@@ -3251,128 +3315,45 @@
         const target = document.getElementById(id);
         if (!target) return;
         e.preventDefault();
-        const i = slides.indexOf(target);
-        if (i >= 0) setIndex(i);
+        scrollToSlide(target);
       });
     });
 
-    // Wheel → whole screen snaps (Instagram Reels)
-    let wheelLock = false;
-    reels.addEventListener('wheel', (e) => {
-      e.preventDefault();
-      if (!canSwipe() || locked || wheelLock) return;
-      if (Math.abs(e.deltaY) < 8) return;
-      wheelLock = true;
-      if (e.deltaY > 0) next(); else prev();
-      setTimeout(() => { wheelLock = false; }, 420);
-    }, { passive: false });
-
-    // Touch: drag the entire frame with all content
-    reels.addEventListener('touchstart', (e) => {
-      if (e.touches.length !== 1 || locked || !canSwipe()) return;
-      if (e.target.closest('a, button, input, label, .faq-layer')) return;
-      dragging = true;
-      reels.classList.add('is-dragging');
-      startY = e.touches[0].clientY;
-      dragY = 0;
-    }, { passive: true });
-
-    reels.addEventListener('touchmove', (e) => {
-      if (!dragging || locked) return;
-      dragY = e.touches[0].clientY - startY;
-      applyTransform(dragY);
-    }, { passive: true });
-
-    const endDrag = () => {
-      if (!dragging) return;
-      dragging = false;
-      reels.classList.remove('is-dragging');
-      const threshold = Math.min(100, reelH() * 0.15);
-      if (dragY < -threshold) next();
-      else if (dragY > threshold) prev();
-      else setIndex(index);
-      dragY = 0;
-    };
-
-    // Block swipe while FAQ overlay is open
-    const canSwipe = () => {
-      const layer = document.getElementById('faqLayer');
-      return !(layer && layer.classList.contains('open'));
-    };
-    reels.addEventListener('touchend', endDrag);
-    reels.addEventListener('touchcancel', endDrag);
-
-    // Desktop drag (mouse) — same as finger swipe
-    reels.addEventListener('mousedown', (e) => {
-      if (e.button !== 0 || locked || !canSwipe()) return;
-      if (e.target.closest('a, button, input, summary, details, label, .faq-layer')) return;
-      dragging = true;
-      reels.classList.add('is-dragging');
-      startY = e.clientY;
-      dragY = 0;
-      e.preventDefault();
-    });
-    window.addEventListener('mousemove', (e) => {
-      if (!dragging || locked) return;
-      dragY = e.clientY - startY;
-      applyTransform(dragY);
-    });
-    window.addEventListener('mouseup', endDrag);
-
-    // Keyboard
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') { closeFaq(); return; }
-      if (!canSwipe()) return;
-      if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
-        e.preventDefault(); next();
-      } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-        e.preventDefault(); prev();
-      }
-    });
-
-    window.addEventListener('resize', () => {
-      syncReelHeight();
-      applyTransform(0);
-    });
-
-    // FAQ overlay (keeps reel frame solid — no inner scroll)
-    const faqData = [
-      ['Можно ли продавать без ИП и «большой» кассы?', 'Да. Подходят и малые орги со своим кругом, и крупные площадки. Открыли витрину — и продаёте.'],
-      ['Кто платит 1.5% и FixedFee?', 'Гость на чекауте. Вы получаете цену билета целиком.'],
-      ['Есть ли условия для крупных партнёров?', 'Да. FixedFee на гостя можно настроить под объём в Супер Админке.'],
-    ];
-    const faqLayer = document.getElementById('faqLayer');
-    const faqTitle = document.getElementById('faqTitle');
-    const faqBody = document.getElementById('faqBody');
-    const faqClose = document.getElementById('faqClose');
-    function openFaq(i) {
-      const row = faqData[i];
-      if (!row || !faqLayer) return;
-      faqTitle.textContent = row[0];
-      faqBody.textContent = row[1];
-      faqLayer.classList.add('open');
-      faqLayer.setAttribute('aria-hidden', 'false');
+    if (scrollRoot) {
+      let scrollTick = false;
+      scrollRoot.addEventListener('scroll', () => {
+        if (scrollTick) return;
+        scrollTick = true;
+        requestAnimationFrame(() => {
+          scrollTick = false;
+          setActiveByScroll();
+        });
+      }, { passive: true });
     }
-    function closeFaq() {
-      if (!faqLayer) return;
-      faqLayer.classList.remove('open');
-      faqLayer.setAttribute('aria-hidden', 'true');
+
+    // Observe sections for first enter animations
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) enterSlide(en.target);
+        });
+      }, { root: scrollRoot, threshold: 0.35 });
+      slides.forEach((s) => io.observe(s));
     }
-    document.querySelectorAll('[data-faq]').forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        openFaq(+btn.getAttribute('data-faq'));
-      });
-    });
-    if (faqClose) faqClose.addEventListener('click', (e) => { e.stopPropagation(); closeFaq(); });
-    if (faqLayer) faqLayer.addEventListener('click', (e) => {
-      if (e.target === faqLayer) closeFaq();
-    });
 
-    syncReelHeight();
-
-    // Hash deep-link (no native scroll — Reels uses transform)
+    // Hash deep-link → scroll
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    const hash = location.hash.replace('#', '');
+    requestAnimationFrame(() => {
+      if (hash) {
+        const el = document.getElementById(hash);
+        if (el) scrollToSlide(el, { instant: true });
+      }
+      setActiveByScroll();
+      if (typeof syncCarouselAutoplay === 'function') syncCarouselAutoplay();
+    });
+
+
     // Classic carousels (fade, dots, autoplay — no side-drag)
     function initCarousels() {
       return [...document.querySelectorAll('[data-carousel]')].map((root) => {
@@ -3430,32 +3411,6 @@
         else s.stop();
       });
     }
-
-
-    const hash = location.hash.replace('#', '');
-    if (hash) {
-      const el = document.getElementById(hash);
-      const i = slides.indexOf(el);
-      setIndex(i >= 0 ? i : 0, { instant: true });
-    } else {
-      setIndex(0, { instant: true });
-    }
-    const killNativeScroll = () => {
-      window.scrollTo(0, 0);
-      if (reels) reels.scrollTop = 0;
-      if (phone) phone.scrollTop = 0;
-      if (track) track.scrollTop = 0;
-    };
-    killNativeScroll();
-    requestAnimationFrame(killNativeScroll);
-    setTimeout(killNativeScroll, 0);
-    setTimeout(killNativeScroll, 50);
-    setTimeout(() => { if (typeof syncCarouselAutoplay === 'function') syncCarouselAutoplay(); }, 100);
-    // Hash scroll targets #reels (overflow) — lock it so transform isn't doubled
-    if (reels) {
-      reels.addEventListener('scroll', () => { if (reels.scrollTop) reels.scrollTop = 0; }, { passive: true });
-    }
-
 
     // Fee calculator
     const ticket = document.getElementById('ticketPrice');
@@ -3524,14 +3479,7 @@
     }
 
     // CTA / fees buttons inside hero
-    document.querySelectorAll('a[href="#cta"], a[href="#fees"]').forEach((a) => {
-      if (a.hasAttribute('data-goto')) return;
-      a.addEventListener('click', (e) => {
-        const id = a.getAttribute('href').slice(1);
-        const target = document.getElementById(id);
-        const i = slides.indexOf(target);
-        if (i >= 0) { e.preventDefault(); setIndex(i); }
-      });
+    
     });
   </script>
 
