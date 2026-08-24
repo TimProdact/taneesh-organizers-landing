@@ -2060,43 +2060,207 @@
 
     /* CTA */
     .phone #cta .cta-wrap { padding: 0 !important; background: transparent !important; border: none !important; }
-    .phone #cta .cta-band.fill-grow {
-      height: 100% !important;
+    .phone #cta .cta-band {
+      position: relative !important;
+      overflow: hidden !important;
+      min-height: 320px;
+      height: auto !important;
       width: 100% !important;
       margin: 0 !important;
-      padding: 22px 18px !important;
+      padding: 22px 18px 20px !important;
       box-sizing: border-box;
       display: flex !important;
       flex-direction: column !important;
       justify-content: space-between !important;
-      gap: 16px;
-      border-radius: 18px !important;
+      gap: 18px !important;
+      border-radius: 22px !important;
+      border: 1px solid rgba(48,209,88,.28) !important;
       background:
-        radial-gradient(ellipse 90% 70% at 15% 20%, rgba(47,191,90,.28), transparent 55%),
-        radial-gradient(ellipse 70% 60% at 90% 90%, rgba(47,191,90,.18), transparent 50%),
-        #0f1a12 !important;
-      border: 1px solid rgba(47,191,90,.25) !important;
+        radial-gradient(ellipse 70% 80% at 0% 0%, rgba(48,209,88,.35), transparent 55%),
+        radial-gradient(ellipse 55% 60% at 100% 100%, rgba(48,209,88,.2), transparent 50%),
+        linear-gradient(160deg, #07140c 0%, #0d1f14 42%, #121212 100%) !important;
+      box-shadow: var(--hairline) !important;
     }
-
-    .phone #cta .cta-band .ui-mock {
-      flex: 1 1 auto;
-      min-height: 120px;
-      max-height: 42%;
-      background: rgba(0,0,0,.35) !important;
+    .phone #cta .cta-orbit {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
     }
-    .phone #cta .cta-mid { display: flex; flex-direction: column; gap: 12px; }
+    .phone #cta .cta-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(2px);
+      opacity: .55;
+    }
+    .phone #cta .cta-blob-a {
+      width: 220px; height: 220px;
+      right: -40px; top: -60px;
+      background: radial-gradient(circle, rgba(48,209,88,.55), transparent 70%);
+      animation: ctaDrift 9s ease-in-out infinite alternate;
+    }
+    .phone #cta .cta-blob-b {
+      width: 160px; height: 160px;
+      left: 8%; bottom: -50px;
+      background: radial-gradient(circle, rgba(255,255,255,.12), transparent 70%);
+      animation: ctaDrift 11s ease-in-out infinite alternate-reverse;
+    }
+    .phone #cta .cta-ring {
+      position: absolute;
+      right: 12%;
+      top: 18%;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      border: 1px solid rgba(48,209,88,.35);
+      box-shadow: inset 0 0 40px rgba(48,209,88,.12);
+      animation: ctaSpin 18s linear infinite;
+    }
+    .phone #cta .cta-top,
+    .phone #cta .cta-grid {
+      position: relative;
+      z-index: 1;
+    }
+    .phone #cta .cta-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px 14px;
+    }
+    .phone #cta .cta-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .phone #cta .cta-chips span {
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,.86);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(48,209,88,.28);
+    }
+    .phone #cta .cta-grid {
+      display: grid;
+      grid-template-columns: 1.35fr .9fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+    .phone #cta .cta-mid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      justify-content: flex-end;
+    }
     .phone #cta .cta-band h2 {
-      font-size: clamp(28px, 7vw, 36px) !important;
+      font-family: var(--font-display) !important;
+      font-size: clamp(28px, 4.2vw, 42px) !important;
+      font-weight: 400 !important;
+      line-height: 1.08 !important;
       margin: 0 !important;
-      max-width: 14ch;
+      max-width: 16ch;
+      color: #fff !important;
+    }
+    .phone #cta .cta-accent {
+      color: var(--accent);
+      font-style: italic;
     }
     .phone #cta .cta-band p {
       margin: 0 !important;
       font-size: 14px !important;
       color: rgba(243,247,244,.78) !important;
-      max-width: 36ch;
+      max-width: 40ch;
     }
-    .phone #cta .btn-row { margin-top: 0 !important; flex-wrap: wrap; gap: 10px; }
+    .phone #cta .btn-row {
+      margin-top: 2px !important;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-start !important;
+    }
+    .phone #cta .cta-pulse {
+      box-shadow: 0 0 0 0 rgba(48,209,88,.45);
+      animation: ctaPulse 2.4s ease-out infinite;
+    }
+    .phone #cta .cta-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 16px;
+      border-radius: 16px;
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .phone #cta .cta-stat strong {
+      display: block;
+      font-size: clamp(40px, 6vw, 56px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--accent);
+    }
+    .phone #cta .cta-stat span {
+      display: block;
+      margin-top: 4px;
+      font-size: 12px;
+      color: rgba(255,255,255,.7);
+    }
+    .phone #cta .cta-checks {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+    .phone #cta .cta-checks li {
+      position: relative;
+      padding-left: 16px;
+      font-size: 13px;
+      color: rgba(255,255,255,.88);
+    }
+    .phone #cta .cta-checks li::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 7px;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .phone #cta .cta-contact {
+      margin-top: auto;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    .phone #cta .cta-contact:hover { color: var(--accent); }
+    @keyframes ctaDrift {
+      from { transform: translate3d(0,0,0) scale(1); }
+      to { transform: translate3d(-18px, 14px, 0) scale(1.08); }
+    }
+    @keyframes ctaSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes ctaPulse {
+      0% { box-shadow: 0 0 0 0 rgba(48,209,88,.4); }
+      70% { box-shadow: 0 0 0 14px rgba(48,209,88,0); }
+      100% { box-shadow: 0 0 0 0 rgba(48,209,88,0); }
+    }
+    @media (max-width: 760px) {
+      .phone #cta .cta-grid { grid-template-columns: 1fr; }
+      .phone #cta .cta-panel { order: -1; }
+      .phone #cta .cta-band h2 { max-width: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .phone #cta .cta-blob-a,
+      .phone #cta .cta-blob-b,
+      .phone #cta .cta-ring,
+      .phone #cta .cta-pulse { animation: none !important; }
+    }
 
     /* Footer */
     .phone #footer .footer-fill {
@@ -3426,24 +3590,7 @@
       background: transparent !important;
       box-shadow: none !important;
     }
-    .phone #cta .cta-band {
-      min-height: 280px;
-      padding: 22px 18px !important;
-      background: linear-gradient(145deg, #0a3d1a 0%, #0f1a12 55%, #1c1c1e 100%) !important;
-      box-shadow: var(--hairline) !important;
-      display: flex !important;
-      flex-direction: column !important;
-      justify-content: flex-end !important;
-      gap: 14px !important;
-    }
     .phone #cta .cta-band .ui-mock { display: none !important; }
-    .phone #cta .cta-band h2 {
-      font-family: var(--font-display) !important;
-      font-size: clamp(28px, 7vw, 36px) !important;
-      margin: 0 !important;
-      max-width: 14ch;
-      color: #fff !important;
-    }
 
     /* Footer compact */
     .phone #footer .footer-fill {
@@ -3856,15 +4003,42 @@
 
     <section class="reel" id="cta" data-slide>
       <div class="wrap fill-screen cta-wrap">
-        <div class="cta-band tile-quote reveal">
-          <span class="eyebrow">Старт</span>
-          <div class="cta-mid">
-            <h2>Запустите продажи — цена билета ваша</h2>
-            <p>Подключим кабинет, настроим чекаут и покажем, как выглядит сбор для гостя.</p>
+        <div class="cta-band reveal">
+          <div class="cta-orbit" aria-hidden="true">
+            <span class="cta-blob cta-blob-a"></span>
+            <span class="cta-blob cta-blob-b"></span>
+            <span class="cta-ring"></span>
           </div>
-          <div class="btn-row" style="justify-content:flex-start">
-            <a class="btn btn-accent" href="https://taneesh.uz">Запустить продажи</a>
-            <a class="btn btn-ghost" href="https://taneesh.uz">taneesh.uz →</a>
+          <div class="cta-top">
+            <span class="eyebrow">Старт</span>
+            <div class="cta-chips" aria-hidden="true">
+              <span>100% цены</span>
+              <span>5 мин</span>
+              <span>гость платит сбор</span>
+            </div>
+          </div>
+          <div class="cta-grid">
+            <div class="cta-mid">
+              <h2>Запустите продажи.<br /><span class="cta-accent">Цена билета — ваша</span></h2>
+              <p>Подключим кабинет, настроим чекаут и покажем, как выглядит сбор для гостя.</p>
+              <div class="btn-row">
+                <a class="btn btn-accent cta-pulse" href="https://taneesh.uz">Запустить продажи</a>
+                <a class="btn btn-ghost" href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf">Скачать КП</a>
+                <a class="btn btn-ghost" href="https://taneesh.uz">taneesh.uz →</a>
+              </div>
+            </div>
+            <aside class="cta-panel" aria-label="Что получите">
+              <div class="cta-stat">
+                <strong>100%</strong>
+                <span>цены билета вам</span>
+              </div>
+              <ul class="cta-checks">
+                <li>Витрина и smart-link</li>
+                <li>Оплата в браузере</li>
+                <li>Кабинет без абонентки</li>
+              </ul>
+              <a class="cta-contact" href="tel:+998880348797">+998 88 034 87 97</a>
+            </aside>
           </div>
         </div>
       </div>
