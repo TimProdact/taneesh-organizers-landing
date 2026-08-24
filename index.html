@@ -3108,8 +3108,12 @@
     .phone .wrap.board {
       height: auto !important;
       min-height: 0 !important;
+      display: grid !important;
     }
-
+    .phone .reel > .wrap.board {
+      display: grid !important;
+      flex-direction: unset !important;
+    }
     /* Hero bento (legacy selectors neutralized) */
     .phone .hero > .wrap.fill-screen {
       display: flex !important;
@@ -3117,11 +3121,8 @@
       gap: var(--bento-gap) !important;
       min-height: 0 !important;
     }
-    .phone #why > .wrap {
-      display: flex !important;
-      flex-direction: column;
-      gap: var(--bento-gap) !important;
-      min-height: 0 !important;
+    .phone #why > .wrap.board {
+      display: grid !important;
     }
     /* Category tiles replace carousel */
     .phone .bento-cats {
