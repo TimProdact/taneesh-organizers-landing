@@ -2833,17 +2833,22 @@
 
     /* Hero bento */
     .phone .hero > .wrap {
-      display: grid !important;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: auto auto auto;
+      display: flex !important;
+      flex-direction: column !important;
       gap: var(--bento-gap) !important;
       min-height: 0 !important;
+    }
+    .phone .hero .hero-fill-metrics {
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--bento-gap);
+      width: 100%;
     }
     .phone .hero .hero-metric { margin: 0; }
     .phone .hero .hero-metric strong {
       font-family: var(--font-ui) !important;
       font-weight: 800 !important;
-      font-size: clamp(26px, 6.5vw, 36px) !important;
+      font-size: clamp(22px, 5vw, 32px) !important;
       letter-spacing: -0.03em !important;
       color: var(--accent) !important;
     }
@@ -2852,15 +2857,18 @@
       color: var(--muted) !important;
     }
     .phone .hero .hero-copy {
-      grid-column: 1 / -1;
       display: flex;
       flex-direction: column;
       gap: 10px;
-      padding: 6px 2px 0;
+      padding: 4px 2px 0;
     }
-    .phone .hero .btn-row { grid-column: 1 / -1; }
-
-    /* Why bento */
+    .phone .hero .btn-row { width: 100%; }
+    @media (max-width: 719px) {
+      .phone .hero .hero-fill-metrics { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 720px) and (max-width: 899px) {
+      .phone .hero .hero-fill-metrics { grid-template-columns: repeat(3, 1fr); }
+    }
     .phone #why > .wrap {
       display: flex !important;
       flex-direction: column;
@@ -2909,19 +2917,6 @@
     @media (max-width: 719px) {
       .phone .bento-cats { grid-template-columns: 1fr; }
       .phone .bento-3 { grid-template-columns: 1fr; }
-      .phone .hero > .wrap { grid-template-columns: 1fr; }
-      .phone .hero .hero-fill-metrics {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: var(--bento-gap);
-        grid-column: 1 / -1;
-      }
-    }
-    @media (min-width: 720px) {
-      .phone .hero .hero-fill,
-      .phone .hero .hero-fill-metrics {
-        display: contents;
-      }
     }
 
     /* Flow phases */
@@ -3104,6 +3099,13 @@
   <div class="reels-track" id="reelsTrack">
     <section class="reel hero" id="slide-hero" data-slide>
       <div class="wrap fill-screen">
+        <div class="hero-copy reveal">
+          <h1>Продавайте билеты.<br /><span class="accent">Получайте 100%</span> цены</h1>
+          <p class="lead">Витрина за 5 минут. Сбор платит гость — вам 100% цены билета.</p>
+        </div>
+        <div class="btn-row reveal" style="justify-content:flex-start">
+          <a class="btn btn-accent" href="#cta" data-goto="cta">Запустить продажи</a>
+        </div>
         <div class="hero-fill-metrics reveal">
           <div class="hero-metric tile">
             <strong class="num">100%</strong>
@@ -3117,13 +3119,6 @@
             <strong class="num">0 сум</strong>
             <span class="label">абонентки орга</span>
           </div>
-        </div>
-        <div class="hero-copy reveal">
-          <h1>Продавайте билеты.<br /><span class="accent">Получайте 100%</span> цены</h1>
-          <p class="lead">Витрина за 5 минут. Сбор платит гость — вам 100% цены билета.</p>
-        </div>
-        <div class="btn-row reveal" style="justify-content:flex-start">
-          <a class="btn btn-accent" href="#cta" data-goto="cta">Запустить продажи</a>
         </div>
       </div>
     </section>
