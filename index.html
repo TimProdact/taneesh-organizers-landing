@@ -2932,10 +2932,16 @@
     .phone .board .bar-fill.bad { background: #ff453a; }
     .phone .board .bar-fill.good { background: var(--accent); }
 
-    /* Hero board — asymmetric mosaic, no empty voids */
+    /* Hero board — story + metrics only */
     .phone .board-hero {
-      grid-template-columns: 1.4fr 0.9fr 0.9fr;
-      grid-template-rows: 1fr 1fr 1.15fr;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      height: auto !important;
+      min-height: 0 !important;
+    }
+    .phone .reel.hero {
+      min-height: 0 !important;
+      height: auto !important;
     }
     .phone .board-hero .cell-story {
       grid-column: 1;
@@ -2982,65 +2988,126 @@
     }
     .phone .board-hero .cell-stat:nth-of-type(2) { grid-column: 2; grid-row: 1; }
     .phone .board-hero .cell-stat:nth-of-type(3) { grid-column: 3; grid-row: 1; }
-    .phone .board-hero .cell-stat:nth-of-type(4) { grid-column: 2; grid-row: 2; }
-    .phone .board-hero .cell-save {
-      grid-column: 3;
-      grid-row: 2;
-      background: linear-gradient(145deg, #0a3d1a, #0d1a12) !important;
-      justify-content: center;
+    .phone .board-hero .cell-stat:nth-of-type(4) { grid-column: 2 / 4; grid-row: 2; }
+
+    /* Why / calculator — separate board */
+    .phone .board-why {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto auto auto;
+      height: auto !important;
+      min-height: 0 !important;
+      gap: 6px !important;
     }
-    .phone .board-hero .cell-save .num { color: #fff; font-size: clamp(26px, 3.2vw, 36px); }
-    .phone .board-hero .cell-save .label { color: rgba(255,255,255,.75); }
-    .phone .board-hero .cell-save .save-pack { color: #fff; margin-top: 4px; }
-    .phone .board-hero .cell-ticket {
-      grid-column: 1;
-      grid-row: 3;
+    .phone .board-why .cell-why-head {
+      grid-column: 1 / -1;
+      justify-content: center;
+      gap: 6px;
+      background: transparent !important;
+      box-shadow: none !important;
+      padding: 4px 2px 8px !important;
+    }
+    .phone .board-why .cell-why-head .eyebrow {
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .phone .board-why .cell-why-head h2 {
+      font-family: var(--font-display) !important;
+      font-size: clamp(26px, 3.2vw, 36px) !important;
+      font-weight: 400 !important;
+      margin: 0 !important;
+      color: #fff !important;
+      line-height: 1.1;
+    }
+    .phone .board-why .cell-ticket {
+      grid-column: 1 / -1;
       justify-content: center;
       gap: 14px;
     }
-    .phone .board-hero .cell-ticket label {
+    .phone .board-why .cell-ticket label {
       display: flex;
       justify-content: space-between;
       gap: 10px;
       font-size: 13px;
       color: var(--muted);
     }
-    .phone .board-hero .cell-ticket strong { color: #fff; }
-    .phone .board-hero .cell-ticket input[type=range] {
+    .phone .board-why .cell-ticket strong { color: #fff; }
+    .phone .board-why .cell-ticket input[type=range] {
       width: 100%;
       accent-color: var(--accent);
     }
-    .phone .board-hero .cell-bad {
-      grid-column: 2;
-      grid-row: 3;
-    }
-    .phone .board-hero .cell-good {
-      grid-column: 3;
-      grid-row: 3;
-    }
-    .phone .board-hero .cell-bad p,
-    .phone .board-hero .cell-good p {
+    .phone .board-why .cell-bad { grid-column: 1; }
+    .phone .board-why .cell-good { grid-column: 2; }
+    .phone .board-why .cell-bad p,
+    .phone .board-why .cell-good p {
       margin: 0;
       font-size: 12px;
       color: var(--muted);
     }
+    .phone .board-why .cell-save {
+      grid-column: 1 / -1;
+      background: linear-gradient(145deg, #0a3d1a, #0d1a12) !important;
+      justify-content: center;
+      min-height: 110px;
+    }
+    .phone .board-why .cell-save .num { color: #fff; font-size: clamp(28px, 4vw, 40px); }
+    .phone .board-why .cell-save .label { color: rgba(255,255,255,.75); }
+    .phone .board-why .cell-save .save-pack { color: #fff; margin-top: 4px; }
 
     @media (max-width: 900px) {
       .phone .board-hero {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto;
-        height: auto !important;
-        min-height: 100cqh !important;
       }
-      .phone .reel.hero { height: auto !important; min-height: 100cqh !important; }
       .phone .board-hero .cell-story { grid-column: 1 / -1; grid-row: auto; min-height: 200px; }
       .phone .board-hero .cell-stat:nth-of-type(2) { grid-column: 1; grid-row: auto; }
       .phone .board-hero .cell-stat:nth-of-type(3) { grid-column: 2; grid-row: auto; }
-      .phone .board-hero .cell-stat:nth-of-type(4) { grid-column: 1; grid-row: auto; }
-      .phone .board-hero .cell-save { grid-column: 2; grid-row: auto; }
-      .phone .board-hero .cell-ticket { grid-column: 1 / -1; grid-row: auto; min-height: 100px; }
-      .phone .board-hero .cell-bad { grid-column: 1; grid-row: auto; }
-      .phone .board-hero .cell-good { grid-column: 2; grid-row: auto; }
+      .phone .board-hero .cell-stat:nth-of-type(4) { grid-column: 1 / -1; grid-row: auto; }
+      .phone .board-why { grid-template-columns: 1fr; }
+      .phone .board-why .cell-bad,
+      .phone .board-why .cell-good { grid-column: 1; }
+    }
+
+    /* Kill stage / phone chrome подложка */
+    .stage-aurora,
+    .phone .grain,
+    .phone::before { display: none !important; }
+    .stage {
+      background: var(--bg-0) !important;
+      place-items: stretch !important;
+      padding: 0 !important;
+    }
+    .phone {
+      width: 100% !important;
+      max-width: none !important;
+      height: 100dvh !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      background: var(--bg-0) !important;
+      padding: 12px 16px !important;
+    }
+    @media (min-width: 720px) {
+      .phone {
+        width: 100% !important;
+        max-width: none !important;
+        height: 100dvh !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        padding: 16px 24px !important;
+      }
+    }
+    @media (min-width: 1100px) {
+      .phone {
+        width: 100% !important;
+        max-width: none !important;
+        padding: 20px 32px !important;
+      }
+    }
+    .phone .wrap.board {
+      height: auto !important;
+      min-height: 0 !important;
     }
 
     /* Hero bento (legacy selectors neutralized) */
@@ -3312,14 +3379,7 @@
 </head>
 <body>
   <div class="stage">
-  <div class="stage-aurora" aria-hidden="true">
-    <i class="blob b1"></i>
-    <i class="blob b2"></i>
-    <i class="blob b3"></i>
-    <i class="blob b4"></i>
-  </div>
   <div class="phone" id="phone">
-  <div class="grain" aria-hidden="true"></div>
   <header class="header mod mod-header">
     <div class="header-pill">
       <a class="logo" href="#slide-hero" data-goto="slide-hero">TANEESH</a>
@@ -3343,7 +3403,6 @@
           <p class="lead">Витрина за 5 минут. Сбор платит гость — вам 100% цены билета.</p>
           <a class="btn btn-accent" href="#cta" data-goto="cta">Запустить продажи</a>
         </article>
-
         <article class="cell cell-stat">
           <strong class="num">100%</strong>
           <span class="label">цены билета вам</span>
@@ -3356,15 +3415,18 @@
           <strong class="num">0 сум</strong>
           <span class="label">абонентки орга</span>
         </article>
-        <article class="cell cell-save" id="why">
-          <strong class="num">+<span id="saveAmount">15 000</span></strong>
-          <span class="label">экономия vs 15% касса · с 1 билета</span>
-          <span class="label save-pack">×100 ≈ <strong id="savePack">1 500 000</strong> сум</span>
-        </article>
+      </div>
+    </section>
 
+    <section class="reel" id="why" data-slide>
+      <div class="wrap board board-why reveal">
+        <div class="cell cell-why-head">
+          <span class="eyebrow">Экономика орга</span>
+          <h2>Не отдавайте 15% с билета</h2>
+        </div>
         <article class="cell cell-ticket">
           <label>
-            <span>Цена билета</span>
+            <span>Цена билета на концерт</span>
             <strong id="whyTicketLabel">100 000 сум</strong>
           </label>
           <input type="range" id="whyTicketPrice" min="20000" max="500000" step="1000" value="100000" />
@@ -3380,6 +3442,11 @@
           <div class="num" id="tanPerTicket">0</div>
           <p id="tanCostLabel">0 сум с цены билета</p>
           <div class="bar-track"><div class="bar-fill good" id="tanBar" data-w="0" style="width:2%"></div></div>
+        </article>
+        <article class="cell cell-save">
+          <strong class="num">+<span id="saveAmount">15 000</span> сум</strong>
+          <span class="label">экономия с 1 билета vs 15% касса</span>
+          <span class="label save-pack">на 100 билетах ≈ <strong id="savePack">1 500 000</strong> сум</span>
         </article>
       </div>
     </section>
