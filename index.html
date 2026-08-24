@@ -3098,8 +3098,8 @@
       height: auto !important;
     }
     .phone .reel.hero {
-      min-height: 100cqh !important;
-      height: 100cqh !important;
+      min-height: 0 !important;
+      height: auto !important;
     }
     .phone .wrap.board {
       height: 100% !important;
@@ -3154,15 +3154,15 @@
     .phone .board .bar-fill.bad { background: #ff453a; }
     .phone .board .bar-fill.good { background: var(--accent); }
 
-    /* Hero — story only (no metrics mixed in) */
+    /* Hero — CTA left + metrics column right */
     .phone .board-hero {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1.35fr) minmax(140px, 0.72fr);
       grid-template-rows: auto;
       height: auto !important;
       min-height: 0 !important;
+      align-items: stretch;
     }
-    .phone .reel.hero,
-    .phone .reel.metrics {
+    .phone .reel.hero {
       min-height: 0 !important;
       height: auto !important;
     }
@@ -3173,7 +3173,8 @@
       gap: 12px;
       background: linear-gradient(160deg, #1c1c1e 0%, #111 100%) !important;
       padding: 28px 22px !important;
-      min-height: 220px;
+      min-height: 0;
+      height: 100%;
     }
     .phone .board-hero .cell-story .btn-accent {
       background: var(--accent) !important;
@@ -3210,18 +3211,33 @@
       align-self: flex-start;
       margin-top: 4px;
     }
-
-    /* Metrics — own board, separate from hero & calculator */
-    .phone .board-metrics {
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: auto;
-      height: auto !important;
-      min-height: 0 !important;
-      gap: var(--bento-gap) !important;
+    .phone .board-hero .hero-metrics {
+      grid-column: 2;
+      grid-row: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(3, 1fr);
+      gap: var(--bento-gap);
+      min-height: 0;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      border: none !important;
     }
-    .phone .board-metrics .cell-stat {
-      min-height: 100px;
+    .phone .board-hero .hero-metrics .cell-stat {
+      min-height: 0;
       justify-content: center;
+      gap: 4px;
+      padding: 14px 14px !important;
+    }
+    .phone .board-hero .hero-metrics .cell-stat .num {
+      font-size: clamp(22px, 2.8vw, 30px);
+      line-height: 1;
+    }
+    .phone .board-hero .hero-metrics .cell-stat .label {
+      font-size: 11px;
+      line-height: 1.25;
     }
 
     /* Why / calculator — separate board */
@@ -3312,8 +3328,20 @@
     }
 
     @media (max-width: 900px) {
-      .phone .board-hero .cell-story { min-height: 200px; }
-      .phone .board-metrics { grid-template-columns: 1fr; }
+      .phone .board-hero {
+        grid-template-columns: 1fr;
+      }
+      .phone .board-hero .cell-story {
+        grid-column: 1;
+        grid-row: 1;
+        min-height: 180px;
+      }
+      .phone .board-hero .hero-metrics {
+        grid-column: 1;
+        grid-row: 2;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+      }
       .phone .board-why { grid-template-columns: 1fr; }
       .phone .board-why .cell-bad,
       .phone .board-why .cell-good { grid-column: 1; }
@@ -3816,28 +3844,25 @@
     <section class="reel hero" id="slide-hero" data-slide>
       <div class="wrap board board-hero reveal">
         <article class="cell cell-story">
-          <span class="eyebrow" data-i18n="heroEyebrow">Тикетинг для организаторов</span>
+          <span class="eyebrow" data-i18n="whyEyebrow">Экономика орга</span>
           <h1 data-i18n-html="heroTitle">Продавайте билеты.<br /><span class="accent">Получайте 100%</span> цены</h1>
           <p class="lead" data-i18n="heroLead">Витрина за 5 минут. Сбор платит гость — вам 100% цены билета.</p>
           <a class="btn btn-accent" href="#cta" data-goto="cta" data-i18n="heroCta">Запустить продажи</a>
         </article>
-      </div>
-    </section>
-
-    <section class="reel metrics" id="metrics" data-slide>
-      <div class="wrap board board-metrics reveal">
-        <article class="cell cell-stat">
-          <strong class="num">100%</strong>
-          <span class="label" data-i18n="m100">цены билета вам</span>
-        </article>
-        <article class="cell cell-stat">
-          <strong class="num">5 мин</strong>
-          <span class="label" data-i18n="m5">до первой витрины</span>
-        </article>
-        <article class="cell cell-stat">
-          <strong class="num">0 сум</strong>
-          <span class="label" data-i18n="m0">абонентки орга</span>
-        </article>
+        <div class="hero-metrics" id="metrics">
+          <article class="cell cell-stat">
+            <strong class="num">100%</strong>
+            <span class="label" data-i18n="m100">цены билета вам</span>
+          </article>
+          <article class="cell cell-stat">
+            <strong class="num">5 мин</strong>
+            <span class="label" data-i18n="m5">до первой витрины</span>
+          </article>
+          <article class="cell cell-stat">
+            <strong class="num">0 сум</strong>
+            <span class="label" data-i18n="m0">абонентки орга</span>
+          </article>
+        </div>
       </div>
     </section>
 
