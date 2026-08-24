@@ -3227,7 +3227,7 @@
     /* Why / calculator — separate board */
     .phone .board-why {
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto auto auto;
+      grid-template-rows: auto auto auto auto auto;
       height: auto !important;
       min-height: 0 !important;
       gap: 6px !important;
@@ -3284,11 +3284,32 @@
       grid-column: 1 / -1;
       background: linear-gradient(145deg, #0a3d1a, #0d1a12) !important;
       justify-content: center;
-      min-height: 110px;
+      min-height: 100px;
+      gap: 6px;
     }
     .phone .board-why .cell-save .num { color: #fff; font-size: clamp(28px, 4vw, 40px); }
     .phone .board-why .cell-save .label { color: rgba(255,255,255,.75); }
-    .phone .board-why .cell-save .save-pack { color: #fff; margin-top: 4px; }
+    .phone .board-why .cell-pack {
+      grid-column: 1 / -1;
+      background: linear-gradient(145deg, #12261a, #0a1210) !important;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 8px;
+      min-height: 96px;
+      border: 1px solid rgba(48,209,88,.28) !important;
+    }
+    .phone .board-why .cell-pack .label {
+      color: rgba(255,255,255,.7);
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .phone .board-why .cell-pack .num {
+      color: var(--accent);
+      font-size: clamp(26px, 3.6vw, 36px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+    }
 
     @media (max-width: 900px) {
       .phone .board-hero .cell-story { min-height: 200px; }
@@ -3845,7 +3866,10 @@
         <article class="cell cell-save">
           <strong class="num">+<span id="saveAmount">15 000</span> <span data-i18n="currency">сум</span></strong>
           <span class="label" data-i18n="whySaveLabel">экономия с 1 билета vs 15% касса</span>
-          <span class="label save-pack"><span data-i18n="whySavePack">на 100 билетах ≈</span> <strong id="savePack">1 500 000</strong> <span data-i18n="currency">сум</span></span>
+        </article>
+        <article class="cell cell-pack">
+          <span class="label" data-i18n="whySavePack">Экономия на 100 билетах</span>
+          <strong class="num"><span id="savePack">1 500 000</span> <span data-i18n="currency">сум</span></strong>
         </article>
       </div>
     </section>
