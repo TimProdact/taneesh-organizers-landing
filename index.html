@@ -2015,21 +2015,47 @@
     }
 
     /* Fees */
-    .phone #fees .calc-grid.fill-grow { display: flex !important; }
-    .phone #fees .fees-mock { margin-bottom: 4px; }
+    .phone #fees .fees-board {
+      display: grid;
+      gap: var(--bento-gap);
+      width: 100%;
+    }
     .phone #fees .fees-panel {
       display: flex !important;
       flex-direction: column !important;
-      height: 100%;
-      justify-content: space-between !important;
       gap: 12px !important;
       padding: 16px !important;
     }
-    .phone #fees .fees-panel > div:last-child {
-      margin-top: auto !important;
+    .phone #fees .fees-hint {
+      margin: 0;
+      font-size: 12px;
+      color: var(--muted);
     }
-    .phone #fees .legend-item {
-      padding: 12px 14px !important;
+    .phone #fees .fees-fee-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      padding-top: 4px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .phone #fees .fees-fee-row strong {
+      color: #fff;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+    }
+    .phone #fees .fees-parts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .phone #fees .fees-parts b {
+      color: rgba(245,245,247,.88);
+      font-weight: 600;
     }
 
     /* CTA */
@@ -3381,24 +3407,40 @@
 
     /* Fees punch */
     .phone #fees .fees-punch {
-      display: none;
-      padding: 14px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 12px;
+      padding: 16px 18px;
       border-radius: var(--radius-tile);
       background: linear-gradient(145deg, #0a3d1a, #0d1a12);
       box-shadow: var(--hairline);
-      margin-bottom: 2px;
+    }
+    .phone #fees .fees-punch-col {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
     }
     .phone #fees .fees-punch .num {
-      font-size: 28px; font-weight: 800; letter-spacing: -0.03em; color: #fff;
+      font-size: clamp(26px, 4vw, 34px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #fff;
+      line-height: 1.05;
     }
-    .phone #fees .fees-punch .label { font-size: 12px; color: rgba(255,255,255,.7); margin-top: 4px; }
+    .phone #fees .fees-punch .label {
+      font-size: 12px;
+      color: rgba(255,255,255,.7);
+    }
+    .phone #fees .fees-punch-guest .num {
+      color: rgba(255,255,255,.88);
+      font-size: clamp(22px, 3.2vw, 28px);
+    }
     .phone #fees .fees-mock { display: none !important; }
-    @media (max-width: 719px) {
-      .phone #fees .fees-punch { display: block; }
-      .phone #fees .calc-grid > :last-child { display: none !important; }
+    @media (max-width: 560px) {
+      .phone #fees .fees-punch { grid-template-columns: 1fr; }
     }
     @media (min-width: 720px) {
-      .phone #fees .fees-punch { display: block; }
       .phone .offer-bento { grid-template-columns: repeat(4, 1fr); }
       .phone .bento-cats { grid-template-columns: 1fr 1fr; }
     }
@@ -3573,62 +3615,40 @@
           <span class="eyebrow">Сборы</span>
           <h2>Сбор платит гость</h2>
         </div>
-        <div class="fees-punch reveal" id="feesPunch">
-          <div class="num" id="feesPunchTotal">105 000</div>
-          <div class="label">гость платит · вы получаете <span id="feesPunchOrg">100 000</span></div>
-        </div>
-        <div class="calc-grid fill-grow">
-          <div class="panel reveal fill-grow fees-panel">
+        <div class="fees-board reveal">
+          <div class="fees-punch" id="feesPunch">
+            <div class="fees-punch-col">
+              <strong class="num" id="feesPunchOrg">100 000</strong>
+              <span class="label">вам · 100% цены билета</span>
+            </div>
+            <div class="fees-punch-col fees-punch-guest">
+              <strong class="num" id="feesPunchTotal">105 000</strong>
+              <span class="label">гость платит</span>
+            </div>
+          </div>
+          <div class="panel fees-panel">
             <div class="slider-wrap">
               <label>
-                <span>Цена билета (ваша)</span>
+                <span>Цена билета</span>
                 <strong id="ticketLabel">100 000 сум</strong>
               </label>
               <input type="range" id="ticketPrice" min="20000" max="500000" step="1000" value="100000" />
             </div>
             <div class="slider-wrap">
               <label>
-                <span>FixedFee на гостя (пример)</span>
+                <span>FixedFee на гостя</span>
                 <strong id="fixLabel">3 500 сум</strong>
               </label>
               <input type="range" id="fixFee" min="1000" max="15000" step="100" value="3500" />
             </div>
-            <p style="font-size:13px;color:var(--muted);margin-top:12px">
-              Крупным — FixedFee от 3–5 тыс. в админке.
-            </p>
-            <div style="margin-top:14px;display:grid;gap:8px">
-              <div class="legend-item" style="background:var(--accent-soft);border-color:rgba(47,191,90,.35)">
-                <span>Вы получаете</span><strong id="outOrg">100 000</strong><strong id="outTicket" hidden>100 000</strong>
-              </div>
-              <div class="legend-item"><span><i class="legend-dot" style="background:var(--accent)"></i>Эквайринг 1.5%</span><strong id="outAcq">1 500</strong></div>
-              <div class="legend-item"><span><i class="legend-dot" style="background:#666"></i>FixedFee</span><strong id="outFix">3 500</strong></div>
-              <div class="legend-item">
-                <span>Итого гость</span><strong id="outTotal">105 000</strong>
-              </div>
+            <p class="fees-hint">Крупным — FixedFee от 3–5 тыс. в админке.</p>
+            <div class="fees-fee-row">
+              <span>Сбор с гостя</span>
+              <strong>+<span id="outFee">5 000</span></strong>
             </div>
-          </div>
-          <div class="panel donut-wrap reveal reveal-delay-1">
-            <div class="donut" id="donut" style="position:relative">
-              <div class="donut-center">
-                <div>
-                  <strong id="donutTotal">105 000</strong>
-                  <span>сум к оплате</span>
-                </div>
-              </div>
-            </div>
-            <div class="legend">
-              <div class="legend-item">
-                <span><i class="legend-dot" style="background:#e5e7eb"></i>Билет</span>
-                <span id="pctTicket">95%</span>
-              </div>
-              <div class="legend-item">
-                <span><i class="legend-dot" style="background:var(--accent)"></i>Эквайринг</span>
-                <span id="pctAcq">1.4%</span>
-              </div>
-              <div class="legend-item">
-                <span><i class="legend-dot" style="background:#111"></i>Софт</span>
-                <span id="pctFix">3.3%</span>
-              </div>
+            <div class="fees-parts">
+              <span>эквайринг 1.5% · <b id="outAcq">1 500</b></span>
+              <span>FixedFee · <b id="outFix">3 500</b></span>
             </div>
           </div>
         </div>
@@ -4116,7 +4136,6 @@
     // Fee calculator (guest checkout) + org economics vs 15% box office
     const ticket = document.getElementById('ticketPrice');
     const fix = document.getElementById('fixFee');
-    const donut = document.getElementById('donut');
     const whyTicket = document.getElementById('whyTicketPrice');
     const fmt = (n) => Math.round(n).toLocaleString('ru-RU');
     const round100 = (n) => Math.ceil(n / 100) * 100;
@@ -4172,26 +4191,11 @@
       };
       setText('ticketLabel', fmt(t) + ' сум');
       setText('fixLabel', fmt(f) + ' сум');
-      setText('outTicket', fmt(t));
-      setText('outOrg', fmt(t));
       setText('outAcq', fmt(acqShown));
       setText('outFix', fmt(fixShown));
-      setText('outTotal', fmt(total));
-      setText('donutTotal', fmt(total));
+      setText('outFee', fmt(feeTotal));
       setText('feesPunchTotal', fmt(total));
       setText('feesPunchOrg', fmt(t));
-
-      if (donut && total > 0) {
-        const pTicket = (t / total) * 100;
-        const pAcq = (acqShown / total) * 100;
-        const pFix = (fixShown / total) * 100;
-        setText('pctTicket', pTicket.toFixed(1) + '%');
-        setText('pctAcq', pAcq.toFixed(1) + '%');
-        setText('pctFix', pFix.toFixed(1) + '%');
-        const a1 = pAcq * 3.6;
-        const a2 = (pAcq + pFix) * 3.6;
-        donut.style.background = `conic-gradient(var(--accent) 0 ${a1}deg, #111 0 ${a2}deg, #e5e7eb 0)`;
-      }
     }
 
     function syncTicket(fromWhy) {
