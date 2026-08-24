@@ -229,11 +229,6 @@
     .header .logo {
       display: inline-flex;
       align-items: center;
-      color: var(--accent);
-      font-weight: 800;
-      font-style: italic;
-      font-size: 15px;
-      letter-spacing: 0.02em;
       padding: 0;
       border: none;
       border-radius: 0;
@@ -242,11 +237,17 @@
       flex-shrink: 0;
       line-height: 0;
     }
-    .header .logo img,
-    .phone #footer .footer-brand .logo img {
+    .phone .logo-mark {
       display: block;
+      width: 118px;
       height: 22px;
-      width: auto;
+      background: #fff;
+      -webkit-mask: url("assets/taneesh-logo.png") center / contain no-repeat;
+      mask: url("assets/taneesh-logo.png") center / contain no-repeat;
+    }
+    .phone #footer .footer-brand .logo-mark {
+      width: 130px;
+      height: 24px;
     }
     .header-nav {
       display: flex;
@@ -2305,10 +2306,6 @@
       line-height: 0;
       margin: 0;
     }
-    .phone #footer .footer-brand .logo img {
-      height: 24px;
-      width: auto;
-    }
     .phone #footer .footer-brand p {
       margin: 0;
       color: var(--muted);
@@ -3094,10 +3091,6 @@
       line-height: 0 !important;
       color: transparent !important;
       text-shadow: none !important;
-    }
-    .phone .header .logo img {
-      height: 20px;
-      width: auto;
     }
     .phone .reels-track {
       gap: 8px !important;
