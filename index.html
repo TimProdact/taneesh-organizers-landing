@@ -3137,6 +3137,30 @@
       gap: var(--bento-gap);
       width: 100%;
     }
+    .phone .bento-cats .tile {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 0 !important;
+      overflow: hidden;
+    }
+    .phone .bento-cats .tile-media {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: #111;
+    }
+    .phone .bento-cats .tile-body {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 14px 16px 18px;
+      flex: 1;
+    }
+    .phone .bento-cats .tile .tag {
+      align-self: flex-start;
+    }
     @media (max-width: 719px) {
       .phone .bento-cats { grid-template-columns: 1fr; }
       .phone .bento-3 { grid-template-columns: 1fr; }
@@ -3522,16 +3546,22 @@
         </div>
         <div class="bento-cats reveal">
           <article class="tile">
-            <span class="tag">Свой круг</span>
-            <h3>Интересные ивенты без бизнеса</h3>
-            <p>До сотни гостей без ИП и кассы — объявили ивент и продаёте вход.</p>
-            <ul><li>Старт за минуты</li><li>Оплата с телефона</li><li>Группа вокруг ивента</li></ul>
+            <img class="tile-media" src="assets/audience-small-org.jpg" alt="Небольшой ивент в своём кругу" width="1400" height="788" loading="lazy" />
+            <div class="tile-body">
+              <span class="tag">Свой круг</span>
+              <h3>Интересные ивенты без бизнеса</h3>
+              <p>До сотни гостей без ИП и кассы — объявили ивент и продаёте вход.</p>
+              <ul><li>Старт за минуты</li><li>Оплата с телефона</li><li>Группа вокруг ивента</li></ul>
+            </div>
           </article>
           <article class="tile">
-            <span class="tag">Масштаб</span>
-            <h3>Агентства и площадки</h3>
-            <p>Серии ивентов и объём. FixedFee растёт вместе с вами.</p>
-            <ul><li>Свой FixedFee</li><li>Серии и объём</li><li>Один кабинет на всё</li></ul>
+            <img class="tile-media" src="assets/audience-large-org.jpg" alt="Крупный концерт и площадка" width="1400" height="788" loading="lazy" />
+            <div class="tile-body">
+              <span class="tag">Масштаб</span>
+              <h3>Агентства и площадки</h3>
+              <p>Серии ивентов и объём. FixedFee растёт вместе с вами.</p>
+              <ul><li>Свой FixedFee</li><li>Серии и объём</li><li>Один кабинет на всё</li></ul>
+            </div>
           </article>
         </div>
       </div>
