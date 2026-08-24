@@ -39,7 +39,7 @@
       --duration-normal: 250ms;
       --phone-w: min(100vw, calc(100dvh * 9 / 16));
       --phone-h: min(100dvh, calc(100vw * 16 / 9));
-      --bento-gap: 6px;
+      --bento-gap: 12px;
       color-scheme: dark;
     }
 
@@ -2863,13 +2863,13 @@
     .phone .reels-track {
       display: flex !important;
       flex-direction: column !important;
-      gap: 8px !important;
+      gap: 28px !important;
       height: auto !important;
       min-height: 100% !important;
       transform: none !important;
       transition: none !important;
       will-change: auto !important;
-      padding-bottom: 8px;
+      padding-bottom: 16px;
     }
     .phone .reel {
       height: auto !important;
@@ -3111,7 +3111,7 @@
       border: none !important;
       border-radius: 0 !important;
       display: grid !important;
-      gap: 6px !important;
+      gap: var(--bento-gap) !important;
       align-content: stretch !important;
       align-items: stretch !important;
     }
@@ -3217,10 +3217,10 @@
       grid-template-rows: auto;
       height: auto !important;
       min-height: 0 !important;
-      gap: 6px !important;
+      gap: var(--bento-gap) !important;
     }
     .phone .board-metrics .cell-stat {
-      min-height: 120px;
+      min-height: 100px;
       justify-content: center;
     }
 
@@ -3230,15 +3230,15 @@
       grid-template-rows: auto auto auto auto auto;
       height: auto !important;
       min-height: 0 !important;
-      gap: 6px !important;
+      gap: var(--bento-gap) !important;
     }
     .phone .board-why .cell-why-head {
       grid-column: 1 / -1;
       justify-content: center;
-      gap: 6px;
+      gap: 8px;
       background: transparent !important;
       box-shadow: none !important;
-      padding: 4px 2px 8px !important;
+      padding: 8px 2px 4px !important;
     }
     .phone .board-why .cell-why-head .eyebrow {
       color: var(--accent);
