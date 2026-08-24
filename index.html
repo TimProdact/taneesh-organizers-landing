@@ -237,16 +237,13 @@
       flex-shrink: 0;
       line-height: 0;
     }
-    .phone .logo-mark {
+    .header .logo img,
+    .phone #footer .footer-brand .logo img {
       display: block;
-      width: 118px;
       height: 22px;
-      background: #fff;
-      -webkit-mask: url("assets/taneesh-logo.png") center / contain no-repeat;
-      mask: url("assets/taneesh-logo.png") center / contain no-repeat;
+      width: auto;
     }
-    .phone #footer .footer-brand .logo-mark {
-      width: 130px;
+    .phone #footer .footer-brand .logo img {
       height: 24px;
     }
     .header-nav {
@@ -3677,7 +3674,90 @@
     /* Hide old carousel chrome when unused */
     .phone .carousel { display: none !important; }
 
+    /* Language switcher (like main landing) */
+    .phone .header-lang {
+      position: relative;
+      flex-shrink: 0;
+    }
+    .phone .header-lang-btn {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border: none;
+      border-radius: 10px;
+      background: rgba(255,255,255,.06);
+      color: #fff;
+      cursor: pointer;
+      transition: background var(--duration-fast) var(--ease-out);
+    }
+    .phone .header-lang-btn:hover,
+    .phone .header-lang-btn[aria-expanded="true"] {
+      background: rgba(48,209,88,.18);
+      color: var(--accent);
+    }
+    .phone .header-lang-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .phone .header-lang-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      z-index: 120;
+      min-width: 168px;
+      margin: 0;
+      padding: 6px;
+      list-style: none;
+      border-radius: 14px;
+      background: rgba(28,28,30,.96);
+      border: 1px solid rgba(255,255,255,.1);
+      box-shadow: 0 16px 40px rgba(0,0,0,.45);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .phone .header-lang-menu[hidden] { display: none !important; }
+    .phone .header-lang-option {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border: none;
+      border-radius: 10px;
+      background: transparent;
+      color: rgba(255,255,255,.82);
+      font-size: 13px;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+    }
+    .phone .header-lang-option:hover { background: rgba(255,255,255,.08); }
+    .phone .header-lang-option.is-active {
+      background: rgba(48,209,88,.2);
+      color: #fff;
+    }
+    .phone .header-lang-option span:first-child { flex: 1; }
+    .phone .header-lang-option .short {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,.45);
+    }
+    .phone .header-pill {
+      gap: 8px;
+    }
+    .phone .header-nav {
+      margin-left: auto;
+    }
+
   </style>
+  <script src="assets/i18n.js"></script>
 </head>
 <body>
   <div class="stage">
@@ -3687,13 +3767,23 @@
       <a class="logo" href="#slide-hero" data-goto="slide-hero" aria-label="Taneesh">
         <img src="assets/taneesh-logo-white.png" alt="Taneesh" width="130" height="24" />
       </a>
-      <nav class="header-nav" aria-label="Навигация">
-        <a class="hide-sm" href="#why" data-goto="why">Почему мы</a>
-        <a class="hide-sm" href="#included" data-goto="included">Что даём</a>
-        <a class="hide-sm" href="#fees" data-goto="fees">Сборы</a>
-        <a class="hide-sm" href="#audience" data-goto="audience">Организаторы</a>
-        <a class="primary" href="#cta" data-goto="cta">Запустить</a>
+      <nav class="header-nav" data-i18n-aria="navAria" aria-label="Навигация">
+        <a class="hide-sm" href="#why" data-goto="why" data-i18n="navWhy">Почему мы</a>
+        <a class="hide-sm" href="#included" data-goto="included" data-i18n="navIncluded">Что даём</a>
+        <a class="hide-sm" href="#fees" data-goto="fees" data-i18n="navFees">Сборы</a>
+        <a class="hide-sm" href="#audience" data-goto="audience" data-i18n="navOrgs">Организаторы</a>
+        <a class="primary" href="#cta" data-goto="cta" data-i18n="navStart">Запустить</a>
       </nav>
+      <div class="header-lang" id="langWrap">
+        <button type="button" class="header-lang-btn" id="langBtn" aria-expanded="false" aria-haspopup="listbox" aria-controls="langMenu" aria-label="Сменить язык">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </button>
+        <ul class="header-lang-menu" id="langMenu" role="listbox" hidden>
+          <li role="none"><button type="button" role="option" class="header-lang-option" data-locale-option="ru" aria-selected="true"><span>Русский</span><span class="short">RU</span></button></li>
+          <li role="none"><button type="button" role="option" class="header-lang-option" data-locale-option="uz" aria-selected="false"><span>O'zbek</span><span class="short">UZ</span></button></li>
+          <li role="none"><button type="button" role="option" class="header-lang-option" data-locale-option="en" aria-selected="false"><span>English</span><span class="short">EN</span></button></li>
+        </ul>
+      </div>
     </div>
   </header>
 
@@ -3702,10 +3792,10 @@
     <section class="reel hero" id="slide-hero" data-slide>
       <div class="wrap board board-hero reveal">
         <article class="cell cell-story">
-          <span class="eyebrow">Тикетинг для организаторов</span>
-          <h1>Продавайте билеты.<br /><span class="accent">Получайте 100%</span> цены</h1>
-          <p class="lead">Витрина за 5 минут. Сбор платит гость — вам 100% цены билета.</p>
-          <a class="btn btn-accent" href="#cta" data-goto="cta">Запустить продажи</a>
+          <span class="eyebrow" data-i18n="heroEyebrow">Тикетинг для организаторов</span>
+          <h1 data-i18n-html="heroTitle">Продавайте билеты.<br /><span class="accent">Получайте 100%</span> цены</h1>
+          <p class="lead" data-i18n="heroLead">Витрина за 5 минут. Сбор платит гость — вам 100% цены билета.</p>
+          <a class="btn btn-accent" href="#cta" data-goto="cta" data-i18n="heroCta">Запустить продажи</a>
         </article>
       </div>
     </section>
@@ -3714,15 +3804,15 @@
       <div class="wrap board board-metrics reveal">
         <article class="cell cell-stat">
           <strong class="num">100%</strong>
-          <span class="label">цены билета вам</span>
+          <span class="label" data-i18n="m100">цены билета вам</span>
         </article>
         <article class="cell cell-stat">
           <strong class="num">5 мин</strong>
-          <span class="label">до первой витрины</span>
+          <span class="label" data-i18n="m5">до первой витрины</span>
         </article>
         <article class="cell cell-stat">
           <strong class="num">0 сум</strong>
-          <span class="label">абонентки орга</span>
+          <span class="label" data-i18n="m0">абонентки орга</span>
         </article>
       </div>
     </section>
@@ -3730,32 +3820,32 @@
     <section class="reel" id="why" data-slide>
       <div class="wrap board board-why reveal">
         <div class="cell cell-why-head">
-          <span class="eyebrow">Экономика орга</span>
-          <h2>Не отдавайте 15% с билета</h2>
+          <span class="eyebrow" data-i18n="whyEyebrow">Экономика орга</span>
+          <h2 data-i18n="whyTitle">Не отдавайте 15% с билета</h2>
         </div>
         <article class="cell cell-ticket">
           <label>
-            <span>Цена билета на концерт</span>
+            <span data-i18n="whyTicket">Цена билета на концерт</span>
             <strong id="whyTicketLabel">100 000 сум</strong>
           </label>
           <input type="range" id="whyTicketPrice" min="20000" max="500000" step="1000" value="100000" />
         </article>
         <article class="cell cell-bad">
-          <div class="label">Обычная касса · 15%</div>
+          <div class="label" data-i18n="whyBad">Обычная касса · 15%</div>
           <div class="num bad" id="aggPerTicket">15 000</div>
           <p id="aggCostLabel">−15 000 сум с билета</p>
           <div class="bar-track"><div class="bar-fill bad" id="aggBar" data-w="15" style="width:15%"></div></div>
         </article>
         <article class="cell cell-good">
-          <div class="label">Taneesh · вам 100%</div>
+          <div class="label" data-i18n="whyGood">Taneesh · вам 100%</div>
           <div class="num" id="tanPerTicket">0</div>
           <p id="tanCostLabel">0 сум с цены билета</p>
           <div class="bar-track"><div class="bar-fill good" id="tanBar" data-w="0" style="width:2%"></div></div>
         </article>
         <article class="cell cell-save">
-          <strong class="num">+<span id="saveAmount">15 000</span> сум</strong>
-          <span class="label">экономия с 1 билета vs 15% касса</span>
-          <span class="label save-pack">на 100 билетах ≈ <strong id="savePack">1 500 000</strong> сум</span>
+          <strong class="num">+<span id="saveAmount">15 000</span> <span data-i18n="currency">сум</span></strong>
+          <span class="label" data-i18n="whySaveLabel">экономия с 1 билета vs 15% касса</span>
+          <span class="label save-pack"><span data-i18n="whySavePack">на 100 билетах ≈</span> <strong id="savePack">1 500 000</strong> <span data-i18n="currency">сум</span></span>
         </article>
       </div>
     </section>
@@ -3763,32 +3853,32 @@
     <section class="reel" id="conversion" data-slide>
       <div class="wrap fill-screen">
         <div class="section-head reveal">
-          <span class="eyebrow">Открытость</span>
-          <h2>Конверсия в реальном времени</h2>
+          <span class="eyebrow" data-i18n="convEyebrow">Открытость</span>
+          <h2 data-i18n="convTitle">Конверсия в реальном времени</h2>
         </div>
 
         <div class="live-conv reveal fill-grow">
           <div class="live-conv-hero fill-grow" data-live-conv>
-            <div class="live-pill"><span class="pulse-dot"></span> Live · платформа</div>
+            <div class="live-pill"><span class="pulse-dot"></span> <span data-i18n="livePill">Live · платформа</span></div>
             <div class="rate">
               <span id="liveConvRate" data-live="34">0</span><small>%</small>
             </div>
-            <p class="desc">Витрина → оплата — без приукрашивания.</p>
+            <p class="desc" data-i18n="liveDesc">Витрина → оплата — без приукрашивания.</p>
             <div class="live-stats">
               <div class="live-stat">
-                <div class="k">Просмотры сейчас</div>
+                <div class="k" data-i18n="liveViews">Просмотры сейчас</div>
                 <div class="v"><span id="liveViews" data-live="1284">0</span></div>
               </div>
               <div class="live-stat">
-                <div class="k">Оплаты / час</div>
+                <div class="k" data-i18n="livePays">Оплаты / час</div>
                 <div class="v"><span id="livePays" data-live="47">0</span></div>
               </div>
               <div class="live-stat">
-                <div class="k">До чекаута</div>
+                <div class="k" data-i18n="liveCheckout">До чекаута</div>
                 <div class="v"><span id="liveCheckout" data-live="41">0</span>%</div>
               </div>
               <div class="live-stat">
-                <div class="k">Бросили корзину</div>
+                <div class="k" data-i18n="liveDrop">Бросили корзину</div>
                 <div class="v"><span id="liveDrop" data-live="7">0</span>%</div>
               </div>
             </div>
@@ -3815,25 +3905,25 @@
     <section class="reel" id="audience" data-slide>
       <div class="wrap fill-screen">
         <div class="section-head reveal">
-          <h2>Для кого</h2>
+          <h2 data-i18n="audTitle">Для кого</h2>
         </div>
         <div class="bento-cats reveal">
           <article class="tile">
-            <img class="tile-media" src="assets/audience-small-org.jpg" alt="Небольшой ивент в своём кругу" width="1400" height="788" loading="lazy" />
+            <img class="tile-media" src="assets/audience-small-org.jpg" data-i18n-alt="audSmallAlt" alt="Небольшой ивент в своём кругу" width="1400" height="788" loading="lazy" />
             <div class="tile-body">
-              <span class="tag">Свой круг</span>
-              <h3>Интересные ивенты без бизнеса</h3>
-              <p>До сотни гостей без ИП и кассы — объявили ивент и продаёте вход.</p>
-              <ul><li>Старт за минуты</li><li>Оплата с телефона</li><li>Группа вокруг ивента</li></ul>
+              <span class="tag" data-i18n="audSmallTag">Свой круг</span>
+              <h3 data-i18n="audSmallH">Интересные ивенты без бизнеса</h3>
+              <p data-i18n="audSmallP">До сотни гостей без ИП и кассы — объявили ивент и продаёте вход.</p>
+              <ul><li data-i18n="audSmall1">Старт за минуты</li><li data-i18n="audSmall2">Оплата с телефона</li><li data-i18n="audSmall3">Группа вокруг ивента</li></ul>
             </div>
           </article>
           <article class="tile">
-            <img class="tile-media" src="assets/audience-large-org.jpg" alt="Крупный концерт и площадка" width="1400" height="788" loading="lazy" />
+            <img class="tile-media" src="assets/audience-large-org.jpg" data-i18n-alt="audLargeAlt" alt="Крупный концерт и площадка" width="1400" height="788" loading="lazy" />
             <div class="tile-body">
-              <span class="tag">Масштаб</span>
-              <h3>Агентства и площадки</h3>
-              <p>Серии ивентов и объём. FixedFee растёт вместе с вами.</p>
-              <ul><li>Свой FixedFee</li><li>Серии и объём</li><li>Один кабинет на всё</li></ul>
+              <span class="tag" data-i18n="audLargeTag">Масштаб</span>
+              <h3 data-i18n="audLargeH">Агентства и площадки</h3>
+              <p data-i18n="audLargeP">Серии ивентов и объём. FixedFee растёт вместе с вами.</p>
+              <ul><li data-i18n="audLarge1">Свой FixedFee</li><li data-i18n="audLarge2">Серии и объём</li><li data-i18n="audLarge3">Один кабинет на всё</li></ul>
             </div>
           </article>
         </div>
@@ -3843,42 +3933,42 @@
     <section class="reel" id="fees" data-slide>
       <div class="wrap fill-screen">
         <div class="section-head reveal">
-          <span class="eyebrow">Сборы</span>
-          <h2>Сбор платит гость</h2>
+          <span class="eyebrow" data-i18n="feesEyebrow">Сборы</span>
+          <h2 data-i18n="feesTitle">Сбор платит гость</h2>
         </div>
         <div class="fees-board reveal">
           <div class="fees-punch" id="feesPunch">
             <div class="fees-punch-col">
               <strong class="num" id="feesPunchOrg">100 000</strong>
-              <span class="label">вам · 100% цены билета</span>
+              <span class="label" data-i18n="feesYou">вам · 100% цены билета</span>
             </div>
             <div class="fees-punch-col fees-punch-guest">
               <strong class="num" id="feesPunchTotal">105 000</strong>
-              <span class="label">гость платит</span>
+              <span class="label" data-i18n="feesGuest">гость платит</span>
             </div>
           </div>
           <div class="panel fees-panel">
             <div class="slider-wrap">
               <label>
-                <span>Цена билета</span>
+                <span data-i18n="feesTicket">Цена билета</span>
                 <strong id="ticketLabel">100 000 сум</strong>
               </label>
               <input type="range" id="ticketPrice" min="20000" max="500000" step="1000" value="100000" />
             </div>
             <div class="slider-wrap">
               <label>
-                <span>FixedFee на гостя</span>
+                <span data-i18n="feesFix">FixedFee на гостя</span>
                 <strong id="fixLabel">3 500 сум</strong>
               </label>
               <input type="range" id="fixFee" min="1000" max="15000" step="100" value="3500" />
             </div>
-            <p class="fees-hint">Крупным — FixedFee от 3–5 тыс. в админке.</p>
+            <p class="fees-hint" data-i18n="feesHint">Крупным — FixedFee от 3–5 тыс. в админке.</p>
             <div class="fees-fee-row">
-              <span>Сбор с гостя</span>
+              <span data-i18n="feesFeeRow">Сбор с гостя</span>
               <strong>+<span id="outFee">5 000</span></strong>
             </div>
             <div class="fees-parts">
-              <span>эквайринг 1.5% · <b id="outAcq">1 500</b></span>
+              <span><span data-i18n="feesAcq">эквайринг 1.5%</span> · <b id="outAcq">1 500</b></span>
               <span>FixedFee · <b id="outFix">3 500</b></span>
             </div>
           </div>
@@ -3889,15 +3979,15 @@
     <section class="reel" id="flow" data-slide>
       <div class="wrap fill-screen">
         <div class="section-head reveal">
-          <span class="eyebrow">Запуск</span>
-          <h2>Путь за 5 минут</h2>
+          <span class="eyebrow" data-i18n="flowEyebrow">Запуск</span>
+          <h2 data-i18n="flowTitle">Путь за 5 минут</h2>
         </div>
         <div class="phase-list reveal">
-          <div class="phase-row"><div class="phase-num">1</div><div><strong>Кабинет</strong><span>Создаёте кабинет организатора</span></div></div>
-          <div class="phase-row"><div class="phase-num">2</div><div><strong>Ивент</strong><span>Создаёте ивент и цены билетов</span></div></div>
-          <div class="phase-row"><div class="phase-num">3</div><div><strong>Витрина</strong><span>Размещаете ссылку в соцсетях или там, где есть трафик</span></div></div>
-          <div class="phase-row"><div class="phase-num">4</div><div><strong>Оплата</strong><span>Приём оплаты — с договором онлайн или без договора на входе</span></div></div>
-          <div class="phase-row"><div class="phase-num">5</div><div><strong>Группа</strong><span>Создаётся группа по ивенту <em class="phase-soon">скоро</em></span></div></div>
+          <div class="phase-row"><div class="phase-num">1</div><div><strong data-i18n="flow1t">Кабинет</strong><span data-i18n="flow1d">Создаёте кабинет организатора</span></div></div>
+          <div class="phase-row"><div class="phase-num">2</div><div><strong data-i18n="flow2t">Ивент</strong><span data-i18n="flow2d">Создаёте ивент и цены билетов</span></div></div>
+          <div class="phase-row"><div class="phase-num">3</div><div><strong data-i18n="flow3t">Витрина</strong><span data-i18n="flow3d">Размещаете ссылку в соцсетях или там, где есть трафик</span></div></div>
+          <div class="phase-row"><div class="phase-num">4</div><div><strong data-i18n="flow4t">Оплата</strong><span data-i18n="flow4d">Приём оплаты — с договором онлайн или без договора на входе</span></div></div>
+          <div class="phase-row"><div class="phase-num">5</div><div><strong data-i18n="flow5t">Группа</strong><span><span data-i18n="flow5d">Создаётся группа по ивенту</span> <em class="phase-soon" data-i18n="soon">скоро</em></span></div></div>
         </div>
       </div>
     </section>
@@ -3906,21 +3996,21 @@
       <div class="wrap fill-screen">
         <div class="section-head offer-head reveal">
           <div class="section-copy">
-            <span class="eyebrow">Что даём</span>
-            <h2>Всё для продаж — без лишнего</h2>
+            <span class="eyebrow" data-i18n="offerEyebrow">Что даём</span>
+            <h2 data-i18n="offerTitle">Всё для продаж — без лишнего</h2>
           </div>
-          <a class="btn btn-accent" href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf">Скачать коммерческое предложение</a>
+          <a class="btn btn-accent" href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="offerDl">Скачать коммерческое предложение</a>
         </div>
         <div class="offer-scroll-wrap reveal">
-          <div class="offer-scroll-hint">Листайте вправо <b>→</b></div>
-          <div class="offer-bento" tabindex="0" aria-label="Возможности платформы">
+          <div class="offer-scroll-hint"><span data-i18n="offerHint">Листайте вправо</span> <b>→</b></div>
+          <div class="offer-bento" tabindex="0" data-i18n-aria="offerAria" aria-label="Возможности платформы">
           <article class="offer-card c-green">
             <div class="offer-ico" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M12 3v18M7 8h7.5a2.5 2.5 0 0 1 0 5H9a2.5 2.5 0 0 0 0 5H17"/></svg>
             </div>
             <div>
-              <h3>100% цены билета</h3>
-              <p>Поставили 100 000 — получили 100 000. Сбор платит гость.</p>
+              <h3 data-i18n="o1t">100% цены билета</h3>
+              <p data-i18n="o1p">Поставили 100 000 — получили 100 000. Сбор платит гость.</p>
             </div>
           </article>
           <article class="offer-card c-amber">
@@ -3928,8 +4018,8 @@
               <svg viewBox="0 0 24 24"><path d="M12 3c2 3 2 5 0 7 3-1 6 1 6 5a6 6 0 1 1-12 0c0-2.5 1.5-4 3-5-1 2 0 3.5 1 4 0-3 1.5-6 2-11z"/></svg>
             </div>
             <div>
-              <h3>Горячий трафик</h3>
-              <p>Люди в Taneesh уже ищут, куда пойти сегодня.</p>
+              <h3 data-i18n="o2t">Горячий трафик</h3>
+              <p data-i18n="o2p">Люди в Taneesh уже ищут, куда пойти сегодня.</p>
             </div>
           </article>
           <article class="offer-card c-teal">
@@ -3937,8 +4027,8 @@
               <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="16" cy="9" r="2.5"/><path d="M3.5 19c1-3.5 3.2-5 5.5-5s4.5 1.5 5.5 5M13 14.5c1.8 0 3.4 1 4.5 4"/></svg>
             </div>
             <div>
-              <h3>Групповые чеки</h3>
-              <p>Матчинг компаний: гости идут вместе — чек выше.</p>
+              <h3 data-i18n="o3t">Групповые чеки</h3>
+              <p data-i18n="o3p">Матчинг компаний: гости идут вместе — чек выше.</p>
             </div>
           </article>
           <article class="offer-card c-sky">
@@ -3946,8 +4036,8 @@
               <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M4 10h16M9 14h2M13 14h4"/></svg>
             </div>
             <div>
-              <h3>Кабинет 0 сум</h3>
-              <p>Без абонентки. Продаёте — зарабатываете.</p>
+              <h3 data-i18n="o4t">Кабинет 0 сум</h3>
+              <p data-i18n="o4p">Без абонентки. Продаёте — зарабатываете.</p>
             </div>
           </article>
           <article class="offer-card c-rose">
@@ -3955,8 +4045,8 @@
               <svg viewBox="0 0 24 24"><path d="M4 19V9l4 2 4-5 4 4 4-3v12H4z"/><path d="M4 19h16"/></svg>
             </div>
             <div>
-              <h3>Кабинет и контроль</h3>
-              <p>Продажи и возвраты в реальном времени.</p>
+              <h3 data-i18n="o5t">Кабинет и контроль</h3>
+              <p data-i18n="o5p">Продажи и возвраты в реальном времени.</p>
             </div>
           </article>
           <article class="offer-card c-lime">
@@ -3964,8 +4054,8 @@
               <svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7.4l2.9-2.9a4 4 0 0 0-5.7-5.7L11.5 7.2"/><path d="M14 10a4 4 0 0 0-5.7-.4L5.4 12.5a4 4 0 0 0 5.7 5.7L12.5 16.8"/></svg>
             </div>
             <div>
-              <h3>Витрина и smart-link</h3>
-              <p>Одна ссылка в Instagram, Telegram и рекламу.</p>
+              <h3 data-i18n="o6t">Витрина и smart-link</h3>
+              <p data-i18n="o6p">Одна ссылка в Instagram, Telegram и рекламу.</p>
             </div>
           </article>
           <article class="offer-card c-orange">
@@ -3973,8 +4063,8 @@
               <svg viewBox="0 0 24 24"><path d="M5 12V7a2 2 0 0 1 2-2h7l5 5v7a2 2 0 0 1-2 2h-5"/><path d="M14 5v5h5"/><circle cx="8" cy="16" r="2.5"/><path d="M8 13.5V11"/></svg>
             </div>
             <div>
-              <h3>Покупка в 2 клика</h3>
-              <p>Оплата в браузере — без установки приложения.</p>
+              <h3 data-i18n="o7t">Покупка в 2 клика</h3>
+              <p data-i18n="o7p">Оплата в браузере — без установки приложения.</p>
             </div>
           </article>
           <article class="offer-card c-mint">
@@ -3982,8 +4072,8 @@
               <svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><path d="M14 14h2v2M18 14v2h-2M14 18h4"/></svg>
             </div>
             <div>
-              <h3>Сканер и безопасность</h3>
-              <p>Вход по билету. Возврат в один клик.</p>
+              <h3 data-i18n="o8t">Сканер и безопасность</h3>
+              <p data-i18n="o8p">Вход по билету. Возврат в один клик.</p>
             </div>
           </article>
           </div>
@@ -3993,7 +4083,7 @@
 
     <section class="reel" id="faq" data-slide>
       <div class="wrap fill-screen">
-        <div class="section-head reveal"><h2>Частые вопросы</h2></div>
+        <div class="section-head reveal"><h2 data-i18n="faqTitle">Частые вопросы</h2></div>
         <div class="faq-list reveal fill-grow">
           <button type="button" class="faq-q" data-faq="0">Можно ли продавать без ИП и «большой» кассы?</button>
           <button type="button" class="faq-q" data-faq="1">Кто платит 1.5% и FixedFee?</button>
@@ -4023,32 +4113,32 @@
             <span class="cta-ring"></span>
           </div>
           <div class="cta-top">
-            <span class="eyebrow">Старт</span>
+            <span class="eyebrow" data-i18n="ctaEyebrow">Старт</span>
             <div class="cta-chips" aria-hidden="true">
-              <span>100% цены</span>
-              <span>5 мин</span>
-              <span>гость платит сбор</span>
+              <span data-i18n="ctaChip1">100% цены</span>
+              <span data-i18n="ctaChip2">5 мин</span>
+              <span data-i18n="ctaChip3">гость платит сбор</span>
             </div>
           </div>
           <div class="cta-grid">
             <div class="cta-mid">
-              <h2>Запустите продажи.<br /><span class="cta-accent">Цена билета — ваша</span></h2>
-              <p>Подключим кабинет, настроим чекаут и покажем, как выглядит сбор для гостя.</p>
+              <h2 data-i18n-html="ctaTitle">Запустите продажи.<br /><span class="cta-accent">Цена билета — ваша</span></h2>
+              <p data-i18n="ctaLead">Подключим кабинет, настроим чекаут и покажем, как выглядит сбор для гостя.</p>
               <div class="btn-row">
-                <a class="btn btn-accent cta-pulse" href="https://taneesh.uz">Запустить продажи</a>
-                <a class="btn btn-ghost" href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf">Скачать КП</a>
+                <a class="btn btn-accent cta-pulse" href="https://taneesh.uz" data-i18n="ctaStart">Запустить продажи</a>
+                <a class="btn btn-ghost" href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
                 <a class="btn btn-ghost" href="https://taneesh.uz">taneesh.uz →</a>
               </div>
             </div>
-            <aside class="cta-panel" aria-label="Что получите">
+            <aside class="cta-panel">
               <div class="cta-stat">
                 <strong>100%</strong>
-                <span>цены билета вам</span>
+                <span data-i18n="ctaStat">цены билета вам</span>
               </div>
               <ul class="cta-checks">
-                <li>Витрина и smart-link</li>
-                <li>Оплата в браузере</li>
-                <li>Кабинет без абонентки</li>
+                <li data-i18n="cta1">Витрина и smart-link</li>
+                <li data-i18n="cta2">Оплата в браузере</li>
+                <li data-i18n="cta3">Кабинет без абонентки</li>
               </ul>
               <a class="cta-contact" href="tel:+998880348797">+998 88 034 87 97</a>
             </aside>
@@ -4062,13 +4152,13 @@
         <div class="footer-bar">
           <div class="footer-brand">
             <div class="logo"><img src="assets/taneesh-logo-white.png" alt="Taneesh" width="130" height="24" /></div>
-            <p>Тикетинг для организаторов</p>
+            <p data-i18n="footTag">Тикетинг для организаторов</p>
           </div>
           <div class="footer-links">
             <a href="https://taneesh.uz">taneesh.uz</a>
-            <a href="#fees" data-goto="fees">Сборы</a>
-            <a href="#audience" data-goto="audience">Организаторы</a>
-            <a href="#cta" data-goto="cta">Заявка</a>
+            <a href="#fees" data-goto="fees" data-i18n="footFees">Сборы</a>
+            <a href="#audience" data-goto="audience" data-i18n="footOrgs">Организаторы</a>
+            <a href="#cta" data-goto="cta" data-i18n="footCta">Заявка</a>
           </div>
         </div>
         <p class="footer-copy">© 2026 Taneesh</p>
@@ -4080,7 +4170,7 @@
     <div class="faq-card">
       <h3 id="faqTitle"></h3>
       <p id="faqBody"></p>
-      <button type="button" class="faq-close" id="faqClose">Понятно</button>
+      <button type="button" class="faq-close" id="faqClose" data-i18n="faqClose">Понятно</button>
     </div>
   </div>
   </div><!-- /.phone -->
@@ -4344,71 +4434,10 @@
     const faqTitle = document.getElementById('faqTitle');
     const faqBody = document.getElementById('faqBody');
     const faqCloseBtn = document.getElementById('faqClose');
-    const FAQ = [
-      {
-        q: 'Можно ли продавать без ИП и «большой» кассы?',
-        a: 'Да. Платформа подходит предпринимателям, ООО и самозанятым. Для малых ивентов и комьюнити достаточно кабинета: объявили событие, выставили цену и продаёте вход с телефона.',
-      },
-      {
-        q: 'Кто платит 1.5% и FixedFee?',
-        a: 'Сервисный сбор платит гость при оплате: 1.5% эквайринга + FixedFee. Для бизнеса подключение бесплатно — вам уходит 100% цены билета, которую вы выставили.',
-      },
-      {
-        q: 'Что я получаю с цены билета?',
-        a: 'Поставили 100 000 — получили 100 000. Без комиссии с организатора и без наценки сверху на вашу цену: клиент видит честную цену, вы — 100% билета.',
-      },
-      {
-        q: 'Есть ли абонентка за кабинет?',
-        a: 'Нет. Кабинет и CRM — 0 сум. Без подписки: продаёте — зарабатываете. Вся прибыль с билетов ваша.',
-      },
-      {
-        q: 'Чем Taneesh отличается от обычных касс?',
-        a: 'Обычные кассы берут 5–15% с билета, ждут трафик и продают по 1–2 билета. У Taneesh: 0% с вашей цены, горячий трафик платформы, групповые чеки и эквайринг в сборе с гостя — не из вашего кармана.',
-      },
-      {
-        q: 'Откуда берётся трафик на ивент?',
-        a: 'Taneesh привлекает людей, а не только продаёт билеты: аудитория уже ищет, куда пойти сегодня. Алгоритмы рекомендуют ивенты по интересам — это активный канал, а не пассивная витрина.',
-      },
-      {
-        q: 'Как работают групповые чеки?',
-        a: 'Социальный матчинг решает «с кем пойти»: гости собираются компаниями и чаще берут 3–5 билетов вместо одного. Средний чек растёт без вашей доп. рекламы.',
-      },
-      {
-        q: 'Нужно ли гостю скачивать приложение?',
-        a: 'Нет. Покупка в 2 клика в браузере — без регистрации в приложении и без установки. Humo / Uzcard на чекауте.',
-      },
-      {
-        q: 'Что такое smart-link и витрина?',
-        a: 'Одна персональная витрина с вашим брендом и событиями плюс одна smart-link для Instagram, Telegram и рекламы. Разместили ссылку — гости попадают сразу к покупке.',
-      },
-      {
-        q: 'Как принимаются оплаты и когда приходят деньги?',
-        a: 'Оплата через платёжную систему с безопасным удержанием средств. После ивента выплаты проходят автоматически. В кабинете — баланс и статистика в реальном времени.',
-      },
-      {
-        q: 'Что с возвратами, если ивент отменили?',
-        a: 'Возврат в один клик: при отмене ивента средства возвращаются покупателям автоматически. До события средства удерживаются на стороне оплаты — защита от мошенничества.',
-      },
-      {
-        q: 'Есть ли сканер билетов на входе?',
-        a: 'Да. Smart-сканер мгновенно читает билет и фиксирует статус входа. В кабинете — продажи, возвраты и контроль доступа в реальном времени. Можно также отправлять VIP-приглашения партнёрам.',
-      },
-      {
-        q: 'Можно ли работать параллельно с другой кассой?',
-        a: 'Да. Можно оставить текущие каналы и добавить Taneesh как канал без комиссии с вашей цены — дополнительный источник продаж.',
-      },
-      {
-        q: 'Есть ли условия для крупных партнёров?',
-        a: 'Да. Для агентств и площадок FixedFee настраивается в админке (часто от 3–5 тыс. сум) — экономика растёт вместе с объёмом. Мы — резиденты IT Park Uzbekistan.',
-      },
-      {
-        q: 'Сколько нужно, чтобы запуститься?',
-        a: 'Обычно достаточно минут: связались с нами, создали кабинет и витрину, опубликовали первый ивент. Контакты: taneesh.uz, @taneeshuz, +998 88 034 87 97.',
-      },
-    ];
 
     function openFaq(i) {
-      const item = FAQ[+i];
+      const list = (window.TaneeshI18n && window.TaneeshI18n.faq()) || [];
+      const item = list[+i];
       if (!item || !faqLayer) return;
       if (faqTitle) faqTitle.textContent = item.q;
       if (faqBody) faqBody.textContent = item.a;
@@ -4440,16 +4469,18 @@
     const ticket = document.getElementById('ticketPrice');
     const fix = document.getElementById('fixFee');
     const whyTicket = document.getElementById('whyTicketPrice');
-    const fmt = (n) => Math.round(n).toLocaleString('ru-RU');
-    const round100 = (n) => Math.ceil(n / 100) * 100;
     const AGG_RATE = 0.15;
     const PACK = 100;
+    const round100 = (n) => Math.ceil(n / 100) * 100;
+    const fmt = (n) => Math.round(n).toLocaleString((window.TaneeshI18n && window.TaneeshI18n.localeTag()) || 'ru-RU');
+    const copy = () => (window.TaneeshI18n && window.TaneeshI18n.t()) || { currency: 'сум', money: (x) => x + ' сум', aggCost: (x) => '−' + x, tanCost: (x) => x };
 
     function recalcWhy(ticketPrice) {
       const t = Math.max(0, +ticketPrice || 0);
       const agg = Math.round(t * AGG_RATE);
       const save = agg;
       const pack = save * PACK;
+      const d = copy();
 
       const whyLabel = document.getElementById('whyTicketLabel');
       const saveEl = document.getElementById('saveAmount');
@@ -4461,9 +4492,9 @@
       const bad = document.getElementById('aggBar');
       const good = document.getElementById('tanBar');
 
-      if (whyLabel) whyLabel.textContent = fmt(t) + ' сум';
-      if (aggLabel) aggLabel.textContent = '−' + fmt(agg) + ' сум с билета';
-      if (tanLabel) tanLabel.textContent = '0 сум с цены ' + fmt(t);
+      if (whyLabel) whyLabel.textContent = d.money(fmt(t));
+      if (aggLabel) aggLabel.textContent = d.aggCost(fmt(agg));
+      if (tanLabel) tanLabel.textContent = d.tanCost(fmt(t));
       if (aggPer) aggPer.textContent = fmt(agg);
       if (tanPer) tanPer.textContent = '0';
       if (saveEl) saveEl.textContent = fmt(save);
@@ -4487,13 +4518,14 @@
       const total = t + feeTotal;
       const acqShown = round100(acq);
       const fixShown = feeTotal - acqShown;
+      const d = copy();
 
       const setText = (id, v) => {
         const el = document.getElementById(id);
         if (el) el.textContent = v;
       };
-      setText('ticketLabel', fmt(t) + ' сум');
-      setText('fixLabel', fmt(f) + ' сум');
+      setText('ticketLabel', d.money(fmt(t)));
+      setText('fixLabel', d.money(fmt(f)));
       setText('outAcq', fmt(acqShown));
       setText('outFix', fmt(fixShown));
       setText('outFee', fmt(feeTotal));
@@ -4517,6 +4549,13 @@
       fix.addEventListener('input', recalcFees);
       recalcFees();
     }
+
+    window.addEventListener('taneesh:locale', () => {
+      syncTicket(false);
+      closeFaq();
+    });
+
+    if (window.TaneeshI18n) window.TaneeshI18n.init();
   </script>
 
 </body>
