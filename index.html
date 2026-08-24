@@ -2955,22 +2955,111 @@
     .phone .phase-row strong { display: block; font-size: 14px; color: var(--text); }
     .phone .phase-row span { font-size: 12px; color: var(--muted); }
 
-    /* Included offer grid */
+    /* Included offer grid — colorful icon cards */
     .phone .offer-bento {
       display: grid !important;
       grid-template-columns: 1fr 1fr;
-      gap: var(--bento-gap);
+      gap: 10px;
       width: 100%;
     }
-    .phone .offer-bento .tile { min-height: 120px; }
-    .phone .offer-bento .ico {
-      width: 22px; height: 22px;
-      border-radius: 6px;
-      background: var(--accent);
+    .phone .offer-bento .offer-card {
+      min-height: 168px;
+      padding: 18px 16px !important;
+      border: none !important;
+      box-shadow: none !important;
+      border-radius: 18px !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
       color: #fff;
-      font-size: 11px;
-      font-weight: 700;
+      position: relative;
+      overflow: hidden;
+    }
+    .phone .offer-bento .offer-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -20% -40% auto;
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.08);
+      pointer-events: none;
+    }
+    .phone .offer-bento .offer-ico {
+      width: 44px; height: 44px;
+      border-radius: 12px;
       display: grid; place-items: center;
+      background: rgba(255,255,255,.16);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      flex: 0 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .phone .offer-bento .offer-ico svg {
+      width: 22px; height: 22px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .phone .offer-bento .offer-card h3 {
+      font-size: 17px !important;
+      font-weight: 700 !important;
+      letter-spacing: -0.02em;
+      color: #fff !important;
+      margin: 0 0 6px !important;
+      position: relative;
+      z-index: 1;
+    }
+    .phone .offer-bento .offer-card p {
+      font-size: 13px !important;
+      line-height: 1.35 !important;
+      color: rgba(255,255,255,.82) !important;
+      margin: 0 !important;
+      position: relative;
+      z-index: 1;
+    }
+    .phone .offer-bento .offer-card.c-green {
+      background: linear-gradient(145deg, #1f9a4a, #0d5c2c) !important;
+    }
+    .phone .offer-bento .offer-card.c-amber {
+      background: linear-gradient(145deg, #d97706, #9a4a0a) !important;
+    }
+    .phone .offer-bento .offer-card.c-teal {
+      background: linear-gradient(145deg, #0d9488, #0f4c4a) !important;
+    }
+    .phone .offer-bento .offer-card.c-sky {
+      background: linear-gradient(145deg, #0284c7, #0c4a6e) !important;
+    }
+    .phone .offer-bento .offer-card.c-rose {
+      background: linear-gradient(145deg, #e11d48, #9f1239) !important;
+    }
+    .phone .offer-bento .offer-card.c-lime {
+      background: linear-gradient(145deg, #65a30d, #3f6212) !important;
+    }
+    .phone .offer-bento .offer-card.c-orange {
+      background: linear-gradient(145deg, #ea580c, #9a3412) !important;
+    }
+    .phone .offer-bento .offer-card.c-mint {
+      background: linear-gradient(145deg, #14b8a6, #0f766e) !important;
+    }
+    @media (min-width: 720px) {
+      .phone .offer-bento {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
+      .phone .offer-bento .offer-card {
+        min-height: 200px;
+        padding: 22px 18px !important;
+      }
+      .phone .offer-bento .offer-card h3 { font-size: 18px !important; }
+      .phone .offer-bento .offer-card p { font-size: 13.5px !important; }
+    }
+    @media (max-width: 719px) {
+      .phone .offer-bento { grid-template-columns: 1fr; }
+      .phone .offer-bento .offer-card { min-height: 140px; }
     }
 
     /* FAQ compact */
@@ -3336,14 +3425,78 @@
           <h2>Всё для продаж — без лишнего</h2>
         </div>
         <div class="offer-bento reveal">
-          <article class="tile"><div class="ico">1</div><h3>100% цены билета</h3><p>Поставили 100 000 — получили 100 000. Сбор платит гость.</p></article>
-          <article class="tile"><div class="ico">2</div><h3>Горячий трафик</h3><p>Люди в Taneesh уже ищут, куда пойти сегодня.</p></article>
-          <article class="tile"><div class="ico">3</div><h3>Групповые чеки</h3><p>Матчинг компаний: гости идут вместе — чек выше.</p></article>
-          <article class="tile"><div class="ico">4</div><h3>Кабинет 0 сум</h3><p>Без абонентки. Продаёте — зарабатываете.</p></article>
-          <article class="tile"><div class="ico">5</div><h3>Кабинет и контроль</h3><p>Продажи и возвраты в реальном времени.</p></article>
-          <article class="tile"><div class="ico">6</div><h3>Витрина и smart-link</h3><p>Одна ссылка в Instagram, Telegram и рекламу.</p></article>
-          <article class="tile"><div class="ico">7</div><h3>Покупка в 2 клика</h3><p>Оплата в браузере — без установки приложения.</p></article>
-          <article class="tile"><div class="ico">8</div><h3>Сканер и безопасность</h3><p>Вход по билету. Возврат в один клик.</p></article>
+          <article class="offer-card c-green">
+            <div class="offer-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3v18M7 8h7.5a2.5 2.5 0 0 1 0 5H9a2.5 2.5 0 0 0 0 5H17"/></svg>
+            </div>
+            <div>
+              <h3>100% цены билета</h3>
+              <p>Поставили 100 000 — получили 100 000. Сбор платит гость.</p>
+            </div>
+          </article>
+          <article class="offer-card c-amber">
+            <div class="offer-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3c2 3 2 5 0 7 3-1 6 1 6 5a6 6 0 1 1-12 0c0-2.5 1.5-4 3-5-1 2 0 3.5 1 4 0-3 1.5-6 2-11z"/></svg>
+            </div>
+            <div>
+              <h3>Горячий трафик</h3>
+              <p>Люди в Taneesh уже ищут, куда пойти сегодня.</p>
+            </div>
+          </article>
+          <article class="offer-card c-teal">
+            <div class="offer-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="16" cy="9" r="2.5"/><path d="M3.5 19c1-3.5 3.2-5 5.5-5s4.5 1.5 5.5 5M13 14.5c1.8 0 3.4 1 4.5 4"/></svg>
+            </div>
+            <div>
+              <h3>Групповые чеки</h3>
+              <p>Матчинг компаний: гости идут вместе — чек выше.</p>
+            </div>
+          </article>
+          <article class="offer-card c-sky">
+            <div class="offer-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M4 10h16M9 14h2M13 14h4"/></svg>
+            </div>
+            <div>
+              <h3>Кабинет 0 сум</h3>
+              <p>Без абонентки. Продаёте — зарабатываете.</p>
+            </div>
+          </article>
+          <article class="offer-card c-rose">
+            <div class="offer-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 19V9l4 2 4-5 4 4 4-3v12H4z"/><path d="M4 19h16"/></svg>
+            </div>
+            <div>
+              <h3>Кабинет и контроль</h3>
+              <p>Продажи и возвраты в реальном времени.</p>
+            </div>
+          </article>
+          <article class="offer-card c-lime">
+            <div class="offer-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7.4l2.9-2.9a4 4 0 0 0-5.7-5.7L11.5 7.2"/><path d="M14 10a4 4 0 0 0-5.7-.4L5.4 12.5a4 4 0 0 0 5.7 5.7L12.5 16.8"/></svg>
+            </div>
+            <div>
+              <h3>Витрина и smart-link</h3>
+              <p>Одна ссылка в Instagram, Telegram и рекламу.</p>
+            </div>
+          </article>
+          <article class="offer-card c-orange">
+            <div class="offer-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 12V7a2 2 0 0 1 2-2h7l5 5v7a2 2 0 0 1-2 2h-5"/><path d="M14 5v5h5"/><circle cx="8" cy="16" r="2.5"/><path d="M8 13.5V11"/></svg>
+            </div>
+            <div>
+              <h3>Покупка в 2 клика</h3>
+              <p>Оплата в браузере — без установки приложения.</p>
+            </div>
+          </article>
+          <article class="offer-card c-mint">
+            <div class="offer-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><path d="M14 14h2v2M18 14v2h-2M14 18h4"/></svg>
+            </div>
+            <div>
+              <h3>Сканер и безопасность</h3>
+              <p>Вход по билету. Возврат в один клик.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
