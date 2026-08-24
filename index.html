@@ -3233,15 +3233,65 @@
       vertical-align: middle;
     }
 
-    /* Included offer grid — colorful icon cards */
-    .phone .offer-bento {
-      display: grid !important;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+    /* Included offer — horizontal scroll cards */
+    .phone .offer-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 14px 20px;
+      margin-bottom: 4px;
+    }
+    .phone .offer-head .section-copy { min-width: 0; flex: 1 1 240px; }
+    .phone .offer-head .btn {
+      flex: 0 0 auto;
+      white-space: nowrap;
+    }
+    .phone .offer-scroll-wrap {
+      position: relative;
       width: 100%;
     }
+    .phone .offer-scroll-hint {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+      margin: 0 0 8px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .phone .offer-scroll-hint b {
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .phone .offer-bento {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      gap: 12px !important;
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
+      padding: 2px 2px 12px;
+      margin: 0;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(48,209,88,.45) transparent;
+    }
+    .phone .offer-bento::-webkit-scrollbar { height: 6px; }
+    .phone .offer-bento::-webkit-scrollbar-thumb {
+      background: rgba(48,209,88,.45);
+      border-radius: 999px;
+    }
     .phone .offer-bento .offer-card {
-      min-height: 168px;
+      flex: 0 0 min(270px, 78vw);
+      width: min(270px, 78vw);
+      max-width: 300px;
+      min-height: 200px;
+      scroll-snap-align: start;
       padding: 18px 16px !important;
       border: none !important;
       box-shadow: none !important;
@@ -3323,21 +3373,13 @@
     .phone .offer-bento .offer-card.c-mint {
       background: linear-gradient(145deg, #14b8a6, #0f766e) !important;
     }
-    @media (min-width: 720px) {
-      .phone .offer-bento {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 12px;
-      }
+    @media (min-width: 900px) {
       .phone .offer-bento .offer-card {
-        min-height: 200px;
+        flex-basis: 260px;
+        width: 260px;
+        min-height: 210px;
         padding: 22px 18px !important;
       }
-      .phone .offer-bento .offer-card h3 { font-size: 18px !important; }
-      .phone .offer-bento .offer-card p { font-size: 13.5px !important; }
-    }
-    @media (max-width: 719px) {
-      .phone .offer-bento { grid-template-columns: 1fr; }
-      .phone .offer-bento .offer-card { min-height: 140px; }
     }
 
     /* FAQ compact */
@@ -3455,7 +3497,6 @@
       .phone #fees .fees-punch { grid-template-columns: 1fr; }
     }
     @media (min-width: 720px) {
-      .phone .offer-bento { grid-template-columns: repeat(4, 1fr); }
       .phone .bento-cats { grid-template-columns: 1fr 1fr; }
     }
 
@@ -3687,11 +3728,16 @@
 
     <section class="reel" id="included" data-slide>
       <div class="wrap fill-screen">
-        <div class="section-head reveal">
-          <span class="eyebrow">Что даём</span>
-          <h2>Всё для продаж — без лишнего</h2>
+        <div class="section-head offer-head reveal">
+          <div class="section-copy">
+            <span class="eyebrow">Что даём</span>
+            <h2>Всё для продаж — без лишнего</h2>
+          </div>
+          <a class="btn btn-accent" href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf">Скачать коммерческое предложение</a>
         </div>
-        <div class="offer-bento reveal">
+        <div class="offer-scroll-wrap reveal">
+          <div class="offer-scroll-hint">Листайте вправо <b>→</b></div>
+          <div class="offer-bento" tabindex="0" aria-label="Возможности платформы">
           <article class="offer-card c-green">
             <div class="offer-ico" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M12 3v18M7 8h7.5a2.5 2.5 0 0 1 0 5H9a2.5 2.5 0 0 0 0 5H17"/></svg>
@@ -3764,6 +3810,7 @@
               <p>Вход по билету. Возврат в один клик.</p>
             </div>
           </article>
+          </div>
         </div>
       </div>
     </section>
