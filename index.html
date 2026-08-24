@@ -2730,6 +2730,21 @@
     .phone .btn:active { transform: scale(0.98); }
     .phone .faq-list button.faq-q:active { transform: scale(0.99); background: var(--bg-3) !important; }
     .phone .header-nav a:active { opacity: 0.75; }
+    .phone .faq-layer {
+      position: absolute !important;
+      inset: 0 !important;
+      z-index: 80 !important;
+      background: rgba(0,0,0,.72) !important;
+      backdrop-filter: saturate(140%) blur(16px) !important;
+      -webkit-backdrop-filter: saturate(140%) blur(16px) !important;
+      padding: 24px !important;
+    }
+    .phone .faq-card {
+      background: var(--bg-2) !important;
+      border: none !important;
+      box-shadow: var(--hairline) !important;
+      border-radius: var(--radius-lg) !important;
+    }
     .phone .btn-accent {
       background: var(--accent) !important;
       color: #fff !important;
@@ -2863,12 +2878,6 @@
       padding: 4px 2px 0;
     }
     .phone .hero .btn-row { width: 100%; }
-    @media (max-width: 719px) {
-      .phone .hero .hero-fill-metrics { grid-template-columns: 1fr; }
-    }
-    @media (min-width: 720px) and (max-width: 899px) {
-      .phone .hero .hero-fill-metrics { grid-template-columns: repeat(3, 1fr); }
-    }
     .phone #why > .wrap {
       display: flex !important;
       flex-direction: column;
@@ -3371,13 +3380,6 @@
           <button type="button" class="faq-q" data-faq="2">Есть ли условия для крупных партнёров?</button>
         </div>
       </div>
-      <div class="faq-layer" id="faqLayer" aria-hidden="true">
-        <div class="faq-card">
-          <h3 id="faqTitle"></h3>
-          <p id="faqBody"></p>
-          <button type="button" class="faq-close" id="faqClose">Понятно</button>
-        </div>
-      </div>
     </section>
 
     <section class="reel" id="cta" data-slide>
@@ -3413,6 +3415,13 @@
     </footer>
   </div>
 </div>
+  <div class="faq-layer" id="faqLayer" aria-hidden="true">
+    <div class="faq-card">
+      <h3 id="faqTitle"></h3>
+      <p id="faqBody"></p>
+      <button type="button" class="faq-close" id="faqClose">Понятно</button>
+    </div>
+  </div>
   </div><!-- /.phone -->
   </div><!-- /.stage -->
 
