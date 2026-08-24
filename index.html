@@ -240,6 +240,13 @@
       background: transparent;
       box-shadow: none;
       flex-shrink: 0;
+      line-height: 0;
+    }
+    .header .logo img,
+    .phone #footer .footer-brand .logo img {
+      display: block;
+      height: 22px;
+      width: auto;
     }
     .header-nav {
       display: flex;
@@ -2294,12 +2301,13 @@
       gap: 6px;
     }
     .phone #footer .footer-brand .logo {
-      font-size: 22px;
-      font-style: italic;
-      font-weight: 800;
-      letter-spacing: 0.04em;
+      font-size: 0;
+      line-height: 0;
       margin: 0;
-      color: #fff;
+    }
+    .phone #footer .footer-brand .logo img {
+      height: 24px;
+      width: auto;
     }
     .phone #footer .footer-brand p {
       margin: 0;
@@ -3082,10 +3090,14 @@
       padding: 10px 14px !important;
     }
     .phone .header .logo {
-      font-size: 17px !important;
-      font-weight: 800 !important;
-      letter-spacing: 0.04em;
-      color: #fff !important;
+      font-size: 0 !important;
+      line-height: 0 !important;
+      color: transparent !important;
+      text-shadow: none !important;
+    }
+    .phone .header .logo img {
+      height: 20px;
+      width: auto;
     }
     .phone .reels-track {
       gap: 8px !important;
@@ -3679,7 +3691,9 @@
   <div class="phone" id="phone">
   <header class="header mod mod-header">
     <div class="header-pill">
-      <a class="logo" href="#slide-hero" data-goto="slide-hero">TANEESH</a>
+      <a class="logo" href="#slide-hero" data-goto="slide-hero" aria-label="Taneesh">
+        <img src="assets/taneesh-logo-white.png" alt="Taneesh" width="130" height="24" />
+      </a>
       <nav class="header-nav" aria-label="Навигация">
         <a class="hide-sm" href="#why" data-goto="why">Почему мы</a>
         <a class="hide-sm" href="#included" data-goto="included">Что даём</a>
@@ -4054,7 +4068,7 @@
       <div class="wrap footer-fill">
         <div class="footer-bar">
           <div class="footer-brand">
-            <div class="logo">TANEESH</div>
+            <div class="logo"><img src="assets/taneesh-logo-white.png" alt="Taneesh" width="130" height="24" /></div>
             <p>Тикетинг для организаторов</p>
           </div>
           <div class="footer-links">
