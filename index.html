@@ -3218,6 +3218,21 @@
       align-self: flex-start;
       margin-top: 4px;
     }
+    .phone .board-hero .cell-story .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+      width: 100%;
+    }
+    .phone .board-hero .cell-story .hero-cta-row .btn {
+      margin-top: 0;
+    }
+    .phone .board-hero .cell-story .btn-ghost {
+      background: rgba(255,255,255,.08) !important;
+      color: #fff !important;
+      border: 1px solid rgba(255,255,255,.14) !important;
+    }
     .phone .board-hero .cell-stat {
       grid-column: 2 !important;
       min-height: 0 !important;
@@ -3909,7 +3924,10 @@
           <span class="eyebrow" data-i18n="heroEyebrow">Тикетинг для организаторов</span>
           <h1 data-i18n-html="heroTitle">Продавайте билеты.<br /><span class="accent">Получайте 100%</span> цены</h1>
           <p class="lead" data-i18n="heroLead">Витрина за 5 минут. Сбор платит гость — вам 100% цены билета.</p>
-          <a class="btn btn-accent" href="#cta" data-goto="cta" data-i18n="heroCta">Запустить продажи</a>
+          <div class="btn-row hero-cta-row">
+            <a class="btn btn-accent" href="#cta" data-goto="cta" data-i18n="heroCta">Запустить продажи</a>
+            <a class="btn btn-ghost" href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
+          </div>
         </article>
         <article class="cell cell-stat">
           <strong class="num">100%</strong>
