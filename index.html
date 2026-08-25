@@ -3179,8 +3179,10 @@
       grid-row: 1 / -1 !important;
       justify-content: space-between;
       gap: 12px;
-      background: linear-gradient(160deg, #1c1c1e 0%, #111 100%) !important;
-      padding: 28px 22px !important;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 16px 18px !important;
       min-height: 0;
       height: auto;
     }
@@ -3930,7 +3932,10 @@
       box-shadow: var(--hairline) !important;
     }
     .phone .board-hero .cell-story {
-      background: rgba(0, 0, 0, 0.22) !important;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 16px 14px !important;
     }
     .phone .board-why .cell-save {
       background: linear-gradient(145deg, rgba(10, 61, 26, 0.95), rgba(13, 26, 18, 0.95)) !important;
@@ -3945,25 +3950,6 @@
     }
 
     /* Nested sections inside surface */
-    .phone #audience .surface .bento-cats {
-      gap: 12px !important;
-    }
-    .phone #audience .surface .tile {
-      overflow: hidden;
-      padding: 0 !important;
-    }
-    .phone #fees .fees-board.surface {
-      display: grid;
-      gap: 12px;
-    }
-    .phone #fees .surface .fees-punch,
-    .phone #fees .surface .fees-panel {
-      margin: 0;
-    }
-    .phone #fees .surface .fees-punch {
-      background: linear-gradient(145deg, rgba(10, 61, 26, 0.95), rgba(13, 26, 18, 0.95)) !important;
-      border-color: rgba(48, 209, 88, 0.22) !important;
-    }
     .phone #flow .phase-list.surface {
       display: grid;
       gap: 10px;
@@ -3998,6 +3984,23 @@
       background: rgba(0, 0, 0, 0.28) !important;
       border: 1px solid rgba(255, 255, 255, 0.08) !important;
       border-radius: var(--radius-lg) !important;
+    }
+
+    /* Audience / fees: self-contained cards, no outer shell */
+    .phone #audience .bento-cats .tile {
+      background: var(--bg-2) !important;
+      box-shadow: var(--hairline) !important;
+      border-radius: var(--radius-xl) !important;
+      overflow: hidden;
+    }
+    .phone #fees .fees-punch,
+    .phone #fees .fees-panel {
+      background: var(--bg-2) !important;
+      box-shadow: var(--hairline) !important;
+      border-radius: var(--radius-xl) !important;
+    }
+    .phone #fees .fees-punch {
+      background: linear-gradient(145deg, #0a3d1a, #0d1a12) !important;
     }
 
   </style>
