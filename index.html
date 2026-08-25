@@ -3163,6 +3163,7 @@
 
     /* Hero — one block: banner left, metrics column right */
     .phone .board-hero {
+      display: grid !important;
       grid-template-columns: minmax(0, 1.55fr) minmax(150px, 0.65fr) !important;
       grid-template-rows: repeat(3, minmax(72px, auto)) !important;
       height: auto !important;
@@ -3254,8 +3255,9 @@
 
     /* Why / calculator — ticket alone, then 2×2 metrics */
     .phone .board-why {
+      display: grid !important;
       grid-template-columns: 1fr 1fr !important;
-      grid-template-rows: auto auto auto auto !important;
+      grid-template-rows: auto auto auto !important;
       height: auto !important;
       min-height: 0 !important;
       gap: var(--bento-gap) !important;
@@ -3304,14 +3306,14 @@
     }
     .phone .board-why .cell-bad {
       grid-column: 1 !important;
-      grid-row: 3 !important;
+      grid-row: 2 !important;
       min-height: 0 !important;
       padding: 14px !important;
       gap: 6px;
     }
     .phone .board-why .cell-good {
       grid-column: 2 !important;
-      grid-row: 3 !important;
+      grid-row: 2 !important;
       min-height: 0 !important;
       padding: 14px !important;
       gap: 6px;
@@ -3329,7 +3331,7 @@
     }
     .phone .board-why .cell-save {
       grid-column: 1 !important;
-      grid-row: 4 !important;
+      grid-row: 3 !important;
       background: linear-gradient(145deg, #0a3d1a, #0d1a12) !important;
       justify-content: center;
       min-height: 0 !important;
@@ -3347,7 +3349,7 @@
     }
     .phone .board-why .cell-pack {
       grid-column: 2 !important;
-      grid-row: 4 !important;
+      grid-row: 3 !important;
       background: linear-gradient(145deg, #12261a, #0a1210) !important;
       justify-content: center;
       align-items: flex-start;
@@ -3844,26 +3846,47 @@
       margin-left: auto;
     }
 
+    /*
+     * SURFACE RULES (эталон: #conversion)
+     * 1. Заголовок секции (eyebrow + h2) — снаружи, на чёрном фоне страницы.
+     * 2. Весь контент секции — внутри ОДНОГО .surface (фон, крупный radius, padding).
+     * 3. Карточки/метрики внутри — только .surface-inset, не отдельные «летающие» плитки.
+     * 4. Ничего не висит в воздухе на чёрном: gap — между секциями и внутри surface.
+     */
+    .phone .surface {
+      background: var(--bg-2) !important;
+      border: none !important;
+      box-shadow: var(--hairline) !important;
+      border-radius: var(--radius-xl) !important;
+      padding: 14px !important;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .phone .surface-inset,
+    .phone .surface .live-stat,
+    .phone .surface .cell,
+    .phone .surface .tile,
+    .phone .surface .phase-row,
+    .phone .surface .fees-punch,
+    .phone .surface .fees-panel,
+    .phone .surface .faq-list button.faq-q,
+    .phone .board-hero .cell,
+    .phone .board-why .cell {
+      background: rgba(0, 0, 0, 0.28) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      box-shadow: none !important;
+      border-radius: var(--radius-lg) !important;
+    }
+
     /* Large roundings — global surface override */
     .phone .header-pill,
-    .phone .board .cell,
-    .phone .tile,
-    .phone .panel,
-    .phone .card,
-    .phone .mock,
+    .phone .surface,
     .phone .live-conv-hero,
-    .phone .faq-list button.faq-q,
     .phone .faq-card,
     .phone .cta-band,
     .phone .offer-bento .offer-card,
     .phone #footer .footer-brand,
-    .phone #footer .footer-links,
-    .phone .fees-board,
-    .phone .fees-punch,
-    .phone .fees-panel,
-    .phone .bento-cats .tile,
-    .phone .phase-list .phase,
-    .phone .audience .tile {
+    .phone #footer .footer-links {
       border-radius: var(--radius-xl) !important;
     }
     .phone .btn,
@@ -3881,7 +3904,98 @@
       border-radius: var(--radius-md) !important;
     }
     .phone .bento-cats .tile-media {
-      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+
+    /* Hero + why: board IS the surface; cells are insets */
+    .phone .board-hero,
+    .phone .board-why {
+      background: var(--bg-2) !important;
+      box-shadow: var(--hairline) !important;
+      border-radius: var(--radius-xl) !important;
+      padding: 12px !important;
+      height: auto !important;
+      min-height: 0 !important;
+      margin: 0 !important;
+      border: none !important;
+    }
+    .phone .wrap.board.board-hero {
+      height: auto !important;
+      min-height: 0 !important;
+      background: var(--bg-2) !important;
+      padding: 12px !important;
+      border-radius: var(--radius-xl) !important;
+      box-shadow: var(--hairline) !important;
+    }
+    .phone .board-hero .cell-story {
+      background: rgba(0, 0, 0, 0.22) !important;
+    }
+    .phone .board-why .cell-save {
+      background: linear-gradient(145deg, rgba(10, 61, 26, 0.95), rgba(13, 26, 18, 0.95)) !important;
+      border-color: rgba(48, 209, 88, 0.2) !important;
+    }
+    .phone .board-why .cell-pack {
+      background: linear-gradient(145deg, rgba(18, 38, 26, 0.95), rgba(10, 18, 16, 0.95)) !important;
+      border: 1px solid rgba(48, 209, 88, 0.28) !important;
+    }
+    .phone .board-why .cell-why-head {
+      display: none !important;
+    }
+
+    /* Nested sections inside surface */
+    .phone #audience .surface .bento-cats {
+      gap: 12px !important;
+    }
+    .phone #audience .surface .tile {
+      overflow: hidden;
+      padding: 0 !important;
+    }
+    .phone #fees .fees-board.surface {
+      display: grid;
+      gap: 12px;
+    }
+    .phone #fees .surface .fees-punch,
+    .phone #fees .surface .fees-panel {
+      margin: 0;
+    }
+    .phone #fees .surface .fees-punch {
+      background: linear-gradient(145deg, rgba(10, 61, 26, 0.95), rgba(13, 26, 18, 0.95)) !important;
+      border-color: rgba(48, 209, 88, 0.22) !important;
+    }
+    .phone #flow .phase-list.surface {
+      display: grid;
+      gap: 10px;
+    }
+    .phone #flow .surface .phase-row {
+      background: rgba(0, 0, 0, 0.28) !important;
+    }
+    .phone #included .offer-scroll-wrap.surface {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 0;
+    }
+    .phone #included .surface .offer-bento {
+      padding-bottom: 4px;
+    }
+    .phone #faq .faq-list.surface {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: none;
+      overflow: visible;
+    }
+    .phone #faq .surface button.faq-q {
+      margin: 0;
+    }
+    .phone #conversion .live-conv-hero {
+      background: var(--bg-2) !important;
+      box-shadow: var(--hairline) !important;
+    }
+    .phone #conversion .live-stat {
+      background: rgba(0, 0, 0, 0.28) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      border-radius: var(--radius-lg) !important;
     }
 
   </style>
@@ -3945,11 +4059,12 @@
     </section>
 
     <section class="reel" id="why" data-slide>
-      <div class="wrap board board-why reveal">
-        <div class="cell cell-why-head">
+      <div class="wrap fill-screen">
+        <div class="section-head reveal">
           <span class="eyebrow" data-i18n="whyEyebrow">Экономика орга</span>
           <h2 data-i18n="whyTitle">Не отдавайте 15% с билета</h2>
         </div>
+        <div class="board board-why reveal">
         <article class="cell cell-ticket">
           <label>
             <span data-i18n="whyTicket">Цена билета на концерт</span>
@@ -3977,6 +4092,7 @@
           <span class="label" data-i18n="whySavePack">Экономия на 100 билетах</span>
           <strong class="num"><span id="savePack">1 500 000</span> <span data-i18n="currency">сум</span></strong>
         </article>
+        </div>
       </div>
     </section>
 
@@ -4037,7 +4153,8 @@
         <div class="section-head reveal">
           <h2 data-i18n="audTitle">Для кого</h2>
         </div>
-        <div class="bento-cats reveal">
+        <div class="surface reveal">
+          <div class="bento-cats">
           <article class="tile">
             <img class="tile-media" src="assets/audience-small-org.jpg" data-i18n-alt="audSmallAlt" alt="Небольшой ивент в своём кругу" width="1400" height="595" loading="lazy" />
             <div class="tile-body">
@@ -4056,6 +4173,7 @@
               <ul><li data-i18n="audLarge1">Свой FixedFee</li><li data-i18n="audLarge2">Серии и объём</li><li data-i18n="audLarge3">Один кабинет на всё</li></ul>
             </div>
           </article>
+          </div>
         </div>
       </div>
     </section>
@@ -4066,7 +4184,7 @@
           <span class="eyebrow" data-i18n="feesEyebrow">Сборы</span>
           <h2 data-i18n="feesTitle">Сбор платит гость</h2>
         </div>
-        <div class="fees-board reveal">
+        <div class="fees-board surface reveal">
           <div class="fees-punch" id="feesPunch">
             <div class="fees-punch-col">
               <strong class="num" id="feesPunchOrg">100 000</strong>
@@ -4112,7 +4230,7 @@
           <span class="eyebrow" data-i18n="flowEyebrow">Запуск</span>
           <h2 data-i18n="flowTitle">Путь за 5 минут</h2>
         </div>
-        <div class="phase-list reveal">
+        <div class="phase-list surface reveal">
           <div class="phase-row"><div class="phase-num">1</div><div><strong data-i18n="flow1t">Кабинет</strong><span data-i18n="flow1d">Создаёте кабинет организатора</span></div></div>
           <div class="phase-row"><div class="phase-num">2</div><div><strong data-i18n="flow2t">Ивент</strong><span data-i18n="flow2d">Создаёте ивент и цены билетов</span></div></div>
           <div class="phase-row"><div class="phase-num">3</div><div><strong data-i18n="flow3t">Витрина</strong><span data-i18n="flow3d">Размещаете ссылку в соцсетях или там, где есть трафик</span></div></div>
@@ -4130,7 +4248,7 @@
             <h2 data-i18n="offerTitle">Функции для продаж</h2>
           </div>
         </div>
-        <div class="offer-scroll-wrap reveal">
+        <div class="offer-scroll-wrap surface reveal">
           <div class="offer-scroll-hint"><span data-i18n="offerHint">Листайте вправо</span> <b>→</b></div>
           <div class="offer-bento" tabindex="0" data-i18n-aria="offerAria" aria-label="Функции платформы">
           <article class="offer-card c-green">
@@ -4204,7 +4322,7 @@
     <section class="reel" id="faq" data-slide>
       <div class="wrap fill-screen">
         <div class="section-head reveal"><h2 data-i18n="faqTitle">Частые вопросы</h2></div>
-        <div class="faq-list reveal fill-grow">
+        <div class="faq-list surface reveal fill-grow">
           <button type="button" class="faq-q" data-faq="0">Можно ли продавать без ИП и «большой» кассы?</button>
           <button type="button" class="faq-q" data-faq="1">Кто платит 1.5% и FixedFee?</button>
           <button type="button" class="faq-q" data-faq="2">Что я получаю с цены билета?</button>
