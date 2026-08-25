@@ -3159,27 +3159,27 @@
     .phone .board .bar-fill.bad { background: #ff453a; }
     .phone .board .bar-fill.good { background: var(--accent); }
 
-    /* Hero — CTA left + metrics column right */
+    /* Hero — one block: banner left, metrics column right */
     .phone .board-hero {
-      grid-template-columns: minmax(0, 1.35fr) minmax(140px, 0.72fr);
-      grid-template-rows: auto;
+      grid-template-columns: minmax(0, 1.55fr) minmax(150px, 0.65fr) !important;
+      grid-template-rows: repeat(3, minmax(72px, auto)) !important;
       height: auto !important;
       min-height: 0 !important;
-      align-items: stretch;
+      align-items: stretch !important;
     }
     .phone .reel.hero {
       min-height: 0 !important;
       height: auto !important;
     }
     .phone .board-hero .cell-story {
-      grid-column: 1;
-      grid-row: 1;
+      grid-column: 1 !important;
+      grid-row: 1 / -1 !important;
       justify-content: space-between;
       gap: 12px;
       background: linear-gradient(160deg, #1c1c1e 0%, #111 100%) !important;
       padding: 28px 22px !important;
       min-height: 0;
-      height: 100%;
+      height: auto;
     }
     .phone .board-hero .cell-story .btn-accent {
       background: var(--accent) !important;
@@ -3195,7 +3195,7 @@
     }
     .phone .board-hero .cell-story h1 {
       font-family: var(--font-display) !important;
-      font-size: clamp(28px, 3.4vw, 44px) !important;
+      font-size: clamp(26px, 3.2vw, 42px) !important;
       font-weight: 400 !important;
       line-height: 1.08 !important;
       margin: 0 !important;
@@ -3216,31 +3216,21 @@
       align-self: flex-start;
       margin-top: 4px;
     }
-    .phone .board-hero .hero-metrics {
-      grid-column: 2;
-      grid-row: 1;
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: repeat(3, 1fr);
-      gap: var(--bento-gap);
-      min-height: 0;
-      padding: 0 !important;
-      margin: 0 !important;
-      background: transparent !important;
-      box-shadow: none !important;
-      border: none !important;
-    }
-    .phone .board-hero .hero-metrics .cell-stat {
-      min-height: 0;
+    .phone .board-hero .cell-stat {
+      grid-column: 2 !important;
+      min-height: 0 !important;
       justify-content: center;
       gap: 4px;
-      padding: 14px 14px !important;
+      padding: 12px 14px !important;
     }
-    .phone .board-hero .hero-metrics .cell-stat .num {
-      font-size: clamp(22px, 2.8vw, 30px);
+    .phone .board-hero > .cell-stat:nth-child(2) { grid-row: 1 !important; }
+    .phone .board-hero > .cell-stat:nth-child(3) { grid-row: 2 !important; }
+    .phone .board-hero > .cell-stat:nth-child(4) { grid-row: 3 !important; }
+    .phone .board-hero .cell-stat .num {
+      font-size: clamp(22px, 2.6vw, 30px);
       line-height: 1;
     }
-    .phone .board-hero .hero-metrics .cell-stat .label {
+    .phone .board-hero .cell-stat .label {
       font-size: 11px;
       line-height: 1.25;
     }
@@ -3332,21 +3322,25 @@
       line-height: 1.05;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 560px) {
       .phone .board-hero {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto auto auto auto !important;
       }
       .phone .board-hero .cell-story {
-        grid-column: 1;
-        grid-row: 1;
+        grid-column: 1 !important;
+        grid-row: 1 !important;
         min-height: 180px;
       }
-      .phone .board-hero .hero-metrics {
-        grid-column: 1;
-        grid-row: 2;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: auto;
-      }
+      .phone .board-hero > .cell-stat:nth-child(2) { grid-column: 1 !important; grid-row: 2 !important; }
+      .phone .board-hero > .cell-stat:nth-child(3) { grid-column: 1 !important; grid-row: 3 !important; }
+      .phone .board-hero > .cell-stat:nth-child(4) { grid-column: 1 !important; grid-row: 4 !important; }
+      .phone .board-why { grid-template-columns: 1fr; }
+      .phone .board-why .cell-bad,
+      .phone .board-why .cell-good { grid-column: 1; }
+    }
+
+    @media (max-width: 900px) and (min-width: 561px) {
       .phone .board-why { grid-template-columns: 1fr; }
       .phone .board-why .cell-bad,
       .phone .board-why .cell-good { grid-column: 1; }
@@ -3847,27 +3841,25 @@
   <div class="reels" id="reels">
   <div class="reels-track" id="reelsTrack">
     <section class="reel hero" id="slide-hero" data-slide>
-      <div class="wrap board board-hero reveal">
+      <div class="wrap board board-hero reveal" id="metrics">
         <article class="cell cell-story">
-          <span class="eyebrow" data-i18n="whyEyebrow">Экономика орга</span>
+          <span class="eyebrow" data-i18n="heroEyebrow">Тикетинг для организаторов</span>
           <h1 data-i18n-html="heroTitle">Продавайте билеты.<br /><span class="accent">Получайте 100%</span> цены</h1>
           <p class="lead" data-i18n="heroLead">Витрина за 5 минут. Сбор платит гость — вам 100% цены билета.</p>
           <a class="btn btn-accent" href="#cta" data-goto="cta" data-i18n="heroCta">Запустить продажи</a>
         </article>
-        <div class="hero-metrics" id="metrics">
-          <article class="cell cell-stat">
-            <strong class="num">100%</strong>
-            <span class="label" data-i18n="m100">цены билета вам</span>
-          </article>
-          <article class="cell cell-stat">
-            <strong class="num">5 мин</strong>
-            <span class="label" data-i18n="m5">до первой витрины</span>
-          </article>
-          <article class="cell cell-stat">
-            <strong class="num">0 сум</strong>
-            <span class="label" data-i18n="m0">абонентки орга</span>
-          </article>
-        </div>
+        <article class="cell cell-stat">
+          <strong class="num">100%</strong>
+          <span class="label" data-i18n="m100">цены билета вам</span>
+        </article>
+        <article class="cell cell-stat">
+          <strong class="num">5 мин</strong>
+          <span class="label" data-i18n="m5">до первой витрины</span>
+        </article>
+        <article class="cell cell-stat">
+          <strong class="num">0 сум</strong>
+          <span class="label" data-i18n="m0">абонентки орга</span>
+        </article>
       </div>
     </section>
 
