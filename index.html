@@ -3235,21 +3235,21 @@
       line-height: 1.25;
     }
 
-    /* Why / calculator — separate board */
+    /* Why / calculator — ticket alone, then 2×2 metrics */
     .phone .board-why {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto auto auto auto;
+      grid-template-columns: 1fr 1fr !important;
+      grid-template-rows: auto auto auto auto !important;
       height: auto !important;
       min-height: 0 !important;
       gap: var(--bento-gap) !important;
     }
     .phone .board-why .cell-why-head {
-      grid-column: 1 / -1;
-      justify-content: center;
-      gap: 8px;
+      grid-column: 1 / -1 !important;
+      justify-content: flex-start;
+      gap: 6px;
       background: transparent !important;
       box-shadow: none !important;
-      padding: 8px 2px 4px !important;
+      padding: 4px 2px 2px !important;
     }
     .phone .board-why .cell-why-head .eyebrow {
       color: var(--accent);
@@ -3260,16 +3260,18 @@
     }
     .phone .board-why .cell-why-head h2 {
       font-family: var(--font-display) !important;
-      font-size: clamp(26px, 3.2vw, 36px) !important;
+      font-size: clamp(24px, 3vw, 34px) !important;
       font-weight: 400 !important;
       margin: 0 !important;
       color: #fff !important;
       line-height: 1.1;
     }
     .phone .board-why .cell-ticket {
-      grid-column: 1 / -1;
+      grid-column: 1 / -1 !important;
       justify-content: center;
-      gap: 14px;
+      gap: 10px;
+      padding: 14px 16px !important;
+      min-height: 0 !important;
     }
     .phone .board-why .cell-ticket label {
       display: flex;
@@ -3283,8 +3285,25 @@
       width: 100%;
       accent-color: var(--accent);
     }
-    .phone .board-why .cell-bad { grid-column: 1; }
-    .phone .board-why .cell-good { grid-column: 2; }
+    .phone .board-why .cell-bad {
+      grid-column: 1 !important;
+      grid-row: 3 !important;
+      min-height: 0 !important;
+      padding: 14px !important;
+      gap: 6px;
+    }
+    .phone .board-why .cell-good {
+      grid-column: 2 !important;
+      grid-row: 3 !important;
+      min-height: 0 !important;
+      padding: 14px !important;
+      gap: 6px;
+    }
+    .phone .board-why .cell-bad .num,
+    .phone .board-why .cell-good .num {
+      font-size: clamp(22px, 2.8vw, 32px) !important;
+      line-height: 1.05;
+    }
     .phone .board-why .cell-bad p,
     .phone .board-why .cell-good p {
       margin: 0;
@@ -3292,31 +3311,42 @@
       color: var(--muted);
     }
     .phone .board-why .cell-save {
-      grid-column: 1 / -1;
+      grid-column: 1 !important;
+      grid-row: 4 !important;
       background: linear-gradient(145deg, #0a3d1a, #0d1a12) !important;
       justify-content: center;
-      min-height: 100px;
-      gap: 6px;
+      min-height: 0 !important;
+      padding: 14px !important;
+      gap: 4px;
     }
-    .phone .board-why .cell-save .num { color: #fff; font-size: clamp(28px, 4vw, 40px); }
-    .phone .board-why .cell-save .label { color: rgba(255,255,255,.75); }
+    .phone .board-why .cell-save .num {
+      color: #fff;
+      font-size: clamp(20px, 2.6vw, 28px) !important;
+      line-height: 1.05;
+    }
+    .phone .board-why .cell-save .label {
+      color: rgba(255,255,255,.75);
+      font-size: 12px;
+    }
     .phone .board-why .cell-pack {
-      grid-column: 1 / -1;
+      grid-column: 2 !important;
+      grid-row: 4 !important;
       background: linear-gradient(145deg, #12261a, #0a1210) !important;
       justify-content: center;
       align-items: flex-start;
-      gap: 8px;
-      min-height: 96px;
+      gap: 4px;
+      min-height: 0 !important;
+      padding: 14px !important;
       border: 1px solid rgba(48,209,88,.28) !important;
     }
     .phone .board-why .cell-pack .label {
       color: rgba(255,255,255,.7);
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
     }
     .phone .board-why .cell-pack .num {
       color: var(--accent);
-      font-size: clamp(26px, 3.6vw, 36px);
+      font-size: clamp(20px, 2.6vw, 28px);
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.05;
@@ -3335,15 +3365,6 @@
       .phone .board-hero > .cell-stat:nth-child(2) { grid-column: 1 !important; grid-row: 2 !important; }
       .phone .board-hero > .cell-stat:nth-child(3) { grid-column: 1 !important; grid-row: 3 !important; }
       .phone .board-hero > .cell-stat:nth-child(4) { grid-column: 1 !important; grid-row: 4 !important; }
-      .phone .board-why { grid-template-columns: 1fr; }
-      .phone .board-why .cell-bad,
-      .phone .board-why .cell-good { grid-column: 1; }
-    }
-
-    @media (max-width: 900px) and (min-width: 561px) {
-      .phone .board-why { grid-template-columns: 1fr; }
-      .phone .board-why .cell-bad,
-      .phone .board-why .cell-good { grid-column: 1; }
     }
 
     /* Kill stage / phone chrome подложка */
