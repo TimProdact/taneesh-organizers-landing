@@ -3848,10 +3848,12 @@
 
     /*
      * SURFACE RULES (эталон: #conversion)
+     * Применять НЕ везде — только где группа элементов логично живёт в одном контейнере:
+     *   ✓ конверсия, путь/шаги, FAQ, карусель фич, калькулятор (hero/why)
+     *   ✗ отдельные самостоятельные карточки (аудитория), punch+panel сборов как peers
      * 1. Заголовок секции (eyebrow + h2) — снаружи, на чёрном фоне страницы.
-     * 2. Весь контент секции — внутри ОДНОГО .surface (фон, крупный radius, padding).
-     * 3. Карточки/метрики внутри — только .surface-inset, не отдельные «летающие» плитки.
-     * 4. Ничего не висит в воздухе на чёрном: gap — между секциями и внутри surface.
+     * 2. Связанный контент — внутри ОДНОГО .surface (фон, крупный radius, padding).
+     * 3. Внутри — инсеты, не отдельные «летающие» плитки на чёрном.
      */
     .phone .surface {
       background: var(--bg-2) !important;
@@ -4153,8 +4155,7 @@
         <div class="section-head reveal">
           <h2 data-i18n="audTitle">Для кого</h2>
         </div>
-        <div class="surface reveal">
-          <div class="bento-cats">
+        <div class="bento-cats reveal">
           <article class="tile">
             <img class="tile-media" src="assets/audience-small-org.jpg" data-i18n-alt="audSmallAlt" alt="Небольшой ивент в своём кругу" width="1400" height="595" loading="lazy" />
             <div class="tile-body">
@@ -4173,7 +4174,6 @@
               <ul><li data-i18n="audLarge1">Свой FixedFee</li><li data-i18n="audLarge2">Серии и объём</li><li data-i18n="audLarge3">Один кабинет на всё</li></ul>
             </div>
           </article>
-          </div>
         </div>
       </div>
     </section>
@@ -4184,7 +4184,7 @@
           <span class="eyebrow" data-i18n="feesEyebrow">Сборы</span>
           <h2 data-i18n="feesTitle">Сбор платит гость</h2>
         </div>
-        <div class="fees-board surface reveal">
+        <div class="fees-board reveal">
           <div class="fees-punch" id="feesPunch">
             <div class="fees-punch-col">
               <strong class="num" id="feesPunchOrg">100 000</strong>
