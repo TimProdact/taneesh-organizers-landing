@@ -27,8 +27,10 @@
       --accent-glow: rgba(48,209,88,.22);
       --black: #000;
       --radius-pill: 9999px;
-      --radius-lg: 14px;
-      --radius-tile: 12px;
+      --radius-xl: 32px;
+      --radius-lg: 28px;
+      --radius-tile: 24px;
+      --radius-md: 20px;
       --shadow: 0 0 0 0.5px rgba(0,0,0,.1), 0 12px 40px rgba(0,0,0,.35), 0 40px 80px rgba(0,0,0,.2);
       --max: 100%;
       --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
@@ -1614,7 +1616,7 @@
       justify-content: space-between;
       gap: 12px;
       padding: 12px 14px !important;
-      border-radius: 18px !important;
+      border-radius: var(--radius-xl) !important;
       background: #121612 !important;
       border: 1px solid rgba(255,255,255,.12) !important;
       box-shadow: none !important;
@@ -2078,7 +2080,7 @@
       flex-direction: column !important;
       justify-content: space-between !important;
       gap: 18px !important;
-      border-radius: 22px !important;
+      border-radius: var(--radius-xl) !important;
       border: 1px solid rgba(48,209,88,.28) !important;
       background:
         radial-gradient(ellipse 70% 80% at 0% 0%, rgba(48,209,88,.35), transparent 55%),
@@ -2911,7 +2913,7 @@
       -webkit-backdrop-filter: saturate(180%) blur(20px) !important;
       border: none !important;
       box-shadow: var(--hairline) !important;
-      border-radius: 12px !important;
+      border-radius: var(--radius-xl) !important;
       transition: background var(--duration-fast) var(--ease-out);
     }
     /* Wrap is layout only — tiles are the surfaces (no triple shell) */
@@ -2948,8 +2950,8 @@
     }
     .phone .btn {
       transition: transform var(--duration-fast) var(--ease-out), opacity var(--duration-fast) var(--ease-out), background var(--duration-fast) var(--ease-out);
-      border-radius: 8px !important;
-      min-height: 40px !important;
+      border-radius: var(--radius-md) !important;
+      min-height: 44px !important;
       box-shadow: none !important;
     }
     .phone .btn:hover { transform: scale(1.02); }
@@ -2977,7 +2979,7 @@
       box-shadow: none !important;
     }
     .phone .header-nav .primary {
-      border-radius: 8px !important;
+      border-radius: var(--radius-md) !important;
       background: var(--accent) !important;
     }
 
@@ -3124,7 +3126,7 @@
       background: var(--bg-2) !important;
       border: none !important;
       box-shadow: var(--hairline) !important;
-      border-radius: 14px !important;
+      border-radius: var(--radius-xl) !important;
       padding: 16px !important;
       display: flex;
       flex-direction: column;
@@ -3562,7 +3564,7 @@
       padding: 16px 14px !important;
       border: none !important;
       box-shadow: none !important;
-      border-radius: 18px !important;
+      border-radius: var(--radius-xl) !important;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -3785,7 +3787,7 @@
       margin: 0;
       padding: 6px;
       list-style: none;
-      border-radius: 14px;
+      border-radius: var(--radius-lg);
       background: rgba(28,28,30,.96);
       border: 1px solid rgba(255,255,255,.1);
       box-shadow: 0 16px 40px rgba(0,0,0,.45);
@@ -3800,7 +3802,7 @@
       gap: 8px;
       padding: 10px 12px;
       border: none;
-      border-radius: 10px;
+      border-radius: var(--radius-md);
       background: transparent;
       color: rgba(255,255,255,.82);
       font-size: 13px;
@@ -3825,6 +3827,46 @@
     }
     .phone .header-nav {
       margin-left: auto;
+    }
+
+    /* Large roundings — global surface override */
+    .phone .header-pill,
+    .phone .board .cell,
+    .phone .tile,
+    .phone .panel,
+    .phone .card,
+    .phone .mock,
+    .phone .live-conv-hero,
+    .phone .faq-list button.faq-q,
+    .phone .faq-card,
+    .phone .cta-band,
+    .phone .offer-bento .offer-card,
+    .phone #footer .footer-brand,
+    .phone #footer .footer-links,
+    .phone .fees-board,
+    .phone .fees-punch,
+    .phone .fees-panel,
+    .phone .bento-cats .tile,
+    .phone .phase-list .phase,
+    .phone .audience .tile {
+      border-radius: var(--radius-xl) !important;
+    }
+    .phone .btn,
+    .phone .header-nav .primary,
+    .phone .header-lang-btn,
+    .phone .offer-bento .offer-ico,
+    .phone .chip,
+    .phone .tag {
+      border-radius: var(--radius-md) !important;
+    }
+    .phone .header-lang-menu {
+      border-radius: var(--radius-lg) !important;
+    }
+    .phone .header-lang-option {
+      border-radius: var(--radius-md) !important;
+    }
+    .phone .bento-cats .tile-media {
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
     }
 
   </style>
