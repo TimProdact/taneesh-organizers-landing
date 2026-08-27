@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" fill="none">
+  <rect width="1600" height="1000" fill="#0a0a0b"/>
+  <!-- Sidebar -->
+  <rect x="0" y="0" width="220" height="1000" fill="#0a0a0b"/>
+  <line x1="220" y1="0" x2="220" y2="1000" stroke="rgba(255,255,255,0.08)"/>
+  <text x="28" y="52" fill="#fff" font-family="system-ui,sans-serif" font-size="22" font-weight="800" letter-spacing="-0.03em">Taneesh</text>
+  <line x1="20" y1="72" x2="200" y2="72" stroke="rgba(255,255,255,0.08)"/>
+  <!-- Nav items -->
+  <rect x="16" y="92" width="188" height="44" rx="12" fill="rgba(255,255,255,0.1)"/>
+  <rect x="32" y="108" width="16" height="16" rx="4" fill="rgba(255,255,255,0.5)"/>
+  <text x="58" y="120" fill="#fff" font-family="system-ui,sans-serif" font-size="14" font-weight="600">0H1>@4</text>
+  <rect x="32" y="156" width="16" height="16" rx="3" stroke="rgba(113,113,122,1)" stroke-width="1.5"/>
+  <text x="58" y="168" fill="#71717a" font-family="system-ui,sans-serif" font-size="14" font-weight="600">5@>?@8OB8O</text>
+  <rect x="32" y="204" width="16" height="16" rx="8" stroke="rgba(113,113,122,1)" stroke-width="1.5"/>
+  <text x="58" y="216" fill="#71717a" font-family="system-ui,sans-serif" font-size="14" font-weight="600">C48B>@8O (CRM)</text>
+  <rect x="32" y="252" width="16" height="16" rx="2" stroke="rgba(113,113,122,1)" stroke-width="1.5"/>
+  <text x="58" y="264" fill="#71717a" font-family="system-ui,sans-serif" font-size="14" font-weight="600">>=B@>;5@K</text>
+  <rect x="32" y="300" width="16" height="16" rx="3" stroke="rgba(113,113,122,1)" stroke-width="1.5"/>
+  <text x="58" y="312" fill="#71717a" font-family="system-ui,sans-serif" font-size="14" font-weight="600">$8=0=AK</text>
+  <circle cx="40" cy="356" r="8" stroke="rgba(113,113,122,1)" stroke-width="1.5"/>
+  <text x="58" y="360" fill="#71717a" font-family="system-ui,sans-serif" font-size="14" font-weight="600">@>D8;L</text>
+  <!-- Main content -->
+  <text x="252" y="58" fill="#fff" font-family="system-ui,sans-serif" font-size="28" font-weight="700" letter-spacing="-0.02em">0H1>@4</text>
+  <!-- Period pills -->
+  <rect x="1180" y="32" width="88" height="36" rx="18" fill="rgba(255,255,255,0.08)"/>
+  <text x="1204" y="56" fill="#fff" font-family="system-ui,sans-serif" font-size="13" font-weight="600">!53>4=O</text>
+  <text x="1292" y="56" fill="#71717a" font-family="system-ui,sans-serif" font-size="13" font-weight="600">7 4=.</text>
+  <text x="1356" y="56" fill="#71717a" font-family="system-ui,sans-serif" font-size="13" font-weight="600">30 4=.</text>
+  <text x="1428" y="56" fill="#71717a" font-family="system-ui,sans-serif" font-size="13" font-weight="600">AQ</text>
+  <!-- KPI row -->
+  <g transform="translate(252,88)">
+    <rect width="200" height="88" rx="16" fill="#121214" stroke="rgba(59,130,246,0.55)"/>
+    <text x="16" y="28" fill="#71717a" font-family="system-ui,sans-serif" font-size="12" font-weight="600">K@CG:0</text>
+    <text x="16" y="58" fill="#fff" font-family="system-ui,sans-serif" font-size="22" font-weight="700">18.4M UZS</text>
+    <text x="16" y="78" fill="#22c55e" font-family="system-ui,sans-serif" font-size="11" font-weight="700">+12% ‘</text>
+    <rect x="212" y="0" width="200" height="88" rx="16" fill="#121214" stroke="rgba(255,255,255,0.08)"/>
+    <text x="228" y="28" fill="#71717a" font-family="system-ui,sans-serif" font-size="12" font-weight="600">8;5BK</text>
+    <text x="228" y="58" fill="#fff" font-family="system-ui,sans-serif" font-size="22" font-weight="700">312</text>
+    <text x="228" y="78" fill="#22c55e" font-family="system-ui,sans-serif" font-size="11" font-weight="700">+8% ‘</text>
+    <rect x="424" y="0" width="200" height="88" rx="16" fill="#121214" stroke="rgba(255,255,255,0.08)"/>
+    <text x="440" y="28" fill="#71717a" font-family="system-ui,sans-serif" font-size="12" font-weight="600">>72@0BK</text>
+    <text x="440" y="58" fill="#fff" font-family="system-ui,sans-serif" font-size="22" font-weight="700">0 UZS</text>
+    <text x="440" y="78" fill="#71717a" font-family="system-ui,sans-serif" font-size="11" font-weight="700">0% ’</text>
+    <rect x="636" y="0" width="200" height="88" rx="16" fill="#121214" stroke="rgba(255,255,255,0.08)"/>
+    <text x="652" y="28" fill="#71717a" font-family="system-ui,sans-serif" font-size="12" font-weight="600">@>A<>B@K</text>
+    <text x="652" y="58" fill="#fff" font-family="system-ui,sans-serif" font-size="22" font-weight="700">9 840</text>
+    <text x="652" y="78" fill="#22c55e" font-family="system-ui,sans-serif" font-size="11" font-weight="700">+15% ‘</text>
+    <rect x="848" y="0" width="200" height="88" rx="16" fill="#121214" stroke="rgba(255,255,255,0.08)"/>
+    <text x="864" y="28" fill="#71717a" font-family="system-ui,sans-serif" font-size="12" font-weight="600">D>@<;5=85</text>
+    <text x="864" y="58" fill="#fff" font-family="system-ui,sans-serif" font-size="22" font-weight="700">2 180</text>
+    <text x="864" y="78" fill="#22c55e" font-family="system-ui,sans-serif" font-size="11" font-weight="700">+11% ‘</text>
+    <rect x="1060" y="0" width="200" height="88" rx="16" fill="#121214" stroke="rgba(255,255,255,0.08)"/>
+    <text x="1076" y="28" fill="#71717a" font-family="system-ui,sans-serif" font-size="12" font-weight="600">>=25@A8O</text>
+    <text x="1076" y="58" fill="#fff" font-family="system-ui,sans-serif" font-size="22" font-weight="700">3.2%</text>
+    <text x="1076" y="78" fill="#22c55e" font-family="system-ui,sans-serif" font-size="11" font-weight="700">+0.4% ‘</text>
+  </g>
+  <!-- Chart panel -->
+  <rect x="252" y="200" width="820" height="480" rx="16" fill="#121214" stroke="rgba(255,255,255,0.08)"/>
+  <text x="276" y="240" fill="#fff" font-family="system-ui,sans-serif" font-size="16" font-weight="600">1I0O 2K@CG:0</text>
+  <line x1="276" y1="460" x2="1048" y2="460" stroke="rgba(255,255,255,0.06)"/>
+  <line x1="276" y1="380" x2="1048" y2="380" stroke="rgba(255,255,255,0.04)"/>
+  <line x1="276" y1="300" x2="1048" y2="300" stroke="rgba(255,255,255,0.04)"/>
+  <line x1="276" y1="220" x2="1048" y2="220" stroke="rgba(255,255,255,0.04)"/>
+  <!-- Bars -->
+  <rect x="310" y="400" width="72" height="60" rx="8" fill="url(#barGrad)"/>
+  <rect x="410" y="360" width="72" height="100" rx="8" fill="url(#barGrad)"/>
+  <rect x="510" y="330" width="72" height="130" rx="8" fill="url(#barGrad)"/>
+  <rect x="610" y="350" width="72" height="110" rx="8" fill="url(#barGrad)"/>
+  <rect x="710" y="290" width="72" height="170" rx="8" fill="url(#barGrad)"/>
+  <rect x="810" y="250" width="72" height="210" rx="8" fill="url(#barGrad)"/>
+  <rect x="910" y="220" width="72" height="240" rx="8" fill="url(#barGrad)"/>
+  <text x="310" y="490" fill="#71717a" font-family="system-ui,sans-serif" font-size="12" font-weight="600">08:00</text>
+  <text x="510" y="490" fill="#71717a" font-family="system-ui,sans-serif" font-size="12" font-weight="600">12:00</text>
+  <text x="710" y="490" fill="#71717a" font-family="system-ui,sans-serif" font-size="12" font-weight="600">16:00</text>
+  <text x="910" y="490" fill="#71717a" font-family="system-ui,sans-serif" font-size="12" font-weight="600">20:00</text>
+  <!-- Right panels -->
+  <rect x="1092" y="200" width="468" height="230" rx="16" fill="#121214" stroke="rgba(255,255,255,0.08)"/>
+  <text x="1116" y="240" fill="#fff" font-family="system-ui,sans-serif" font-size="16" font-weight="600">">? <5@>?@8OB89</text>
+  <text x="1116" y="280" fill="#71717a" font-family="system-ui,sans-serif" font-size="13" font-weight="600">1</text>
+  <text x="1140" y="280" fill="#e4e4e7" font-family="system-ui,sans-serif" font-size="13" font-weight="600">Summer Open Air</text>
+  <text x="1496" y="280" fill="#fff" font-family="system-ui,sans-serif" font-size="13" font-weight="700">6.2M</text>
+  <text x="1116" y="318" fill="#71717a" font-family="system-ui,sans-serif" font-size="13" font-weight="600">2</text>
+  <text x="1140" y="318" fill="#e4e4e7" font-family="system-ui,sans-serif" font-size="13" font-weight="600">Morning Trek</text>
+  <text x="1496" y="318" fill="#fff" font-family="system-ui,sans-serif" font-size="13" font-weight="700">4.1M</text>
+  <text x="1116" y="356" fill="#71717a" font-family="system-ui,sans-serif" font-size="13" font-weight="600">3</text>
+  <text x="1140" y="356" fill="#e4e4e7" font-family="system-ui,sans-serif" font-size="13" font-weight="600">Networking Meetup</text>
+  <text x="1496" y="356" fill="#fff" font-family="system-ui,sans-serif" font-size="13" font-weight="700">2.8M</text>
+  <text x="1116" y="394" fill="#71717a" font-family="system-ui,sans-serif" font-size="13" font-weight="600">4</text>
+  <text x="1140" y="394" fill="#e4e4e7" font-family="system-ui,sans-serif" font-size="13" font-weight="600">Business Talk</text>
+  <text x="1496" y="394" fill="#fff" font-family="system-ui,sans-serif" font-size="13" font-weight="700">1.9M</text>
+  <rect x="1092" y="450" width="468" height="230" rx="16" fill="#121214" stroke="rgba(255,255,255,0.08)"/>
+  <text x="1116" y="490" fill="#fff" font-family="system-ui,sans-serif" font-size="16" font-weight="600">>@>=:0 ?@>406</text>
+  <text x="1116" y="530" fill="#71717a" font-family="system-ui,sans-serif" font-size="12" font-weight="600">@>A<>B@K</text>
+  <text x="1512" y="530" fill="#71717a" font-family="system-ui,sans-serif" font-size="12" font-weight="600">100%</text>
+  <rect x="1116" y="542" width="420" height="8" rx="4" fill="rgba(255,255,255,0.06)"/>
+  <rect x="1116" y="542" width="420" height="8" rx="4" fill="#3b82f6"/>
+  <text x="1116" y="578" fill="#71717a" font-family="system-ui,sans-serif" font-size="12" font-weight="600">0G0;8 >D>@<;5=85</text>
+  <text x="1504" y="578" fill="#71717a" font-family="system-ui,sans-serif" font-size="12" font-weight="600">22.1%</text>
+  <rect x="1116" y="590" width="420" height="8" rx="4" fill="rgba(255,255,255,0.06)"/>
+  <rect x="1116" y="590" width="93" height="8" rx="4" fill="#3b82f6"/>
+  <text x="1116" y="626" fill="#71717a" font-family="system-ui,sans-serif" font-size="12" font-weight="600">?;0B8;8</text>
+  <text x="1512" y="626" fill="#71717a" font-family="system-ui,sans-serif" font-size="12" font-weight="600">3.2%</text>
+  <rect x="1116" y="638" width="420" height="8" rx="4" fill="rgba(255,255,255,0.06)"/>
+  <rect x="1116" y="638" width="13" height="8" rx="4" fill="#3b82f6"/>
+  <defs>
+    <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+</svg>

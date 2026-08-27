@@ -392,26 +392,59 @@
       border-radius: 10px;
       margin: 0 6px;
       padding: 12px;
-      display: grid;
+      display: flex;
+      flex-direction: column;
       gap: 10px;
       min-height: 0;
       flex: 1;
+      overflow: hidden;
     }
     .app-events > strong {
       font-size: 14px;
       font-weight: 800;
       color: #222;
       letter-spacing: -0.02em;
+      flex-shrink: 0;
     }
-    .app-event-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+    .app-events-carousel {
+      container-type: inline-size;
+      overflow: hidden;
+      margin: 0 -12px;
+      padding: 0 12px;
+      flex: 1;
+      min-height: 0;
+      mask-image: linear-gradient(to right, #000 0%, #000 78%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, #000 0%, #000 78%, transparent 100%);
+    }
+    .app-events-track {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: flex-start;
       gap: 8px;
+      width: max-content;
+      will-change: transform;
+      animation: app-events-marquee 36s linear infinite;
+    }
+    .app-events-carousel:hover .app-events-track {
+      animation-play-state: paused;
+    }
+    @keyframes app-events-marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .app-events-track { animation: none; }
+      .app-events-carousel {
+        mask-image: none;
+        -webkit-mask-image: none;
+      }
     }
     .app-event {
       display: grid;
       gap: 6px;
       min-width: 0;
+      flex: 0 0 85cqw;
+      width: 85cqw;
     }
     .app-event-cover {
       position: relative;
@@ -506,728 +539,57 @@
 
     .hero-card-admin {
       --admin-bg: #0a0a0b;
-      --admin-card: #121214;
-      --admin-border: rgba(255, 255, 255, 0.08);
-      --admin-blue: #3b82f6;
-      --admin-muted: #71717a;
       background: var(--admin-bg);
-      color: #fff;
-      border: 1px solid var(--admin-border);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 28px;
-      display: block;
-      padding: 0;
-      overflow: hidden;
-      position: relative;
-    }
-    .dash-viewport {
-      height: 100%;
-      overflow-x: auto;
-      overflow-y: hidden;
-      scrollbar-width: none;
-      overscroll-behavior: contain;
-      -webkit-overflow-scrolling: touch;
-    }
-    .dash-viewport::-webkit-scrollbar { display: none; }
-    .dash-canvas {
-      width: max(100%, 880px);
-      height: 100%;
-      padding: 16px 18px;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(200px, 240px);
-      grid-template-rows: auto auto 1fr;
-      gap: 10px 12px;
-      box-sizing: border-box;
-      align-content: stretch;
-    }
-    .dash-head {
-      grid-column: 1 / -1;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-      padding-left: 0;
-    }
-    .dash-head h3 {
-      margin: 0;
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: #fff;
-      font-family: var(--font-ui);
-    }
-    .dash-periods {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      flex-wrap: wrap;
-    }
-    .dash-periods button {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--admin-muted);
-      padding: 6px 10px;
-      border-radius: 9999px;
-      background: transparent;
-      border: 0;
-      cursor: pointer;
-      transition: background 0.2s var(--ease), color 0.2s var(--ease);
-    }
-    .dash-periods button.on {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.08);
-    }
-    .dash-periods .cal {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      border: 1px solid var(--admin-border);
-      display: grid;
-      place-items: center;
-      color: var(--admin-muted);
-      background: transparent;
-      cursor: default;
-      padding: 0;
-    }
-    .dash-periods .cal svg { width: 14px; height: 14px; }
-    .dash-kpis {
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: repeat(6, minmax(88px, 1fr));
-      gap: 8px;
-      padding-left: 0;
-    }
-    .dash-kpi {
-      background: var(--admin-card);
-      border: 1px solid var(--admin-border);
-      border-radius: 14px;
-      padding: 10px 10px 9px;
-      min-width: 0;
-      cursor: pointer;
-      transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
-      text-align: left;
-      color: inherit;
-      font: inherit;
-    }
-    .dash-kpi.is-active {
-      border-color: rgba(59, 130, 246, 0.55);
-      box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.25);
-    }
-    .dash-kpi:active { transform: scale(0.98); }
-    .dash-kpi .label {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 6px;
-      font-size: 10px;
-      color: var(--admin-muted);
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-    .dash-kpi .label i {
-      width: 18px;
-      height: 18px;
-      border-radius: 6px;
-      background: rgba(59, 130, 246, 0.15);
-      color: var(--admin-blue);
-      display: grid;
-      place-items: center;
-      font-style: normal;
-      font-size: 10px;
-      flex-shrink: 0;
-    }
-    .dash-kpi strong {
-      display: block;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .dash-kpi em {
-      display: inline-block;
-      margin-top: 4px;
-      font-style: normal;
-      font-size: 10px;
-      font-weight: 700;
-      color: #22c55e;
-    }
-    .dash-kpi em.down { color: #ef4444; }
-    .dash-kpi em.flat { color: var(--admin-muted); }
-    .dash-main {
-      grid-column: 1;
-      grid-row: 3;
-      background: var(--admin-card);
-      border: 1px solid var(--admin-border);
-      border-radius: 14px;
-      padding: 12px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      min-height: 0;
-    }
-    .dash-main h4 {
-      margin: 0;
-      font-size: 13px;
-      font-weight: 600;
-      color: #fff;
-    }
-    .dash-chart {
-      display: grid;
-      grid-template-columns: 36px 1fr;
-      gap: 8px;
       align-items: stretch;
-      min-height: 0;
-      flex: 1;
-    }
-    .dash-chart-y {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: flex-end;
-      padding: 4px 0 30px;
-      font-size: 10px;
-      font-weight: 600;
-      color: var(--admin-muted);
-      line-height: 1;
-    }
-    .dash-chart-plot {
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      min-height: 0;
-      gap: 8px;
-    }
-    .dash-hours {
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      height: 100px;
-      padding: 4px 4px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 0;
+      overflow: hidden;
       position: relative;
     }
-    .dash-hours::before {
-      content: "";
+    .admin-video-slot {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--admin-bg);
+      aspect-ratio: 16 / 10;
+    }
+    .admin-video-slot video,
+    .admin-video-slot .admin-video-poster {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .admin-video-play {
       position: absolute;
       inset: 0;
-      background:
-        linear-gradient(to top, transparent 24.5%, rgba(255,255,255,0.04) 25%, transparent 25.5%),
-        linear-gradient(to top, transparent 49.5%, rgba(255,255,255,0.04) 50%, transparent 50.5%),
-        linear-gradient(to top, transparent 74.5%, rgba(255,255,255,0.04) 75%, transparent 75.5%);
+      display: grid;
+      place-items: center;
       pointer-events: none;
     }
-    .dash-hour {
-      flex: 1;
-      height: 100%;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      min-width: 0;
-      z-index: 1;
-    }
-    .dash-hour i {
-      display: block;
-      width: 100%;
-      max-width: 36px;
-      height: var(--h, 40%);
-      border-radius: 8px 8px 3px 3px;
-      background: linear-gradient(180deg, #60a5fa 0%, var(--admin-blue) 100%);
-      font-style: normal;
-      transition: height 0.45s var(--ease);
-      box-shadow: 0 0 16px rgba(59, 130, 246, 0.25);
-    }
-    .dash-chart-x {
-      display: flex;
-      gap: 8px;
-      padding: 0 4px;
-    }
-    .dash-chart-x span {
-      flex: 1;
-      text-align: center;
-      font-size: 10px;
-      color: var(--admin-muted);
-      font-weight: 600;
-      min-width: 0;
-    }
-    .dash-bottom {
-      grid-column: 2;
-      grid-row: 3;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      padding-left: 0;
-      min-height: 0;
-    }
-    .dash-panel {
-      background: var(--admin-card);
-      border: 1px solid var(--admin-border);
-      border-radius: 14px;
-      padding: 12px;
-      min-width: 0;
-    }
-    .dash-panel:first-child {
-      border-radius: 14px;
-      border-left: 1px solid var(--admin-border);
-      padding-left: 12px;
-      flex: 1;
-      min-height: 0;
-      overflow: hidden;
-    }
-    .dash-panel:last-child {
-      flex: 1;
-      min-height: 0;
-      overflow: hidden;
-    }
-    .dash-panel h4 {
-      margin: 0 0 10px;
-      font-size: 13px;
-      font-weight: 600;
-      color: #fff;
-    }
-    .dash-top-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      padding: 7px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      font-size: 11px;
-    }
-    .dash-top-row:last-child { border: 0; padding-bottom: 0; }
-    .dash-top-row .rank {
-      color: var(--admin-muted);
-      width: 14px;
-      flex-shrink: 0;
-    }
-    .dash-top-row .name {
-      flex: 1;
-      min-width: 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      color: #e4e4e7;
-      font-weight: 600;
-    }
-    .dash-top-row .rev {
-      color: #fff;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-    .dash-funnel {
-      display: grid;
-      gap: 10px;
-    }
-    .dash-funnel-row {
-      display: grid;
-      gap: 4px;
-    }
-    .dash-funnel-row .meta {
-      display: flex;
-      justify-content: space-between;
-      font-size: 10px;
-      color: var(--admin-muted);
-      font-weight: 600;
-    }
-    .dash-funnel-row .bar {
-      height: 7px;
-      border-radius: 9999px;
-      background: rgba(255, 255, 255, 0.06);
-      overflow: hidden;
-    }
-    .dash-funnel-row .bar i {
-      display: block;
-      height: 100%;
-      border-radius: inherit;
-      background: var(--admin-blue);
-      font-style: normal;
-      transition: width 0.45s var(--ease);
-    }
-
-    /* Admin sidebar + multi-screen mock */
-    .admin-shell {
-      display: flex;
-      height: 100%;
-      min-height: 0;
-    }
-    .admin-sidebar {
-      width: 152px;
-      flex-shrink: 0;
-      background: var(--admin-bg);
-      border-right: 1px solid var(--admin-border);
-      padding: 14px 8px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      overflow-y: auto;
-      scrollbar-width: none;
-    }
-    .admin-sidebar::-webkit-scrollbar { display: none; }
-    .admin-sidebar-brand {
-      padding: 2px 10px 12px;
-      margin-bottom: 6px;
-      border-bottom: 1px solid var(--admin-border);
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: #fff;
-      font-family: var(--font-ui);
-    }
-    .admin-nav-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 10px;
-      border-radius: 10px;
-      border: 0;
-      background: transparent;
-      color: var(--admin-muted);
-      font-size: 11px;
-      font-weight: 600;
-      line-height: 1.2;
-      cursor: pointer;
-      text-align: left;
-      width: 100%;
-      transition: background 0.2s var(--ease), color 0.2s var(--ease);
-      font-family: var(--font-ui);
-    }
-    .admin-nav-item svg {
-      width: 16px;
-      height: 16px;
-      flex-shrink: 0;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.75;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .admin-nav-item.is-active {
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff;
-    }
-    .admin-nav-item:hover:not(.is-active) {
-      background: rgba(255, 255, 255, 0.04);
-      color: #e4e4e7;
-    }
-    .admin-nav-item span {
-      min-width: 0;
-    }
-    .admin-main {
-      flex: 1;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    .admin-main .dash-viewport.is-screen-alt {
-      overflow-x: hidden;
-      overflow-y: auto;
-    }
-    .admin-screen {
-      display: none;
-      opacity: 0;
-      transition: opacity 0.22s var(--ease);
-    }
-    .admin-screen.is-active {
-      display: block;
-      opacity: 1;
-    }
-    .admin-screen[hidden] {
-      display: none !important;
-    }
-    .admin-screen-inner {
-      padding: 16px 20px 20px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      min-height: 100%;
-      box-sizing: border-box;
-    }
-    .admin-screen-inner h3 {
-      margin: 0;
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: #fff;
-      font-family: var(--font-ui);
-    }
-    .admin-screen-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .admin-screen-head .hint {
-      font-size: 11px;
-      color: var(--admin-muted);
-      font-weight: 600;
-    }
-    .admin-events-list {
-      display: grid;
-      gap: 8px;
-    }
-    .admin-event-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 12px 14px;
-      background: var(--admin-card);
-      border: 1px solid var(--admin-border);
-      border-radius: 14px;
-    }
-    .admin-event-info {
-      min-width: 0;
-      display: grid;
-      gap: 3px;
-    }
-    .admin-event-info strong {
-      font-size: 13px;
-      font-weight: 700;
-      color: #fff;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .admin-event-info span {
-      font-size: 10px;
-      color: var(--admin-muted);
-      font-weight: 600;
-    }
-    .admin-pill {
-      flex-shrink: 0;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 4px 8px;
-      border-radius: 9999px;
-      white-space: nowrap;
-    }
-    .admin-pill--pub {
-      background: rgba(34, 197, 94, 0.15);
-      color: #4ade80;
-    }
-    .admin-pill--draft {
-      background: rgba(255, 255, 255, 0.08);
-      color: #a1a1aa;
-    }
-    .admin-pill--mod {
-      background: rgba(59, 130, 246, 0.15);
-      color: #60a5fa;
-    }
-    .admin-crm-table {
-      background: var(--admin-card);
-      border: 1px solid var(--admin-border);
-      border-radius: 14px;
-      overflow: hidden;
-    }
-    .admin-crm-head,
-    .admin-crm-row {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr 0.7fr;
-      gap: 8px;
-      padding: 10px 14px;
-      font-size: 11px;
-      align-items: center;
-    }
-    .admin-crm-head {
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--admin-muted);
-      font-weight: 700;
-      border-bottom: 1px solid var(--admin-border);
-    }
-    .admin-crm-row {
-      color: #e4e4e7;
-      font-weight: 600;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    .admin-crm-row:last-child { border-bottom: 0; }
-    .admin-crm-row .name { color: #fff; font-weight: 700; }
-    .admin-crm-row .tix {
-      text-align: right;
-      color: var(--admin-blue);
-      font-weight: 700;
-    }
-    .admin-ctrl-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 8px;
-    }
-    .admin-ctrl-card {
-      background: var(--admin-card);
-      border: 1px solid var(--admin-border);
-      border-radius: 14px;
-      padding: 12px;
-      display: grid;
-      gap: 8px;
-    }
-    .admin-ctrl-card .avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 10px;
-      background: rgba(59, 130, 246, 0.18);
-      color: var(--admin-blue);
-      display: grid;
-      place-items: center;
-      font-size: 12px;
-      font-weight: 800;
-    }
-    .admin-ctrl-card strong {
-      font-size: 12px;
-      font-weight: 700;
-      color: #fff;
-    }
-    .admin-ctrl-card .stat {
-      font-size: 10px;
-      color: var(--admin-muted);
-      font-weight: 600;
-    }
-    .admin-ctrl-card .stat em {
-      display: block;
-      margin-top: 2px;
-      font-style: normal;
-      font-size: 16px;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -0.02em;
-    }
-    .admin-fin-summary {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-    .admin-fin-card {
-      background: var(--admin-card);
-      border: 1px solid var(--admin-border);
-      border-radius: 14px;
-      padding: 14px;
-    }
-    .admin-fin-card .label {
-      font-size: 10px;
-      color: var(--admin-muted);
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-    .admin-fin-card strong {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: #fff;
-    }
-    .admin-fin-card em {
-      display: block;
-      margin-top: 4px;
-      font-style: normal;
-      font-size: 10px;
-      font-weight: 700;
-      color: #22c55e;
-    }
-    .admin-fin-payout {
-      background: var(--admin-card);
-      border: 1px solid var(--admin-border);
-      border-radius: 14px;
-      padding: 12px 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-    .admin-fin-payout .meta {
-      min-width: 0;
-    }
-    .admin-fin-payout .meta strong {
-      display: block;
-      font-size: 12px;
-      font-weight: 700;
-      color: #fff;
-    }
-    .admin-fin-payout .meta span {
-      font-size: 10px;
-      color: var(--admin-muted);
-      font-weight: 600;
-    }
-    .admin-fin-payout .amount {
-      font-size: 14px;
-      font-weight: 800;
-      color: #fff;
-      white-space: nowrap;
-    }
-    .admin-profile-card {
-      background: var(--admin-card);
-      border: 1px solid var(--admin-border);
-      border-radius: 14px;
-      padding: 16px;
-      display: grid;
-      gap: 12px;
-    }
-    .admin-profile-org {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .admin-profile-org .logo {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-      display: grid;
-      place-items: center;
-      font-size: 16px;
-      font-weight: 800;
-      color: #fff;
-    }
-    .admin-profile-org .info strong {
-      display: block;
-      font-size: 15px;
-      font-weight: 800;
-      color: #fff;
-    }
-    .admin-profile-org .info span {
-      font-size: 11px;
-      color: var(--admin-muted);
-      font-weight: 600;
-    }
-    .admin-verified {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 10px;
-      font-weight: 700;
-      color: #4ade80;
-      background: rgba(34, 197, 94, 0.12);
-      padding: 5px 9px;
-      border-radius: 9999px;
-      width: fit-content;
-    }
-    .admin-verified svg {
-      width: 12px;
-      height: 12px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2;
-    }
-    .admin-profile-slug {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--admin-border);
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--admin-muted);
-    }
-    .admin-profile-slug code {
-      color: var(--admin-blue);
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 11px;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .admin-screen { transition: none; }
+    .admin-video-play::before {
+      content: "";
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    }
+    .admin-video-play svg {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      fill: #fff;
+      margin-left: 3px;
+      opacity: 0.92;
     }
     @media (max-width: 960px) {
       .hero-duo {
@@ -1240,38 +602,13 @@
         max-height: none;
       }
       .hero-card-admin {
-        min-height: 380px;
-        max-height: 440px;
+        min-height: 0;
+        max-height: none;
       }
-      .admin-sidebar {
-        width: 52px;
-        padding: 10px 6px;
+      .admin-video-slot {
+        aspect-ratio: 16 / 10;
+        min-height: 280px;
       }
-      .admin-sidebar-brand,
-      .admin-nav-item span { display: none; }
-      .admin-nav-item { justify-content: center; padding: 9px 6px; }
-      .dash-viewport {
-        overflow-x: auto;
-        overflow-y: hidden;
-      }
-      .dash-canvas {
-        width: max(100%, 720px);
-        height: 100%;
-        padding: 14px;
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto 1fr auto;
-      }
-      .dash-kpis { grid-template-columns: repeat(3, 1fr); }
-      .dash-main { grid-column: 1; grid-row: 3; }
-      .dash-bottom {
-        grid-column: 1;
-        grid-row: 4;
-        flex-direction: row;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-      }
-      .dash-panel:first-child,
-      .dash-panel:last-child { flex: unset; }
       .hero-card-app {
         order: -1;
         height: 460px;
@@ -1282,12 +619,6 @@
         max-height: calc(100% - 24px);
         border-radius: 24px 24px 0 0;
       }
-    }
-    @media (max-width: 560px) {
-      .dash-kpis { grid-template-columns: 1fr 1fr; }
-      .dash-hours { height: 110px; }
-      .admin-ctrl-grid { grid-template-columns: 1fr; }
-      .admin-fin-summary { grid-template-columns: 1fr; }
     }
 
     /* Calc shells */
@@ -2573,294 +1904,27 @@
             </div>
           </aside>
 
-          <aside class="hero-card hero-card-admin" data-dash>
-            <div class="admin-shell">
-              <nav class="admin-sidebar" data-admin-nav aria-label="Навигация админки">
-                <div class="admin-sidebar-brand">Taneesh</div>
-                <button type="button" class="admin-nav-item is-active" data-admin-screen="dashboard" aria-current="page">
-                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
-                  <span>Дашборд</span>
-                </button>
-                <button type="button" class="admin-nav-item" data-admin-screen="events">
-                  <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
-                  <span>Мероприятия</span>
-                </button>
-                <button type="button" class="admin-nav-item" data-admin-screen="crm">
-                  <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                  <span>Аудитория (CRM)</span>
-                </button>
-                <button type="button" class="admin-nav-item" data-admin-screen="controllers">
-                  <svg viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/></svg>
-                  <span>Контролеры</span>
-                </button>
-                <button type="button" class="admin-nav-item" data-admin-screen="finance">
-                  <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h2"/></svg>
-                  <span>Финансы и документы</span>
-                </button>
-                <button type="button" class="admin-nav-item" data-admin-screen="profile">
-                  <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-                  <span>Профиль</span>
-                </button>
-              </nav>
-              <div class="admin-main">
-                <div class="dash-viewport" data-dash-scroll>
-                  <div class="admin-screen is-active" data-admin-panel="dashboard">
-                    <div class="dash-canvas">
-                      <div class="dash-head">
-                        <h3>Дашборд</h3>
-                        <div class="dash-periods" role="tablist" aria-label="Период">
-                          <button type="button" class="on" data-dash-range="today">Сегодня</button>
-                          <button type="button" data-dash-range="week">7 дн.</button>
-                          <button type="button" data-dash-range="month">30 дн.</button>
-                          <button type="button" data-dash-range="all">Всё</button>
-                          <button type="button" class="cal" aria-label="Календарь" tabindex="-1">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
-                          </button>
-                        </div>
-                      </div>
-                      <div class="dash-kpis" data-dash-kpis>
-                        <button type="button" class="dash-kpi is-active" data-dash-kpi="rev">
-                          <div class="label">Выручка <i>$</i></div>
-                          <strong data-k="rev">18.4M UZS</strong>
-                          <em data-k="revDelta">+12% ↑</em>
-                        </button>
-                        <button type="button" class="dash-kpi" data-dash-kpi="tix">
-                          <div class="label">Билеты <i>◎</i></div>
-                          <strong data-k="tix">312</strong>
-                          <em data-k="tixDelta">+8% ↑</em>
-                        </button>
-                        <button type="button" class="dash-kpi" data-dash-kpi="ref">
-                          <div class="label">Возвраты <i>↺</i></div>
-                          <strong data-k="ref">0 UZS</strong>
-                          <em class="flat" data-k="refDelta">0% →</em>
-                        </button>
-                        <button type="button" class="dash-kpi" data-dash-kpi="views">
-                          <div class="label">Просмотры <i>◉</i></div>
-                          <strong data-k="views">9 840</strong>
-                          <em data-k="viewsDelta">+15% ↑</em>
-                        </button>
-                        <button type="button" class="dash-kpi" data-dash-kpi="chk">
-                          <div class="label">Оформление <i>›</i></div>
-                          <strong data-k="chk">2 180</strong>
-                          <em data-k="chkDelta">+11% ↑</em>
-                        </button>
-                        <button type="button" class="dash-kpi" data-dash-kpi="conv">
-                          <div class="label">Конверсия <i>%</i></div>
-                          <strong data-k="conv">3.2%</strong>
-                          <em data-k="convDelta">+0.4% ↑</em>
-                        </button>
-                      </div>
-                      <div class="dash-main">
-                        <h4 data-dash-chart-title>Общая выручка</h4>
-                        <div class="dash-chart">
-                          <div class="dash-chart-y" data-dash-y aria-hidden="true">
-                            <span>12M</span><span>9M</span><span>6M</span><span>3M</span><span>0</span>
-                          </div>
-                          <div class="dash-chart-plot">
-                            <div class="dash-hours" data-dash-bars aria-hidden="true">
-                              <div class="dash-hour"><i style="--h:28%"></i></div>
-                              <div class="dash-hour"><i style="--h:42%"></i></div>
-                              <div class="dash-hour"><i style="--h:55%"></i></div>
-                              <div class="dash-hour"><i style="--h:48%"></i></div>
-                              <div class="dash-hour"><i style="--h:70%"></i></div>
-                              <div class="dash-hour"><i style="--h:88%"></i></div>
-                              <div class="dash-hour"><i style="--h:100%"></i></div>
-                              <div class="dash-hour"><i style="--h:62%"></i></div>
-                            </div>
-                            <div class="dash-chart-x" data-dash-x aria-hidden="true">
-                              <span>08:00</span><span>10:00</span><span>12:00</span><span>14:00</span>
-                              <span>16:00</span><span>18:00</span><span>20:00</span><span>22:00</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="dash-bottom">
-                        <div class="dash-panel">
-                          <h4>Топ мероприятий</h4>
-                          <div data-dash-top>
-                            <div class="dash-top-row"><span class="rank">1</span><span class="name">Summer Open Air</span><span class="rev">6.2M</span></div>
-                            <div class="dash-top-row"><span class="rank">2</span><span class="name">Morning Trek</span><span class="rev">4.1M</span></div>
-                            <div class="dash-top-row"><span class="rank">3</span><span class="name">Networking Meetup</span><span class="rev">2.8M</span></div>
-                            <div class="dash-top-row"><span class="rank">4</span><span class="name">Business Talk</span><span class="rev">1.9M</span></div>
-                          </div>
-                        </div>
-                        <div class="dash-panel">
-                          <h4>Воронка продаж</h4>
-                          <div class="dash-funnel" data-dash-funnel>
-                            <div class="dash-funnel-row">
-                              <div class="meta"><span>Просмотры</span><span data-f="v">100%</span></div>
-                              <div class="bar"><i style="width:100%"></i></div>
-                            </div>
-                            <div class="dash-funnel-row">
-                              <div class="meta"><span>Начали оформление</span><span data-f="c">22.1%</span></div>
-                              <div class="bar"><i style="width:22%"></i></div>
-                            </div>
-                            <div class="dash-funnel-row">
-                              <div class="meta"><span>Оплатили</span><span data-f="p">3.2%</span></div>
-                              <div class="bar"><i style="width:3.2%"></i></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="admin-screen" data-admin-panel="events" hidden>
-                    <div class="admin-screen-inner">
-                      <div class="admin-screen-head">
-                        <h3>Мероприятия</h3>
-                        <span class="hint">4 активных</span>
-                      </div>
-                      <div class="admin-events-list">
-                        <div class="admin-event-row">
-                          <div class="admin-event-info">
-                            <strong>Summer Open Air</strong>
-                            <span>15 авг · Ташкент · 420 билетов</span>
-                          </div>
-                          <span class="admin-pill admin-pill--pub">Опубликовано</span>
-                        </div>
-                        <div class="admin-event-row">
-                          <div class="admin-event-info">
-                            <strong>IT Conference 2024</strong>
-                            <span>22 сен · Самарканд · 180 билетов</span>
-                          </div>
-                          <span class="admin-pill admin-pill--pub">Опубликовано</span>
-                        </div>
-                        <div class="admin-event-row">
-                          <div class="admin-event-info">
-                            <strong>Jazz Night</strong>
-                            <span>5 окт · Ташкент · черновик</span>
-                          </div>
-                          <span class="admin-pill admin-pill--draft">Черновик</span>
-                        </div>
-                        <div class="admin-event-row">
-                          <div class="admin-event-info">
-                            <strong>Startup Weekend</strong>
-                            <span>12 окт · Ташкент · на модерации</span>
-                          </div>
-                          <span class="admin-pill admin-pill--mod">Модерация</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="admin-screen" data-admin-panel="crm" hidden>
-                    <div class="admin-screen-inner">
-                      <div class="admin-screen-head">
-                        <h3>Аудитория (CRM)</h3>
-                        <span class="hint">842 контакта</span>
-                      </div>
-                      <div class="admin-crm-table">
-                        <div class="admin-crm-head">
-                          <span>Имя</span><span>Телефон</span><span>Билеты</span>
-                        </div>
-                        <div class="admin-crm-row">
-                          <span class="name">Алишер К.</span><span>+998 90 123 45 67</span><span class="tix">4</span>
-                        </div>
-                        <div class="admin-crm-row">
-                          <span class="name">Дилноза М.</span><span>+998 91 234 56 78</span><span class="tix">2</span>
-                        </div>
-                        <div class="admin-crm-row">
-                          <span class="name">Бахром Т.</span><span>+998 93 345 67 89</span><span class="tix">6</span>
-                        </div>
-                        <div class="admin-crm-row">
-                          <span class="name">Мадина S.</span><span>+998 97 456 78 90</span><span class="tix">1</span>
-                        </div>
-                        <div class="admin-crm-row">
-                          <span class="name">Жасур R.</span><span>+998 99 567 89 01</span><span class="tix">3</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="admin-screen" data-admin-panel="controllers" hidden>
-                    <div class="admin-screen-inner">
-                      <div class="admin-screen-head">
-                        <h3>Контролеры</h3>
-                        <span class="hint">3 активных</span>
-                      </div>
-                      <div class="admin-ctrl-grid">
-                        <div class="admin-ctrl-card">
-                          <div class="avatar">AK</div>
-                          <strong>Алишер К.</strong>
-                          <div class="stat">Сканов сегодня<em>142</em></div>
-                        </div>
-                        <div class="admin-ctrl-card">
-                          <div class="avatar">DM</div>
-                          <strong>Дилноза М.</strong>
-                          <div class="stat">Сканов сегодня<em>98</em></div>
-                        </div>
-                        <div class="admin-ctrl-card">
-                          <div class="avatar">BT</div>
-                          <strong>Бахром Т.</strong>
-                          <div class="stat">Сканов сегодня<em>76</em></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="admin-screen" data-admin-panel="finance" hidden>
-                    <div class="admin-screen-inner">
-                      <div class="admin-screen-head">
-                        <h3>Финансы и документы</h3>
-                        <span class="hint">Обновлено сегодня</span>
-                      </div>
-                      <div class="admin-fin-summary">
-                        <div class="admin-fin-card">
-                          <div class="label">Баланс к выплате</div>
-                          <strong>48.6M UZS</strong>
-                          <em>+12% за неделю</em>
-                        </div>
-                        <div class="admin-fin-card">
-                          <div class="label">Удержано комиссии</div>
-                          <strong>2.1M UZS</strong>
-                          <em>4.2% от оборота</em>
-                        </div>
-                      </div>
-                      <div class="admin-fin-payout">
-                        <div class="meta">
-                          <strong>Выплата · Summer Open Air</strong>
-                          <span>Расчётный счёт · ООО «Event Pro»</span>
-                        </div>
-                        <span class="amount">18.4M UZS</span>
-                      </div>
-                      <div class="admin-fin-payout">
-                        <div class="meta">
-                          <strong>Акт за август 2026</strong>
-                          <span>PDF · подписан электронно</span>
-                        </div>
-                        <span class="amount">Скачать</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="admin-screen" data-admin-panel="profile" hidden>
-                    <div class="admin-screen-inner">
-                      <div class="admin-screen-head">
-                        <h3>Профиль</h3>
-                      </div>
-                      <div class="admin-profile-card">
-                        <div class="admin-profile-org">
-                          <div class="logo">EP</div>
-                          <div class="info">
-                            <strong>Event Pro Tashkent</strong>
-                            <span>Организатор · с 2024</span>
-                          </div>
-                        </div>
-                        <span class="admin-verified">
-                          <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-                          Верифицирован
-                        </span>
-                        <div class="admin-profile-slug">
-                          <span>Публичная витрина</span>
-                          <code>taneesh.uz/event-pro</code>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          <aside class="hero-card hero-card-admin" data-admin-video>
+            <!--
+              VIDEO EMBED: when admin demo is ready, replace the poster block below with:
+              <video src="assets/showcase/admin-demo.mp4"
+                     poster="assets/showcase/admin-poster.svg"
+                     autoplay muted loop playsinline
+                     aria-label="Демо панели организатора Taneesh"></video>
+              Remove .admin-video-play overlay when using autoplay video.
+            -->
+            <div class="admin-video-slot">
+              <img class="admin-video-poster"
+                   src="assets/showcase/admin-poster.svg"
+                   alt="Панель организатора Taneesh — дашборд, аналитика, CRM"
+                   width="1600"
+                   height="1000"
+                   loading="lazy" />
+              <div class="admin-video-play" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               </div>
             </div>
+          </aside>
           </aside>
         </div>
       </div>
@@ -3641,250 +2705,6 @@
       rail.addEventListener('scroll', syncProgress, { passive: true });
       window.addEventListener('resize', syncProgress);
       syncProgress();
-    }
-
-    // Hero dashboard demo (periods, KPI tap, scroll tour) + admin nav
-    const dashRoot = document.querySelector('[data-dash]');
-    if (dashRoot && !dashRoot.dataset.ready) {
-      dashRoot.dataset.ready = '1';
-      const scrollEl = dashRoot.querySelector('[data-dash-scroll]');
-      const dashPanel = dashRoot.querySelector('[data-admin-panel="dashboard"]');
-      const barsEl = dashPanel?.querySelector('[data-dash-bars]');
-      const xEl = dashPanel?.querySelector('[data-dash-x]');
-      const yEl = dashPanel?.querySelector('[data-dash-y]');
-      const topEl = dashPanel?.querySelector('[data-dash-top]');
-      const titleEl = dashPanel?.querySelector('[data-dash-chart-title]');
-      const navItems = dashRoot.querySelectorAll('[data-admin-screen]');
-      const panels = dashRoot.querySelectorAll('[data-admin-panel]');
-      let activeScreen = 'dashboard';
-      let scrollTour = null;
-
-      const setScreen = (id) => {
-        activeScreen = id;
-        navItems.forEach((btn) => {
-          const on = btn.getAttribute('data-admin-screen') === id;
-          btn.classList.toggle('is-active', on);
-          btn.toggleAttribute('aria-current', on ? 'page' : false);
-        });
-        panels.forEach((panel) => {
-          const on = panel.getAttribute('data-admin-panel') === id;
-          panel.classList.toggle('is-active', on);
-          panel.hidden = !on;
-        });
-        if (scrollEl) {
-          scrollEl.classList.toggle('is-screen-alt', id !== 'dashboard');
-          scrollEl.scrollLeft = 0;
-          scrollEl.scrollTop = 0;
-        }
-        if (scrollTour) scrollTour.setEnabled(id === 'dashboard');
-      };
-
-      navItems.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          setScreen(btn.getAttribute('data-admin-screen'));
-        });
-      });
-      const ranges = {
-        today: {
-          y: ['4.5M', '3.4M', '2.3M', '1.1M', '0'],
-          labels: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
-          bars: [28, 42, 55, 48, 70, 88, 100, 62],
-          kpis: {
-            rev: '18.4M UZS', revDelta: '+12% ↑',
-            tix: '312', tixDelta: '+8% ↑',
-            ref: '0 UZS', refDelta: '0% →',
-            views: '9 840', viewsDelta: '+15% ↑',
-            chk: '2 180', chkDelta: '+11% ↑',
-            conv: '3.2%', convDelta: '+0.4% ↑',
-          },
-          funnel: { v: '100%', c: '22.1%', p: '3.2%', cw: 22, pw: 3.2 },
-          top: [
-            ['Summer Open Air', '6.2M'],
-            ['Morning Trek', '4.1M'],
-            ['Networking Meetup', '2.8M'],
-            ['Business Talk', '1.9M'],
-          ],
-        },
-        week: {
-          y: ['22M', '16.5M', '11M', '5.5M', '0'],
-          labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
-          bars: [48, 62, 70, 55, 82, 94, 100],
-          kpis: {
-            rev: '125M UZS', revDelta: '+22% ↑',
-            tix: '450', tixDelta: '+5% ↑',
-            ref: '0 UZS', refDelta: '0% →',
-            views: '15 840', viewsDelta: '+18% ↑',
-            chk: '3 420', chkDelta: '+14% ↑',
-            conv: '2.8%', convDelta: '−1% ↓',
-          },
-          funnel: { v: '100%', c: '21.6%', p: '2.8%', cw: 22, pw: 2.8 },
-          top: [
-            ['IT Conference 2024', '45M'],
-            ['Design Meetup', '32M'],
-            ['Marketing Forum', '28M'],
-            ['Startup Weekend', '19M'],
-          ],
-        },
-        month: {
-          y: ['48M', '36M', '24M', '12M', '0'],
-          labels: ['1', '5', '10', '15', '20', '25', '30'],
-          bars: [40, 52, 68, 58, 74, 90, 100],
-          kpis: {
-            rev: '412M UZS', revDelta: '+18% ↑',
-            tix: '1 840', tixDelta: '+9% ↑',
-            ref: '1.2M UZS', refDelta: '+2% ↑',
-            views: '62 400', viewsDelta: '+21% ↑',
-            chk: '12 800', chkDelta: '+13% ↑',
-            conv: '3.0%', convDelta: '+0.2% ↑',
-          },
-          funnel: { v: '100%', c: '20.5%', p: '3.0%', cw: 21, pw: 3 },
-          top: [
-            ['Summer Open Air', '86M'],
-            ['IT Conference 2024', '72M'],
-            ['Jazz Night', '54M'],
-            ['Morning Trek', '41M'],
-          ],
-        },
-        all: {
-          y: ['180M', '135M', '90M', '45M', '0'],
-          labels: ['Янв', 'Мар', 'Май', 'Июл', 'Сен', 'Ноя'],
-          bars: [35, 48, 62, 78, 88, 100],
-          kpis: {
-            rev: '1.2B UZS', revDelta: '+34% ↑',
-            tix: '8 420', tixDelta: '+27% ↑',
-            ref: '4.8M UZS', refDelta: '+4% ↑',
-            views: '286K', viewsDelta: '+41% ↑',
-            chk: '54 200', chkDelta: '+29% ↑',
-            conv: '2.9%', convDelta: '+0.1% ↑',
-          },
-          funnel: { v: '100%', c: '19%', p: '2.9%', cw: 19, pw: 2.9 },
-          top: [
-            ['City Live Festival', '210M'],
-            ['IT Conference 2024', '168M'],
-            ['Summer Open Air', '142M'],
-            ['Design Week', '98M'],
-          ],
-        },
-      };
-
-      const chartTitles = {
-        rev: 'Общая выручка',
-        tix: 'Продажи билетов',
-        ref: 'Возвраты',
-        views: 'Просмотры витрины',
-        chk: 'Оформление',
-        conv: 'Конверсия',
-      };
-
-      const applyRange = (key) => {
-        const cfg = ranges[key] || ranges.today;
-        if (yEl) {
-          yEl.innerHTML = cfg.y.map((v) => `<span>${v}</span>`).join('');
-        }
-        if (barsEl) {
-          barsEl.innerHTML = cfg.bars.map((h) => (
-            `<div class="dash-hour"><i style="--h:${h}%"></i></div>`
-          )).join('');
-        }
-        if (xEl) {
-          xEl.innerHTML = cfg.labels.map((label) => `<span>${label}</span>`).join('');
-        }
-        Object.entries(cfg.kpis).forEach(([k, v]) => {
-          const el = dashPanel?.querySelector(`[data-k="${k}"]`);
-          if (!el) return;
-          el.textContent = v;
-          if (k.endsWith('Delta')) {
-            el.classList.toggle('down', v.includes('−') || v.includes('-'));
-            el.classList.toggle('flat', v.includes('→') || v.startsWith('0%'));
-          }
-        });
-        if (topEl) {
-          topEl.innerHTML = cfg.top.map((row, i) => (
-            `<div class="dash-top-row"><span class="rank">${i + 1}</span><span class="name">${row[0]}</span><span class="rev">${row[1]}</span></div>`
-          )).join('');
-        }
-        const f = cfg.funnel;
-        const setF = (sel, text) => {
-          const el = dashPanel?.querySelector(`[data-f="${sel}"]`);
-          if (el) el.textContent = text;
-        };
-        setF('v', f.v);
-        setF('c', f.c);
-        setF('p', f.p);
-        const bars = dashPanel?.querySelectorAll('[data-dash-funnel] .bar i');
-        if (bars[0]) bars[0].style.width = '100%';
-        if (bars[1]) bars[1].style.width = f.cw + '%';
-        if (bars[2]) bars[2].style.width = f.pw + '%';
-      };
-
-      dashPanel?.querySelectorAll('[data-dash-range]').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          dashPanel.querySelectorAll('[data-dash-range]').forEach((b) => b.classList.remove('on'));
-          btn.classList.add('on');
-          applyRange(btn.getAttribute('data-dash-range'));
-        });
-      });
-
-      dashPanel?.querySelectorAll('[data-dash-kpi]').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          dashPanel.querySelectorAll('[data-dash-kpi]').forEach((b) => b.classList.remove('is-active'));
-          btn.classList.add('is-active');
-          const key = btn.getAttribute('data-dash-kpi');
-          if (titleEl && chartTitles[key]) titleEl.textContent = chartTitles[key];
-          // subtle bar remix on metric tap
-          if (barsEl) {
-            barsEl.querySelectorAll('.dash-hour i').forEach((bar, i) => {
-              const base = parseFloat(getComputedStyle(bar).getPropertyValue('--h')) || 50;
-              const next = Math.max(18, Math.min(100, base + ((i % 2 === 0 ? 1 : -1) * (8 + (i * 3) % 12))));
-              bar.style.setProperty('--h', next + '%');
-            });
-          }
-        });
-      });
-
-      applyRange('today');
-      setScreen('dashboard');
-
-      // Soft horizontal scroll tour on dashboard when hero is visible
-      if (scrollEl && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        let dir = 1;
-        let paused = false;
-        let enabled = true;
-        let timer = null;
-        const tick = () => {
-          if (paused || !enabled || activeScreen !== 'dashboard') return;
-          const maxX = scrollEl.scrollWidth - scrollEl.clientWidth;
-          if (maxX > 8) {
-            scrollEl.scrollLeft += dir * 0.45;
-            if (scrollEl.scrollLeft >= maxX - 1) dir = -1;
-            if (scrollEl.scrollLeft <= 1) dir = 1;
-          }
-        };
-        const start = () => {
-          if (timer || !enabled) return;
-          timer = setInterval(tick, 32);
-        };
-        const stop = () => {
-          if (timer) clearInterval(timer);
-          timer = null;
-        };
-        const pause = () => { paused = true; };
-        const resume = () => { paused = false; };
-        scrollEl.addEventListener('pointerdown', pause);
-        scrollEl.addEventListener('wheel', pause, { passive: true });
-        scrollEl.addEventListener('pointerleave', () => setTimeout(resume, 1800));
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach((e) => (e.isIntersecting && enabled ? start() : stop()));
-        }, { threshold: 0.35 });
-        io.observe(dashRoot);
-        scrollTour = {
-          setEnabled(on) {
-            enabled = on;
-            if (!on) stop();
-            else if (dashRoot.getBoundingClientRect().height) start();
-          },
-        };
-      }
     }
 
     window.addEventListener('taneesh:locale', () => {
