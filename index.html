@@ -35,7 +35,8 @@
     html { scroll-behavior: smooth; }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .offer-rail { scroll-behavior: auto; }
+      .offer-rail,
+      .features-loop { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
     body {
@@ -2269,131 +2270,105 @@
       #flow .flow-step { text-align: left; }
     }
 
-    .features-layout {
-      display: grid;
-      grid-template-columns: minmax(240px, 0.36fr) minmax(0, 0.64fr);
-      gap: clamp(24px, 4vw, 40px);
-      align-items: stretch;
+    .features-loop-bleed {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
     }
-    .features-tablist {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .features-tab {
-      display: grid;
-      gap: 4px;
-      width: 100%;
-      padding: 14px 16px;
-      border-radius: 16px;
-      border: 1px solid transparent;
-      background: transparent;
-      text-align: left;
-      cursor: pointer;
-      transition: background 160ms var(--ease), border-color 160ms var(--ease);
-    }
-    .features-tab:hover {
-      background: rgba(28, 25, 23, 0.04);
-    }
-    .features-tab.is-active {
-      background: rgba(28, 25, 23, 0.06);
-      border-color: rgba(10, 10, 10, 0.08);
-    }
-    .features-tab-tag {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .features-tab.is-active .features-tab-tag {
-      color: #0f7a38;
-    }
-    .features-tab-title {
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      line-height: 1.3;
-    }
-    .features-stage {
+    .features-loop-mask {
       position: relative;
-      min-height: clamp(360px, 42vw, 480px);
+      overflow: hidden;
+    }
+    .features-loop-mask::before,
+    .features-loop-mask::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: clamp(56px, 11vw, 148px);
+      z-index: 2;
+      pointer-events: none;
+    }
+    .features-loop-mask::before {
+      left: 0;
+      background: linear-gradient(90deg, #fff 18%, rgba(255, 255, 255, 0) 100%);
+    }
+    .features-loop-mask::after {
+      right: 0;
+      background: linear-gradient(270deg, #fff 18%, rgba(255, 255, 255, 0) 100%);
+    }
+    .features-loop {
+      display: flex;
+      gap: clamp(16px, 2.4vw, 28px);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scroll-padding-inline: max(24px, calc((100vw - var(--max)) / 2 + 24px));
+      padding: 4px max(24px, calc((100vw - var(--max)) / 2 + 24px)) 10px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      cursor: grab;
+      touch-action: pan-x;
+    }
+    .features-loop.is-dragging {
+      cursor: grabbing;
+      scroll-snap-type: none;
+      scroll-behavior: auto;
+      user-select: none;
+    }
+    .features-loop::-webkit-scrollbar { display: none; }
+    .features-card {
+      position: relative;
+      flex: 0 0 min(88vw, 680px);
+      scroll-snap-align: center;
+      min-height: clamp(380px, 44vw, 520px);
+      padding: clamp(28px, 4vw, 36px);
       border-radius: 28px;
       overflow: hidden;
-      background: var(--surface);
-    }
-    .features-panel {
-      position: absolute;
-      inset: 0;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: clamp(24px, 4vw, 32px);
       color: #fff;
       background-color: #1c1917;
       background-size: cover;
       background-position: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 260ms var(--ease);
+      isolation: isolate;
     }
-    .features-panel::before {
+    .features-card::before {
       content: "";
       position: absolute;
       inset: 0;
       background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 15%, rgba(0, 0, 0, 0.76) 100%);
       z-index: 0;
     }
-    .features-panel.is-active {
-      opacity: 1;
-      pointer-events: auto;
-      z-index: 1;
-    }
-    .features-panel-copy {
+    .features-card-copy {
       position: relative;
       z-index: 1;
       max-width: 36em;
     }
-    .features-panel-copy h3 {
+    .features-card-copy h3 {
       font-family: var(--font-display);
-      font-size: clamp(26px, 3.5vw, 34px);
+      font-size: clamp(28px, 3.8vw, 38px);
       font-weight: 400;
       letter-spacing: -0.02em;
       margin: 10px 0 8px;
       color: #fff;
     }
-    .features-panel-copy p {
-      color: rgba(255, 255, 255, 0.8);
+    .features-card-copy p {
+      color: rgba(255, 255, 255, 0.82);
       font-size: 15px;
       line-height: 1.5;
+      margin: 0;
     }
-    .features-panel-1 { background-image: url("assets/features/showcase.jpg"); }
-    .features-panel-2 { background-image: url("assets/features/payment.jpg"); }
-    .features-panel-3 { background-image: url("assets/features/crm.jpg"); }
-    .features-panel-4 { background-image: url("assets/features/refund.jpg"); }
-    .features-panel-5 { background-image: url("assets/features/invites.jpg"); }
-    .features-panel-6 { background-image: url("assets/features/scanner.jpg"); }
+    .features-card-1 { background-image: url("assets/features/showcase.jpg"); }
+    .features-card-2 { background-image: url("assets/features/payment.jpg"); }
+    .features-card-3 { background-image: url("assets/features/crm.jpg"); }
+    .features-card-4 { background-image: url("assets/features/refund.jpg"); }
+    .features-card-5 { background-image: url("assets/features/invites.jpg"); }
+    .features-card-6 { background-image: url("assets/features/scanner.jpg"); }
     @media (max-width: 960px) {
-      .features-layout {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-      .features-tablist {
-        flex-direction: row;
-        gap: 8px;
-        overflow-x: auto;
-        padding-bottom: 4px;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-      }
-      .features-tablist::-webkit-scrollbar { display: none; }
-      .features-tab {
-        flex: 0 0 auto;
-        min-width: 148px;
-      }
-      .features-stage {
-        min-height: 340px;
+      .features-card {
+        flex-basis: min(92vw, 620px);
+        min-height: 360px;
       }
     }
 
@@ -3767,71 +3742,47 @@
           <span class="eyebrow" data-i18n="offerEyebrow">Возможности</span>
           <h2 data-i18n="offerTitle">Возможности платформы</h2>
         </div>
-        <div class="features-layout" data-features-tabs>
-          <div class="features-tablist" role="tablist" aria-label="Возможности платформы">
-            <button type="button" class="features-tab is-active" role="tab" aria-selected="true" id="feature-tab-0" aria-controls="feature-panel-0" data-feature-tab="0">
-              <span class="features-tab-tag" data-i18n="o1tag">Витрина</span>
-              <span class="features-tab-title" data-i18n="o1t">Личная витрина</span>
-            </button>
-            <button type="button" class="features-tab" role="tab" aria-selected="false" id="feature-tab-1" aria-controls="feature-panel-1" data-feature-tab="1" tabindex="-1">
-              <span class="features-tab-tag" data-i18n="o2tag">Оплата</span>
-              <span class="features-tab-title" data-i18n="o2t">Оплата в 2 клика</span>
-            </button>
-            <button type="button" class="features-tab" role="tab" aria-selected="false" id="feature-tab-2" aria-controls="feature-panel-2" data-feature-tab="2" tabindex="-1">
-              <span class="features-tab-tag" data-i18n="o3tag">CRM</span>
-              <span class="features-tab-title" data-i18n="o3t">CRM для гостей</span>
-            </button>
-            <button type="button" class="features-tab" role="tab" aria-selected="false" id="feature-tab-3" aria-controls="feature-panel-3" data-feature-tab="3" tabindex="-1">
-              <span class="features-tab-tag" data-i18n="o4tag">Возврат</span>
-              <span class="features-tab-title" data-i18n="o4t">Возврат в 1 клик</span>
-            </button>
-            <button type="button" class="features-tab" role="tab" aria-selected="false" id="feature-tab-4" aria-controls="feature-panel-4" data-feature-tab="4" tabindex="-1">
-              <span class="features-tab-tag" data-i18n="o5tag">Приглашения</span>
-              <span class="features-tab-title" data-i18n="o5t">VIP-приглашения</span>
-            </button>
-            <button type="button" class="features-tab" role="tab" aria-selected="false" id="feature-tab-5" aria-controls="feature-panel-5" data-feature-tab="5" tabindex="-1">
-              <span class="features-tab-tag" data-i18n="o6tag">Сканер</span>
-              <span class="features-tab-title" data-i18n="o6t">Быстрый, удобный сканер</span>
-            </button>
-          </div>
-          <div class="features-stage">
-            <article class="features-panel features-panel-1 is-active" role="tabpanel" id="feature-panel-0" aria-labelledby="feature-tab-0" data-feature-panel="0">
-              <div class="features-panel-copy">
+      </div>
+      <div class="features-loop-bleed">
+        <div class="features-loop-mask">
+          <div class="features-loop" tabindex="0" data-features-loop data-i18n-aria="offerAria" aria-label="Возможности платформы">
+            <article class="features-card features-card-1" data-feature-card>
+              <div class="features-card-copy">
                 <span class="offer-tag" data-i18n="o1tag">Витрина</span>
                 <h3 data-i18n="o1t">Личная витрина</h3>
                 <p data-i18n="o1p">Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
               </div>
             </article>
-            <article class="features-panel features-panel-2" role="tabpanel" id="feature-panel-1" aria-labelledby="feature-tab-1" data-feature-panel="1" hidden>
-              <div class="features-panel-copy">
+            <article class="features-card features-card-2" data-feature-card>
+              <div class="features-card-copy">
                 <span class="offer-tag" data-i18n="o2tag">Оплата</span>
                 <h3 data-i18n="o2t">Оплата в 2 клика</h3>
                 <p data-i18n="o2p">Гость платит прямо в браузере телефона — ничего скачивать не нужно.</p>
               </div>
             </article>
-            <article class="features-panel features-panel-3" role="tabpanel" id="feature-panel-2" aria-labelledby="feature-tab-2" data-feature-panel="2" hidden>
-              <div class="features-panel-copy">
+            <article class="features-card features-card-3" data-feature-card>
+              <div class="features-card-copy">
                 <span class="offer-tag" data-i18n="o3tag">CRM</span>
                 <h3 data-i18n="o3t">CRM для гостей</h3>
                 <p data-i18n="o3p">Список покупателей, статусы оплат и контактные данные в едином дашборде.</p>
               </div>
             </article>
-            <article class="features-panel features-panel-4" role="tabpanel" id="feature-panel-3" aria-labelledby="feature-tab-3" data-feature-panel="3" hidden>
-              <div class="features-panel-copy">
+            <article class="features-card features-card-4" data-feature-card>
+              <div class="features-card-copy">
                 <span class="offer-tag" data-i18n="o4tag">Возврат</span>
                 <h3 data-i18n="o4t">Возврат в 1 клик</h3>
                 <p data-i18n="o4p">Мгновенно отменяйте и возвращайте билеты без долгих переписок с поддержкой.</p>
               </div>
             </article>
-            <article class="features-panel features-panel-5" role="tabpanel" id="feature-panel-4" aria-labelledby="feature-tab-4" data-feature-panel="4" hidden>
-              <div class="features-panel-copy">
+            <article class="features-card features-card-5" data-feature-card>
+              <div class="features-card-copy">
                 <span class="offer-tag" data-i18n="o5tag">Приглашения</span>
                 <h3 data-i18n="o5t">VIP-приглашения</h3>
                 <p data-i18n="o5p">Генерируйте закрытые ссылки или бесплатные билеты для особых гостей и партнеров.</p>
               </div>
             </article>
-            <article class="features-panel features-panel-6" role="tabpanel" id="feature-panel-5" aria-labelledby="feature-tab-5" data-feature-panel="5" hidden>
-              <div class="features-panel-copy">
+            <article class="features-card features-card-6" data-feature-card>
+              <div class="features-card-copy">
                 <span class="offer-tag" data-i18n="o6tag">Сканер</span>
                 <h3 data-i18n="o6t">Быстрый, удобный сканер</h3>
                 <p data-i18n="o6p">Быстрый контроль на входе по QR-кодам. Исключает подделки и повторные проходы.</p>
@@ -4264,28 +4215,96 @@
       render();
     })();
 
-    // Feature tabs (#included)
-    document.querySelectorAll('[data-features-tabs]').forEach((root) => {
-      const tabs = [...root.querySelectorAll('[data-feature-tab]')];
-      const panels = [...root.querySelectorAll('[data-feature-panel]')];
-      const activate = (index) => {
-        tabs.forEach((tab, i) => {
-          const on = i === index;
-          tab.classList.toggle('is-active', on);
-          tab.setAttribute('aria-selected', on ? 'true' : 'false');
-          tab.tabIndex = on ? 0 : -1;
-        });
-        panels.forEach((panel, i) => {
-          const on = i === index;
-          panel.classList.toggle('is-active', on);
-          panel.hidden = !on;
-        });
-      };
-      tabs.forEach((tab, i) => {
-        tab.addEventListener('click', () => activate(i));
+    // Features loop (#included) — infinite horizontal carousel
+    (function initFeaturesLoop() {
+      const rail = document.querySelector('[data-features-loop]');
+      if (!rail || rail.dataset.loopReady) return;
+      rail.dataset.loopReady = '1';
+
+      const originals = [...rail.querySelectorAll('[data-feature-card]')];
+      const count = originals.length;
+      if (!count) return;
+
+      const before = document.createDocumentFragment();
+      const after = document.createDocumentFragment();
+      originals.forEach((card) => {
+        before.appendChild(card.cloneNode(true));
+        after.appendChild(card.cloneNode(true));
       });
-      activate(0);
-    });
+      rail.insertBefore(before, rail.firstChild);
+      rail.appendChild(after);
+
+      let loopWidth = 0;
+      let dragging = false;
+      let dragStartX = 0;
+      let dragStartScroll = 0;
+      let scrollTimer = 0;
+
+      const cards = () => [...rail.querySelectorAll('[data-feature-card]')];
+
+      const measureLoop = () => {
+        const list = cards();
+        if (list.length < count * 2) return 0;
+        return list[count].offsetLeft - list[0].offsetLeft;
+      };
+
+      const jumpToMiddle = () => {
+        loopWidth = measureLoop();
+        if (!loopWidth) return;
+        rail.scrollLeft = loopWidth;
+      };
+
+      const normalize = () => {
+        if (!loopWidth || dragging) return;
+        if (rail.scrollLeft <= loopWidth * 0.2) {
+          rail.scrollLeft += loopWidth;
+        } else if (rail.scrollLeft >= loopWidth * 1.8) {
+          rail.scrollLeft -= loopWidth;
+        }
+      };
+
+      const onScroll = () => {
+        window.clearTimeout(scrollTimer);
+        scrollTimer = window.setTimeout(normalize, 90);
+      };
+
+      rail.addEventListener('scroll', onScroll, { passive: true });
+      if ('onscrollend' in window) {
+        rail.addEventListener('scrollend', normalize);
+      }
+
+      rail.addEventListener('pointerdown', (event) => {
+        if (event.button !== 0) return;
+        dragging = true;
+        dragStartX = event.clientX;
+        dragStartScroll = rail.scrollLeft;
+        rail.classList.add('is-dragging');
+        rail.setPointerCapture(event.pointerId);
+      });
+
+      rail.addEventListener('pointermove', (event) => {
+        if (!dragging) return;
+        rail.scrollLeft = dragStartScroll - (event.clientX - dragStartX);
+      });
+
+      const endDrag = () => {
+        if (!dragging) return;
+        dragging = false;
+        rail.classList.remove('is-dragging');
+        normalize();
+      };
+
+      rail.addEventListener('pointerup', endDrag);
+      rail.addEventListener('pointercancel', endDrag);
+
+      window.addEventListener('resize', () => {
+        const ratio = loopWidth ? rail.scrollLeft / loopWidth : 1;
+        jumpToMiddle();
+        if (loopWidth) rail.scrollLeft = loopWidth * ratio;
+      });
+
+      requestAnimationFrame(jumpToMiddle);
+    })();
 
     // Card rails (niches) — progress + nav
     document.querySelectorAll('[data-card-rail]').forEach((rail) => {
