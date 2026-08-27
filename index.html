@@ -635,23 +635,6 @@
     }
     .section-alt .calc-shell { background: #fff; }
     .calc-viz { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
-    .calc-rate {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      text-align: center;
-      flex-wrap: wrap;
-    }
-    .calc-rate span { font-size: 13px; font-weight: 700; color: var(--muted); }
-    .calc-rate strong {
-      font-family: var(--font-display);
-      font-size: clamp(36px, 5vw, 56px);
-      letter-spacing: -0.03em;
-      line-height: 1;
-    }
-    .calc-rate.soft strong { color: var(--muted); font-size: clamp(28px, 4vw, 40px); }
     .calc-chart {
       flex: 1;
       min-height: 180px;
@@ -832,7 +815,6 @@
       70% { box-shadow: 0 0 0 8px rgba(30, 215, 96, 0); }
       100% { box-shadow: 0 0 0 0 rgba(30, 215, 96, 0); }
     }
-    .calc-rate .rate small { font-size: 0.45em; }
     .live-filters {
       display: flex;
       flex-wrap: wrap;
@@ -870,7 +852,7 @@
     }
     .metric-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 12px;
     }
     .live-actions { display: flex; justify-content: center; margin-top: 4px; }
@@ -2112,10 +2094,6 @@
         </div>
         <div class="calc-shell live-conv" data-live-conv>
           <div class="calc-viz">
-            <div class="calc-rate">
-              <span data-i18n="convRateLabel">Конверсия</span>
-              <strong class="rate"><span id="liveConvRate" data-live="34">34</span><small>%</small></strong>
-            </div>
             <div class="live-filters" role="tablist" aria-label="Период">
               <button type="button" class="live-filter is-active" data-live-range="week" data-i18n="liveRangeWeek">За неделю</button>
               <button type="button" class="live-filter" data-live-range="month" data-i18n="liveRangeMonth">За месяц</button>
@@ -2136,6 +2114,10 @@
             <p class="calc-viz-note" data-i18n="liveDesc">Витрина → оплата — без приукрашивания.</p>
           </div>
           <div class="metric-grid">
+            <div class="metric-card">
+              <span class="k" data-i18n="convRateLabel">Конверсия</span>
+              <strong class="v"><span id="liveConvRate" data-live="34">34</span>%</strong>
+            </div>
             <div class="metric-card">
               <span class="k" data-i18n="liveViews">Просмотры сейчас</span>
               <strong class="v"><span id="liveViews" data-live="1284">1 284</span></strong>
