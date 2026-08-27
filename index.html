@@ -2823,6 +2823,7 @@
     .faq-item[open] .faq-icon::before { content: "−"; }
     .faq-a {
       padding: 0 0 22px;
+      font-family: var(--font-ui);
       color: var(--muted);
       font-size: 15px;
       line-height: 1.6;
@@ -3868,7 +3869,9 @@
 
     <section class="section" id="faq">
       <div class="wrap faq-wrap">
-        <h2 class="faq-title" data-i18n="faqTitle">Часто задаваемые вопросы</h2>
+        <div class="section-head">
+          <h2 data-i18n="faqTitle">Часто задаваемые вопросы</h2>
+        </div>
         <div class="faq-list" id="faqList" data-faq-list>
           <details class="faq-item" data-faq="0">
             <summary><span class="faq-q-text">Можно ли продавать без ИП и «большой» кассы?</span><span class="faq-icon" aria-hidden="true"></span></summary>
