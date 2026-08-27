@@ -1432,15 +1432,28 @@
       color: var(--muted);
       margin-bottom: 6px;
     }
+    .calc-summary .k {
+      margin-bottom: 0;
+    }
+    .calc-summary > div,
+    .metric-card {
+      text-align: center;
+      display: grid;
+      gap: 6px;
+      justify-items: center;
+    }
     .calc-summary .v,
     .metric-card .v {
       font-size: 22px;
       font-weight: 800;
       letter-spacing: -0.02em;
+      line-height: 1;
     }
-    .calc-summary > div,
-    .metric-card {
-      text-align: center;
+    .calc-summary em {
+      font-style: normal;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
     }
     .fees-board {
       grid-template-columns: 1fr;
@@ -3235,11 +3248,13 @@
             <div class="calc-summary">
               <div>
                 <span class="k" data-i18n="whySaveLabel">экономия с 1 билета vs 15% касса</span>
-                <strong class="v"><span id="saveAmount">+15 000 сум</span></strong>
+                <strong class="v" id="saveAmount">+15 000</strong>
+                <em data-i18n="currency">сум</em>
               </div>
               <div>
                 <span class="k" data-i18n="whySavePack">Экономия на 100 билетах</span>
-                <strong class="v"><span id="savePack">1 500 000 сум</span></strong>
+                <strong class="v" id="savePack">1 500 000</strong>
+                <em data-i18n="currency">сум</em>
               </div>
             </div>
           </div>
@@ -3797,8 +3812,8 @@
       if (whyLabel) whyLabel.textContent = d.money(fmt(t));
       if (tanPer) tanPer.textContent = fmt(t);
       if (aggPer) aggPer.textContent = fmt(withAgg);
-      if (saveEl) saveEl.textContent = '+' + d.money(fmt(save));
-      if (packEl) packEl.textContent = d.money(fmt(pack));
+      if (saveEl) saveEl.textContent = '+' + fmt(save);
+      if (packEl) packEl.textContent = fmt(pack);
     }
 
     function recalcFees() {
