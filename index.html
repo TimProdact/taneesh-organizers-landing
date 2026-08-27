@@ -878,9 +878,6 @@
     .fees-result-card.is-you span { color: #0f7a38; }
     .fees-result-card.is-bad span { color: #b91c1c; }
     .fees-result-card.is-bad strong { color: #dc2626; }
-    .why-board .fees-result-card strong {
-      font-size: clamp(28px, 4.5vw, 42px);
-    }
     .fees-result-card strong {
       font-family: var(--font-display);
       font-size: clamp(32px, 5vw, 48px);
@@ -1854,25 +1851,25 @@
       </div>
     </section>
 
-    <section class="section section-alt" id="why">
+    <section class="section" id="why">
       <div class="wrap">
         <div class="section-head">
           <span class="eyebrow" data-i18n="whyEyebrow">Экономика организатора</span>
           <h2 data-i18n="whyTitle">Не отдавайте 15% с билета</h2>
         </div>
-        <div class="calc-shell fees-board why-board">
+        <div class="calc-shell fees-board">
           <div class="fees-result">
-            <div class="fees-result-card is-bad">
-              <span data-i18n="whyBad">Обычная касса · 15%</span>
-              <strong>−<span id="aggPerTicket">15 000</span></strong>
+            <div class="fees-result-card is-you">
+              <span data-i18n="whyGood">Taneesh · вам 100%</span>
+              <strong id="tanPerTicket">100 000</strong>
               <em data-i18n="currency">сум</em>
             </div>
             <div class="fees-result-arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </div>
-            <div class="fees-result-card is-you">
-              <span data-i18n="whyGood">Taneesh · вам 100%</span>
-              <strong id="tanPerTicket">0</strong>
+            <div class="fees-result-card">
+              <span data-i18n="whyBad">Обычная касса · 15%</span>
+              <strong id="aggPerTicket">85 000</strong>
               <em data-i18n="currency">сум</em>
             </div>
           </div>
@@ -1880,22 +1877,21 @@
             <div class="calc-field">
               <div class="calc-field-main">
                 <strong id="whyTicketLabel">100 000 сум</strong>
-                <span class="calc-field-meta" data-i18n="whyTicket">Цена билета</span>
+                <span class="calc-field-meta" data-i18n="whyTicket">Цена билета на концерт</span>
               </div>
               <input type="range" id="whyTicketPrice" min="20000" max="500000" step="1000" value="100000" />
             </div>
             <div class="calc-summary">
               <div>
-                <span class="k" data-i18n="whySaveLabel">экономия с 1 билета</span>
+                <span class="k" data-i18n="whySaveLabel">экономия с 1 билета vs 15% касса</span>
                 <strong class="v">+<span id="saveAmount">15 000</span></strong>
               </div>
               <div>
-                <span class="k" data-i18n="whySavePack">на 100 билетах</span>
+                <span class="k" data-i18n="whySavePack">Экономия на 100 билетах</span>
                 <strong class="v"><span id="savePack">1 500 000</span></strong>
               </div>
             </div>
-            <p class="fees-hint" id="tanCostLabel">0 сум с цены билета</p>
-            <p class="fees-hint" id="aggCostLabel" hidden>−15 000 сум с билета</p>
+            <p class="fees-hint" id="tanCostLabel">0 сум с цены 100 000</p>
             <a class="calc-cta" href="#cta" data-goto="cta" data-i18n="heroCta">Запустить продажи</a>
           </div>
         </div>
@@ -2394,36 +2390,25 @@
 
     function recalcWhy(ticketPrice) {
       const t = Math.max(0, +ticketPrice || 0);
-      const agg = Math.round(t * AGG_RATE);
-      const save = agg;
+      const aggTake = Math.round(t * AGG_RATE);
+      const withAgg = t - aggTake;
+      const save = aggTake;
       const pack = save * PACK;
       const d = copy();
 
       const whyLabel = document.getElementById('whyTicketLabel');
       const saveEl = document.getElementById('saveAmount');
       const packEl = document.getElementById('savePack');
-      const aggLabel = document.getElementById('aggCostLabel');
       const tanLabel = document.getElementById('tanCostLabel');
       const aggPer = document.getElementById('aggPerTicket');
       const tanPer = document.getElementById('tanPerTicket');
-      const bad = document.getElementById('aggBar');
-      const good = document.getElementById('tanBar');
 
       if (whyLabel) whyLabel.textContent = d.money(fmt(t));
-      if (aggLabel) aggLabel.textContent = d.aggCost(fmt(agg));
       if (tanLabel) tanLabel.textContent = d.tanCost(fmt(t));
-      if (aggPer) aggPer.textContent = fmt(agg);
-      if (tanPer) tanPer.textContent = '0';
+      if (tanPer) tanPer.textContent = fmt(t);
+      if (aggPer) aggPer.textContent = fmt(withAgg);
       if (saveEl) saveEl.textContent = fmt(save);
       if (packEl) packEl.textContent = fmt(pack);
-      if (bad) {
-        bad.dataset.w = String(Math.round(AGG_RATE * 100));
-        bad.style.width = (AGG_RATE * 100) + '%';
-      }
-      if (good) {
-        good.dataset.w = '0';
-        good.style.width = '2%';
-      }
     }
 
     function recalcFees() {
