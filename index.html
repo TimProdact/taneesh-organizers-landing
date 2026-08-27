@@ -2038,19 +2038,41 @@
       display: grid;
       grid-template-columns: minmax(0, 1.06fr) minmax(300px, 0.94fr);
       gap: clamp(40px, 6vw, 72px);
-      align-items: center;
+      align-items: start;
     }
     #flow .flow-steps-col {
       max-width: 560px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    #flow .flow-steps-head {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: clamp(32px, 4.5vw, 48px);
     }
     #flow .flow-steps-title {
       font-size: clamp(28px, 3.5vw, 38px);
-      margin-bottom: clamp(24px, 3vw, 32px);
+      margin: 0;
       max-width: 16ch;
+    }
+    #flow .flow-steps-lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(15px, 1.5vw, 17px);
+      line-height: 1.55;
+      max-width: 34em;
+    }
+    #flow .flow-steps-group {
+      padding: clamp(22px, 3vw, 28px);
+      border-radius: 22px;
+      background: rgba(28, 25, 23, 0.03);
+      border: 1px solid rgba(10, 10, 10, 0.05);
     }
     #flow .flow-steps {
       display: grid;
-      gap: clamp(18px, 2.8vw, 28px);
+      gap: clamp(16px, 2.2vw, 22px);
       width: 100%;
     }
     #flow .flow-step {
@@ -2102,13 +2124,15 @@
       padding: clamp(36px, 5vw, 48px);
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       justify-content: center;
+      text-align: center;
       min-height: clamp(320px, 40vw, 420px);
     }
     #flow .flow-pitch h2 {
       font-size: clamp(32px, 4.2vw, 46px);
-      max-width: 12ch;
+      max-width: 14ch;
+      margin-inline: auto;
     }
     #flow .flow-pitch .flow-lead {
       margin: 16px 0 0;
@@ -2116,7 +2140,8 @@
       font-size: 16px;
       max-width: 28em;
       line-height: 1.5;
-      text-align: left;
+      text-align: center;
+      margin-inline: auto;
     }
     #flow .flow-pitch .flow-cta {
       margin-top: clamp(28px, 4vw, 36px);
@@ -2124,7 +2149,7 @@
     }
     #flow .flow-cta {
       display: inline-flex;
-      margin-inline: 0;
+      margin-inline: auto;
     }
     .flow-lead {
       margin: 14px 0 0;
@@ -2157,10 +2182,18 @@
       #flow .flow-steps-col {
         max-width: none;
       }
+      #flow .flow-steps-head {
+        text-align: center;
+        align-items: center;
+      }
       #flow .flow-steps-title {
         text-align: center;
         margin-inline: auto;
         max-width: none;
+      }
+      #flow .flow-steps-lead {
+        text-align: center;
+        margin-inline: auto;
       }
       #flow .flow-step { text-align: left; }
     }
@@ -3745,7 +3778,11 @@
       <div class="wrap">
         <div class="flow-layout">
           <div class="flow-steps-col">
-            <h2 class="flow-steps-title" data-i18n="flowStepsTitle">Как это работает</h2>
+            <div class="flow-steps-head">
+              <h2 class="flow-steps-title" data-i18n="flowStepsTitle">Как это работает</h2>
+              <p class="flow-steps-lead" data-i18n="flowStepsLead">Пять шагов — от кабинета до сканера на входе.</p>
+            </div>
+            <div class="flow-steps-group">
             <div class="flow-steps" aria-label="5 шагов">
               <article class="flow-step">
                 <span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
@@ -3768,11 +3805,11 @@
                 <p class="flow-step-copy"><strong data-i18n="flow5t">Пропуск гостей</strong> <span data-i18n="flow5d">Сканируйте QR-коды на билетах прямо с телефона. Пропускайте гостей без очередей и списков.</span></p>
               </article>
             </div>
+            </div>
           </div>
           <div class="flow-pitch">
             <div class="flow-pitch-frame">
               <h2 data-i18n="flowTitle">Запуск за 5 минут</h2>
-              <p class="flow-lead" data-i18n="flowLead">От регистрации до пропуска гостей на входе — без кассы, без абонентки и без сложной настройки.</p>
               <a class="btn btn-accent flow-cta" href="#" data-lead-modal data-lead-source="flowCta" data-i18n="flowCta">Начать продажи</a>
             </div>
           </div>
