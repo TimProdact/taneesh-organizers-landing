@@ -90,9 +90,12 @@
       margin-inline: auto;
     }
     .section-head {
-      margin: 0 auto 48px;
+      margin: 0 auto var(--section-head-gap);
       max-width: 720px;
       text-align: center;
+    }
+    .section-head h2 + .lead {
+      margin-top: 16px;
     }
     .section-head .lead { margin-inline: auto; }
 
@@ -2051,7 +2054,7 @@
       display: flex;
       flex-direction: column;
       gap: 14px;
-      margin-bottom: clamp(32px, 4.5vw, 48px);
+      margin-bottom: var(--section-head-gap);
     }
     #flow .flow-steps-title {
       font-size: clamp(28px, 3.5vw, 38px);
@@ -2199,9 +2202,6 @@
       #flow .flow-step { text-align: left; }
     }
 
-    #included .section-head {
-      margin-bottom: 28px;
-    }
     .features-layout {
       display: grid;
       grid-template-columns: minmax(240px, 0.36fr) minmax(0, 0.64fr);
@@ -2775,7 +2775,7 @@
       text-align: center;
       letter-spacing: -0.02em;
       line-height: 1.15;
-      margin-bottom: clamp(40px, 5vw, 56px);
+      margin-bottom: var(--section-head-gap);
     }
     .faq-list { margin-inline: auto; }
     .faq-item {
