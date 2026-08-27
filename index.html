@@ -86,7 +86,6 @@
     html { scroll-behavior: smooth; }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .offer-rail,
       .features-loop { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
@@ -156,8 +155,7 @@
       letter-spacing: var(--track-heading);
       line-height: 1;
     }
-    .card-title,
-    .niche-card strong {
+    .card-title {
       font-family: var(--font-display);
       font-size: var(--text-display-sm);
       font-weight: var(--weight-display);
@@ -2319,7 +2317,7 @@
     }
     #flow .flow-steps {
       display: grid;
-      gap: clamp(22px, 2.8vw, 28px);
+      gap: clamp(12px, 1.6vw, 16px);
       width: 100%;
       max-width: 560px;
       align-self: stretch;
@@ -2575,69 +2573,6 @@
       }
     }
 
-    /* Offer rail — full-bleed track, controls stay in .wrap */
-    .offer-rail-bleed {
-      width: 100vw;
-      margin-left: calc(50% - 50vw);
-      overflow: hidden;
-    }
-    .offer-rail {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: minmax(220px, 248px);
-      gap: 28px;
-      column-gap: 28px;
-      width: 100%;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      scroll-snap-type: x mandatory;
-      scroll-padding-inline-start: max(20px, calc((100vw - var(--max)) / 2 + 20px));
-      padding-inline-start: max(20px, calc((100vw - var(--max)) / 2 + 20px));
-      padding-inline-end: 0;
-      padding-bottom: 4px;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-    .offer-rail::after {
-      content: "";
-      width: max(20px, calc((100vw - var(--max)) / 2 + 20px));
-    }
-    .offer-rail::-webkit-scrollbar { display: none; }
-    .offer-card {
-      position: relative;
-      scroll-snap-align: start;
-      aspect-ratio: 3 / 4.4;
-      min-height: 360px;
-      padding: 22px;
-      border-radius: 28px;
-      border: 0;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: flex-start;
-      gap: 12px;
-      text-align: left;
-      color: #fff;
-      background-color: #1c1917;
-      background-size: cover;
-      background-position: center;
-      isolation: isolate;
-    }
-    .offer-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.08) 20%, rgba(0,0,0,0.72) 100%);
-      z-index: 0;
-    }
-    .offer-card > * { position: relative; z-index: 1; }
-    .offer-card-1 { background-image: url("assets/features/showcase.jpg"); }
-    .offer-card-2 { background-image: url("assets/features/payment.jpg"); }
-    .offer-card-3 { background-image: url("assets/features/crm.jpg"); }
-    .offer-card-4 { background-image: url("assets/features/refund.jpg"); }
-    .offer-card-5 { background-image: url("assets/features/invites.jpg"); }
-    .offer-card-6 { background-image: url("assets/features/scanner.jpg"); }
     .offer-tag {
       display: inline-flex;
       width: fit-content;
@@ -2650,51 +2585,6 @@
       border: 1px solid rgba(255, 255, 255, 0.18);
       backdrop-filter: blur(8px);
       margin-inline: 0;
-    }
-    .offer-body h3 {
-      margin-bottom: 8px;
-      color: #fff;
-    }
-    .offer-body p {
-      color: rgba(255, 255, 255, 0.78);
-      font-size: var(--text-body-sm);
-    }
-    .offer-controls {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 22px;
-    }
-    .offer-nav {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: 0;
-      background: rgba(28, 25, 23, 0.08);
-      color: var(--text);
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-      transition: background 160ms var(--ease), transform 160ms var(--ease);
-    }
-    .offer-nav:hover { background: rgba(28, 25, 23, 0.14); transform: translateY(-1px); }
-    .offer-nav:disabled { opacity: 0.35; cursor: default; transform: none; }
-    .offer-nav svg { width: 18px; height: 18px; }
-    .offer-progress {
-      height: 3px;
-      width: min(120px, 30%);
-      border-radius: 9999px;
-      background: rgba(28, 25, 23, 0.08);
-      margin: 16px auto 0;
-      overflow: hidden;
-    }
-    .offer-progress i {
-      display: block;
-      height: 100%;
-      width: 0%;
-      background: var(--accent);
-      border-radius: inherit;
     }
 
     /* Trust / niches / quote / payments */
@@ -2762,63 +2652,11 @@
       width: auto;
       max-width: 132px;
     }
-    .niche-card {
-      position: relative;
-      scroll-snap-align: start;
-      aspect-ratio: 3 / 4.4;
-      min-height: 360px;
-      padding: 22px;
-      border-radius: 28px;
-      border: 0;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: flex-start;
-      gap: 12px;
-      text-align: left;
-      color: #fff;
-      background-color: #1c1917;
-      background-size: cover;
-      background-position: center;
-      box-shadow: 0 8px 32px rgba(10, 10, 10, 0.1);
-      isolation: isolate;
-      transition: transform 220ms var(--ease), box-shadow 220ms var(--ease);
-    }
-    .niche-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.06) 30%, rgba(0, 0, 0, 0.78) 100%);
-      z-index: 0;
-      transition: opacity 220ms var(--ease);
-    }
-    .niche-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 40px rgba(10, 10, 10, 0.16);
-    }
-    .niche-card:hover::before {
-      opacity: 0.92;
-    }
-    .niche-card-1 { background-image: url("assets/niches/standup.jpg"); }
-    .niche-card-2 { background-image: url("assets/niches/conference.jpg"); }
-    .niche-card-3 { background-image: url("assets/niches/concert.jpg"); }
-    .niche-card-4 { background-image: url("assets/niches/sport.jpg"); }
-    .niche-card-5 { background-image: url("assets/niches/workshop.jpg"); }
-    .niche-card-6 { background-image: url("assets/niches/party.jpg"); }
-    .niche-card strong {
-      position: relative;
-      z-index: 1;
-      color: #fff;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .niche-card { transition: none; }
-      .niche-card:hover { transform: none; }
-    }
-
     /* Event format pills — 4 marquee tracks */
+    #niches .formats-stream {
+      margin-top: clamp(32px, 5vw, 56px);
+    }
     .formats-stream {
-      margin-top: clamp(28px, 4vw, 44px);
       padding: clamp(8px, 2vw, 16px) 0 clamp(4px, 1vw, 8px);
     }
     .formats-stream-bleed {
@@ -3548,6 +3386,201 @@
       cursor: pointer;
     }
 
+    /* Motion polish — entrance, scroll reveal, micro-interactions */
+    @keyframes rise-in {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes glow-drift {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
+      50% { transform: translate(2%, -3%) scale(1.04); opacity: 0.88; }
+    }
+    @keyframes aud-glass-float {
+      0%, 100% { transform: translateY(var(--aud-y, -14px)) scale(var(--aud-scale, 0.96)); }
+      50% { transform: translateY(calc(var(--aud-y, -14px) - 4px)) scale(var(--aud-scale, 0.96)); }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      #slide-hero .hero-copy .eyebrow { animation: rise-in 820ms var(--ease) both; }
+      #slide-hero .hero-copy h1 { animation: rise-in 820ms var(--ease) 70ms both; }
+      #slide-hero .hero-copy .lead { animation: rise-in 820ms var(--ease) 140ms both; }
+      #slide-hero .hero-copy .btn-row { animation: rise-in 820ms var(--ease) 210ms both; }
+      #slide-hero .hero-duo { animation: rise-in 920ms var(--ease) 280ms both; }
+
+      .site-footer__glow--left { animation: glow-drift 14s ease-in-out infinite; }
+      .site-footer__glow--right { animation: glow-drift 16s ease-in-out infinite reverse; }
+
+      .motion-in {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 680ms var(--ease),
+          transform 680ms var(--ease);
+      }
+      .motion-in.is-visible {
+        opacity: 1;
+        transform: none;
+      }
+      #flow .flow-step.motion-in.is-visible:nth-child(1) { transition-delay: 0ms; }
+      #flow .flow-step.motion-in.is-visible:nth-child(2) { transition-delay: 55ms; }
+      #flow .flow-step.motion-in.is-visible:nth-child(3) { transition-delay: 110ms; }
+      #flow .flow-step.motion-in.is-visible:nth-child(4) { transition-delay: 165ms; }
+      #flow .flow-step.motion-in.is-visible:nth-child(5) { transition-delay: 220ms; }
+
+      .aud-card-stack.is-visible .aud-glass-back {
+        --aud-y: -28px;
+        --aud-scale: 0.92;
+        animation: aud-glass-float 5.5s ease-in-out infinite;
+      }
+      .aud-card-stack.is-visible .aud-glass-mid {
+        --aud-y: -14px;
+        --aud-scale: 0.96;
+        animation: aud-glass-float 5.5s ease-in-out infinite 0.35s;
+      }
+    }
+
+    .aud-card {
+      transition: transform 280ms var(--ease), box-shadow 280ms var(--ease);
+    }
+    @media (hover: hover) {
+      .aud-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 22px 50px rgba(10, 10, 10, 0.11);
+      }
+      .aud-card-mesh:hover .aud-icon {
+        transform: translateY(-2px) scale(1.04);
+      }
+    }
+    .aud-icon {
+      transition: transform 220ms var(--ease), background 220ms var(--ease);
+    }
+
+    #flow .flow-ico {
+      transition: transform 220ms var(--ease), background 220ms var(--ease), color 220ms var(--ease);
+    }
+    @media (hover: hover) {
+      #flow .flow-step:hover .flow-ico {
+        transform: scale(1.08);
+        background: rgba(30, 215, 96, 0.14);
+        color: #0f7a38;
+      }
+    }
+
+    .formats-pill {
+      transition:
+        transform 180ms var(--ease),
+        border-color 180ms var(--ease),
+        box-shadow 180ms var(--ease),
+        background 180ms var(--ease);
+    }
+    @media (hover: hover) {
+      .formats-pill:hover {
+        transform: translateY(-2px) scale(1.03);
+        box-shadow: 0 8px 22px rgba(10, 10, 10, 0.08);
+      }
+      .formats-pill.is-accent:hover {
+        border-color: rgba(30, 215, 96, 0.42);
+      }
+    }
+
+    @media (hover: hover) {
+      .features-card:hover {
+        box-shadow: 0 18px 48px rgba(10, 10, 10, 0.15);
+      }
+    }
+
+    .fees-result-card,
+    .metric-card {
+      transition: transform 240ms var(--ease), background 240ms var(--ease), box-shadow 240ms var(--ease);
+    }
+    @media (hover: hover) {
+      .fees-result-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 28px rgba(10, 10, 10, 0.06);
+      }
+      .fees-result-card.is-you:hover {
+        background: rgba(30, 215, 96, 0.14);
+      }
+      .metric-card:hover {
+        transform: translateY(-2px);
+        background: rgba(28, 25, 23, 0.05);
+      }
+    }
+
+    .paytrust-logos span:not(.is-soon) {
+      transition: transform 200ms var(--ease), border-color 200ms var(--ease), box-shadow 200ms var(--ease);
+    }
+    @media (hover: hover) {
+      .paytrust-logos span:not(.is-soon):hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(10, 10, 10, 0.07);
+        border-color: rgba(30, 215, 96, 0.28);
+      }
+    }
+
+    .faq-item summary {
+      transition: color 200ms var(--ease);
+    }
+    @media (hover: hover) {
+      .faq-item summary:hover { color: #0f7a38; }
+    }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0;
+      transition: max-height 420ms var(--ease), padding 420ms var(--ease);
+    }
+    .faq-item[open] .faq-a {
+      max-height: 320px;
+      padding: 0 0 22px;
+    }
+
+    .btn-accent {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .btn-accent::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.38) 50%, transparent 60%);
+      transform: translateX(-130%);
+      transition: transform 620ms var(--ease);
+      pointer-events: none;
+    }
+    @media (hover: hover) {
+      .btn-accent:hover::after { transform: translateX(130%); }
+      .btn-accent:hover,
+      #cta .btn-dark:hover {
+        box-shadow: 0 10px 28px rgba(30, 215, 96, 0.22);
+      }
+      #cta .btn-dark:hover {
+        box-shadow: 0 10px 28px rgba(10, 10, 10, 0.22);
+      }
+    }
+
+    .trust-logo {
+      transition: color 220ms var(--ease), opacity 220ms var(--ease), transform 220ms var(--ease);
+    }
+    @media (hover: hover) {
+      .trust-logo:hover {
+        color: #8a8a8a;
+        opacity: 1;
+        transform: scale(1.04);
+      }
+    }
+
+    #flow .flow-pitch-frame {
+      transition: transform 320ms var(--ease), box-shadow 320ms var(--ease);
+    }
+    @media (hover: hover) {
+      #flow .flow-pitch-frame:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 20px 44px rgba(10, 10, 10, 0.08);
+      }
+    }
+
     @media (max-width: 960px) {
       .header-nav { display: none; }
       .hero-duo,
@@ -3558,11 +3591,6 @@
     }
     @media (max-width: 560px) {
       .wrap { width: min(100% - 28px, var(--max)); }
-      .offer-rail {
-        scroll-padding-inline-start: 14px;
-        padding-inline-start: 14px;
-      }
-      .offer-rail::after { width: 14px; }
       .header-pill { padding: 8px 8px 8px 14px; }
       .island.calc-shell { padding: clamp(24px, 4vw, 32px); }
       .calc-summary,
@@ -4114,41 +4142,8 @@
           <p class="lead" data-i18n="nicheLead">От стендапа до турнира — одна витрина, один чекаут, один сканер на входе.</p>
         </div>
       </div>
-      <div class="offer-rail-bleed">
-        <div class="offer-rail" tabindex="0" data-card-rail data-i18n-aria="nicheAria" aria-label="Форматы событий">
-          <article class="niche-card niche-card-1">
-            <strong data-i18n="niche1">Стендап-концерты</strong>
-          </article>
-          <article class="niche-card niche-card-2">
-            <strong data-i18n="niche2">Бизнес-конференции</strong>
-          </article>
-          <article class="niche-card niche-card-3">
-            <strong data-i18n="niche3">Концерты и шоу</strong>
-          </article>
-          <article class="niche-card niche-card-4">
-            <strong data-i18n="niche4">Спортивные турниры</strong>
-          </article>
-          <article class="niche-card niche-card-5">
-            <strong data-i18n="niche5">Мастер-классы</strong>
-          </article>
-          <article class="niche-card niche-card-6">
-            <strong data-i18n="niche6">Вечerинки и тусовки</strong>
-          </article>
-        </div>
-      </div>
-      <div class="wrap">
-        <div class="offer-controls">
-          <button type="button" class="offer-nav" data-rail-prev aria-label="Назад">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <button type="button" class="offer-nav" data-rail-next aria-label="Вперёд">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
-        </div>
-        <div class="offer-progress" aria-hidden="true"><i data-rail-progress></i></div>
-      </div>
       <div class="formats-stream">
-        <div class="formats-stream-bleed" data-format-stream aria-hidden="true"></div>
+        <div class="formats-stream-bleed" data-format-stream></div>
       </div>
     </section>
 
@@ -4752,7 +4747,7 @@
         if (!motionOk()) return;
         const railRect = rail.getBoundingClientRect();
         const centerX = railRect.left + railRect.width * 0.5;
-        const falloff = Math.max(railRect.width * 0.52, 320);
+        const falloff = Math.max(railRect.width * 0.55, 420);
         cards().forEach((card) => {
           const rect = card.getBoundingClientRect();
           const cardCenter = rect.left + rect.width * 0.5;
@@ -4845,71 +4840,6 @@
         updateFocus();
       });
     })();
-
-    // Card rails (niches) — progress + nav
-    document.querySelectorAll('[data-card-rail]').forEach((rail) => {
-      const section = rail.closest('section');
-      if (!section) return;
-      const progress = section.querySelector('[data-rail-progress]');
-      const prevBtn = section.querySelector('[data-rail-prev]');
-      const nextBtn = section.querySelector('[data-rail-next]');
-      const cards = () => [...rail.querySelectorAll('article')];
-      const motion = () => !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      const scrollLeftForIndex = (index) => {
-        const list = cards();
-        if (!list.length) return 0;
-        return Math.max(0, list[index].offsetLeft - list[0].offsetLeft);
-      };
-
-      const nearestIndex = () => {
-        const list = cards();
-        if (!list.length) return 0;
-        const pos = rail.scrollLeft;
-        let idx = 0;
-        let best = Infinity;
-        list.forEach((_, i) => {
-          const dist = Math.abs(scrollLeftForIndex(i) - pos);
-          if (dist < best) {
-            best = dist;
-            idx = i;
-          }
-        });
-        return idx;
-      };
-
-      const scrollToIndex = (index) => {
-        const list = cards();
-        if (!list.length) return;
-        const next = Math.max(0, Math.min(list.length - 1, index));
-        rail.scrollTo({
-          left: scrollLeftForIndex(next),
-          behavior: 'auto',
-        });
-      };
-
-      const syncProgress = () => {
-        const max = rail.scrollWidth - rail.clientWidth;
-        const p = max > 0 ? (rail.scrollLeft / max) * 100 : 0;
-        if (progress) progress.style.width = Math.max(12, Math.min(100, p || 12)) + '%';
-        if (prevBtn) prevBtn.disabled = rail.scrollLeft <= 4;
-        if (nextBtn) nextBtn.disabled = max <= 4 || rail.scrollLeft >= max - 4;
-      };
-
-      if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-          scrollToIndex(nearestIndex() - 1);
-        });
-      }
-      if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-          scrollToIndex(nearestIndex() + 1);
-        });
-      }
-      rail.addEventListener('scroll', syncProgress, { passive: true });
-      window.addEventListener('resize', syncProgress);
-      syncProgress();
-    });
 
     // Hero dashboard demo (periods, KPI tap, scroll tour) + admin nav
     const dashRoot = document.querySelector('[data-dash]');
@@ -5160,6 +5090,38 @@
       syncTicket(false);
       document.querySelectorAll('.faq-item[data-faq][open]').forEach((item) => item.removeAttribute('open'));
     });
+
+    (function initLandingMotion() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const selector = [
+        '.section:not(#slide-hero):not(#footer) .section-head',
+        '#flow .flow-step',
+        '.aud-card',
+        '#flow .flow-pitch-frame',
+        '#cta .cta-band',
+        '.quote-block',
+        '#faq .faq-item',
+        '#paytrust',
+        '.island.calc-shell',
+      ].join(',');
+
+      const nodes = document.querySelectorAll(selector);
+      nodes.forEach((node) => node.classList.add('motion-in'));
+
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.14, rootMargin: '0px 0px -7% 0px' }
+      );
+
+      nodes.forEach((node) => io.observe(node));
+    })();
 
     if (window.TaneeshI18n) window.TaneeshI18n.init();
     if (window.TaneeshLeadModal) window.TaneeshLeadModal.init();
