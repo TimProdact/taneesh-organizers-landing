@@ -13,7 +13,7 @@
     :root {
       --cream: #ffffff;
       --cream-2: #f6f6f6;
-      --surface: #f3f3f3;
+      --surface: #ececec;
       --text: #0a0a0a;
       --muted: rgba(10, 10, 10, 0.55);
       --accent: #1ed760;
@@ -76,8 +76,16 @@
     .cta-accent { color: var(--accent); }
     .section {
       padding-block: var(--pad-y);
+      background: #fff;
     }
-    .section-alt { background: var(--cream-2); }
+    .section-alt { background: #fff; }
+    .island {
+      background: var(--surface, #ececec);
+      border-radius: 32px;
+      padding: clamp(32px, 5vw, 48px);
+      max-width: var(--max);
+      margin-inline: auto;
+    }
     .section-head {
       margin: 0 auto 48px;
       max-width: 720px;
@@ -235,7 +243,7 @@
     }
     .hero-copy {
       max-width: 720px;
-      margin: 0 auto 88px;
+      margin: 0 auto 48px;
       text-align: center;
     }
     .hero-copy .eyebrow {
@@ -1296,13 +1304,15 @@
       grid-template-columns: 1.1fr 0.9fr;
       gap: 28px;
       align-items: stretch;
-      padding: 28px;
-      border-radius: 28px;
-      background: var(--surface);
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
       border: 0;
       box-shadow: none;
     }
-    .section-alt .calc-shell { background: #fff; }
+    .island.calc-shell {
+      width: 100%;
+    }
     .calc-viz { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
     .calc-rate {
       display: flex;
@@ -1683,7 +1693,6 @@
       background: #fff;
       border: 1px solid var(--border);
     }
-    .section-alt .flow-step { background: var(--cream); }
     .flow-ico {
       width: 42px; height: 42px; border-radius: 12px;
       display: grid; place-items: center;
@@ -1752,6 +1761,10 @@
         width: min(100%, 720px);
         margin-inline: auto;
       }
+    }
+
+    #included .section-head {
+      margin-bottom: 28px;
     }
 
     /* Offer rail — full-bleed track, controls stay in .wrap */
@@ -1877,7 +1890,7 @@
 
     /* Trust / niches / quote / payments */
     .trust-strip {
-      padding: 36px 0 28px;
+      padding: 8px 0 28px;
       background: #fff;
     }
     .trust-strip .wrap {
@@ -2108,9 +2121,9 @@
       align-items: center;
       justify-content: space-between;
       gap: 18px 28px;
-      padding: 28px 32px;
-      border-radius: 28px;
-      background: var(--surface);
+    }
+    #paytrust .island {
+      width: min(100% - 40px, var(--max));
     }
     .paytrust-copy {
       max-width: 420px;
@@ -2242,11 +2255,10 @@
       align-items: center;
       justify-content: space-between;
       gap: clamp(24px, 4vw, 48px);
-      padding: clamp(28px, 4vw, 40px) clamp(28px, 4vw, 44px);
-      border-radius: 32px;
-      background: var(--surface);
-      border: 0;
       text-align: left;
+    }
+    #cta .cta-band.island {
+      background: linear-gradient(135deg, #f5f5f5 0%, #ececec 100%);
     }
     .cta-copy {
       flex: 1 1 280px;
@@ -2534,7 +2546,7 @@
       }
       .offer-rail::after { width: 14px; }
       .header-pill { padding: 8px 8px 8px 14px; }
-      .calc-shell { padding: 18px; }
+      .island.calc-shell { padding: clamp(24px, 4vw, 32px); }
       .calc-summary,
       .metric-grid { grid-template-columns: 1fr; }
       .btn { width: 100%; }
@@ -3049,7 +3061,7 @@
           <span class="eyebrow" data-i18n="whyEyebrow">Экономика организатора</span>
           <h2 data-i18n="whyTitle">Не отдавайте 15% с билета</h2>
         </div>
-        <div class="calc-shell fees-board">
+        <div class="island calc-shell fees-board">
           <div class="fees-result">
             <div class="fees-result-card is-you">
               <span data-i18n="whyGood">Taneesh · вам 100%</span>
@@ -3083,7 +3095,61 @@
                 <strong class="v"><span id="savePack">1 500 000</span></strong>
               </div>
             </div>
-            <a class="calc-cta" href="#" data-lead-modal data-lead-source="whyCta" data-i18n="heroCta">Запустить продажи</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="fees">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="feesEyebrow">Сборы</span>
+          <h2 data-i18n="feesTitle">Сбор платит гость</h2>
+        </div>
+        <div class="island calc-shell fees-board">
+          <div class="fees-result" id="feesPunch">
+            <div class="fees-result-card is-you">
+              <span data-i18n="feesYou">вам · 100% цены билета</span>
+              <strong id="feesPunchOrg">100 000</strong>
+              <em data-i18n="currency">сум</em>
+            </div>
+            <div class="fees-result-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </div>
+            <div class="fees-result-card">
+              <span data-i18n="feesGuest">гость платит</span>
+              <strong id="feesPunchTotal">105 000</strong>
+              <em data-i18n="currency">сум</em>
+            </div>
+          </div>
+          <div class="calc-side fees-panel">
+            <div class="calc-sliders">
+              <div class="calc-field">
+                <div class="calc-field-main">
+                  <strong id="ticketLabel">100 000 сум</strong>
+                  <span class="calc-field-meta" data-i18n="feesTicket">Цена билета</span>
+                </div>
+                <input type="range" id="ticketPrice" min="20000" max="500000" step="1000" value="100000" />
+              </div>
+              <div class="calc-field">
+                <div class="calc-field-main">
+                  <strong id="fixLabel">3 500 сум</strong>
+                  <span class="calc-field-meta" data-i18n="feesFix">FixedFee на гостя</span>
+                </div>
+                <input type="range" id="fixFee" min="1000" max="15000" step="100" value="3500" />
+              </div>
+            </div>
+            <div class="calc-summary">
+              <div>
+                <span class="k" data-i18n="feesFeeRow">Сбор с гостя</span>
+                <strong class="v">+<span id="outFee">5 000</span></strong>
+              </div>
+              <div>
+                <span class="k"><span data-i18n="feesAcq">эквайринг 1.5%</span></span>
+                <strong class="v"><span id="outAcq">1 500</span> + <span id="outFix">3 500</span></strong>
+              </div>
+            </div>
+            <a class="calc-cta" href="#" data-lead-modal data-lead-source="feesCta" data-i18n="heroCta">Запустить продажи</a>
           </div>
         </div>
       </div>
@@ -3095,7 +3161,7 @@
           <span class="eyebrow" data-i18n="convEyebrow">Прозрачность</span>
           <h2 data-i18n="convTitle">Конверсия в реальном времени</h2>
         </div>
-        <div class="calc-shell live-conv" data-live-conv>
+        <div class="island calc-shell live-conv" data-live-conv>
           <div class="calc-viz">
             <div class="live-filters" role="tablist" aria-label="Период">
               <button type="button" class="live-filter is-active" data-live-range="week" data-i18n="liveRangeWeek">За неделю</button>
@@ -3138,14 +3204,11 @@
               <strong class="v"><span id="liveConvRate" data-live="34">34</span>%</strong>
             </div>
           </div>
-          <div class="live-actions">
-            <a class="calc-cta" href="#" data-lead-modal data-lead-source="convCta" data-i18n="navStart">Запустить</a>
-          </div>
         </div>
       </div>
     </section>
 
-    <section class="section section-alt" id="audience">
+    <section class="section" id="audience">
       <div class="wrap">
         <div class="section-head">
           <span class="eyebrow" data-i18n="audEyebrow">Аудитория</span>
@@ -3197,62 +3260,7 @@
       </div>
     </section>
 
-    <section class="section" id="fees">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="eyebrow" data-i18n="feesEyebrow">Сборы</span>
-          <h2 data-i18n="feesTitle">Сбор платит гость</h2>
-        </div>
-        <div class="calc-shell fees-board">
-          <div class="fees-result" id="feesPunch">
-            <div class="fees-result-card is-you">
-              <span data-i18n="feesYou">вам · 100% цены билета</span>
-              <strong id="feesPunchOrg">100 000</strong>
-              <em data-i18n="currency">сум</em>
-            </div>
-            <div class="fees-result-arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </div>
-            <div class="fees-result-card">
-              <span data-i18n="feesGuest">гость платит</span>
-              <strong id="feesPunchTotal">105 000</strong>
-              <em data-i18n="currency">сум</em>
-            </div>
-          </div>
-          <div class="calc-side fees-panel">
-            <div class="calc-sliders">
-              <div class="calc-field">
-                <div class="calc-field-main">
-                  <strong id="ticketLabel">100 000 сум</strong>
-                  <span class="calc-field-meta" data-i18n="feesTicket">Цена билета</span>
-                </div>
-                <input type="range" id="ticketPrice" min="20000" max="500000" step="1000" value="100000" />
-              </div>
-              <div class="calc-field">
-                <div class="calc-field-main">
-                  <strong id="fixLabel">3 500 сум</strong>
-                  <span class="calc-field-meta" data-i18n="feesFix">FixedFee на гостя</span>
-                </div>
-                <input type="range" id="fixFee" min="1000" max="15000" step="100" value="3500" />
-              </div>
-            </div>
-            <div class="calc-summary">
-              <div>
-                <span class="k" data-i18n="feesFeeRow">Сбор с гостя</span>
-                <strong class="v">+<span id="outFee">5 000</span></strong>
-              </div>
-              <div>
-                <span class="k"><span data-i18n="feesAcq">эквайринг 1.5%</span></span>
-                <strong class="v"><span id="outAcq">1 500</span> + <span id="outFix">3 500</span></strong>
-              </div>
-            </div>
-            <a class="calc-cta" href="#" data-lead-modal data-lead-source="feesCta" data-i18n="heroCta">Запустить продажи</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-alt" id="flow">
+    <section class="section" id="flow">
       <div class="wrap">
         <div class="flow-layout">
           <div class="flow-steps" aria-label="5 шагов">
@@ -3296,7 +3304,6 @@
             <span class="eyebrow" data-i18n="flowEyebrow">Запуск</span>
             <h2 data-i18n="flowTitle">Запуск за 5 минут</h2>
             <p class="flow-lead" data-i18n="flowLead">От регистрации до пропуска гостей на входе — без кассы, без абонентки и без сложной настройки.</p>
-            <a class="flow-cta" href="#" data-lead-modal data-lead-source="flowCta" data-i18n="flowCta">Запустить продажи</a>
           </div>
         </div>
       </div>
@@ -3465,7 +3472,7 @@
 
     <section class="section" id="paytrust">
       <div class="wrap">
-        <div class="paytrust">
+        <div class="island paytrust">
           <div class="paytrust-copy">
             <span class="eyebrow" data-i18n="payEyebrow">Платежи</span>
             <h3 data-i18n="payTitle">Безопасные оплаты и быстрая выплата</h3>
@@ -3515,7 +3522,7 @@
 
     <section class="section" id="cta">
       <div class="wrap">
-        <div class="cta-band">
+        <div class="island cta-band">
           <div class="cta-copy">
             <h2 data-i18n-html="ctaTitle">Запустите продажи.<br /><span class="cta-accent">Цена билета — ваша</span></h2>
           </div>
