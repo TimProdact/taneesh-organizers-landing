@@ -230,18 +230,26 @@
     .calc-cta { align-self: center; margin-inline: auto; }
 
     /* Hero */
-    #slide-hero { padding-top: 72px; }
+    #slide-hero {
+      padding-top: clamp(88px, 12vw, 120px);
+    }
     .hero-copy {
       max-width: 720px;
-      margin: 0 auto 56px;
+      margin: 0 auto 88px;
       text-align: center;
     }
-    .hero-note {
-      display: block;
-      margin-top: 16px;
-      font-size: 13px;
-      color: var(--muted);
-      font-weight: 600;
+    .hero-copy .eyebrow {
+      margin-bottom: 20px;
+    }
+    .hero-copy h1 {
+      margin-bottom: 28px;
+    }
+    .hero-copy .lead {
+      line-height: 1.65;
+      max-width: 32em;
+    }
+    .hero-copy .btn-row {
+      margin-top: 40px;
     }
 
     /* Hero duo: phone + admin dashboard (Time2book-style) */
@@ -2467,7 +2475,6 @@
             <a class="btn btn-accent" href="#" data-lead-modal data-lead-source="heroCta" data-i18n="heroCta">Запустить продажи</a>
             <a class="btn btn-ghost" href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
           </div>
-          <span class="hero-note" data-i18n="heroNote">Без абонентки · подключение за 5 минут</span>
         </div>
 
         <div class="hero-duo">
