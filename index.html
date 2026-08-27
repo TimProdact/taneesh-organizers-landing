@@ -3998,40 +3998,7 @@
     }
 
     /* Fees punch */
-    .phone #fees .fees-punch {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 12px;
-      padding: 16px 18px;
-      border-radius: var(--radius-tile);
-      background: linear-gradient(145deg, #0a3d1a, #0d1a12);
-      box-shadow: var(--hairline);
-    }
-    .phone #fees .fees-punch-col {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      min-width: 0;
-    }
-    .phone #fees .fees-punch .num {
-      font-size: clamp(26px, 4vw, 34px);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: #fff;
-      line-height: 1.05;
-    }
-    .phone #fees .fees-punch .label {
-      font-size: 12px;
-      color: rgba(255,255,255,.7);
-    }
-    .phone #fees .fees-punch-guest .num {
-      color: rgba(255,255,255,.88);
-      font-size: clamp(22px, 3.2vw, 28px);
-    }
     .phone #fees .fees-mock { display: none !important; }
-    @media (max-width: 560px) {
-      .phone #fees .fees-punch { grid-template-columns: 1fr; }
-    }
     @media (min-width: 720px) {
       .phone .bento-cats { grid-template-columns: 1fr 1fr; }
     }
@@ -4160,9 +4127,7 @@
     .phone .live-conv-hero,
     .phone .faq-card,
     .phone .cta-band,
-    .phone .offer-bento .offer-card,
-    .phone #footer .footer-brand,
-    .phone #footer .footer-links {
+    .phone .offer-bento .offer-card {
       border-radius: var(--radius-xl) !important;
     }
     .phone .header-pill {
@@ -4238,24 +4203,20 @@
       margin: 0;
     }
     .phone #conversion .live-conv-hero {
-      background: var(--bg-1) !important;
-      box-shadow: var(--hairline), var(--shadow-soft) !important;
+      background: transparent !important;
+      box-shadow: none !important;
     }
     .phone #conversion .live-stat {
-      background: var(--bg-0) !important;
-      border: 1px solid rgba(255, 255, 255, 0.08) !important;
-      border-radius: var(--radius-lg) !important;
+      background: transparent !important;
+      border: none !important;
     }
 
     /* Audience / fees: self-contained cards, no outer shell */
     .phone #fees .fees-punch,
     .phone #fees .fees-panel {
-      background: var(--bg-1) !important;
-      box-shadow: var(--hairline), var(--shadow-soft) !important;
-      border-radius: var(--radius-xl) !important;
-    }
-    .phone #fees .fees-punch {
-      background: linear-gradient(145deg, #0d2818, #121212) !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      border-radius: 0 !important;
     }
 
     /* Audience: Tana-style glass cards */
@@ -5292,6 +5253,272 @@
       .phone #slide-hero .store-agent { display: none; }
     }
 
+    /* Wise-style calculators: why / conversion / fees */
+    .phone .calc-reel {
+      background:
+        radial-gradient(ellipse 70% 50% at 80% 0%, #ffffff 0%, transparent 55%),
+        linear-gradient(180deg, #f4f4f5 0%, #ebebee 100%) !important;
+    }
+    .phone .calc-reel .section-head .eyebrow {
+      color: #16a34a !important;
+      font-size: 11px !important;
+      font-weight: 700 !important;
+      letter-spacing: .08em !important;
+      text-transform: uppercase !important;
+    }
+    .phone .calc-reel .section-head h2 {
+      color: #1c1917 !important;
+      font-family: var(--font-display) !important;
+      font-weight: 400 !important;
+      letter-spacing: -.02em !important;
+    }
+    .phone .calc-shell {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 1.15fr 0.95fr;
+      gap: 0;
+      width: 100%;
+      background: #fafafa;
+      border: 1px solid rgba(28,25,23,.06);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(28,25,23,.06);
+    }
+    .phone .calc-viz {
+      padding: 22px 22px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-width: 0;
+      background: #fafafa;
+    }
+    .phone .calc-side {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 0;
+      background: #f3f3f4;
+      border-left: 1px solid rgba(28,25,23,.06);
+    }
+    .phone .calc-rate {
+      display: grid;
+      gap: 4px;
+    }
+    .phone .calc-rate > span:not(.live-pill) {
+      font-size: 12px;
+      color: rgba(28,25,23,.5);
+      font-weight: 500;
+    }
+    .phone .calc-rate > strong {
+      font-size: clamp(26px, 4vw, 34px);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      color: #1c1917;
+      line-height: 1.05;
+    }
+    .phone .calc-rate.soft > strong {
+      font-size: clamp(22px, 3.2vw, 28px);
+      color: rgba(28,25,23,.72);
+    }
+    .phone .calc-rate .rate {
+      font-size: clamp(42px, 7vw, 64px);
+      font-weight: 800;
+      letter-spacing: -.04em;
+      color: #1c1917;
+      line-height: .95;
+    }
+    .phone .calc-rate .rate small {
+      font-size: .45em;
+      font-weight: 700;
+      margin-left: 2px;
+      color: rgba(28,25,23,.45);
+    }
+    .phone .calc-reel .live-pill {
+      justify-self: start;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(28,25,23,.06) !important;
+      border: 1px solid rgba(28,25,23,.08) !important;
+      color: rgba(28,25,23,.65);
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .phone .calc-reel .pulse-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 0 0 rgba(34,197,94,.5);
+      animation: pulseDot 1.6s ease infinite;
+    }
+    .phone .calc-chart {
+      flex: 1 1 auto;
+      min-height: 120px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .phone .calc-chart svg {
+      width: 100%;
+      height: 100%;
+      min-height: 110px;
+      display: block;
+    }
+    .phone .calc-chart .grid {
+      stroke: rgba(28,25,23,.1);
+      stroke-width: 1;
+      stroke-dasharray: 3 4;
+    }
+    .phone .calc-chart .line-good,
+    .phone .calc-chart .line-live {
+      fill: none;
+      stroke: #3f6212;
+      stroke-width: 2.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .phone .calc-chart .line-bad {
+      fill: none;
+      stroke: #b91c1c;
+      stroke-width: 2;
+      stroke-linecap: round;
+      opacity: .55;
+    }
+    .phone .calc-chart .dot-good,
+    .phone .calc-chart .dot-live {
+      fill: #3f6212;
+      stroke: #fff;
+      stroke-width: 2;
+    }
+    .phone .calc-chart-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+      font-size: 11px;
+      color: rgba(28,25,23,.42);
+    }
+    .phone .calc-viz-note {
+      margin: 0;
+      font-size: 13px;
+      color: rgba(28,25,23,.5);
+    }
+    .phone .calc-field {
+      background: #fff;
+      border: 1px solid rgba(28,25,23,.08);
+      border-radius: 14px;
+      padding: 12px 14px 10px;
+      display: grid;
+      gap: 8px;
+      box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+    }
+    .phone .calc-field.muted {
+      background: rgba(255,255,255,.7);
+    }
+    .phone .calc-field-main {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .phone .calc-field-main strong {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      color: #1c1917;
+      line-height: 1.1;
+    }
+    .phone .calc-field-meta {
+      font-size: 12px;
+      color: rgba(28,25,23,.48);
+      font-weight: 500;
+    }
+    .phone .calc-field-sub {
+      margin: 0;
+      font-size: 12px;
+      color: rgba(28,25,23,.45);
+    }
+    .phone .calc-field input[type=range] {
+      width: 100%;
+      accent-color: #9fe870;
+      height: 4px;
+    }
+    .phone .calc-summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid rgba(28,25,23,.1);
+      border-radius: 14px;
+      background: #fff;
+      overflow: hidden;
+    }
+    .phone .calc-summary > div {
+      padding: 12px 14px;
+      display: grid;
+      gap: 4px;
+    }
+    .phone .calc-summary > div + div {
+      border-left: 1px solid rgba(28,25,23,.1);
+    }
+    .phone .calc-summary .k {
+      font-size: 11px;
+      color: rgba(28,25,23,.48);
+      font-weight: 500;
+    }
+    .phone .calc-summary .v {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      color: #1c1917;
+    }
+    .phone .calc-summary-stack {
+      grid-template-columns: 1fr 1fr;
+    }
+    .phone .calc-summary-stack > div:nth-child(3),
+    .phone .calc-summary-stack > div:nth-child(4) {
+      border-top: 1px solid rgba(28,25,23,.1);
+    }
+    .phone .calc-summary-stack > div:nth-child(3) {
+      border-left: none;
+    }
+    .phone .calc-cta {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 18px;
+      border-radius: 999px;
+      background: #9fe870;
+      color: #12210a !important;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(159,232,112,.35);
+      transition: transform .15s ease, filter .15s ease;
+    }
+    .phone .calc-cta:hover {
+      filter: brightness(1.03);
+      transform: translateY(-1px);
+    }
+    .phone .calc-reel .fees-hint {
+      margin: 0;
+      font-size: 12px;
+      color: rgba(28,25,23,.45);
+    }
+    @media (max-width: 720px) {
+      .phone .calc-shell {
+        grid-template-columns: 1fr;
+      }
+      .phone .calc-side {
+        border-left: none;
+        border-top: 1px solid rgba(28,25,23,.06);
+      }
+      .phone .calc-chart { min-height: 100px; }
+      .phone .calc-chart svg { min-height: 90px; }
+    }
+
   </style>
   <script src="assets/i18n.js"></script>
 </head>
@@ -5418,92 +5645,115 @@
       </div>
     </section>
 
-    <section class="reel" id="why" data-slide>
+    <section class="reel calc-reel" id="why" data-slide>
       <div class="wrap fill-screen">
         <div class="section-head reveal">
           <span class="eyebrow" data-i18n="whyEyebrow">Экономика орга</span>
           <h2 data-i18n="whyTitle">Не отдавайте 15% с билета</h2>
         </div>
-        <div class="board board-why reveal">
-        <article class="cell cell-ticket">
-          <label>
-            <span data-i18n="whyTicket">Цена билета на концерт</span>
-            <strong id="whyTicketLabel">100 000 сум</strong>
-          </label>
-          <input type="range" id="whyTicketPrice" min="20000" max="500000" step="1000" value="100000" />
-        </article>
-        <article class="cell cell-bad">
-          <div class="label" data-i18n="whyBad">Обычная касса · 15%</div>
-          <div class="num bad" id="aggPerTicket">15 000</div>
-          <p id="aggCostLabel">−15 000 сум с билета</p>
-          <div class="bar-track"><div class="bar-fill bad" id="aggBar" data-w="15" style="width:15%"></div></div>
-        </article>
-        <article class="cell cell-good">
-          <div class="label" data-i18n="whyGood">Taneesh · вам 100%</div>
-          <div class="num" id="tanPerTicket">0</div>
-          <p id="tanCostLabel">0 сум с цены билета</p>
-          <div class="bar-track"><div class="bar-fill good" id="tanBar" data-w="0" style="width:2%"></div></div>
-        </article>
-        <article class="cell cell-save">
-          <strong class="num">+<span id="saveAmount">15 000</span> <span data-i18n="currency">сум</span></strong>
-          <span class="label" data-i18n="whySaveLabel">экономия с 1 билета vs 15% касса</span>
-        </article>
-        <article class="cell cell-pack">
-          <span class="label" data-i18n="whySavePack">Экономия на 100 билетах</span>
-          <strong class="num"><span id="savePack">1 500 000</span> <span data-i18n="currency">сум</span></strong>
-        </article>
+        <div class="calc-shell reveal">
+          <div class="calc-viz">
+            <div class="calc-rate">
+              <span data-i18n="whyBad">Обычная касса · 15%</span>
+              <strong>−<span id="aggPerTicket">15 000</span> <span data-i18n="currency">сум</span></strong>
+            </div>
+            <div class="calc-chart" aria-hidden="true">
+              <svg viewBox="0 0 320 140" preserveAspectRatio="none">
+                <line x1="0" y1="30" x2="320" y2="30" class="grid"/>
+                <line x1="0" y1="70" x2="320" y2="70" class="grid"/>
+                <line x1="0" y1="110" x2="320" y2="110" class="grid"/>
+                <path class="line-bad" d="M0 40 C40 38, 80 55, 120 48 S200 70, 240 62 S300 90, 320 85"/>
+                <path class="line-good" d="M0 118 C60 118, 120 116, 180 117 S260 115, 320 116"/>
+                <circle class="dot-good" cx="320" cy="116" r="4"/>
+              </svg>
+              <div class="calc-chart-labels">
+                <span data-i18n="whyBad">Касса 15%</span>
+                <span data-i18n="whyGood">Taneesh 100%</span>
+              </div>
+            </div>
+            <p class="calc-viz-note" id="aggCostLabel">−15 000 сум с билета</p>
+          </div>
+          <div class="calc-side">
+            <div class="calc-field">
+              <div class="calc-field-main">
+                <strong id="whyTicketLabel">100 000 сум</strong>
+                <span class="calc-field-meta" data-i18n="whyTicket">Цена билета</span>
+              </div>
+              <input type="range" id="whyTicketPrice" min="20000" max="500000" step="1000" value="100000" />
+            </div>
+            <div class="calc-field muted">
+              <div class="calc-field-main">
+                <strong id="tanPerTicket">0</strong>
+                <span class="calc-field-meta" data-i18n="whyGood">Taneesh · вам 100%</span>
+              </div>
+              <p class="calc-field-sub" id="tanCostLabel">0 сум с цены билета</p>
+            </div>
+            <div class="calc-summary">
+              <div>
+                <span class="k" data-i18n="whySaveLabel">экономия с 1 билета</span>
+                <strong class="v">+<span id="saveAmount">15 000</span></strong>
+              </div>
+              <div>
+                <span class="k" data-i18n="whySavePack">на 100 билетах</span>
+                <strong class="v"><span id="savePack">1 500 000</span></strong>
+              </div>
+            </div>
+            <a class="calc-cta" href="#cta" data-goto="cta" data-i18n="heroCta">Запустить продажи</a>
+            <div class="bar-track" hidden><div class="bar-fill bad" id="aggBar" data-w="15" style="width:15%"></div></div>
+            <div class="bar-track" hidden><div class="bar-fill good" id="tanBar" data-w="0" style="width:2%"></div></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="reel" id="conversion" data-slide>
+    <section class="reel calc-reel" id="conversion" data-slide>
       <div class="wrap fill-screen">
         <div class="section-head reveal">
           <span class="eyebrow" data-i18n="convEyebrow">Открытость</span>
           <h2 data-i18n="convTitle">Конверсия в реальном времени</h2>
         </div>
-
-        <div class="live-conv reveal fill-grow">
-          <div class="live-conv-hero fill-grow" data-live-conv>
-            <div class="live-pill"><span class="pulse-dot"></span> <span data-i18n="livePill">Live · платформа</span></div>
-            <div class="rate">
-              <span id="liveConvRate" data-live="34">0</span><small>%</small>
+        <div class="calc-shell live-conv reveal fill-grow" data-live-conv>
+          <div class="calc-viz">
+            <div class="calc-rate">
+              <span class="live-pill"><span class="pulse-dot"></span> <span data-i18n="livePill">Live · платформа</span></span>
+              <strong class="rate"><span id="liveConvRate" data-live="34">0</span><small>%</small></strong>
             </div>
-            <p class="desc" data-i18n="liveDesc">Витрина → оплата — без приукрашивания.</p>
-            <div class="live-stats">
-              <div class="live-stat">
-                <div class="k" data-i18n="liveViews">Просмотры сейчас</div>
-                <div class="v"><span id="liveViews" data-live="1284">0</span></div>
-              </div>
-              <div class="live-stat">
-                <div class="k" data-i18n="livePays">Оплаты / час</div>
-                <div class="v"><span id="livePays" data-live="47">0</span></div>
-              </div>
-              <div class="live-stat">
-                <div class="k" data-i18n="liveCheckout">До чекаута</div>
-                <div class="v"><span id="liveCheckout" data-live="41">0</span>%</div>
-              </div>
-              <div class="live-stat">
-                <div class="k" data-i18n="liveDrop">Бросили корзину</div>
-                <div class="v"><span id="liveDrop" data-live="7">0</span>%</div>
+            <div class="calc-chart calc-chart-live" aria-hidden="true" data-spark>
+              <svg viewBox="0 0 320 140" preserveAspectRatio="none">
+                <line x1="0" y1="28" x2="320" y2="28" class="grid"/>
+                <line x1="0" y1="70" x2="320" y2="70" class="grid"/>
+                <line x1="0" y1="112" x2="320" y2="112" class="grid"/>
+                <path class="line-live" d="M0 95 C28 88, 56 100, 84 78 S140 60, 168 68 S224 40, 252 48 S296 30, 320 26"/>
+                <circle class="dot-live" cx="320" cy="26" r="4.5"/>
+              </svg>
+              <div class="calc-chart-labels">
+                <span>7д</span>
+                <span data-i18n="livePill">Сегодня</span>
               </div>
             </div>
-            <div class="spark" aria-hidden="true" data-spark>
-              <i style="--h:42%"></i>
-              <i style="--h:55%"></i>
-              <i style="--h:48%"></i>
-              <i class="on" style="--h:68%"></i>
-              <i class="on" style="--h:72%"></i>
-              <i class="on" style="--h:61%"></i>
-              <i class="on" style="--h:80%"></i>
-              <i class="on" style="--h:76%"></i>
-              <i style="--h:58%"></i>
-              <i class="on" style="--h:88%"></i>
-              <i class="on" style="--h:84%"></i>
-              <i class="on" style="--h:92%"></i>
-            </div>
+            <p class="calc-viz-note" data-i18n="liveDesc">Витрина → оплата — без приукрашивания.</p>
           </div>
-
+          <div class="calc-side">
+            <div class="calc-summary calc-summary-stack">
+              <div>
+                <span class="k" data-i18n="liveViews">Просмотры сейчас</span>
+                <strong class="v"><span id="liveViews" data-live="1284">0</span></strong>
+              </div>
+              <div>
+                <span class="k" data-i18n="livePays">Оплаты / час</span>
+                <strong class="v"><span id="livePays" data-live="47">0</span></strong>
+              </div>
+              <div>
+                <span class="k" data-i18n="liveCheckout">До чекаута</span>
+                <strong class="v"><span id="liveCheckout" data-live="41">0</span>%</strong>
+              </div>
+              <div>
+                <span class="k" data-i18n="liveDrop">Бросили корзину</span>
+                <strong class="v"><span id="liveDrop" data-live="7">0</span>%</strong>
+              </div>
+            </div>
+            <a class="calc-cta" href="#cta" data-goto="cta" data-i18n="navStart">Запустить</a>
+          </div>
         </div>
       </div>
     </section>
@@ -5574,47 +5824,63 @@
       </div>
     </section>
 
-    <section class="reel" id="fees" data-slide>
+    <section class="reel calc-reel" id="fees" data-slide>
       <div class="wrap fill-screen">
         <div class="section-head reveal">
           <span class="eyebrow" data-i18n="feesEyebrow">Сборы</span>
           <h2 data-i18n="feesTitle">Сбор платит гость</h2>
         </div>
-        <div class="fees-board reveal">
-          <div class="fees-punch" id="feesPunch">
-            <div class="fees-punch-col">
-              <strong class="num" id="feesPunchOrg">100 000</strong>
-              <span class="label" data-i18n="feesYou">вам · 100% цены билета</span>
+        <div class="calc-shell fees-board reveal">
+          <div class="calc-viz" id="feesPunch">
+            <div class="calc-rate">
+              <span data-i18n="feesYou">вам · 100% цены билета</span>
+              <strong id="feesPunchOrg">100 000</strong>
             </div>
-            <div class="fees-punch-col fees-punch-guest">
-              <strong class="num" id="feesPunchTotal">105 000</strong>
-              <span class="label" data-i18n="feesGuest">гость платит</span>
+            <div class="calc-chart" aria-hidden="true">
+              <svg viewBox="0 0 320 140" preserveAspectRatio="none">
+                <line x1="0" y1="30" x2="320" y2="30" class="grid"/>
+                <line x1="0" y1="70" x2="320" y2="70" class="grid"/>
+                <line x1="0" y1="110" x2="320" y2="110" class="grid"/>
+                <path class="line-good" d="M0 100 C50 96, 100 88, 150 82 S250 70, 320 58"/>
+                <circle class="dot-good" cx="320" cy="58" r="4.5"/>
+              </svg>
+              <div class="calc-chart-labels">
+                <span data-i18n="feesYou">Орг</span>
+                <span data-i18n="feesGuest">Гость</span>
+              </div>
+            </div>
+            <div class="calc-rate soft">
+              <span data-i18n="feesGuest">гость платит</span>
+              <strong id="feesPunchTotal">105 000</strong>
             </div>
           </div>
-          <div class="panel fees-panel">
-            <div class="slider-wrap">
-              <label>
-                <span data-i18n="feesTicket">Цена билета</span>
+          <div class="calc-side fees-panel">
+            <div class="calc-field">
+              <div class="calc-field-main">
                 <strong id="ticketLabel">100 000 сум</strong>
-              </label>
+                <span class="calc-field-meta" data-i18n="feesTicket">Цена билета</span>
+              </div>
               <input type="range" id="ticketPrice" min="20000" max="500000" step="1000" value="100000" />
             </div>
-            <div class="slider-wrap">
-              <label>
-                <span data-i18n="feesFix">FixedFee на гостя</span>
+            <div class="calc-field">
+              <div class="calc-field-main">
                 <strong id="fixLabel">3 500 сум</strong>
-              </label>
+                <span class="calc-field-meta" data-i18n="feesFix">FixedFee на гостя</span>
+              </div>
               <input type="range" id="fixFee" min="1000" max="15000" step="100" value="3500" />
             </div>
+            <div class="calc-summary">
+              <div>
+                <span class="k" data-i18n="feesFeeRow">Сбор с гостя</span>
+                <strong class="v">+<span id="outFee">5 000</span></strong>
+              </div>
+              <div>
+                <span class="k"><span data-i18n="feesAcq">эквайринг 1.5%</span></span>
+                <strong class="v"><span id="outAcq">1 500</span> + <span id="outFix">3 500</span></strong>
+              </div>
+            </div>
             <p class="fees-hint" data-i18n="feesHint">Крупным — FixedFee от 3–5 тыс. в админке.</p>
-            <div class="fees-fee-row">
-              <span data-i18n="feesFeeRow">Сбор с гостя</span>
-              <strong>+<span id="outFee">5 000</span></strong>
-            </div>
-            <div class="fees-parts">
-              <span><span data-i18n="feesAcq">эквайринг 1.5%</span> · <b id="outAcq">1 500</b></span>
-              <span>FixedFee · <b id="outFix">3 500</b></span>
-            </div>
+            <a class="calc-cta" href="#cta" data-goto="cta" data-i18n="heroCta">Запустить продажи</a>
           </div>
         </div>
       </div>
@@ -5962,13 +6228,12 @@
           if (viewsEl) viewsEl.textContent = base.views.toLocaleString('ru-RU');
           if (paysEl) paysEl.textContent = String(base.pays);
           if (spark) {
-            const barsEl = [...spark.querySelectorAll('i')];
-            const last = barsEl[barsEl.length - 1];
-            if (last) {
-              const h = 55 + Math.round(Math.random() * 40);
-              last.style.setProperty('--h', h + '%');
-              last.classList.toggle('on', h > 62);
-              spark.appendChild(barsEl.shift());
+            const path = spark.querySelector('.line-live');
+            const dot = spark.querySelector('.dot-live');
+            if (path && dot) {
+              const y = 22 + Math.round(Math.random() * 18);
+              path.setAttribute('d', `M0 95 C28 88, 56 100, 84 78 S140 60, 168 68 S224 40, 252 48 S296 ${y + 8}, 320 ${y}`);
+              dot.setAttribute('cy', String(y));
             }
           }
         }, 3200), 1000);
@@ -6005,11 +6270,11 @@
       if (best !== index) {
         index = best;
         header.classList.toggle('is-scrolled', index > 0);
-        phone.classList.toggle('on-hero', !!(slides[index] && (slides[index].classList.contains('hero') || slides[index].classList.contains('audience-reel') || slides[index].classList.contains('flow-reel') || slides[index].classList.contains('offer-reel') || slides[index].classList.contains('footer-reel'))));
+        phone.classList.toggle('on-hero', !!(slides[index] && (slides[index].classList.contains('hero') || slides[index].classList.contains('audience-reel') || slides[index].classList.contains('flow-reel') || slides[index].classList.contains('offer-reel') || slides[index].classList.contains('footer-reel') || slides[index].classList.contains('calc-reel'))));
         enterSlide(slides[index]);
         if (typeof syncCarouselAutoplay === 'function') syncCarouselAutoplay();
       } else {
-        phone.classList.toggle('on-hero', !!(slides[index] && (slides[index].classList.contains('hero') || slides[index].classList.contains('audience-reel') || slides[index].classList.contains('flow-reel') || slides[index].classList.contains('offer-reel') || slides[index].classList.contains('footer-reel'))));
+        phone.classList.toggle('on-hero', !!(slides[index] && (slides[index].classList.contains('hero') || slides[index].classList.contains('audience-reel') || slides[index].classList.contains('flow-reel') || slides[index].classList.contains('offer-reel') || slides[index].classList.contains('footer-reel') || slides[index].classList.contains('calc-reel'))));
         enterSlide(slides[index]);
       }
     }
@@ -6055,7 +6320,7 @@
         if (el) scrollToSlide(el, { instant: true });
       }
       setActiveByScroll();
-      phone.classList.toggle('on-hero', !!(slides[index] && (slides[index].classList.contains('hero') || slides[index].classList.contains('audience-reel') || slides[index].classList.contains('flow-reel') || slides[index].classList.contains('offer-reel') || slides[index].classList.contains('footer-reel'))));
+      phone.classList.toggle('on-hero', !!(slides[index] && (slides[index].classList.contains('hero') || slides[index].classList.contains('audience-reel') || slides[index].classList.contains('flow-reel') || slides[index].classList.contains('offer-reel') || slides[index].classList.contains('footer-reel') || slides[index].classList.contains('calc-reel'))));
       if (slides[index] || slides[0]) enterSlide(slides[index] || slides[0]);
       if (typeof syncCarouselAutoplay === 'function') syncCarouselAutoplay();
     });
