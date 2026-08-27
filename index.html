@@ -3023,7 +3023,7 @@
             </div>
           </div>
           <div class="live-actions">
-            <a class="calc-cta" href="#cta" data-goto="cta" data-i18n="navStart">Запустить</a>
+            <a class="calc-cta" href="#" data-lead-modal data-lead-source="convCta" data-i18n="navStart">Запустить</a>
           </div>
         </div>
       </div>
@@ -3130,7 +3130,7 @@
                 <strong class="v"><span id="outAcq">1 500</span> + <span id="outFix">3 500</span></strong>
               </div>
             </div>
-            <a class="calc-cta" href="#" data-lead-modal data-lead-source="whyCta" data-i18n="heroCta">Запустить продажи</a>
+            <a class="calc-cta" href="#" data-lead-modal data-lead-source="feesCta" data-i18n="heroCta">Запустить продажи</a>
           </div>
         </div>
       </div>
@@ -3180,7 +3180,7 @@
             <span class="eyebrow" data-i18n="flowEyebrow">Запуск</span>
             <h2 data-i18n="flowTitle">Запуск за 5 минут</h2>
             <p class="flow-lead" data-i18n="flowLead">От регистрации до пропуска гостей на входе — без кассы, без абонентки и без сложной настройки.</p>
-            <a class="flow-cta" href="#cta" data-goto="cta" data-i18n="flowCta">Запустить продажи</a>
+            <a class="flow-cta" href="#" data-lead-modal data-lead-source="flowCta" data-i18n="flowCta">Запустить продажи</a>
           </div>
         </div>
       </div>
@@ -3342,7 +3342,7 @@
           </div>
           <div class="cta-actions">
             <div class="btn-row">
-              <a class="btn btn-dark" href="https://taneesh.uz" data-i18n="ctaStart">Запустить продажи</a>
+              <a class="btn btn-dark" href="#" data-lead-modal data-lead-source="ctaStart" data-i18n="ctaStart">Запустить продажи</a>
               <a class="btn btn-soft" href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
             </div>
             <p class="cta-note"><span data-i18n="heroNote">Без абонентки · подключение за 5 минут</span> · <a href="tel:+998880348797">+998 88 034 87 97</a></p>
@@ -3364,7 +3364,7 @@
           <a href="#included" data-goto="included" data-i18n="navIncluded">Что даём</a>
           <a href="#fees" data-goto="fees" data-i18n="navFees">Сборы</a>
           <a href="#faq" data-goto="faq" data-i18n="faqTitle">FAQ</a>
-          <a href="#cta" data-goto="cta" data-i18n="footCta">Заявка</a>
+          <a href="#" data-lead-modal data-lead-source="footCta" data-i18n="footCta">Заявка</a>
         </nav>
         <div class="footer-meta">
           <a href="https://taneesh.uz" target="_blank" rel="noopener">taneesh.uz</a>
@@ -3376,9 +3376,47 @@
     </div>
   </footer>
 
+  <div class="lead-overlay" id="leadModal" hidden role="presentation">
+    <div class="lead-dialog" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
+      <div class="lead-head">
+        <div>
+          <h2 id="leadModalTitle" data-i18n="leadModalTitle">Заявка на подключение</h2>
+          <p data-i18n="leadModalSubtitle">Оставьте контакт — перезвоним и поможем запустить продажи.</p>
+        </div>
+        <button type="button" class="lead-close" data-lead-close aria-label="Закрыть" data-i18n-aria="leadClose">×</button>
+      </div>
+      <div id="leadFormView">
+        <form id="leadForm" novalidate>
+          <div class="lead-field">
+            <label for="leadPhone" data-i18n="leadPhoneLabel">Телефон</label>
+            <input type="tel" id="leadPhone" name="phone" required autocomplete="tel" inputmode="tel" data-i18n-placeholder="leadPhonePlaceholder" placeholder="+998 90 123 45 67" />
+          </div>
+          <div class="lead-field">
+            <label for="leadName" data-i18n="leadNameLabel">Имя</label>
+            <input type="text" id="leadName" name="name" autocomplete="name" data-i18n-placeholder="leadNamePlaceholder" placeholder="Как к вам обращаться" />
+          </div>
+          <div class="lead-field">
+            <label for="leadDesc" data-i18n="leadDescLabel">О мероприятии</label>
+            <textarea id="leadDesc" name="description" rows="3" data-i18n-placeholder="leadDescPlaceholder" placeholder="Формат, дата, город — что угодно полезное"></textarea>
+          </div>
+          <p class="lead-error" id="leadError" hidden role="alert"></p>
+          <button type="submit" class="lead-submit" id="leadSubmit" data-i18n="leadSubmit">Отправить заявку</button>
+        </form>
+      </div>
+      <div class="lead-success" id="leadSuccess" hidden>
+        <div class="lead-success-icon" aria-hidden="true">✓</div>
+        <h3 data-i18n="leadSuccessTitle">Заявка отправлена</h3>
+        <p data-i18n="leadSuccessText">Мы свяжемся с вами в ближайшее время.</p>
+        <button type="button" class="lead-close-btn" data-lead-close data-i18n="leadClose">Закрыть</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/lead-config.js"></script>
+  <script src="assets/lead-modal.js"></script>
   <script>
-    // Smooth scroll for [data-goto]
-    document.querySelectorAll('[data-goto]').forEach((el) => {
+    // Smooth scroll for [data-goto] (skip lead modal triggers)
+    document.querySelectorAll('[data-goto]:not([data-lead-modal])').forEach((el) => {
       el.addEventListener('click', (e) => {
         const id = el.getAttribute('data-goto');
         const target = document.getElementById(id);
@@ -3846,6 +3884,7 @@
     });
 
     if (window.TaneeshI18n) window.TaneeshI18n.init();
+    if (window.TaneeshLeadModal) window.TaneeshLeadModal.init();
   </script>
 </body>
 </html>

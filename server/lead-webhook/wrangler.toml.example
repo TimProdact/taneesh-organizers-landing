@@ -1,0 +1,9 @@
+name = "taneesh-lead-webhook"
+main = "index.js"
+compatibility_date = "2024-01-01"
+
+# Set secrets via: wrangler secret put TELEGRAM_BOT_TOKEN
+# See .env.example for full list
+
+[vars]
+CORS_ORIGIN = "https://timprodact.github.io,http://127.0.0.1:8080"
