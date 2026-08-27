@@ -4022,13 +4022,14 @@
       font-family: var(--font-display) !important;
       font-weight: 400 !important;
       letter-spacing: -.02em !important;
+      font-size: clamp(34px, 5vw, 48px) !important;
     }
     .phone #audience .aud-cards {
       flex: 1 1 auto;
       min-height: 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      gap: 16px;
       width: 100%;
     }
     .phone #audience .aud-card {
@@ -4036,26 +4037,26 @@
       min-height: 0;
       display: flex;
       flex-direction: column;
-      border-radius: 28px;
+      border-radius: 32px;
       overflow: hidden;
       box-shadow:
-        0 1px 0 rgba(255,255,255,.55) inset,
-        0 18px 40px rgba(28, 25, 23, .10);
+        0 1px 0 rgba(255,255,255,.6) inset,
+        0 22px 48px rgba(28, 25, 23, .12);
     }
     .phone #audience .aud-visual {
       flex: 1 1 auto;
-      min-height: 160px;
+      min-height: 200px;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 22px 18px 8px;
+      padding: 28px 20px 12px;
     }
     .phone #audience .aud-copy {
       flex: 0 0 auto;
-      padding: 8px 20px 22px;
+      padding: 4px 24px 26px;
       display: grid;
-      gap: 6px;
+      gap: 8px;
     }
     .phone #audience .aud-tag {
       justify-self: start;
@@ -4063,36 +4064,38 @@
       font-weight: 700;
       letter-spacing: .06em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.78);
-      background: rgba(28,25,23,.22);
-      border: 1px solid rgba(255,255,255,.22);
+      color: rgba(255,255,255,.9);
+      background: rgba(28,25,23,.28);
+      border: 1px solid rgba(255,255,255,.28);
       border-radius: 999px;
-      padding: 4px 10px;
+      padding: 5px 11px;
       backdrop-filter: blur(8px);
     }
     .phone #audience .aud-tag.dark {
-      color: rgba(28,25,23,.55);
-      background: rgba(255,255,255,.55);
-      border-color: rgba(28,25,23,.08);
+      color: rgba(28,25,23,.58);
+      background: rgba(255,255,255,.7);
+      border-color: rgba(28,25,23,.1);
     }
     .phone #audience .aud-copy h3 {
       margin: 0;
       font-family: var(--font-display) !important;
       font-weight: 400 !important;
-      font-size: clamp(22px, 3.2vw, 30px) !important;
-      line-height: 1.1 !important;
+      font-size: clamp(24px, 3.4vw, 34px) !important;
+      line-height: 1.08 !important;
       letter-spacing: -.02em;
       color: #fff !important;
+      text-shadow: 0 1px 12px rgba(28,25,23,.18);
     }
     .phone #audience .aud-card-stack .aud-copy h3 {
       color: #1c1917 !important;
+      text-shadow: none;
     }
     .phone #audience .aud-copy p {
       margin: 0;
-      font-size: 13px;
+      font-size: 14px;
       line-height: 1.45;
-      color: rgba(255,255,255,.78);
-      max-width: 32ch;
+      color: rgba(255,255,255,.82);
+      max-width: 34ch;
     }
     .phone #audience .aud-card-stack .aud-copy p {
       color: rgba(28,25,23,.55);
@@ -4101,83 +4104,84 @@
     /* Card 1 — mesh gradient + glass icons */
     .phone #audience .aud-card-mesh {
       background:
-        radial-gradient(ellipse 70% 55% at 15% 20%, #ffd39a 0%, transparent 55%),
-        radial-gradient(ellipse 65% 50% at 85% 15%, #86efac 0%, transparent 50%),
-        radial-gradient(ellipse 60% 50% at 70% 85%, #7dd3fc 0%, transparent 55%),
-        radial-gradient(ellipse 50% 40% at 20% 80%, #fdba74 0%, transparent 50%),
-        linear-gradient(155deg, #f59e0b 0%, #34d399 45%, #38bdf8 100%);
+        radial-gradient(ellipse 75% 60% at 12% 18%, #ffd89a 0%, transparent 52%),
+        radial-gradient(ellipse 70% 55% at 88% 12%, #6ee7b7 0%, transparent 48%),
+        radial-gradient(ellipse 65% 55% at 78% 88%, #7dd3fc 0%, transparent 52%),
+        radial-gradient(ellipse 55% 45% at 18% 82%, #fb923c 0%, transparent 48%),
+        linear-gradient(150deg, #f97316 0%, #22c55e 42%, #38bdf8 100%);
     }
     .phone #audience .aud-icons {
       display: grid;
-      grid-template-columns: repeat(3, 56px);
-      gap: 10px;
-      transform: rotate(-2deg);
+      grid-template-columns: repeat(3, 64px);
+      gap: 12px;
+      transform: rotate(-3deg);
     }
     .phone #audience .aud-icon {
-      width: 56px; height: 56px;
-      border-radius: 16px;
+      width: 64px; height: 64px;
+      border-radius: 18px;
       display: grid;
       place-items: center;
-      color: rgba(255,255,255,.92);
-      background: rgba(255,255,255,.18);
-      border: 1px solid rgba(255,255,255,.35);
+      color: #fff;
+      background: rgba(255,255,255,.22);
+      border: 1px solid rgba(255,255,255,.45);
       box-shadow:
-        0 1px 0 rgba(255,255,255,.35) inset,
-        0 10px 24px rgba(28,25,23,.12);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+        0 1px 0 rgba(255,255,255,.45) inset,
+        0 12px 28px rgba(28,25,23,.16);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
-    .phone #audience .aud-icon:nth-child(2) { transform: translateY(-6px); }
-    .phone #audience .aud-icon:nth-child(3) { transform: translateY(4px); }
-    .phone #audience .aud-icon:nth-child(4) { transform: translateY(2px); }
-    .phone #audience .aud-icon:nth-child(5) { transform: translateY(-4px); }
-    .phone #audience .aud-icon svg { width: 22px; height: 22px; }
+    .phone #audience .aud-icon:nth-child(2) { transform: translateY(-8px); }
+    .phone #audience .aud-icon:nth-child(3) { transform: translateY(6px); }
+    .phone #audience .aud-icon:nth-child(4) { transform: translateY(4px); }
+    .phone #audience .aud-icon:nth-child(5) { transform: translateY(-6px); }
+    .phone #audience .aud-icon svg { width: 24px; height: 24px; }
 
     /* Card 2 — soft pastel + stacked glass */
     .phone #audience .aud-card-stack {
       background:
-        radial-gradient(ellipse 80% 60% at 20% 10%, #ffffff 0%, transparent 50%),
-        radial-gradient(ellipse 70% 55% at 90% 80%, #e9d5ff 0%, transparent 55%),
-        linear-gradient(165deg, #f5f0ff 0%, #ede4f7 50%, #e8e0f2 100%);
+        radial-gradient(ellipse 85% 65% at 18% 8%, #ffffff 0%, transparent 48%),
+        radial-gradient(ellipse 75% 60% at 92% 78%, #ddd6fe 0%, transparent 52%),
+        radial-gradient(ellipse 50% 40% at 50% 40%, #fce7f3 0%, transparent 55%),
+        linear-gradient(165deg, #faf7ff 0%, #efe7f8 48%, #e8dff2 100%);
     }
     .phone #audience .aud-stack {
       position: relative;
-      width: min(100%, 240px);
-      height: 168px;
+      width: min(100%, 260px);
+      height: 190px;
     }
     .phone #audience .aud-glass {
       position: absolute;
       left: 0; right: 0;
-      border-radius: 18px;
-      background: rgba(255,255,255,.42);
-      border: 1px solid rgba(255,255,255,.65);
+      border-radius: 20px;
+      background: rgba(255,255,255,.5);
+      border: 1px solid rgba(255,255,255,.75);
       box-shadow:
-        0 1px 0 rgba(255,255,255,.7) inset,
-        0 14px 32px rgba(28,25,23,.08);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+        0 1px 0 rgba(255,255,255,.8) inset,
+        0 16px 36px rgba(28,25,23,.1);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
     }
     .phone #audience .aud-glass-back {
-      top: 0; height: 110px;
-      transform: scale(.88) translateY(0);
-      opacity: .55;
+      top: 0; height: 120px;
+      transform: scale(.86) translateY(0);
+      opacity: .5;
     }
     .phone #audience .aud-glass-mid {
-      top: 18px; height: 118px;
-      transform: scale(.94);
-      opacity: .78;
-      padding: 12px 14px;
+      top: 22px; height: 128px;
+      transform: scale(.93);
+      opacity: .82;
+      padding: 14px 16px;
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
     .phone #audience .aud-glass-front {
-      top: 42px; height: 126px;
-      padding: 12px 14px;
+      top: 48px; height: 138px;
+      padding: 14px 16px;
       display: flex;
       flex-direction: column;
       gap: 6px;
-      background: rgba(255,255,255,.62);
+      background: rgba(255,255,255,.72);
     }
     .phone #audience .aud-pill {
       align-self: flex-end;
@@ -4186,28 +4190,28 @@
       letter-spacing: .04em;
       text-transform: uppercase;
       border-radius: 999px;
-      padding: 3px 8px;
+      padding: 4px 9px;
     }
     .phone #audience .aud-pill.soft {
       color: #6b21a8;
-      background: rgba(216,180,254,.45);
+      background: rgba(216,180,254,.55);
     }
     .phone #audience .aud-pill.accent {
       color: #166534;
-      background: rgba(134,239,172,.55);
+      background: rgba(134,239,172,.6);
     }
     .phone #audience .aud-glass-lines {
-      display: grid; gap: 6px; margin-top: 8px;
+      display: grid; gap: 7px; margin-top: 8px;
     }
     .phone #audience .aud-glass-lines i {
-      display: block; height: 6px; border-radius: 99px;
-      background: rgba(28,25,23,.08);
+      display: block; height: 7px; border-radius: 99px;
+      background: rgba(28,25,23,.1);
     }
     .phone #audience .aud-glass-lines i:nth-child(1) { width: 72%; }
     .phone #audience .aud-glass-lines i:nth-child(2) { width: 48%; }
     .phone #audience .aud-glass-lines i:nth-child(3) { width: 60%; }
     .phone #audience .aud-glass-front strong {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 700;
       color: #1c1917;
       letter-spacing: -.01em;
@@ -4217,10 +4221,10 @@
       padding: 0;
       list-style: none;
       display: grid;
-      gap: 3px;
+      gap: 4px;
     }
     .phone #audience .aud-glass-front li {
-      font-size: 11px;
+      font-size: 12px;
       color: rgba(28,25,23,.55);
       font-weight: 500;
     }
@@ -4229,14 +4233,14 @@
         grid-template-columns: 1fr;
       }
       .phone #audience .aud-card {
-        min-height: 280px;
+        min-height: 300px;
       }
       .phone #audience .aud-icons {
-        grid-template-columns: repeat(3, 48px);
-        gap: 8px;
+        grid-template-columns: repeat(3, 52px);
+        gap: 10px;
       }
       .phone #audience .aud-icon {
-        width: 48px; height: 48px; border-radius: 14px;
+        width: 52px; height: 52px; border-radius: 15px;
       }
     }
 
@@ -5536,11 +5540,11 @@
       if (best !== index) {
         index = best;
         header.classList.toggle('is-scrolled', index > 0);
-        phone.classList.toggle('on-hero', index === 0);
+        phone.classList.toggle('on-hero', !!(slides[index] && (slides[index].classList.contains('hero') || slides[index].classList.contains('audience-reel'))));
         enterSlide(slides[index]);
         if (typeof syncCarouselAutoplay === 'function') syncCarouselAutoplay();
       } else {
-        phone.classList.toggle('on-hero', index === 0);
+        phone.classList.toggle('on-hero', !!(slides[index] && (slides[index].classList.contains('hero') || slides[index].classList.contains('audience-reel'))));
         enterSlide(slides[index]);
       }
     }
