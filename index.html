@@ -911,6 +911,7 @@
       color: #0f7a38;
       font-size: 12px;
       font-weight: 700;
+      margin-inline: auto;
     }
     .pulse-dot {
       width: 7px; height: 7px; border-radius: 50%;
@@ -923,13 +924,47 @@
       100% { box-shadow: 0 0 0 0 rgba(30, 215, 96, 0); }
     }
     .calc-rate .rate small { font-size: 0.45em; }
+    .live-filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      margin: 4px 0 2px;
+    }
+    .live-filter {
+      border: 0;
+      cursor: pointer;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      background: rgba(28, 25, 23, 0.05);
+      padding: 8px 14px;
+      border-radius: 9999px;
+      transition: background 160ms var(--ease), color 160ms var(--ease);
+    }
+    .live-filter:hover { color: var(--text); background: rgba(28, 25, 23, 0.08); }
+    .live-filter.is-active {
+      color: #0f7a38;
+      background: rgba(30, 215, 96, 0.16);
+    }
+    .live-conv .calc-chart-live {
+      flex: 0 0 auto;
+      min-height: 0;
+      height: auto;
+      padding: 12px 14px 10px;
+    }
+    .live-conv .calc-chart-live svg {
+      flex: none;
+      height: 96px;
+      width: 100%;
+    }
     .metric-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 12px;
     }
     .live-actions { display: flex; justify-content: center; margin-top: 4px; }
-    .live-pill { margin-inline: auto; }
 
     /* Audience */
     .aud-cards {
@@ -1695,17 +1730,22 @@
               <span class="live-pill"><span class="pulse-dot"></span> <span data-i18n="livePill">Live · платформа</span></span>
               <strong class="rate"><span id="liveConvRate" data-live="34">34</span><small>%</small></strong>
             </div>
+            <div class="live-filters" role="tablist" aria-label="Период">
+              <button type="button" class="live-filter is-active" data-live-range="week" data-i18n="liveRangeWeek">За неделю</button>
+              <button type="button" class="live-filter" data-live-range="month" data-i18n="liveRangeMonth">За месяц</button>
+              <button type="button" class="live-filter" data-live-range="all" data-i18n="liveRangeAll">За всё время</button>
+            </div>
             <div class="calc-chart calc-chart-live" aria-hidden="true" data-spark>
-              <svg viewBox="0 0 320 140" preserveAspectRatio="none">
-                <line x1="0" y1="28" x2="320" y2="28" class="grid"/>
-                <line x1="0" y1="70" x2="320" y2="70" class="grid"/>
-                <line x1="0" y1="112" x2="320" y2="112" class="grid"/>
-                <path class="line-live" d="M0 95 C28 88, 56 100, 84 78 S140 60, 168 68 S224 40, 252 48 S296 30, 320 26"/>
-                <circle class="dot-live" cx="320" cy="26" r="4.5"/>
+              <svg viewBox="0 0 320 90" preserveAspectRatio="none">
+                <line x1="0" y1="18" x2="320" y2="18" class="grid"/>
+                <line x1="0" y1="45" x2="320" y2="45" class="grid"/>
+                <line x1="0" y1="72" x2="320" y2="72" class="grid"/>
+                <path class="line-live" d="M0 62 C40 58, 70 48, 110 42 S180 28, 220 34 S270 18, 320 16"/>
+                <circle class="dot-live" cx="320" cy="16" r="4"/>
               </svg>
               <div class="calc-chart-labels">
-                <span>7д</span>
-                <span data-i18n="livePill">Сегодня</span>
+                <span data-live-range-label>7д</span>
+                <span data-i18n="livePill">Live · платформа</span>
               </div>
             </div>
             <p class="calc-viz-note" data-i18n="liveDesc">Витрина → оплата — без приукрашивания.</p>
@@ -2162,21 +2202,73 @@
       recalcFees();
     }
 
-    // Live conversion ticker
+    // Live conversion ticker + range filters
     const liveRoot = document.querySelector('[data-live-conv]');
     if (liveRoot && !liveRoot.dataset.ticking) {
       liveRoot.dataset.ticking = '1';
       const rateEl = document.getElementById('liveConvRate');
       const viewsEl = document.getElementById('liveViews');
       const paysEl = document.getElementById('livePays');
+      const checkoutEl = document.getElementById('liveCheckout');
+      const dropEl = document.getElementById('liveDrop');
       const spark = liveRoot.querySelector('[data-spark]');
-      const base = { rate: 34, views: 1284, pays: 47 };
+      const rangeLabel = liveRoot.querySelector('[data-live-range-label]');
+      const ranges = {
+        week: {
+          label: { ru: '7д', uz: '7k', en: '7d' },
+          rate: 34, views: 1284, pays: 47, checkout: 41, drop: 7,
+          path: 'M0 62 C40 58, 70 48, 110 42 S180 28, 220 34 S270 18, 320 16',
+          y: 16,
+        },
+        month: {
+          label: { ru: '30д', uz: '30k', en: '30d' },
+          rate: 36, views: 4820, pays: 52, checkout: 43, drop: 6,
+          path: 'M0 70 C36 64, 72 52, 108 56 S180 30, 216 38 S270 22, 320 20',
+          y: 20,
+        },
+        all: {
+          label: { ru: 'всё', uz: 'jami', en: 'all' },
+          rate: 38, views: 15840, pays: 61, checkout: 45, drop: 5,
+          path: 'M0 74 C48 68, 90 60, 130 48 S200 36, 240 28 S290 18, 320 14',
+          y: 14,
+        },
+      };
+      let currentRange = 'week';
+      const base = { ...ranges.week };
       const tag = () => (window.TaneeshI18n && window.TaneeshI18n.localeTag()) || 'ru-RU';
+      const loc = () => (window.TaneeshI18n && window.TaneeshI18n.locale) || 'ru';
+      const applySpark = (cfg) => {
+        if (!spark) return;
+        const path = spark.querySelector('.line-live');
+        const dot = spark.querySelector('.dot-live');
+        if (path) path.setAttribute('d', cfg.path);
+        if (dot) dot.setAttribute('cy', String(cfg.y));
+      };
+      const applyRange = (id) => {
+        const cfg = ranges[id] || ranges.week;
+        currentRange = id;
+        Object.assign(base, cfg);
+        if (rateEl) rateEl.textContent = String(cfg.rate);
+        if (viewsEl) viewsEl.textContent = cfg.views.toLocaleString(tag());
+        if (paysEl) paysEl.textContent = String(cfg.pays);
+        if (checkoutEl) checkoutEl.textContent = String(cfg.checkout);
+        if (dropEl) dropEl.textContent = String(cfg.drop);
+        if (rangeLabel) rangeLabel.textContent = cfg.label[loc()] || cfg.label.ru;
+        applySpark(cfg);
+        liveRoot.querySelectorAll('[data-live-range]').forEach((btn) => {
+          btn.classList.toggle('is-active', btn.getAttribute('data-live-range') === id);
+        });
+      };
+      liveRoot.querySelectorAll('[data-live-range]').forEach((btn) => {
+        btn.addEventListener('click', () => applyRange(btn.getAttribute('data-live-range')));
+      });
+      applyRange('week');
       setInterval(() => {
         const jitter = (n, amp) => n + Math.round((Math.random() * 2 - 1) * amp);
-        base.rate = Math.min(38, Math.max(31, jitter(base.rate, 1)));
-        base.views = Math.max(1200, jitter(base.views, 18));
-        base.pays = Math.max(40, jitter(base.pays, 2));
+        const cfg = ranges[currentRange] || ranges.week;
+        base.rate = Math.min(cfg.rate + 3, Math.max(cfg.rate - 3, jitter(base.rate, 1)));
+        base.views = Math.max(cfg.views - 40, jitter(base.views, 18));
+        base.pays = Math.max(cfg.pays - 4, jitter(base.pays, 2));
         if (rateEl) rateEl.textContent = String(base.rate);
         if (viewsEl) viewsEl.textContent = base.views.toLocaleString(tag());
         if (paysEl) paysEl.textContent = String(base.pays);
@@ -2184,8 +2276,8 @@
           const path = spark.querySelector('.line-live');
           const dot = spark.querySelector('.dot-live');
           if (path && dot) {
-            const y = 22 + Math.round(Math.random() * 18);
-            path.setAttribute('d', `M0 95 C28 88, 56 100, 84 78 S140 60, 168 68 S224 40, 252 48 S296 ${y + 8}, 320 ${y}`);
+            const y = Math.max(12, Math.min(28, cfg.y + Math.round((Math.random() * 2 - 1) * 4)));
+            path.setAttribute('d', `M0 68 C40 60, 80 52, 120 46 S180 30, 220 34 S270 ${y + 6}, 320 ${y}`);
             dot.setAttribute('cy', String(y));
           }
         }
