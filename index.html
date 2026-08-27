@@ -1671,42 +1671,29 @@
           <span class="eyebrow" data-i18n="whyEyebrow">Экономика организатора</span>
           <h2 data-i18n="whyTitle">Не отдавайте 15% с билета</h2>
         </div>
-        <div class="calc-shell">
-          <div class="calc-viz">
-            <div class="calc-rate">
+        <div class="calc-shell fees-board why-board">
+          <div class="fees-result">
+            <div class="fees-result-card is-bad">
               <span data-i18n="whyBad">Обычная касса · 15%</span>
-              <strong>−<span id="aggPerTicket">15 000</span> <span data-i18n="currency">сум</span></strong>
+              <strong>−<span id="aggPerTicket">15 000</span></strong>
+              <em data-i18n="currency">сум</em>
             </div>
-            <div class="calc-chart" aria-hidden="true">
-              <svg viewBox="0 0 320 140" preserveAspectRatio="none">
-                <line x1="0" y1="30" x2="320" y2="30" class="grid"/>
-                <line x1="0" y1="70" x2="320" y2="70" class="grid"/>
-                <line x1="0" y1="110" x2="320" y2="110" class="grid"/>
-                <path class="line-bad" d="M0 40 C40 38, 80 55, 120 48 S200 70, 240 62 S300 90, 320 85"/>
-                <path class="line-good" d="M0 118 C60 118, 120 116, 180 117 S260 115, 320 116"/>
-                <circle class="dot-good" cx="320" cy="116" r="4"/>
-              </svg>
-              <div class="calc-chart-labels">
-                <span data-i18n="whyBad">Касса 15%</span>
-                <span data-i18n="whyGood">Taneesh 100%</span>
-              </div>
+            <div class="fees-result-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </div>
-            <p class="calc-viz-note" id="aggCostLabel">−15 000 сум с билета</p>
+            <div class="fees-result-card is-you">
+              <span data-i18n="whyGood">Taneesh · вам 100%</span>
+              <strong id="tanPerTicket">0</strong>
+              <em data-i18n="currency">сум</em>
+            </div>
           </div>
-          <div class="calc-side">
+          <div class="calc-side fees-panel">
             <div class="calc-field">
               <div class="calc-field-main">
                 <strong id="whyTicketLabel">100 000 сум</strong>
                 <span class="calc-field-meta" data-i18n="whyTicket">Цена билета</span>
               </div>
               <input type="range" id="whyTicketPrice" min="20000" max="500000" step="1000" value="100000" />
-            </div>
-            <div class="calc-field muted">
-              <div class="calc-field-main">
-                <strong id="tanPerTicket">0</strong>
-                <span class="calc-field-meta" data-i18n="whyGood">Taneesh · вам 100%</span>
-              </div>
-              <p class="calc-field-sub" id="tanCostLabel">0 сум с цены билета</p>
             </div>
             <div class="calc-summary">
               <div>
@@ -1718,9 +1705,9 @@
                 <strong class="v"><span id="savePack">1 500 000</span></strong>
               </div>
             </div>
+            <p class="fees-hint" id="tanCostLabel">0 сум с цены билета</p>
+            <p class="fees-hint" id="aggCostLabel" hidden>−15 000 сум с билета</p>
             <a class="calc-cta" href="#cta" data-goto="cta" data-i18n="heroCta">Запустить продажи</a>
-            <div hidden><div id="aggBar" data-w="15" style="width:15%"></div></div>
-            <div hidden><div id="tanBar" data-w="0" style="width:2%"></div></div>
           </div>
         </div>
       </div>
