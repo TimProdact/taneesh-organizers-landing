@@ -130,7 +130,7 @@ window.TaneeshI18n = (function () {
       o7tag: 'В пути',
       o7t: 'Я в пути!',
       o7p: 'Гость отмечает, что едет — вы видите, кто уже на подходе.',
-      faqTitle: 'Частые вопросы',
+      faqTitle: 'Часто задаваемые вопросы',
       faqEyebrow: 'FAQ',
       faqClose: 'Понятно',
       trustLabel: 'Нам доверяют 1&nbsp;000+<br />организаторов',
@@ -564,7 +564,7 @@ window.TaneeshI18n = (function () {
       o7tag: 'On the way',
       o7t: 'On my way!',
       o7p: 'Guest marks they are coming — you see who is approaching.',
-      faqTitle: 'FAQ',
+      faqTitle: 'Frequently asked questions',
       faqEyebrow: 'FAQ',
       faqClose: 'Got it',
       trustLabel: 'Trusted by 1,000+<br />organizers',
@@ -719,10 +719,13 @@ window.TaneeshI18n = (function () {
       if (typeof val === 'string') el.setAttribute('placeholder', val);
     });
 
-    // FAQ buttons + accordion answers
-    const faqBtns = document.querySelectorAll('.faq-q[data-faq]');
+    // FAQ questions + answers
     d.faq.forEach((item, i) => {
-      if (faqBtns[i]) faqBtns[i].textContent = item.q;
+      const details = document.querySelector(`.faq-item[data-faq="${i}"]`);
+      if (details) {
+        const qText = details.querySelector('.faq-q-text');
+        if (qText) qText.textContent = item.q;
+      }
       const ans = document.querySelector(`.faq-a[data-faq="${i}"]`);
       if (ans) ans.textContent = item.a;
     });
