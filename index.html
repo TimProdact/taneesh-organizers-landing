@@ -1579,6 +1579,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 8px;
       min-height: 44px;
       padding: 0 16px;
       border-radius: 9999px;
@@ -1587,6 +1588,15 @@
       font-size: 13px;
       font-weight: 800;
       letter-spacing: 0.03em;
+    }
+    .paytrust-logos span.is-soon {
+      color: var(--muted);
+      border-color: rgba(28, 25, 23, 0.1);
+      background: rgba(255, 255, 255, 0.72);
+    }
+    .paytrust-logos .flow-soon {
+      letter-spacing: 0;
+      font-weight: 700;
     }
     .footer-solutions {
       display: grid;
@@ -2449,12 +2459,13 @@
           <div class="paytrust-copy">
             <span class="eyebrow" data-i18n="payEyebrow">Платежи</span>
             <h3 data-i18n="payTitle">Безопасные оплаты и быстрая выплата</h3>
-            <p data-i18n="payLead">Эквайринг через проверенные системы Узбекистана. Транзакции защищены, деньги приходят организатору по понятному графику.</p>
+            <p data-i18n="payLead">Сейчас доступны Uzcard и Humo. Visa и Mastercard — скоро. Транзакции защищены, деньги приходят организатору по понятному графику.</p>
           </div>
           <div class="paytrust-logos" aria-label="Платёжные системы">
             <span>Uzcard</span>
             <span>Humo</span>
-            <span>Paylov</span>
+            <span class="is-soon">Visa <em class="flow-soon" data-i18n="soon">скоро</em></span>
+            <span class="is-soon">Mastercard <em class="flow-soon" data-i18n="soon">скоро</em></span>
           </div>
         </div>
       </div>
