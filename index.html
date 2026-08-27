@@ -2803,6 +2803,74 @@
       .niche-card { transition: none; }
       .niche-card:hover { transform: none; }
     }
+
+    /* Event format pills — 4 marquee tracks */
+    .formats-stream {
+      margin-top: clamp(28px, 4vw, 44px);
+      padding: clamp(8px, 2vw, 16px) 0 clamp(4px, 1vw, 8px);
+    }
+    .formats-stream-bleed {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      display: grid;
+      gap: 12px;
+    }
+    .formats-track {
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+    }
+    .formats-track-inner {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: 10px;
+      width: max-content;
+      will-change: transform;
+      animation: formats-marquee 46s linear infinite;
+    }
+    .formats-track--2 .formats-track-inner { animation-duration: 38s; }
+    .formats-track--3 .formats-track-inner {
+      animation-duration: 52s;
+      animation-direction: reverse;
+    }
+    .formats-track--4 .formats-track-inner { animation-duration: 42s; animation-direction: reverse; }
+    .formats-stream:hover .formats-track-inner { animation-play-state: paused; }
+    @keyframes formats-marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .formats-track-inner { animation: none; flex-wrap: wrap; width: auto; justify-content: center; }
+      .formats-track { mask-image: none; overflow: visible; }
+      .formats-stream-bleed { gap: 8px; padding-inline: 20px; box-sizing: border-box; }
+    }
+    .formats-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 0 16px;
+      border-radius: 9999px;
+      background: var(--surface);
+      border: 1px solid rgba(10, 10, 10, 0.06);
+      font-family: var(--font-ui);
+      font-size: var(--text-body-sm);
+      font-weight: var(--weight-semibold);
+      color: var(--text);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .formats-pill.is-accent {
+      background: rgba(30, 215, 96, 0.12);
+      border-color: rgba(30, 215, 96, 0.24);
+      color: #0f7a38;
+    }
+    .formats-pill.is-soft {
+      background: #fff;
+      border-color: var(--border);
+      color: rgba(10, 10, 10, 0.72);
+    }
     #quote {
       background: #fff;
     }
@@ -4067,6 +4135,9 @@
         </div>
         <div class="offer-progress" aria-hidden="true"><i data-rail-progress></i></div>
       </div>
+      <div class="formats-stream">
+        <div class="formats-stream-bleed" data-format-stream aria-hidden="true"></div>
+      </div>
     </section>
 
     <section class="section" id="included">
@@ -4394,6 +4465,38 @@
         if (e.target.closest('[data-hero-screen]')) return;
         cards.forEach((c) => c.classList.remove('is-open'));
       });
+    })();
+
+    // Format pills — 4 infinite marquee tracks
+    (function initFormatStream() {
+      const root = document.querySelector('[data-format-stream]');
+      if (!root) return;
+
+      const escape = (s) => String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/"/g, '&quot;');
+
+      window.renderFormatStream = (tracks) => {
+        const rows = Array.isArray(tracks) ? tracks : [];
+        if (!rows.length) {
+          root.innerHTML = '';
+          return;
+        }
+        root.innerHTML = rows.map((labels, index) => {
+          const list = Array.isArray(labels) ? labels : [];
+          const doubled = [...list, ...list];
+          const pills = doubled.map((label, i) => {
+            const mod = i % 5 === 0 ? ' is-accent' : i % 3 === 0 ? ' is-soft' : '';
+            return `<span class="formats-pill${mod}">${escape(label)}</span>`;
+          }).join('');
+          return `<div class="formats-track formats-track--${index + 1}"><div class="formats-track-inner">${pills}</div></div>`;
+        }).join('');
+      };
+
+      if (window.TaneeshI18n) {
+        window.renderFormatStream(window.TaneeshI18n.t().formatStream);
+      }
     })();
 
     // Header theme over full-screen footer

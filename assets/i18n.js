@@ -149,6 +149,12 @@ window.TaneeshI18n = (function () {
       niche4: 'Спортивные турниры',
       niche5: 'Мастер-классы',
       niche6: 'Вечеринки и тусовки',
+      formatStream: [
+        ['Стендап', 'Бизнес-конференции', 'Концерты', 'Спорт', 'Мастер-классы', 'Вечеринки', 'Фестивали', 'Нетворкинг', 'Open air', 'Квизы'],
+        ['Йога', 'Лекции', 'Кино', 'Выставки', 'Хакатоны', 'Тренинги', 'Gastro', 'Маркеты', 'Митапы', 'Дегустации'],
+        ['Караоке', 'Форумы', 'Театр', 'Танцы', 'Кемпы', 'Esports', 'Fashion', 'Медитации', 'Аукционы', 'Stand-up battle'],
+        ['Благотворительность', 'Детские праздники', 'Корпоративы', 'DJ-сеты', 'Poetry slam', 'Фотодни', 'VR-шоу', 'City tours', 'Wine tasting', 'Hack night'],
+      ],
       quoteBadge: 'Что говорят организаторы',
       quoteText: 'За вечер продали зал без кассы и без 15% посреднику. Гости платят с телефона, мы сканируем QR на входе — и всё.',
       quoteAuthor: 'Алина К. · организатор стендап-вечеров, Ташкент',
@@ -433,6 +439,12 @@ window.TaneeshI18n = (function () {
       niche4: 'Sport turnirlari',
       niche5: 'Master-klasslar',
       niche6: 'Kechki bazmlar',
+      formatStream: [
+        ['Stand-up', 'Biznes-konferensiyalar', 'Konsertlar', 'Sport', 'Master-klasslar', 'Kechki bazmlar', 'Festivallar', 'Networking', 'Open air', 'Viktorinalar'],
+        ['Yoga', 'Ma’ruzalar', 'Kino', 'Ko‘rgazmalar', 'Xakatonlar', 'Treninglar', 'Gastro', 'Marketlar', 'Mitaplar', 'Degustatsiya'],
+        ['Karaoke', 'Forumlar', 'Teatr', 'Raqs', 'Kemplar', 'Esports', 'Fashion', 'Meditatsiya', 'Auksionlar', 'Stand-up battle'],
+        ['Xayriya', 'Bolalar bayrami', 'Korporativlar', 'DJ-set', 'Poetry slam', 'Foto kun', 'VR-shou', 'City tours', 'Wine tasting', 'Hack night'],
+      ],
       quoteBadge: 'Tashkilotchilar nima deydi',
       quoteText: 'Bir kechada zalni kassasiz va 15% vositachisiz sotdik. Mehmonlar telefondan to‘laydi, biz kirishda QR skanerlaymiz — hammasi shu.',
       quoteAuthor: 'Alina K. · stand-up kechalari tashkilotchisi, Toshkent',
@@ -717,6 +729,12 @@ window.TaneeshI18n = (function () {
       niche4: 'Sports tournaments',
       niche5: 'Workshops',
       niche6: 'Parties & nightlife',
+      formatStream: [
+        ['Stand-up', 'Conferences', 'Concerts', 'Sports', 'Workshops', 'Parties', 'Festivals', 'Networking', 'Open air', 'Quiz nights'],
+        ['Yoga', 'Talks', 'Cinema', 'Exhibitions', 'Hackathons', 'Training', 'Gastro', 'Markets', 'Meetups', 'Tastings'],
+        ['Karaoke', 'Forums', 'Theatre', 'Dance', 'Camps', 'Esports', 'Fashion', 'Meditation', 'Auctions', 'Stand-up battle'],
+        ['Charity', 'Kids events', 'Corporate', 'DJ sets', 'Poetry slam', 'Photo days', 'VR shows', 'City tours', 'Wine tasting', 'Hack night'],
+      ],
       quoteBadge: 'What organizers say',
       quoteText: 'We sold out the room in one night — no box office and no 15% middleman. Guests pay on their phone, we scan QR at the door.',
       quoteAuthor: 'Alina K. · standup organizer, Tashkent',
@@ -943,6 +961,9 @@ window.TaneeshI18n = (function () {
     if (langMenu) langMenu.setAttribute('aria-label', d.languageMenu);
 
     window.dispatchEvent(new CustomEvent('taneesh:locale', { detail: { locale } }));
+    if (typeof window.renderFormatStream === 'function') {
+      window.renderFormatStream(d.formatStream);
+    }
   }
 
   function init() {
