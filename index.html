@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Taneesh для организаторов — билеты за 5 минут</title>
   <meta name="description" content="Тикетинг для организаторов: витрина за 5 минут, цена билета — вам целиком. Сбор 1.5% + FixedFee платит гость. Для малых и крупных организаторов." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,800&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -22,7 +20,7 @@
       --border: rgba(10, 10, 10, 0.08);
       --max: 1120px;
       --pad-y: clamp(100px, 14vw, 160px);
-      --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
+      --font-display: "Satoshi", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
       --font-ui: "Satoshi", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
       --radius: 28px;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -60,8 +58,8 @@
       margin-bottom: 16px;
     }
     h1, h2 {
-      font-family: var(--font-display);
-      font-weight: 400;
+      font-family: var(--font-ui);
+      font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 1.08;
     }
@@ -1793,9 +1791,9 @@
     }
     .aud-tag.dark { background: rgba(255, 255, 255, 0.1); color: var(--lime); }
     .aud-copy h3 {
-      font-family: var(--font-display);
+      font-family: var(--font-ui);
       font-size: 28px;
-      font-weight: 400;
+      font-weight: 700;
       letter-spacing: -0.02em;
       margin-bottom: 10px;
     }
@@ -1994,9 +1992,9 @@
       margin-inline: 0;
     }
     .offer-body h3 {
-      font-family: var(--font-display);
+      font-family: var(--font-ui);
       font-size: 26px;
-      font-weight: 400;
+      font-weight: 700;
       margin-bottom: 8px;
       letter-spacing: -0.02em;
       color: #fff;
@@ -2151,9 +2149,9 @@
     .niche-card strong {
       position: relative;
       z-index: 1;
-      font-family: var(--font-display);
+      font-family: var(--font-ui);
       font-size: 26px;
-      font-weight: 400;
+      font-weight: 700;
       letter-spacing: -0.02em;
       color: var(--text);
       line-height: 1.15;
@@ -2281,9 +2279,9 @@
       max-width: 420px;
     }
     .paytrust-copy h3 {
-      font-family: var(--font-display);
+      font-family: var(--font-ui);
       font-size: clamp(24px, 3vw, 32px);
-      font-weight: 400;
+      font-weight: 700;
       letter-spacing: -0.02em;
       margin-bottom: 8px;
     }
@@ -2538,7 +2536,7 @@
       background: var(--surface);
       border: 1px solid rgba(10, 10, 10, 0.1);
       box-shadow: 0 24px 64px rgba(10, 10, 10, 0.18);
-      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      font-family: var(--font-ui);
       transform: translateY(8px) scale(0.98);
       transition: transform 220ms var(--ease);
     }
