@@ -2273,89 +2273,177 @@
       .phone #cta .cta-pulse { animation: none !important; }
     }
 
-    /* Footer */
+    /* Footer — mymind-style surface on gradient */
+    .phone #footer.footer-reel {
+      background:
+        radial-gradient(ellipse 80% 60% at 15% 20%, #ffd6c8 0%, transparent 55%),
+        radial-gradient(ellipse 70% 55% at 85% 30%, #e9d5ff 0%, transparent 50%),
+        radial-gradient(ellipse 60% 50% at 55% 95%, #fbcfe8 0%, transparent 55%),
+        linear-gradient(165deg, #f6e7df 0%, #efe4f4 50%, #e8dff0 100%) !important;
+    }
     .phone #footer > .wrap.footer-fill {
       width: 100% !important;
       max-width: none !important;
-      display: grid !important;
-      grid-template-columns: 1fr;
-      gap: 10px !important;
-      padding: 4px 2px 10px !important;
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0 !important;
+      padding: 10px 8px 14px !important;
       background: transparent !important;
       border: none !important;
       box-shadow: none !important;
+      min-height: 0 !important;
     }
-    .phone #footer .footer-bar {
+    .phone #footer .footer-surface {
+      background: #fff;
+      border-radius: 28px;
+      padding: 28px 28px 18px;
+      box-shadow:
+        0 1px 0 rgba(255,255,255,.8) inset,
+        0 20px 50px rgba(28,25,23,.08);
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      min-height: 0;
+      flex: 1 1 auto;
+    }
+    .phone #footer .footer-top {
       display: grid;
-      grid-template-columns: minmax(200px, 1.1fr) minmax(0, 1.6fr);
-      gap: 12px;
+      grid-template-columns: 1fr minmax(200px, .9fr);
+      gap: 20px;
       align-items: stretch;
-      width: 100%;
     }
     .phone #footer .footer-brand {
-      width: 100%;
-      padding: 18px 20px !important;
-      border-radius: var(--radius-tile) !important;
-      background: var(--bg-2) !important;
-      box-shadow: var(--hairline) !important;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px 12px;
+      padding: 4px 0;
+      background: transparent !important;
+      box-shadow: none !important;
       border: none !important;
+    }
+    .phone #footer .footer-logo {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: -.03em;
+      color: #1c1917;
+      text-decoration: none;
+      line-height: 1;
+      -webkit-text-stroke: 1.2px #1ed760;
+      paint-order: stroke fill;
+    }
+    .phone #footer .footer-sep {
+      width: 1px;
+      height: 18px;
+      background: rgba(28,25,23,.18);
+    }
+    .phone #footer .footer-tag {
+      margin: 0;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 16px;
+      color: #7c6b9a;
+      line-height: 1.2;
+    }
+    .phone #footer .footer-cta-box {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 6px;
+      gap: 4px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: #f1f0f4;
+      text-decoration: none;
+      transition: background .2s ease, transform .2s ease;
     }
-    .phone #footer .footer-brand .logo {
-      font-size: 0;
-      line-height: 0;
-      margin: 0;
+    .phone #footer .footer-cta-box:hover {
+      background: #e9e7ef;
+      transform: translateY(-1px);
     }
-    .phone #footer .footer-brand p {
-      margin: 0;
-      color: var(--muted);
+    .phone #footer .footer-cta-box strong {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 22px;
+      letter-spacing: -.02em;
+      color: #1c1917;
+      line-height: 1.15;
+    }
+    .phone #footer .footer-cta-box span {
       font-size: 13px;
+      color: rgba(28,25,23,.48);
     }
-    .phone #footer .footer-links {
-      display: grid !important;
-      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-      gap: 0 !important;
-      width: 100% !important;
-      border-radius: var(--radius-tile) !important;
-      overflow: hidden;
-      background: var(--bg-2) !important;
-      box-shadow: var(--hairline) !important;
-      border: none !important;
+    .phone #footer .footer-cols {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap: 18px 24px;
     }
-    .phone #footer .footer-links a {
+    .phone #footer .footer-col {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+    .phone #footer .footer-col-h {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(28,25,23,.38);
+      margin-bottom: 2px;
+    }
+    .phone #footer .footer-col a {
+      color: rgba(28,25,23,.72);
+      text-decoration: none;
+      font-size: 14px;
+      line-height: 1.35;
+      transition: color .15s ease;
+    }
+    .phone #footer .footer-col a:hover { color: #1c1917; }
+    .phone #footer .footer-col-main a {
+      font-size: 16px;
+      font-weight: 650;
+      color: #1c1917;
+      letter-spacing: -.01em;
+    }
+    .phone #footer .footer-bottom {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 12px;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid rgba(28,25,23,.08);
+      font-size: 12px;
+      color: rgba(28,25,23,.42);
+    }
+    .phone #footer .footer-copy { margin: 0; justify-self: start; }
+    .phone #footer .footer-made { justify-self: center; text-align: center; }
+    .phone #footer .footer-legal {
+      justify-self: end;
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 18px 12px !important;
-      text-align: center;
-      font-size: 13px;
-      color: var(--text) !important;
-      border: none !important;
-      border-right: 0.5px solid rgba(255,255,255,.08) !important;
-      border-bottom: none !important;
-      transition: background var(--duration-fast) var(--ease-out);
+      gap: 8px;
     }
-    .phone #footer .footer-links a:last-child { border-right: none !important; }
-    .phone #footer .footer-links a:hover { background: rgba(255,255,255,.06); }
-    .phone #footer .footer-copy {
-      margin: 2px 4px 0 !important;
-      font-size: 12px;
-      color: var(--muted);
+    .phone #footer .footer-legal a {
+      color: rgba(28,25,23,.42);
+      text-decoration: none;
     }
+    .phone #footer .footer-legal a:hover { color: #1c1917; }
     @media (max-width: 720px) {
-      .phone #footer .footer-bar { grid-template-columns: 1fr; }
-      .phone #footer .footer-links {
-        grid-template-columns: 1fr 1fr !important;
+      .phone #footer .footer-surface { padding: 22px 18px 14px; gap: 22px; border-radius: 22px; }
+      .phone #footer .footer-top { grid-template-columns: 1fr; gap: 14px; }
+      .phone #footer .footer-cols { grid-template-columns: 1fr 1fr; gap: 18px 16px; }
+      .phone #footer .footer-col-main { grid-column: 1 / -1; }
+      .phone #footer .footer-bottom {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        text-align: center;
       }
-      .phone #footer .footer-links a {
-        border-right: 0.5px solid rgba(255,255,255,.08) !important;
-        border-bottom: 0.5px solid rgba(255,255,255,.08) !important;
-      }
-      .phone #footer .footer-links a:nth-child(2n) { border-right: none !important; }
-      .phone #footer .footer-links a:nth-last-child(-n+2) { border-bottom: none !important; }
+      .phone #footer .footer-copy,
+      .phone #footer .footer-made,
+      .phone #footer .footer-legal { justify-self: center; }
+      .phone #footer .footer-logo { font-size: 24px; }
+      .phone #footer .footer-cta-box strong { font-size: 20px; }
     }
 
     /* FAQ stretch */
@@ -3908,7 +3996,6 @@
       width: 100% !important;
       max-width: none !important;
     }
-    .phone #footer .footer-copy { margin-top: 2px; font-size: 12px; color: var(--muted); }
 
     /* Fees punch */
     .phone #fees .fees-punch {
@@ -5722,22 +5809,58 @@
       </div>
     </section>
 
-    <footer class="reel" id="footer" data-slide>
+    <footer class="reel footer-reel" id="footer" data-slide>
       <div class="wrap footer-fill">
-        <div class="footer-bar">
-          <div class="footer-brand">
-            <div class="logo"><img src="assets/taneesh-logo-white.png" alt="Taneesh" width="130" height="24" /></div>
-            <p data-i18n="footTag">Тикетинг для организаторов</p>
+        <div class="footer-surface reveal">
+          <div class="footer-top">
+            <div class="footer-brand">
+              <a class="footer-logo" href="#slide-hero" data-goto="slide-hero" aria-label="Taneesh">TANEESH</a>
+              <span class="footer-sep" aria-hidden="true"></span>
+              <p class="footer-tag" data-i18n="footTag">Тикетинг для организаторов</p>
+            </div>
+            <a class="footer-cta-box" href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf">
+              <strong data-i18n="footCtaTitle">Скачать КП</strong>
+              <span data-i18n="footCtaSub">Коммерческое предложение для организаторов</span>
+            </a>
           </div>
-          <div class="footer-links">
-            <a href="https://taneesh.uz">taneesh.uz</a>
-            <a href="#fees" data-goto="fees" data-i18n="footFees">Сборы</a>
-            <a href="#audience" data-goto="audience" data-i18n="footOrgs">Организаторы</a>
-            <a href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
-            <a href="#cta" data-goto="cta" data-i18n="footCta">Заявка</a>
+
+          <div class="footer-cols">
+            <nav class="footer-col footer-col-main" aria-label="Навигация">
+              <a href="#why" data-goto="why" data-i18n="navWhy">Почему мы</a>
+              <a href="#included" data-goto="included" data-i18n="navIncluded">Что даём</a>
+              <a href="#fees" data-goto="fees" data-i18n="navFees">Сборы</a>
+              <a href="#audience" data-goto="audience" data-i18n="navOrgs">Организаторы</a>
+            </nav>
+            <div class="footer-col">
+              <span class="footer-col-h" data-i18n="footColProduct">Продукт</span>
+              <a href="#flow" data-goto="flow" data-i18n="flowTitle">Путь за 5 минут</a>
+              <a href="#conversion" data-goto="conversion" data-i18n="convTitle">Конверсия в реальном времени</a>
+              <a href="#faq" data-goto="faq" data-i18n="faqTitle">Частые вопросы</a>
+            </div>
+            <div class="footer-col">
+              <span class="footer-col-h" data-i18n="footColStart">Старт</span>
+              <a href="#cta" data-goto="cta" data-i18n="footCta">Заявка</a>
+              <a href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
+              <a href="https://taneesh.uz" target="_blank" rel="noopener">taneesh.uz</a>
+            </div>
+            <div class="footer-col">
+              <span class="footer-col-h" data-i18n="footColContact">Контакты</span>
+              <a href="https://taneesh.uz" target="_blank" rel="noopener">taneesh.uz</a>
+              <a href="tel:+998880348797">+998 88 034 87 97</a>
+              <a href="#cta" data-goto="cta" data-i18n="navStart">Запустить</a>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <span class="footer-copy">© 2026 Taneesh</span>
+            <span class="footer-made" data-i18n="footMade">Сделано для организаторов</span>
+            <div class="footer-legal">
+              <a href="#faq" data-goto="faq" data-i18n="faqTitle">FAQ</a>
+              <span aria-hidden="true">·</span>
+              <a href="https://taneesh.uz" target="_blank" rel="noopener">taneesh.uz</a>
+            </div>
           </div>
         </div>
-        <p class="footer-copy">© 2026 Taneesh</p>
       </div>
     </footer>
   </div>
@@ -5882,11 +6005,11 @@
       if (best !== index) {
         index = best;
         header.classList.toggle('is-scrolled', index > 0);
-        phone.classList.toggle('on-hero', !!(slides[index] && (slides[index].classList.contains('hero') || slides[index].classList.contains('audience-reel') || slides[index].classList.contains('flow-reel') || slides[index].classList.contains('offer-reel'))));
+        phone.classList.toggle('on-hero', !!(slides[index] && (slides[index].classList.contains('hero') || slides[index].classList.contains('audience-reel') || slides[index].classList.contains('flow-reel') || slides[index].classList.contains('offer-reel') || slides[index].classList.contains('footer-reel'))));
         enterSlide(slides[index]);
         if (typeof syncCarouselAutoplay === 'function') syncCarouselAutoplay();
       } else {
-        phone.classList.toggle('on-hero', !!(slides[index] && (slides[index].classList.contains('hero') || slides[index].classList.contains('audience-reel') || slides[index].classList.contains('flow-reel') || slides[index].classList.contains('offer-reel'))));
+        phone.classList.toggle('on-hero', !!(slides[index] && (slides[index].classList.contains('hero') || slides[index].classList.contains('audience-reel') || slides[index].classList.contains('flow-reel') || slides[index].classList.contains('offer-reel') || slides[index].classList.contains('footer-reel'))));
         enterSlide(slides[index]);
       }
     }
@@ -5932,7 +6055,7 @@
         if (el) scrollToSlide(el, { instant: true });
       }
       setActiveByScroll();
-      phone.classList.toggle('on-hero', !!(slides[index] && (slides[index].classList.contains('hero') || slides[index].classList.contains('audience-reel') || slides[index].classList.contains('flow-reel') || slides[index].classList.contains('offer-reel'))));
+      phone.classList.toggle('on-hero', !!(slides[index] && (slides[index].classList.contains('hero') || slides[index].classList.contains('audience-reel') || slides[index].classList.contains('flow-reel') || slides[index].classList.contains('offer-reel') || slides[index].classList.contains('footer-reel'))));
       if (slides[index] || slides[0]) enterSlide(slides[index] || slides[0]);
       if (typeof syncCarouselAutoplay === 'function') syncCarouselAutoplay();
     });
