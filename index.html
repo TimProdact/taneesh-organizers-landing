@@ -3892,7 +3892,6 @@
     }
 
     /* Large roundings — global surface override */
-    .phone .header-pill,
     .phone .surface,
     .phone .live-conv-hero,
     .phone .faq-card,
@@ -3902,19 +3901,24 @@
     .phone #footer .footer-links {
       border-radius: var(--radius-xl) !important;
     }
+    .phone .header-pill {
+      border-radius: var(--radius-pill) !important;
+    }
     .phone .btn,
     .phone .header-nav .primary,
     .phone .header-lang-btn,
-    .phone .offer-bento .offer-ico,
     .phone .chip,
     .phone .tag {
-      border-radius: var(--radius-md) !important;
+      border-radius: var(--radius-pill) !important;
+    }
+    .phone .offer-bento .offer-ico {
+      border-radius: 50% !important;
     }
     .phone .header-lang-menu {
       border-radius: var(--radius-lg) !important;
     }
     .phone .header-lang-option {
-      border-radius: var(--radius-md) !important;
+      border-radius: 12px !important;
     }
     .phone .bento-cats .tile-media {
       border-radius: var(--radius-lg) var(--radius-lg) 0 0;
@@ -4066,12 +4070,152 @@
       background: var(--bg-0) !important;
     }
 
+    /* ========== Hero · Tana-inspired (warm light) ========== */
+    .phone.on-hero .header-pill {
+      background: rgba(255, 252, 247, .78) !important;
+      border: 1px solid rgba(28, 25, 23, .08) !important;
+      box-shadow: 0 8px 28px rgba(28, 25, 23, .06) !important;
+      backdrop-filter: blur(16px) saturate(1.2);
+      -webkit-backdrop-filter: blur(16px) saturate(1.2);
+    }
+    .phone.on-hero .header-nav a,
+    .phone.on-hero .header-lang-btn {
+      color: rgba(28, 25, 23, .55) !important;
+    }
+    .phone.on-hero .header-nav a:hover {
+      color: #1c1917 !important;
+    }
+    .phone.on-hero .logo img {
+      filter: brightness(0);
+      opacity: .92;
+    }
+    .phone.on-hero .header .btn,
+    .phone.on-hero .header .btn-accent {
+      background: #fff !important;
+      color: #1c1917 !important;
+      border: 1px solid rgba(28, 25, 23, .18) !important;
+      box-shadow: none !important;
+      border-radius: 9999px !important;
+      font-weight: 600 !important;
+    }
+
+    .phone #slide-hero.reel.hero {
+      background:
+        radial-gradient(ellipse 90% 70% at 12% 8%, #ffffff 0%, transparent 55%),
+        radial-gradient(ellipse 80% 60% at 88% 92%, #e8dfd2 0%, transparent 50%),
+        linear-gradient(165deg, #fbf8f3 0%, #f3ebe1 48%, #ebe2d6 100%) !important;
+    }
+    .phone #slide-hero .wrap.board.board-hero {
+      background: transparent !important;
+      box-shadow: none !important;
+      gap: 18px !important;
+      padding-inline: 8px !important;
+    }
+    .phone #slide-hero .board-hero .cell-story {
+      background: transparent !important;
+      box-shadow: none !important;
+      border: none !important;
+      padding: 8px 10px 4px !important;
+      gap: 14px !important;
+      justify-content: center !important;
+    }
+    .phone #slide-hero .board-hero .cell-story .eyebrow {
+      color: rgba(28, 25, 23, .45) !important;
+      font-family: var(--font-ui) !important;
+      font-size: 12px !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.02em !important;
+      text-transform: none !important;
+      margin-bottom: 4px;
+    }
+    .phone #slide-hero .board-hero .cell-story h1 {
+      color: #1c1917 !important;
+      font-family: var(--font-display) !important;
+      font-weight: 400 !important;
+      font-size: clamp(32px, 7.2vw, 46px) !important;
+      line-height: 1.05 !important;
+      letter-spacing: -0.02em !important;
+      max-width: 14ch !important;
+    }
+    .phone #slide-hero .board-hero .cell-story h1 .accent {
+      color: #1c1917 !important;
+      font-style: italic !important;
+      font-weight: 400 !important;
+    }
+    .phone #slide-hero .board-hero .cell-story .lead {
+      color: rgba(28, 25, 23, .55) !important;
+      font-size: 14px !important;
+      line-height: 1.5 !important;
+      max-width: 34ch !important;
+      font-weight: 400 !important;
+    }
+    .phone #slide-hero .board-hero .cell-story .hero-cta-row {
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .phone #slide-hero .board-hero .cell-story .btn-accent {
+      background: #1c1917 !important;
+      color: #fff !important;
+      border: none !important;
+      border-radius: 9999px !important;
+      box-shadow: 0 10px 28px rgba(28, 25, 23, .18) !important;
+      font-weight: 600 !important;
+      padding: 12px 22px !important;
+    }
+    .phone #slide-hero .board-hero .cell-story .btn-ghost {
+      background: #fff !important;
+      color: #1c1917 !important;
+      border: 1px solid rgba(28, 25, 23, .16) !important;
+      border-radius: 9999px !important;
+      box-shadow: 0 4px 14px rgba(28, 25, 23, .05) !important;
+      font-weight: 600 !important;
+      padding: 12px 18px !important;
+    }
+    .phone #slide-hero .hero-note {
+      display: block;
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(28, 25, 23, .42);
+      font-weight: 400;
+    }
+    .phone #slide-hero .board-hero .cell-stat {
+      background: rgba(255, 255, 255, .55) !important;
+      border: 1px solid rgba(28, 25, 23, .06) !important;
+      box-shadow: 0 10px 30px rgba(28, 25, 23, .05) !important;
+      border-radius: 20px !important;
+      padding: 14px 16px !important;
+      justify-content: center;
+      gap: 6px;
+    }
+    .phone #slide-hero .board-hero .cell-stat .num {
+      color: #1c1917 !important;
+      font-family: var(--font-display) !important;
+      font-weight: 400 !important;
+      font-size: clamp(26px, 4vw, 34px) !important;
+      letter-spacing: -0.03em !important;
+    }
+    .phone #slide-hero .board-hero .cell-stat .label {
+      color: rgba(28, 25, 23, .48) !important;
+      font-size: 11px !important;
+      font-weight: 500 !important;
+    }
+    @media (max-width: 380px) {
+      .phone #slide-hero .board-hero .cell-stat {
+        background: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-top: 1px solid rgba(28, 25, 23, .08) !important;
+        border-radius: 0 !important;
+        padding: 10px 4px !important;
+      }
+    }
+
   </style>
   <script src="assets/i18n.js"></script>
 </head>
 <body>
   <div class="stage">
-  <div class="phone" id="phone">
+  <div class="phone on-hero" id="phone">
   <header class="header mod mod-header">
     <div class="header-pill">
       <a class="logo" href="#slide-hero" data-goto="slide-hero" aria-label="Taneesh">
@@ -4104,12 +4248,13 @@
       <div class="wrap board board-hero reveal" id="metrics">
         <article class="cell cell-story">
           <span class="eyebrow" data-i18n="heroEyebrow">Тикетинг для организаторов</span>
-          <h1 data-i18n-html="heroTitle">Продавайте билеты.<br /><span class="accent">Получайте 100%</span> цены</h1>
+          <h1 data-i18n-html="heroTitle">Продавайте билеты.<br />Получайте <span class="accent">100%</span> цены</h1>
           <p class="lead" data-i18n="heroLead">Витрина за 5 минут. Сбор платит гость — вам 100% цены билета.</p>
           <div class="btn-row hero-cta-row">
             <a class="btn btn-accent" href="#cta" data-goto="cta" data-i18n="heroCta">Запустить продажи</a>
             <a class="btn btn-ghost" href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
           </div>
+          <span class="hero-note" data-i18n="heroNote">Без абонентки · подключение за 5 минут</span>
         </article>
         <article class="cell cell-stat">
           <strong class="num">100%</strong>
@@ -4611,9 +4756,11 @@
       if (best !== index) {
         index = best;
         header.classList.toggle('is-scrolled', index > 0);
+        phone.classList.toggle('on-hero', index === 0);
         enterSlide(slides[index]);
         if (typeof syncCarouselAutoplay === 'function') syncCarouselAutoplay();
       } else {
+        phone.classList.toggle('on-hero', index === 0);
         enterSlide(slides[index]);
       }
     }
@@ -4659,6 +4806,7 @@
         if (el) scrollToSlide(el, { instant: true });
       }
       setActiveByScroll();
+      phone.classList.toggle('on-hero', index === 0);
       if (slides[0]) enterSlide(slides[0]);
       if (typeof syncCarouselAutoplay === 'function') syncCarouselAutoplay();
     });
