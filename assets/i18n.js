@@ -24,9 +24,6 @@ window.TaneeshI18n = (function () {
       heroCta: 'Запустить продажи',
       heroNote: 'Без абонентки · подключение за 5 минут',
       winAdmin: 'Админка',
-      adminBannerTitle: 'Панель организатора',
-      adminBannerSub: 'Дашборд, продажи, CRM — в одном месте',
-      adminPlayAria: 'Смотреть демо панели организатора',
       winAdminTitle: 'Weekend Stand-up',
       winSold: 'продано',
       winRevenue: 'оборот',
@@ -147,24 +144,23 @@ window.TaneeshI18n = (function () {
       niche4: 'Спортивные турниры',
       niche5: 'Мастер-классы',
       niche6: 'Вечеринки и тусовки',
-      quotePill: 'Что говорят организаторы',
-      quotePrev: 'Предыдущий отзыв',
-      quoteNext: 'Следующий отзыв',
+      quoteBadge: 'Что говорят организаторы',
+      quoteText: 'За вечер продали зал без кассы и без 15% посреднику. Гости платят с телефона, мы сканируем QR на входе — и всё.',
+      quoteAuthor: 'Алина К. · организатор стендап-вечеров, Ташкент',
+      quotePrevAria: 'Предыдущий отзыв',
+      quoteNextAria: 'Следующий отзыв',
       testimonials: [
         {
-          text: '«За вечер продали зал без кассы и без 15% посреднику. Гости платят с телефона, мы сканируем QR на входе — и всё.»',
-          name: 'Алина К.',
-          role: 'организатор стендап-вечеров, Ташкент',
+          text: 'За вечер продали зал без кассы и без 15% посреднику. Гости платят с телефона, мы сканируем QR на входе — и всё.',
+          author: 'Алина К. · организатор стендап-вечеров, Ташкент',
         },
         {
-          text: '«Раньше сверяли списки в Excel и теряли людей на входе. Теперь CRM, рассылка и сканер — одна система. Конференция на 400 человек прошла без очереди.»',
-          name: 'Рустам Т.',
-          role: 'организатор бизнес-конференций, Самарканд',
+          text: 'Подключились за один день. Витрина красивая, деньги приходят полностью — без сюрпризов с комиссией.',
+          author: 'Дмитрий Р. · организатор конференций, Ташкент',
         },
         {
-          text: '«Запустили продажи за 10 минут между репетициями. Гости покупают билеты сами, мы видим, кто уже в пути — и готовим зал заранее.»',
-          name: 'Дилафруз М.',
-          role: 'организатор мастер-классов, Ташкент',
+          text: 'Сканер на входе спасает: никаких списков в Excel и очередей у двери.',
+          author: 'Карина М. · промоутер вечеринок, Самарканд',
         },
       ],
       payEyebrow: 'Платежи',
@@ -245,9 +241,6 @@ window.TaneeshI18n = (function () {
       heroCta: 'Sotuvni boshlash',
       heroNote: 'Abonent to‘lovisiz · 5 daqiqada ulash',
       winAdmin: 'Adminka',
-      adminBannerTitle: 'Tashkilotchi paneli',
-      adminBannerSub: 'Dashboard, sotuvlar, CRM — bir joyda',
-      adminPlayAria: 'Tashkilotchi paneli demosini ko‘rish',
       winAdminTitle: 'Weekend Stand-up',
       winSold: 'sotilgan',
       winRevenue: 'aylanma',
@@ -368,24 +361,23 @@ window.TaneeshI18n = (function () {
       niche4: 'Sport turnirlari',
       niche5: 'Master-klasslar',
       niche6: 'Kechki bazmlar',
-      quotePill: 'Tashkilotchilar nima deydi',
-      quotePrev: 'Oldingi sharh',
-      quoteNext: 'Keyingi sharh',
+      quoteBadge: 'Tashkilotchilar nima deydi',
+      quoteText: 'Bir kechada zalni kassasiz va 15% vositachisiz sotdik. Mehmonlar telefondan to‘laydi, biz kirishda QR skanerlaymiz — hammasi shu.',
+      quoteAuthor: 'Alina K. · stand-up kechalari tashkilotchisi, Toshkent',
+      quotePrevAria: 'Oldingi sharh',
+      quoteNextAria: 'Keyingi sharh',
       testimonials: [
         {
-          text: '«Bir kechada zalni kassasiz va 15% vositachisiz sotdik. Mehmonlar telefondan to‘laydi, biz kirishda QR skanerlaymiz — hammasi shu.»',
-          name: 'Alina K.',
-          role: 'stand-up kechalari tashkilotchisi, Toshkent',
+          text: 'Bir kechada zalni kassasiz va 15% vositachisiz sotdik. Mehmonlar telefondan to‘laydi, biz kirishda QR skanerlaymiz — hammasi shu.',
+          author: 'Alina K. · stand-up kechalari tashkilotchisi, Toshkent',
         },
         {
-          text: '«Ilgari Excel ro‘yxatlarini solishtirdik va kirishda odamlarni yo‘qotardik. Endi CRM, xabar yuborish va skaner — bitta tizim. 400 kishilik konferensiya navbatlarsiz o‘tdi.»',
-          name: 'Rustam T.',
-          role: 'biznes-konferensiyalar tashkilotchisi, Samarqand',
+          text: 'Bir kunda ulandik. Vitrina chiroyli, pul to‘liq keladi — komissiya syurprizlari yo‘q.',
+          author: 'Dmitriy R. · konferensiyalar tashkilotchisi, Toshkent',
         },
         {
-          text: '«Repetitsiyalar orasida 10 daqiqada sotuvni ishga tushirdik. Mehmonlar o‘zlari chipta sotib oladi, kim yo‘lda ekanini ko‘ramiz — zalni oldindan tayyorlaymiz.»',
-          name: 'Dilafruz M.',
-          role: 'master-klasslar tashkilotchisi, Toshkent',
+          text: 'Kirishdagi skaner qutqardi: Excel ro‘yxatlari va eshik oldidagi navbatlar yo‘q.',
+          author: 'Karina M. · kechki bazmlar promoteri, Samarqand',
         },
       ],
       payEyebrow: 'To‘lovlar',
@@ -466,9 +458,6 @@ window.TaneeshI18n = (function () {
       heroCta: 'Start selling',
       heroNote: 'No subscription · go live in 5 minutes',
       winAdmin: 'Admin',
-      adminBannerTitle: 'Organizer dashboard',
-      adminBannerSub: 'Dashboard, sales, CRM — all in one place',
-      adminPlayAria: 'Play organizer dashboard demo',
       winAdminTitle: 'Weekend Stand-up',
       winSold: 'sold',
       winRevenue: 'revenue',
@@ -589,24 +578,23 @@ window.TaneeshI18n = (function () {
       niche4: 'Sports tournaments',
       niche5: 'Workshops',
       niche6: 'Parties & nightlife',
-      quotePill: 'What organizers say',
-      quotePrev: 'Previous testimonial',
-      quoteNext: 'Next testimonial',
+      quoteBadge: 'What organizers say',
+      quoteText: 'We sold out the room in one night — no box office and no 15% middleman. Guests pay on their phone, we scan QR at the door.',
+      quoteAuthor: 'Alina K. · standup organizer, Tashkent',
+      quotePrevAria: 'Previous testimonial',
+      quoteNextAria: 'Next testimonial',
       testimonials: [
         {
-          text: '“We sold out the room in one night — no box office and no 15% middleman. Guests pay on their phone, we scan QR at the door.”',
-          name: 'Alina K.',
-          role: 'standup organizer, Tashkent',
+          text: 'We sold out the room in one night — no box office and no 15% middleman. Guests pay on their phone, we scan QR at the door.',
+          author: 'Alina K. · standup organizer, Tashkent',
         },
         {
-          text: '“We used to reconcile Excel lists and lose people at the door. Now CRM, messaging, and scanner are one system. A 400-person conference ran with no queue.”',
-          name: 'Rustam T.',
-          role: 'business conference organizer, Samarkand',
+          text: 'We went live in a day. The storefront looks great and payouts are full — no commission surprises.',
+          author: 'Dmitry R. · conference organizer, Tashkent',
         },
         {
-          text: '“We launched sales in 10 minutes between rehearsals. Guests buy tickets themselves, we see who is on the way — and prep the room ahead of time.”',
-          name: 'Dilafruz M.',
-          role: 'workshop organizer, Tashkent',
+          text: 'The door scanner is a lifesaver: no Excel lists and no queues at the entrance.',
+          author: 'Karina M. · party promoter, Samarkand',
         },
       ],
       payEyebrow: 'Payments',
@@ -738,11 +726,6 @@ window.TaneeshI18n = (function () {
       const ans = document.querySelector(`.faq-a[data-faq="${i}"]`);
       if (ans) ans.textContent = item.a;
     });
-
-    const quotePrev = document.querySelector('[data-quote-prev]');
-    const quoteNext = document.querySelector('[data-quote-next]');
-    if (quotePrev) quotePrev.setAttribute('aria-label', d.quotePrev);
-    if (quoteNext) quoteNext.setAttribute('aria-label', d.quoteNext);
 
     // lang menu active state
     document.querySelectorAll('[data-locale-option]').forEach((btn) => {
