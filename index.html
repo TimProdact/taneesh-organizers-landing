@@ -2227,26 +2227,41 @@
       position: absolute;
       top: 0;
       bottom: 0;
-      width: clamp(56px, 11vw, 148px);
+      width: clamp(120px, 22vw, 280px);
       z-index: 2;
       pointer-events: none;
     }
     .features-loop-mask::before {
       left: 0;
-      background: linear-gradient(90deg, #fff 18%, rgba(255, 255, 255, 0) 100%);
+      background: linear-gradient(
+        90deg,
+        #fff 0%,
+        rgba(255, 255, 255, 0.96) 28%,
+        rgba(255, 255, 255, 0.72) 52%,
+        rgba(255, 255, 255, 0.28) 72%,
+        rgba(255, 255, 255, 0) 100%
+      );
     }
     .features-loop-mask::after {
       right: 0;
-      background: linear-gradient(270deg, #fff 18%, rgba(255, 255, 255, 0) 100%);
+      background: linear-gradient(
+        270deg,
+        #fff 0%,
+        rgba(255, 255, 255, 0.96) 28%,
+        rgba(255, 255, 255, 0.72) 52%,
+        rgba(255, 255, 255, 0.28) 72%,
+        rgba(255, 255, 255, 0) 100%
+      );
     }
     .features-loop {
       display: flex;
+      align-items: center;
       gap: 28px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
-      scroll-padding-inline-start: max(20px, calc((100vw - var(--max)) / 2 + 20px));
-      padding: 4px max(20px, calc((100vw - var(--max)) / 2 + 20px)) 10px  max(20px, calc((100vw - var(--max)) / 2 + 20px));
+      scroll-padding-inline: max(20px, calc((100vw - var(--max)) / 2 + 20px));
+      padding: 12px max(20px, calc((100vw - var(--max)) / 2 + 20px)) 16px max(20px, calc((100vw - var(--max)) / 2 + 20px));
       scrollbar-width: none;
       -ms-overflow-style: none;
       cursor: grab;
@@ -2266,8 +2281,7 @@
     .features-card {
       position: relative;
       flex: 0 0 minmax(220px, 248px);
-      width: minmax(220px, 248px);
-      scroll-snap-align: start;
+      scroll-snap-align: center;
       aspect-ratio: 3 / 4.4;
       min-height: 360px;
       padding: 22px;
@@ -2285,6 +2299,19 @@
       background-position: center;
       box-shadow: 0 8px 32px rgba(10, 10, 10, 0.1);
       isolation: isolate;
+      transform-origin: center center;
+      transition: transform 320ms var(--ease), opacity 320ms var(--ease), box-shadow 320ms var(--ease);
+      will-change: transform, opacity;
+    }
+    .features-loop.is-dragging .features-card {
+      transition: transform 80ms linear, opacity 80ms linear;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .features-card {
+        transition: none;
+        transform: none !important;
+        opacity: 1 !important;
+      }
     }
     .features-card::before {
       content: "";
@@ -4186,8 +4213,37 @@
       let dragStartX = 0;
       let dragStartScroll = 0;
       let scrollTimer = 0;
+      let focusFrame = 0;
+      const motionOk = () => !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       const cards = () => [...rail.querySelectorAll('[data-feature-card]')];
+
+      const updateFocus = () => {
+        if (!motionOk()) return;
+        const railRect = rail.getBoundingClientRect();
+        const centerX = railRect.left + railRect.width * 0.5;
+        const falloff = Math.max(railRect.width * 0.52, 320);
+        cards().forEach((card) => {
+          const rect = card.getBoundingClientRect();
+          const cardCenter = rect.left + rect.width * 0.5;
+          const dist = Math.abs(cardCenter - centerX);
+          const t = Math.min(1, dist / falloff);
+          const eased = t * t;
+          const scale = 1 - eased * 0.14;
+          const opacity = 1 - eased * 0.22;
+          card.style.transform = `scale(${scale.toFixed(3)})`;
+          card.style.opacity = opacity.toFixed(3);
+          card.style.zIndex = String(Math.round((1 - t) * 20));
+        });
+      };
+
+      const scheduleFocus = () => {
+        if (focusFrame) return;
+        focusFrame = requestAnimationFrame(() => {
+          focusFrame = 0;
+          updateFocus();
+        });
+      };
 
       const measureLoop = () => {
         const list = cards();
@@ -4211,6 +4267,7 @@
       };
 
       const onScroll = () => {
+        scheduleFocus();
         window.clearTimeout(scrollTimer);
         scrollTimer = window.setTimeout(normalize, 90);
       };
@@ -4232,6 +4289,7 @@
       rail.addEventListener('pointermove', (event) => {
         if (!dragging) return;
         rail.scrollLeft = dragStartScroll - (event.clientX - dragStartX);
+        scheduleFocus();
       });
 
       const endDrag = () => {
@@ -4239,6 +4297,7 @@
         dragging = false;
         rail.classList.remove('is-dragging');
         normalize();
+        scheduleFocus();
       };
 
       rail.addEventListener('pointerup', endDrag);
@@ -4248,9 +4307,13 @@
         const ratio = loopWidth ? rail.scrollLeft / loopWidth : 1;
         jumpToMiddle();
         if (loopWidth) rail.scrollLeft = loopWidth * ratio;
+        scheduleFocus();
       });
 
-      requestAnimationFrame(jumpToMiddle);
+      requestAnimationFrame(() => {
+        jumpToMiddle();
+        updateFocus();
+      });
     })();
 
     // Card rails (niches) — progress + nav
