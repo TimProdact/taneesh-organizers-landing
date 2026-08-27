@@ -24,9 +24,6 @@ window.TaneeshI18n = (function () {
       heroCta: 'Запустить продажи',
       heroNote: 'Без абонентки · подключение за 5 минут',
       winAdmin: 'Админка',
-      adminBannerTitle: 'Панель организатора',
-      adminBannerSub: 'Дашборд, продажи, CRM — в одном месте',
-      adminPlayAria: 'Смотреть демо панели организатора',
       winAdminTitle: 'Weekend Stand-up',
       winSold: 'продано',
       winRevenue: 'оборот',
@@ -138,6 +135,7 @@ window.TaneeshI18n = (function () {
       faqClose: 'Понятно',
       trustLabel: 'Нам доверяют 1&nbsp;000+<br />организаторов',
       nicheEyebrow: 'Форматы событий',
+      nicheAria: 'Форматы событий',
       nicheTitle: 'Тикетинг под любой формат',
       nicheLead: 'От стендапа до турнира — одна витрина, один чекаут, один сканер на входе.',
       niche1: 'Стендап-концерты',
@@ -146,26 +144,10 @@ window.TaneeshI18n = (function () {
       niche4: 'Спортивные турниры',
       niche5: 'Мастер-классы',
       niche6: 'Вечеринки и тусовки',
-      quotePill: 'Что говорят организаторы',
-      quotePrev: 'Предыдущий отзыв',
-      quoteNext: 'Следующий отзыв',
-      testimonials: [
-        {
-          text: '«За вечер продали зал без кассы и без 15% посреднику. Гости платят с телефона, мы сканируем QR на входе — и всё.»',
-          name: 'Алина К.',
-          role: 'организатор стендап-вечеров, Ташкент',
-        },
-        {
-          text: '«Раньше сверяли списки в Excel и теряли людей на входе. Теперь CRM, рассылка и сканер — одна система. Конференция на 400 человек прошла без очереди.»',
-          name: 'Рустам Т.',
-          role: 'организатор бизнес-конференций, Самарканд',
-        },
-        {
-          text: '«Запустили продажи за 10 минут между репетициями. Гости покупают билеты сами, мы видим, кто уже в пути — и готовим зал заранее.»',
-          name: 'Дилафруз М.',
-          role: 'организатор мастер-классов, Ташкент',
-        },
-      ],
+      quoteEyebrow: 'Отзывы',
+      quoteTitle: 'Что говорят организаторы',
+      quoteText: '«За вечер продали зал без кассы и без 15% посреднику. Гости платят с телефона, мы сканируем QR на входе — и всё.»',
+      quoteCite: 'Алина К. · организатор стендап-вечеров, Ташкент',
       payEyebrow: 'Платежи',
       payTitle: 'Безопасные оплаты и быстрая выплата',
       payLead: 'Сейчас доступны Uzcard и Humo. Visa и Mastercard — скоро. Транзакции защищены, деньги приходят организатору по понятному графику.',
@@ -244,9 +226,6 @@ window.TaneeshI18n = (function () {
       heroCta: 'Sotuvni boshlash',
       heroNote: 'Abonent to‘lovisiz · 5 daqiqada ulash',
       winAdmin: 'Adminka',
-      adminBannerTitle: 'Tashkilotchi paneli',
-      adminBannerSub: 'Dashboard, sotuvlar, CRM — bir joyda',
-      adminPlayAria: 'Tashkilotchi paneli demosini ko‘rish',
       winAdminTitle: 'Weekend Stand-up',
       winSold: 'sotilgan',
       winRevenue: 'aylanma',
@@ -358,6 +337,7 @@ window.TaneeshI18n = (function () {
       faqClose: 'Tushunarli',
       trustLabel: 'Bizga 1&nbsp;000+<br />tashkilotchi ishonadi',
       nicheEyebrow: 'Tadbir formatlari',
+      nicheAria: 'Tadbir formatlari',
       nicheTitle: 'Har qanday format uchun tiketing',
       nicheLead: 'Stand-updan turnirgacha — bitta vitrina, bitta chekaut, kirishda bitta skaner.',
       niche1: 'Stand-up konsertlar',
@@ -366,26 +346,10 @@ window.TaneeshI18n = (function () {
       niche4: 'Sport turnirlari',
       niche5: 'Master-klasslar',
       niche6: 'Kechki bazmlar',
-      quotePill: 'Tashkilotchilar nima deydi',
-      quotePrev: 'Oldingi sharh',
-      quoteNext: 'Keyingi sharh',
-      testimonials: [
-        {
-          text: '«Bir kechada zalni kassasiz va 15% vositachisiz sotdik. Mehmonlar telefondan to‘laydi, biz kirishda QR skanerlaymiz — hammasi shu.»',
-          name: 'Alina K.',
-          role: 'stand-up kechalari tashkilotchisi, Toshkent',
-        },
-        {
-          text: '«Ilgari Excel ro‘yxatlarini solishtirdik va kirishda odamlarni yo‘qotardik. Endi CRM, xabar yuborish va skaner — bitta tizim. 400 kishilik konferensiya navbatlarsiz o‘tdi.»',
-          name: 'Rustam T.',
-          role: 'biznes-konferensiyalar tashkilotchisi, Samarqand',
-        },
-        {
-          text: '«Repetitsiyalar orasida 10 daqiqada sotuvni ishga tushirdik. Mehmonlar o‘zlari chipta sotib oladi, kim yo‘lda ekanini ko‘ramiz — zalni oldindan tayyorlaymiz.»',
-          name: 'Dilafruz M.',
-          role: 'master-klasslar tashkilotchisi, Toshkent',
-        },
-      ],
+      quoteEyebrow: 'Sharhlar',
+      quoteTitle: 'Tashkilotchilar nima deydi',
+      quoteText: '«Bir kechada zalni kassasiz va 15% vositachisiz sotdik. Mehmonlar telefondan to‘laydi, biz kirishda QR skanerlaymiz — hammasi shu.»',
+      quoteCite: 'Alina K. · stand-up kechalari tashkilotchisi, Toshkent',
       payEyebrow: 'To‘lovlar',
       payTitle: 'Xavfsiz to‘lovlar va tez to‘lov',
       payLead: 'Hozir Uzcard va Humo mavjud. Visa va Mastercard — tez orada. Tranzaksiyalar himoyalangan, pul tashkilotchiga tushunarli jadval bo‘yicha keladi.',
@@ -464,9 +428,6 @@ window.TaneeshI18n = (function () {
       heroCta: 'Start selling',
       heroNote: 'No subscription · go live in 5 minutes',
       winAdmin: 'Admin',
-      adminBannerTitle: 'Organizer dashboard',
-      adminBannerSub: 'Dashboard, sales, CRM — all in one place',
-      adminPlayAria: 'Play organizer dashboard demo',
       winAdminTitle: 'Weekend Stand-up',
       winSold: 'sold',
       winRevenue: 'revenue',
@@ -578,6 +539,7 @@ window.TaneeshI18n = (function () {
       faqClose: 'Got it',
       trustLabel: 'Trusted by 1,000+<br />organizers',
       nicheEyebrow: 'Event formats',
+      nicheAria: 'Event formats',
       nicheTitle: 'Ticketing for any format',
       nicheLead: 'From standup to tournaments — one storefront, one checkout, one door scanner.',
       niche1: 'Stand-up shows',
@@ -586,26 +548,10 @@ window.TaneeshI18n = (function () {
       niche4: 'Sports tournaments',
       niche5: 'Workshops',
       niche6: 'Parties & nightlife',
-      quotePill: 'What organizers say',
-      quotePrev: 'Previous testimonial',
-      quoteNext: 'Next testimonial',
-      testimonials: [
-        {
-          text: '“We sold out the room in one night — no box office and no 15% middleman. Guests pay on their phone, we scan QR at the door.”',
-          name: 'Alina K.',
-          role: 'standup organizer, Tashkent',
-        },
-        {
-          text: '“We used to reconcile Excel lists and lose people at the door. Now CRM, messaging, and scanner are one system. A 400-person conference ran with no queue.”',
-          name: 'Rustam T.',
-          role: 'business conference organizer, Samarkand',
-        },
-        {
-          text: '“We launched sales in 10 minutes between rehearsals. Guests buy tickets themselves, we see who is on the way — and prep the room ahead of time.”',
-          name: 'Dilafruz M.',
-          role: 'workshop organizer, Tashkent',
-        },
-      ],
+      quoteEyebrow: 'Testimonials',
+      quoteTitle: 'What organizers say',
+      quoteText: '“We sold out the room in one night — no box office and no 15% middleman. Guests pay on their phone, we scan QR at the door.”',
+      quoteCite: 'Alina K. · standup organizer, Tashkent',
       payEyebrow: 'Payments',
       payTitle: 'Secure payments and fast payouts',
       payLead: 'Currently available: Uzcard and Humo. Visa and Mastercard coming soon. Transactions are protected; funds reach organizers on a clear schedule.',
@@ -736,11 +682,6 @@ window.TaneeshI18n = (function () {
       if (ans) ans.textContent = item.a;
     });
 
-    const quotePrev = document.querySelector('[data-quote-prev]');
-    const quoteNext = document.querySelector('[data-quote-next]');
-    if (quotePrev) quotePrev.setAttribute('aria-label', d.quotePrev);
-    if (quoteNext) quoteNext.setAttribute('aria-label', d.quoteNext);
-
     // lang menu active state
     document.querySelectorAll('[data-locale-option]').forEach((btn) => {
       const id = btn.getAttribute('data-locale-option');
@@ -802,6 +743,5 @@ window.TaneeshI18n = (function () {
     apply,
     init,
     faq: () => t().faq,
-    testimonials: () => t().testimonials || [],
   };
 })();

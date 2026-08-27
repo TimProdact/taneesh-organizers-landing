@@ -1767,35 +1767,33 @@
       width: auto;
       max-width: 132px;
     }
-    .niche-rail {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: minmax(200px, 230px);
-      gap: 20px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      padding-bottom: 4px;
-      scrollbar-width: none;
-    }
-    .niche-rail::-webkit-scrollbar { display: none; }
     .niche-card {
       position: relative;
-      aspect-ratio: 3 / 4.2;
-      min-height: 320px;
-      border-radius: 28px;
-      overflow: hidden;
       scroll-snap-align: start;
-      background: #111;
-      color: #fff;
+      aspect-ratio: 3 / 4.4;
+      min-height: 360px;
+      padding: 22px;
+      border-radius: 28px;
+      border: 1px solid rgba(10, 10, 10, 0.08);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      gap: 12px;
+      text-align: left;
+      background: #fff;
+      color: var(--text);
+      box-shadow: 0 8px 32px rgba(10, 10, 10, 0.06);
       isolation: isolate;
     }
     .niche-emoji {
       position: absolute;
-      inset: 0 0 72px;
+      inset: 22px 22px 88px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: clamp(48px, 12vw, 64px);
+      font-size: clamp(56px, 14vw, 72px);
       line-height: 1;
       z-index: 0;
       user-select: none;
@@ -1812,21 +1810,15 @@
       0%, 100% { transform: translateY(0) scale(1); }
       50% { transform: translateY(-10px) scale(1.06); }
     }
-    .niche-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.82) 100%);
-    }
     .niche-card strong {
-      position: absolute;
-      left: 18px;
-      right: 18px;
-      bottom: 18px;
+      position: relative;
       z-index: 1;
-      font-size: 18px;
-      font-weight: 700;
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 400;
       letter-spacing: -0.02em;
+      color: var(--text);
+      line-height: 1.15;
     }
     .quote-block {
       max-width: 820px;
@@ -2964,7 +2956,7 @@
         </div>
       </div>
       <div class="offer-rail-bleed">
-        <div class="offer-rail" tabindex="0" data-offer-rail data-i18n-aria="offerAria" aria-label="Возможности платформы">
+        <div class="offer-rail" tabindex="0" data-card-rail data-i18n-aria="offerAria" aria-label="Возможности платформы">
           <article class="offer-card offer-card-1">
             <span class="offer-tag" data-i18n="o1tag">Витрина</span>
             <div class="offer-body">
@@ -3011,14 +3003,14 @@
       </div>
       <div class="wrap">
         <div class="offer-controls">
-          <button type="button" class="offer-nav" data-offer-prev aria-label="Назад">
+          <button type="button" class="offer-nav" data-rail-prev aria-label="Назад">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
           </button>
-          <button type="button" class="offer-nav" data-offer-next aria-label="Вперёд">
+          <button type="button" class="offer-nav" data-rail-next aria-label="Вперёд">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
           </button>
         </div>
-        <div class="offer-progress" aria-hidden="true"><i data-offer-progress></i></div>
+        <div class="offer-progress" aria-hidden="true"><i data-rail-progress></i></div>
       </div>
     </section>
 
@@ -3029,7 +3021,9 @@
           <h2 data-i18n="nicheTitle">Тикетинг под любой формат</h2>
           <p class="lead" data-i18n="nicheLead">От стендапа до турнира — одна витрина, один чекаут, один сканер на входе.</p>
         </div>
-        <div class="niche-rail" data-niche-rail>
+      </div>
+      <div class="offer-rail-bleed">
+        <div class="offer-rail" tabindex="0" data-card-rail data-i18n-aria="nicheAria" aria-label="Форматы событий">
           <article class="niche-card">
             <span class="niche-emoji" aria-hidden="true">🎙</span>
             <strong data-i18n="niche1">Стендап-концерты</strong>
@@ -3055,6 +3049,17 @@
             <strong data-i18n="niche6">Вечеринки и тусовки</strong>
           </article>
         </div>
+      </div>
+      <div class="wrap">
+        <div class="offer-controls">
+          <button type="button" class="offer-nav" data-rail-prev aria-label="Назад">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button type="button" class="offer-nav" data-rail-next aria-label="Вперёд">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+        <div class="offer-progress" aria-hidden="true"><i data-rail-progress></i></div>
       </div>
     </section>
 
@@ -3376,14 +3381,15 @@
       }, 3200);
     }
 
-    // Offer rail progress + nav
-    const rail = document.querySelector('[data-offer-rail]');
-    const progress = document.querySelector('[data-offer-progress]');
-    const prevBtn = document.querySelector('[data-offer-prev]');
-    const nextBtn = document.querySelector('[data-offer-next]');
-    if (rail && progress) {
+    // Card rails (features + niches) — progress + nav
+    document.querySelectorAll('[data-card-rail]').forEach((rail) => {
+      const section = rail.closest('section');
+      const progress = section?.querySelector('[data-rail-progress]');
+      const prevBtn = section?.querySelector('[data-rail-prev]');
+      const nextBtn = section?.querySelector('[data-rail-next]');
+      if (!progress) return;
       const step = () => {
-        const card = rail.querySelector('.offer-card');
+        const card = rail.querySelector('article');
         if (!card) return 280;
         const styles = getComputedStyle(rail);
         const gap = parseFloat(styles.columnGap || styles.gap || '16') || 16;
@@ -3404,7 +3410,7 @@
       rail.addEventListener('scroll', syncProgress, { passive: true });
       window.addEventListener('resize', syncProgress);
       syncProgress();
-    }
+    });
 
     // Hero dashboard demo (periods, KPI tap, scroll tour) + admin nav
     const dashRoot = document.querySelector('[data-dash]');
