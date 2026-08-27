@@ -1027,36 +1027,66 @@
 
     /* CTA */
     #cta .cta-band {
-      padding: clamp(40px, 6vw, 64px);
-      border-radius: 32px;
-      background: #fff;
-      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: clamp(24px, 4vw, 48px);
+      padding: clamp(28px, 4vw, 40px) clamp(28px, 4vw, 44px);
+      border-radius: 28px;
+      background: #efeeec;
+      border: 0;
+      text-align: left;
+    }
+    .cta-copy {
+      flex: 1 1 280px;
+      max-width: 520px;
+    }
+    #cta h2 {
+      margin: 0;
+      font-size: clamp(28px, 3.4vw, 40px);
+      line-height: 1.12;
+    }
+    .cta-actions {
+      flex: 0 1 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    #cta .btn-row {
+      margin-top: 0;
+      justify-content: center;
+    }
+    #cta .btn-soft {
+      background: rgba(28, 25, 23, 0.08);
+      border: 0;
+      color: var(--text);
+    }
+    #cta .btn-soft:hover { background: rgba(28, 25, 23, 0.12); }
+    #cta .btn-dark {
+      background: var(--black);
+      color: #fff;
+    }
+    .cta-note {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 500;
       text-align: center;
     }
-    .cta-chips {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-    .cta-chips span {
-      padding: 6px 12px;
-      border-radius: 9999px;
-      background: rgba(30, 215, 96, 0.12);
-      color: #0f7a38;
-      font-size: 12px;
+    .cta-note a {
+      color: inherit;
       font-weight: 700;
     }
-    #cta h2 { margin-bottom: 14px; }
-    #cta .lead { margin-inline: auto; }
-    #cta .btn-row { justify-content: center; }
-    .cta-phone {
-      display: inline-block;
-      margin-top: 22px;
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
+    .cta-note a:hover { color: var(--text); }
+
+    @media (max-width: 800px) {
+      #cta .cta-band {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+      }
+      .cta-copy { max-width: none; }
+      #cta h2 { text-align: center; }
     }
 
     /* Footer */
@@ -1641,18 +1671,16 @@
     <section class="section" id="cta">
       <div class="wrap">
         <div class="cta-band">
-          <div class="cta-chips" aria-hidden="true">
-            <span data-i18n="ctaChip1">100% цены</span>
-            <span data-i18n="ctaChip2">5 мин</span>
-            <span data-i18n="ctaChip3">гость платит сбор</span>
+          <div class="cta-copy">
+            <h2 data-i18n-html="ctaTitle">Запустите продажи.<br /><span class="cta-accent">Цена билета — ваша</span></h2>
           </div>
-          <h2 data-i18n-html="ctaTitle">Запустите продажи.<br /><span class="cta-accent">Цена билета — ваша</span></h2>
-          <p class="lead" data-i18n="ctaLead">Подключим кабинет, настроим чекаут и покажем, как выглядит сбор для гостя.</p>
-          <div class="btn-row">
-            <a class="btn btn-accent" href="https://taneesh.uz" data-i18n="ctaStart">Запустить продажи</a>
-            <a class="btn btn-ghost" href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
+          <div class="cta-actions">
+            <div class="btn-row">
+              <a class="btn btn-dark" href="https://taneesh.uz" data-i18n="ctaStart">Запустить продажи</a>
+              <a class="btn btn-soft" href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
+            </div>
+            <p class="cta-note"><span data-i18n="heroNote">Без абонентки · подключение за 5 минут</span> · <a href="tel:+998880348797">+998 88 034 87 97</a></p>
           </div>
-          <a class="cta-phone" href="tel:+998880348797">+998 88 034 87 97</a>
         </div>
       </div>
     </section>
@@ -1857,16 +1885,33 @@
       }, 3200);
     }
 
-    // Offer rail progress
+    // Offer rail progress + nav
     const rail = document.querySelector('[data-offer-rail]');
     const progress = document.querySelector('[data-offer-progress]');
+    const prevBtn = document.querySelector('[data-offer-prev]');
+    const nextBtn = document.querySelector('[data-offer-next]');
     if (rail && progress) {
+      const step = () => {
+        const card = rail.querySelector('.offer-card');
+        if (!card) return 280;
+        const styles = getComputedStyle(rail);
+        const gap = parseFloat(styles.columnGap || styles.gap || '16') || 16;
+        return card.getBoundingClientRect().width + gap;
+      };
       const syncProgress = () => {
         const max = rail.scrollWidth - rail.clientWidth;
         const p = max > 0 ? (rail.scrollLeft / max) * 100 : 0;
-        progress.style.width = Math.max(8, p) + '%';
+        progress.style.width = Math.max(12, Math.min(100, p || 12)) + '%';
+        if (prevBtn) prevBtn.disabled = rail.scrollLeft <= 4;
+        if (nextBtn) nextBtn.disabled = rail.scrollLeft >= max - 4;
       };
+      const scrollByDir = (dir) => {
+        rail.scrollBy({ left: dir * step(), behavior: 'smooth' });
+      };
+      if (prevBtn) prevBtn.addEventListener('click', () => scrollByDir(-1));
+      if (nextBtn) nextBtn.addEventListener('click', () => scrollByDir(1));
       rail.addEventListener('scroll', syncProgress, { passive: true });
+      window.addEventListener('resize', syncProgress);
       syncProgress();
     }
 
