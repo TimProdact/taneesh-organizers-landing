@@ -1448,6 +1448,16 @@
     }
     .fees-result-arrow svg { width: 18px; height: 18px; }
     .fees-panel { width: 100%; }
+    .calc-sliders {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      width: 100%;
+    }
+
+    @media (max-width: 640px) {
+      .calc-sliders { grid-template-columns: 1fr; }
+    }
 
     @media (max-width: 560px) {
       .fees-result {
@@ -1935,18 +1945,34 @@
       color: #fff;
       isolation: isolate;
     }
-    .niche-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
+    .niche-emoji {
+      position: absolute;
+      inset: 0 0 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(48px, 12vw, 64px);
+      line-height: 1;
+      z-index: 0;
+      user-select: none;
+      pointer-events: none;
+      animation: niche-float 4.2s ease-in-out infinite;
+    }
+    .niche-card:nth-child(1) .niche-emoji { animation-delay: 0s; }
+    .niche-card:nth-child(2) .niche-emoji { animation-delay: 0.5s; }
+    .niche-card:nth-child(3) .niche-emoji { animation-delay: 1s; }
+    .niche-card:nth-child(4) .niche-emoji { animation-delay: 1.5s; }
+    .niche-card:nth-child(5) .niche-emoji { animation-delay: 2s; }
+    .niche-card:nth-child(6) .niche-emoji { animation-delay: 2.5s; }
+    @keyframes niche-float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-10px) scale(1.06); }
     }
     .niche-card::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.72) 100%);
+      background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.82) 100%);
     }
     .niche-card strong {
       position: absolute;
@@ -2206,6 +2232,180 @@
     .footer-meta a:hover { color: var(--text); }
     .footer-copy { font-size: 12px; color: var(--muted); }
 
+    /* Lead modal */
+    body.lead-modal-open { overflow: hidden; }
+    .lead-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: rgba(10, 10, 10, 0.45);
+      opacity: 0;
+      transition: opacity 200ms var(--ease);
+    }
+    .lead-overlay.is-visible { opacity: 1; }
+    .lead-dialog {
+      width: min(100%, 420px);
+      max-height: min(92vh, 640px);
+      overflow: auto;
+      padding: 28px 24px 24px;
+      border-radius: 20px;
+      background: var(--surface);
+      border: 1px solid rgba(10, 10, 10, 0.1);
+      box-shadow: 0 24px 64px rgba(10, 10, 10, 0.18);
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      transform: translateY(8px) scale(0.98);
+      transition: transform 220ms var(--ease);
+    }
+    .lead-overlay.is-visible .lead-dialog {
+      transform: translateY(0) scale(1);
+    }
+    .lead-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .lead-head h2 {
+      font-family: var(--font-ui);
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .lead-head p {
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--muted);
+      font-family: var(--font-ui);
+      line-height: 1.45;
+    }
+    .lead-close {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--cream);
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+      color: var(--muted);
+    }
+    .lead-close:hover { color: var(--text); background: #fff; }
+    .lead-field { margin-bottom: 14px; }
+    .lead-field label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-family: var(--font-ui);
+    }
+    .lead-field input,
+    .lead-field textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(10, 10, 10, 0.12);
+      background: var(--cream);
+      color: var(--text);
+      font-size: 14px;
+      font-family: inherit;
+      transition: border-color 160ms var(--ease), box-shadow 160ms var(--ease);
+    }
+    .lead-field textarea {
+      min-height: 88px;
+      resize: vertical;
+      font-family: var(--font-ui);
+    }
+    .lead-field input:focus,
+    .lead-field textarea:focus {
+      outline: none;
+      border-color: rgba(30, 215, 96, 0.55);
+      box-shadow: 0 0 0 3px rgba(30, 215, 96, 0.12);
+    }
+    .lead-error {
+      margin-bottom: 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(220, 38, 38, 0.08);
+      color: #b91c1c;
+      font-size: 12px;
+      font-family: var(--font-ui);
+    }
+    .lead-submit {
+      width: 100%;
+      margin-top: 4px;
+      padding: 14px 18px;
+      border: 0;
+      border-radius: 9999px;
+      background: var(--black);
+      color: #fff;
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 160ms var(--ease), transform 160ms var(--ease);
+    }
+    .lead-submit:hover:not(:disabled) { transform: translateY(-1px); }
+    .lead-submit:disabled { opacity: 0.65; cursor: wait; }
+    .lead-submit.is-loading { position: relative; color: transparent; }
+    .lead-submit.is-loading::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: lead-spin 0.7s linear infinite;
+    }
+    @keyframes lead-spin { to { transform: rotate(360deg); } }
+    .lead-success {
+      text-align: center;
+      padding: 24px 8px 8px;
+      font-family: var(--font-ui);
+    }
+    .lead-success-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      background: rgba(30, 215, 96, 0.15);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      font-weight: 800;
+    }
+    .lead-success h3 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .lead-success p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .lead-success .lead-close-btn {
+      padding: 12px 24px;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+      background: var(--cream);
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
     @media (max-width: 960px) {
       .header-nav { display: none; }
       .hero-duo,
@@ -2251,7 +2451,7 @@
             <li role="none"><button type="button" role="option" class="header-lang-option" data-locale-option="en" aria-selected="false"><span>English</span><span class="short">EN</span></button></li>
           </ul>
         </div>
-        <a class="header-cta" href="#cta" data-goto="cta" data-i18n="navStart">Запустить</a>
+        <a class="header-cta" href="#" data-lead-modal data-lead-source="navStart" data-i18n="navStart">Запустить</a>
       </div>
     </div>
   </header>
@@ -2264,7 +2464,7 @@
           <h1 data-i18n-html="heroTitle">Продавайте билеты.<br />Получайте <span class="accent">100%</span> цены</h1>
           <p class="lead" data-i18n="heroLead">Витрина за 5 минут. Сбор платит гость — вам 100% цены билета.</p>
           <div class="btn-row">
-            <a class="btn btn-accent" href="#cta" data-goto="cta" data-i18n="heroCta">Запустить продажи</a>
+            <a class="btn btn-accent" href="#" data-lead-modal data-lead-source="heroCta" data-i18n="heroCta">Запустить продажи</a>
             <a class="btn btn-ghost" href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
           </div>
           <span class="hero-note" data-i18n="heroNote">Без абонентки · подключение за 5 минут</span>
@@ -2767,7 +2967,7 @@
                 <strong class="v"><span id="savePack">1 500 000</span></strong>
               </div>
             </div>
-            <a class="calc-cta" href="#cta" data-goto="cta" data-i18n="heroCta">Запустить продажи</a>
+            <a class="calc-cta" href="#" data-lead-modal data-lead-source="whyCta" data-i18n="heroCta">Запустить продажи</a>
           </div>
         </div>
       </div>
@@ -2904,19 +3104,21 @@
             </div>
           </div>
           <div class="calc-side fees-panel">
-            <div class="calc-field">
-              <div class="calc-field-main">
-                <strong id="ticketLabel">100 000 сум</strong>
-                <span class="calc-field-meta" data-i18n="feesTicket">Цена билета</span>
+            <div class="calc-sliders">
+              <div class="calc-field">
+                <div class="calc-field-main">
+                  <strong id="ticketLabel">100 000 сум</strong>
+                  <span class="calc-field-meta" data-i18n="feesTicket">Цена билета</span>
+                </div>
+                <input type="range" id="ticketPrice" min="20000" max="500000" step="1000" value="100000" />
               </div>
-              <input type="range" id="ticketPrice" min="20000" max="500000" step="1000" value="100000" />
-            </div>
-            <div class="calc-field">
-              <div class="calc-field-main">
-                <strong id="fixLabel">3 500 сум</strong>
-                <span class="calc-field-meta" data-i18n="feesFix">FixedFee на гостя</span>
+              <div class="calc-field">
+                <div class="calc-field-main">
+                  <strong id="fixLabel">3 500 сум</strong>
+                  <span class="calc-field-meta" data-i18n="feesFix">FixedFee на гостя</span>
+                </div>
+                <input type="range" id="fixFee" min="1000" max="15000" step="100" value="3500" />
               </div>
-              <input type="range" id="fixFee" min="1000" max="15000" step="100" value="3500" />
             </div>
             <div class="calc-summary">
               <div>
@@ -2928,7 +3130,7 @@
                 <strong class="v"><span id="outAcq">1 500</span> + <span id="outFix">3 500</span></strong>
               </div>
             </div>
-            <a class="calc-cta" href="#cta" data-goto="cta" data-i18n="heroCta">Запустить продажи</a>
+            <a class="calc-cta" href="#" data-lead-modal data-lead-source="whyCta" data-i18n="heroCta">Запустить продажи</a>
           </div>
         </div>
       </div>
@@ -3057,27 +3259,27 @@
         </div>
         <div class="niche-rail" data-niche-rail>
           <article class="niche-card">
-            <img src="assets/niches/standup.svg" alt="" loading="lazy" />
+            <span class="niche-emoji" aria-hidden="true">🎙</span>
             <strong data-i18n="niche1">Стендап-концерты</strong>
           </article>
           <article class="niche-card">
-            <img src="assets/niches/conference.svg" alt="" loading="lazy" />
+            <span class="niche-emoji" aria-hidden="true">🤝</span>
             <strong data-i18n="niche2">Бизнес-конференции</strong>
           </article>
           <article class="niche-card">
-            <img src="assets/niches/concert.svg" alt="" loading="lazy" />
+            <span class="niche-emoji" aria-hidden="true">🎤</span>
             <strong data-i18n="niche3">Концерты и шоу</strong>
           </article>
           <article class="niche-card">
-            <img src="assets/niches/sport.svg" alt="" loading="lazy" />
+            <span class="niche-emoji" aria-hidden="true">🏆</span>
             <strong data-i18n="niche4">Спортивные турниры</strong>
           </article>
           <article class="niche-card">
-            <img src="assets/niches/workshop.svg" alt="" loading="lazy" />
+            <span class="niche-emoji" aria-hidden="true">🧩</span>
             <strong data-i18n="niche5">Мастер-классы</strong>
           </article>
           <article class="niche-card">
-            <img src="assets/niches/party.svg" alt="" loading="lazy" />
+            <span class="niche-emoji" aria-hidden="true">🎉</span>
             <strong data-i18n="niche6">Вечеринки и тусовки</strong>
           </article>
         </div>
