@@ -1770,6 +1770,15 @@
       display: inline-flex;
       margin-inline: 0;
     }
+    .flow-foot {
+      display: flex;
+      justify-content: center;
+      margin-top: clamp(36px, 5vw, 52px);
+    }
+    .flow-foot .flow-cta {
+      margin-top: 0;
+      min-width: min(100%, 280px);
+    }
     .flow-cta:hover { filter: brightness(0.97); transform: translateY(-1px); }
     @media (max-width: 960px) {
       #flow .flow-layout {
@@ -3461,8 +3470,10 @@
             <span class="eyebrow" data-i18n="flowEyebrow">Запуск</span>
             <h2 data-i18n="flowTitle">Запуск за 5 минут</h2>
             <p class="flow-lead" data-i18n="flowLead">От регистрации до пропуска гостей на входе — без кассы, без абонентки и без сложной настройки.</p>
-            <a class="btn btn-accent flow-cta" href="#" data-lead-modal data-lead-source="flowCta" data-i18n="flowCta">Начать продажи</a>
           </div>
+        </div>
+        <div class="flow-foot">
+          <a class="btn btn-accent flow-cta" href="#" data-lead-modal data-lead-source="flowCta" data-i18n="flowCta">Начать продажи</a>
         </div>
       </div>
     </section>
