@@ -242,7 +242,7 @@
     }
     .hero-copy {
       max-width: 720px;
-      margin: 0 auto 48px;
+      margin: 0 auto clamp(64px, 6vw, 80px);
       text-align: center;
     }
     .hero-copy .eyebrow {
@@ -3130,11 +3130,11 @@
             <div class="calc-summary">
               <div>
                 <span class="k" data-i18n="whySaveLabel">экономия с 1 билета vs 15% касса</span>
-                <strong class="v">+<span id="saveAmount">15 000</span></strong>
+                <strong class="v"><span id="saveAmount">+15 000 сум</span></strong>
               </div>
               <div>
                 <span class="k" data-i18n="whySavePack">Экономия на 100 билетах</span>
-                <strong class="v"><span id="savePack">1 500 000</span></strong>
+                <strong class="v"><span id="savePack">1 500 000 сум</span></strong>
               </div>
             </div>
           </div>
