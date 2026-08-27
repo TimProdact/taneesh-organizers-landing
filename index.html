@@ -1966,6 +1966,133 @@
     #included .section-head {
       margin-bottom: 28px;
     }
+    .features-layout {
+      display: grid;
+      grid-template-columns: minmax(240px, 0.36fr) minmax(0, 0.64fr);
+      gap: clamp(24px, 4vw, 40px);
+      align-items: stretch;
+    }
+    .features-tablist {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .features-tab {
+      display: grid;
+      gap: 4px;
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid transparent;
+      background: transparent;
+      text-align: left;
+      cursor: pointer;
+      transition: background 160ms var(--ease), border-color 160ms var(--ease);
+    }
+    .features-tab:hover {
+      background: rgba(28, 25, 23, 0.04);
+    }
+    .features-tab.is-active {
+      background: rgba(28, 25, 23, 0.06);
+      border-color: rgba(10, 10, 10, 0.08);
+    }
+    .features-tab-tag {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .features-tab.is-active .features-tab-tag {
+      color: #0f7a38;
+    }
+    .features-tab-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .features-stage {
+      position: relative;
+      min-height: clamp(360px, 42vw, 480px);
+      border-radius: 28px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .features-panel {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: clamp(24px, 4vw, 32px);
+      color: #fff;
+      background-color: #1c1917;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 260ms var(--ease);
+    }
+    .features-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 15%, rgba(0, 0, 0, 0.76) 100%);
+      z-index: 0;
+    }
+    .features-panel.is-active {
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 1;
+    }
+    .features-panel-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 36em;
+    }
+    .features-panel-copy h3 {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 3.5vw, 34px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      margin: 10px 0 8px;
+      color: #fff;
+    }
+    .features-panel-copy p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .features-panel-1 { background-image: url("assets/features/showcase.jpg"); }
+    .features-panel-2 { background-image: url("assets/features/payment.jpg"); }
+    .features-panel-3 { background-image: url("assets/features/crm.jpg"); }
+    .features-panel-4 { background-image: url("assets/features/refund.jpg"); }
+    .features-panel-5 { background-image: url("assets/features/invites.jpg"); }
+    .features-panel-6 { background-image: url("assets/features/scanner.jpg"); }
+    @media (max-width: 960px) {
+      .features-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .features-tablist {
+        flex-direction: row;
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .features-tablist::-webkit-scrollbar { display: none; }
+      .features-tab {
+        flex: 0 0 auto;
+        min-width: 148px;
+      }
+      .features-stage {
+        min-height: 340px;
+      }
+    }
 
     /* Offer rail — full-bleed track, controls stay in .wrap */
     .offer-rail-bleed {
@@ -2162,7 +2289,7 @@
       min-height: 360px;
       padding: 22px;
       border-radius: 28px;
-      border: 1px solid rgba(10, 10, 10, 0.08);
+      border: 0;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -2170,34 +2297,35 @@
       align-items: flex-start;
       gap: 12px;
       text-align: left;
-      background: #fff;
-      color: var(--text);
-      box-shadow: 0 8px 32px rgba(10, 10, 10, 0.06);
+      color: #fff;
+      background-color: #1c1917;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 8px 32px rgba(10, 10, 10, 0.1);
       isolation: isolate;
+      transition: transform 220ms var(--ease), box-shadow 220ms var(--ease);
     }
-    .niche-emoji {
+    .niche-card::before {
+      content: "";
       position: absolute;
-      inset: 22px 22px 88px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: clamp(56px, 14vw, 72px);
-      line-height: 1;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.06) 30%, rgba(0, 0, 0, 0.78) 100%);
       z-index: 0;
-      user-select: none;
-      pointer-events: none;
-      animation: niche-float 4.2s ease-in-out infinite;
+      transition: opacity 220ms var(--ease);
     }
-    .niche-card:nth-child(1) .niche-emoji { animation-delay: 0s; }
-    .niche-card:nth-child(2) .niche-emoji { animation-delay: 0.5s; }
-    .niche-card:nth-child(3) .niche-emoji { animation-delay: 1s; }
-    .niche-card:nth-child(4) .niche-emoji { animation-delay: 1.5s; }
-    .niche-card:nth-child(5) .niche-emoji { animation-delay: 2s; }
-    .niche-card:nth-child(6) .niche-emoji { animation-delay: 2.5s; }
-    @keyframes niche-float {
-      0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-10px) scale(1.06); }
+    .niche-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(10, 10, 10, 0.16);
     }
+    .niche-card:hover::before {
+      opacity: 0.92;
+    }
+    .niche-card-1 { background-image: url("assets/niches/standup.jpg"); }
+    .niche-card-2 { background-image: url("assets/niches/conference.jpg"); }
+    .niche-card-3 { background-image: url("assets/niches/concert.jpg"); }
+    .niche-card-4 { background-image: url("assets/niches/sport.jpg"); }
+    .niche-card-5 { background-image: url("assets/niches/workshop.jpg"); }
+    .niche-card-6 { background-image: url("assets/niches/party.jpg"); }
     .niche-card strong {
       position: relative;
       z-index: 1;
@@ -2205,8 +2333,12 @@
       font-size: 26px;
       font-weight: 400;
       letter-spacing: -0.02em;
-      color: var(--text);
+      color: #fff;
       line-height: 1.15;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .niche-card { transition: none; }
+      .niche-card:hover { transform: none; }
     }
     #quote {
       background: #fff;
@@ -3478,29 +3610,23 @@
       </div>
       <div class="offer-rail-bleed">
         <div class="offer-rail" tabindex="0" data-card-rail data-i18n-aria="nicheAria" aria-label="Форматы событий">
-          <article class="niche-card">
-            <span class="niche-emoji" aria-hidden="true">🎙</span>
+          <article class="niche-card niche-card-1">
             <strong data-i18n="niche1">Стендап-концерты</strong>
           </article>
-          <article class="niche-card">
-            <span class="niche-emoji" aria-hidden="true">🤝</span>
+          <article class="niche-card niche-card-2">
             <strong data-i18n="niche2">Бизнес-конференции</strong>
           </article>
-          <article class="niche-card">
-            <span class="niche-emoji" aria-hidden="true">🎤</span>
+          <article class="niche-card niche-card-3">
             <strong data-i18n="niche3">Концерты и шоу</strong>
           </article>
-          <article class="niche-card">
-            <span class="niche-emoji" aria-hidden="true">🏆</span>
+          <article class="niche-card niche-card-4">
             <strong data-i18n="niche4">Спортивные турниры</strong>
           </article>
-          <article class="niche-card">
-            <span class="niche-emoji" aria-hidden="true">🧩</span>
+          <article class="niche-card niche-card-5">
             <strong data-i18n="niche5">Мастер-классы</strong>
           </article>
-          <article class="niche-card">
-            <span class="niche-emoji" aria-hidden="true">🎉</span>
-            <strong data-i18n="niche6">Вечеринки и тусовки</strong>
+          <article class="niche-card niche-card-6">
+            <strong data-i18n="niche6">Вечerинки и тусовки</strong>
           </article>
         </div>
       </div>
@@ -3523,63 +3649,78 @@
           <span class="eyebrow" data-i18n="offerEyebrow">Возможности</span>
           <h2 data-i18n="offerTitle">Возможности платформы</h2>
         </div>
-      </div>
-      <div class="offer-rail-bleed">
-        <div class="offer-rail" tabindex="0" data-card-rail data-i18n-aria="offerAria" aria-label="Возможности платформы">
-          <article class="offer-card offer-card-1">
-            <span class="offer-tag" data-i18n="o1tag">Витрина</span>
-            <div class="offer-body">
-              <h3 data-i18n="o1t">Личная витрина</h3>
-              <p data-i18n="o1p">Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
-            </div>
-          </article>
-          <article class="offer-card offer-card-2">
-            <span class="offer-tag" data-i18n="o2tag">Оплата</span>
-            <div class="offer-body">
-              <h3 data-i18n="o2t">Оплата в 2 клика</h3>
-              <p data-i18n="o2p">Гость платит прямо в браузере телефона — ничего скачивать не нужно.</p>
-            </div>
-          </article>
-          <article class="offer-card offer-card-3">
-            <span class="offer-tag" data-i18n="o3tag">CRM</span>
-            <div class="offer-body">
-              <h3 data-i18n="o3t">CRM для гостей</h3>
-              <p data-i18n="o3p">Список покупателей, статусы оплат и контактные данные в едином дашборде.</p>
-            </div>
-          </article>
-          <article class="offer-card offer-card-4">
-            <span class="offer-tag" data-i18n="o4tag">Возврат</span>
-            <div class="offer-body">
-              <h3 data-i18n="o4t">Возврат в 1 клик</h3>
-              <p data-i18n="o4p">Мгновенно отменяйте и возвращайте билеты без долгих переписок с поддержкой.</p>
-            </div>
-          </article>
-          <article class="offer-card offer-card-5">
-            <span class="offer-tag" data-i18n="o5tag">Приглашения</span>
-            <div class="offer-body">
-              <h3 data-i18n="o5t">VIP-приглашения</h3>
-              <p data-i18n="o5p">Генерируйте закрытые ссылки или бесплатные билеты для особых гостей и партнеров.</p>
-            </div>
-          </article>
-          <article class="offer-card offer-card-6">
-            <span class="offer-tag" data-i18n="o6tag">Сканер</span>
-            <div class="offer-body">
-              <h3 data-i18n="o6t">Умный сканер</h3>
-              <p data-i18n="o6p">Быстрый контроль на входе по QR-кодам. Исключает подделки и повторные проходы.</p>
-            </div>
-          </article>
+        <div class="features-layout" data-features-tabs>
+          <div class="features-tablist" role="tablist" aria-label="Возможности платформы">
+            <button type="button" class="features-tab is-active" role="tab" aria-selected="true" id="feature-tab-0" aria-controls="feature-panel-0" data-feature-tab="0">
+              <span class="features-tab-tag" data-i18n="o1tag">Витрина</span>
+              <span class="features-tab-title" data-i18n="o1t">Личная витрина</span>
+            </button>
+            <button type="button" class="features-tab" role="tab" aria-selected="false" id="feature-tab-1" aria-controls="feature-panel-1" data-feature-tab="1" tabindex="-1">
+              <span class="features-tab-tag" data-i18n="o2tag">Оплата</span>
+              <span class="features-tab-title" data-i18n="o2t">Оплата в 2 клика</span>
+            </button>
+            <button type="button" class="features-tab" role="tab" aria-selected="false" id="feature-tab-2" aria-controls="feature-panel-2" data-feature-tab="2" tabindex="-1">
+              <span class="features-tab-tag" data-i18n="o3tag">CRM</span>
+              <span class="features-tab-title" data-i18n="o3t">CRM для гостей</span>
+            </button>
+            <button type="button" class="features-tab" role="tab" aria-selected="false" id="feature-tab-3" aria-controls="feature-panel-3" data-feature-tab="3" tabindex="-1">
+              <span class="features-tab-tag" data-i18n="o4tag">Возврат</span>
+              <span class="features-tab-title" data-i18n="o4t">Возврат в 1 клик</span>
+            </button>
+            <button type="button" class="features-tab" role="tab" aria-selected="false" id="feature-tab-4" aria-controls="feature-panel-4" data-feature-tab="4" tabindex="-1">
+              <span class="features-tab-tag" data-i18n="o5tag">Приглашения</span>
+              <span class="features-tab-title" data-i18n="o5t">VIP-приглашения</span>
+            </button>
+            <button type="button" class="features-tab" role="tab" aria-selected="false" id="feature-tab-5" aria-controls="feature-panel-5" data-feature-tab="5" tabindex="-1">
+              <span class="features-tab-tag" data-i18n="o6tag">Сканер</span>
+              <span class="features-tab-title" data-i18n="o6t">Умный сканер</span>
+            </button>
+          </div>
+          <div class="features-stage">
+            <article class="features-panel features-panel-1 is-active" role="tabpanel" id="feature-panel-0" aria-labelledby="feature-tab-0" data-feature-panel="0">
+              <div class="features-panel-copy">
+                <span class="offer-tag" data-i18n="o1tag">Витрина</span>
+                <h3 data-i18n="o1t">Личная витрина</h3>
+                <p data-i18n="o1p">Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
+              </div>
+            </article>
+            <article class="features-panel features-panel-2" role="tabpanel" id="feature-panel-1" aria-labelledby="feature-tab-1" data-feature-panel="1" hidden>
+              <div class="features-panel-copy">
+                <span class="offer-tag" data-i18n="o2tag">Оплата</span>
+                <h3 data-i18n="o2t">Оплата в 2 клика</h3>
+                <p data-i18n="o2p">Гость платит прямо в браузере телефона — ничего скачивать не нужно.</p>
+              </div>
+            </article>
+            <article class="features-panel features-panel-3" role="tabpanel" id="feature-panel-2" aria-labelledby="feature-tab-2" data-feature-panel="2" hidden>
+              <div class="features-panel-copy">
+                <span class="offer-tag" data-i18n="o3tag">CRM</span>
+                <h3 data-i18n="o3t">CRM для гостей</h3>
+                <p data-i18n="o3p">Список покупателей, статусы оплат и контактные данные в едином дашборде.</p>
+              </div>
+            </article>
+            <article class="features-panel features-panel-4" role="tabpanel" id="feature-panel-3" aria-labelledby="feature-tab-3" data-feature-panel="3" hidden>
+              <div class="features-panel-copy">
+                <span class="offer-tag" data-i18n="o4tag">Возврат</span>
+                <h3 data-i18n="o4t">Возврат в 1 клик</h3>
+                <p data-i18n="o4p">Мгновенно отменяйте и возвращайте билеты без долгих переписок с поддержкой.</p>
+              </div>
+            </article>
+            <article class="features-panel features-panel-5" role="tabpanel" id="feature-panel-4" aria-labelledby="feature-tab-4" data-feature-panel="4" hidden>
+              <div class="features-panel-copy">
+                <span class="offer-tag" data-i18n="o5tag">Приглашения</span>
+                <h3 data-i18n="o5t">VIP-приглашения</h3>
+                <p data-i18n="o5p">Генерируйте закрытые ссылки или бесплатные билеты для особых гостей и партнеров.</p>
+              </div>
+            </article>
+            <article class="features-panel features-panel-6" role="tabpanel" id="feature-panel-5" aria-labelledby="feature-tab-5" data-feature-panel="5" hidden>
+              <div class="features-panel-copy">
+                <span class="offer-tag" data-i18n="o6tag">Сканер</span>
+                <h3 data-i18n="o6t">Умный сканер</h3>
+                <p data-i18n="o6p">Быстрый контроль на входе по QR-кодам. Исключает подделки и повторные проходы.</p>
+              </div>
+            </article>
+          </div>
         </div>
-      </div>
-      <div class="wrap">
-        <div class="offer-controls">
-          <button type="button" class="offer-nav" data-rail-prev aria-label="Назад">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <button type="button" class="offer-nav" data-rail-next aria-label="Вперёд">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
-        </div>
-        <div class="offer-progress" aria-hidden="true"><i data-rail-progress></i></div>
       </div>
     </section>
 
@@ -4002,7 +4143,30 @@
       render();
     })();
 
-    // Card rails (features + niches) — progress + nav
+    // Feature tabs (#included)
+    document.querySelectorAll('[data-features-tabs]').forEach((root) => {
+      const tabs = [...root.querySelectorAll('[data-feature-tab]')];
+      const panels = [...root.querySelectorAll('[data-feature-panel]')];
+      const activate = (index) => {
+        tabs.forEach((tab, i) => {
+          const on = i === index;
+          tab.classList.toggle('is-active', on);
+          tab.setAttribute('aria-selected', on ? 'true' : 'false');
+          tab.tabIndex = on ? 0 : -1;
+        });
+        panels.forEach((panel, i) => {
+          const on = i === index;
+          panel.classList.toggle('is-active', on);
+          panel.hidden = !on;
+        });
+      };
+      tabs.forEach((tab, i) => {
+        tab.addEventListener('click', () => activate(i));
+      });
+      activate(0);
+    });
+
+    // Card rails (niches) — progress + nav
     document.querySelectorAll('[data-card-rail]').forEach((rail) => {
       const section = rail.closest('section');
       if (!section) return;
