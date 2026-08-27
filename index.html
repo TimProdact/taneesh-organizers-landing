@@ -2241,7 +2241,6 @@
                 <strong class="v"><span id="outAcq">1 500</span> + <span id="outFix">3 500</span></strong>
               </div>
             </div>
-            <p class="fees-hint" data-i18n="feesHint">Крупным — FixedFee от 3–5 тыс. в админке.</p>
             <a class="calc-cta" href="#cta" data-goto="cta" data-i18n="heroCta">Запустить продажи</a>
           </div>
         </div>
@@ -2586,12 +2585,10 @@
       const whyLabel = document.getElementById('whyTicketLabel');
       const saveEl = document.getElementById('saveAmount');
       const packEl = document.getElementById('savePack');
-      const tanLabel = document.getElementById('tanCostLabel');
       const aggPer = document.getElementById('aggPerTicket');
       const tanPer = document.getElementById('tanPerTicket');
 
       if (whyLabel) whyLabel.textContent = d.money(fmt(t));
-      if (tanLabel) tanLabel.textContent = d.tanCost(fmt(t));
       if (tanPer) tanPer.textContent = fmt(t);
       if (aggPer) aggPer.textContent = fmt(withAgg);
       if (saveEl) saveEl.textContent = fmt(save);
