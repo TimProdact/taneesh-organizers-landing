@@ -1554,8 +1554,8 @@
     #fees .fees-result-arrow {
       width: 44px;
       height: 44px;
-      margin-inline: auto;
-      transform: rotate(90deg);
+      margin-inline: 0;
+      transform: none;
     }
     #fees .fees-result-arrow svg { width: 20px; height: 20px; }
     #fees .fees-panel {
@@ -1626,6 +1626,24 @@
         gap: 10px;
       }
       .fees-result-arrow { transform: rotate(90deg); margin-inline: auto; }
+      #fees .fees-result {
+        grid-template-columns: 1fr auto 1fr;
+        gap: 8px;
+        align-items: stretch;
+      }
+      #fees .fees-result-arrow {
+        transform: none;
+        margin-inline: 0;
+        align-self: center;
+        width: 36px;
+        height: 36px;
+      }
+      #fees .fees-result-card {
+        padding: 16px 10px;
+      }
+      #fees .fees-result-card strong {
+        font-size: clamp(24px, 6.5vw, 32px);
+      }
     }
 
     /* Conversion */
@@ -1813,33 +1831,25 @@
     .aud-glass-lines i:nth-child(2),
     .aud-glass-lines i:nth-child(3) { margin-inline: auto; }
 
-    /* Flow — Time2book: copy + steps left, phone mock right */
+    /* Flow — steps left, pitch + CTA right */
     #flow .flow-layout {
       display: grid;
-      grid-template-columns: minmax(0, 0.94fr) minmax(300px, 1.06fr);
+      grid-template-columns: minmax(0, 1.06fr) minmax(300px, 0.94fr);
       gap: clamp(40px, 6vw, 72px);
       align-items: center;
     }
-    #flow .flow-copy {
-      max-width: 540px;
+    #flow .flow-steps-col {
+      max-width: 560px;
     }
-    #flow .flow-copy .eyebrow {
-      text-transform: none;
-      letter-spacing: -0.01em;
-      font-weight: 600;
-      font-size: 14px;
-      color: var(--text);
-      margin-bottom: 12px;
-    }
-    #flow .flow-copy h2 {
-      font-size: clamp(32px, 4.2vw, 46px);
-      max-width: 14ch;
+    #flow .flow-steps-title {
+      font-size: clamp(28px, 3.5vw, 38px);
+      margin-bottom: clamp(24px, 3vw, 32px);
+      max-width: 16ch;
     }
     #flow .flow-steps {
       display: grid;
       gap: clamp(18px, 2.8vw, 28px);
       width: 100%;
-      margin-top: clamp(28px, 4vw, 40px);
     }
     #flow .flow-step {
       display: flex;
@@ -1884,6 +1894,36 @@
       color: var(--muted);
       vertical-align: middle;
     }
+    #flow .flow-pitch-frame {
+      background: var(--surface);
+      border-radius: 28px;
+      padding: clamp(36px, 5vw, 48px);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: clamp(320px, 40vw, 420px);
+    }
+    #flow .flow-pitch h2 {
+      font-size: clamp(32px, 4.2vw, 46px);
+      max-width: 12ch;
+    }
+    #flow .flow-pitch .flow-lead {
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 28em;
+      line-height: 1.5;
+      text-align: left;
+    }
+    #flow .flow-pitch .flow-cta {
+      margin-top: clamp(28px, 4vw, 36px);
+      min-width: min(100%, 280px);
+    }
+    #flow .flow-cta {
+      display: inline-flex;
+      margin-inline: 0;
+    }
     .flow-lead {
       margin: 14px 0 0;
       color: var(--muted);
@@ -1892,59 +1932,35 @@
       line-height: 1.5;
       text-align: left;
     }
-    #flow .flow-copy .flow-cta {
-      margin-top: clamp(28px, 4vw, 36px);
-      min-width: min(100%, 280px);
-    }
-    #flow .flow-cta {
-      display: inline-flex;
-      margin-inline: 0;
-    }
     .flow-cta:hover { filter: brightness(0.97); transform: translateY(-1px); }
-    #flow .flow-visual-frame {
-      background: var(--surface);
-      border-radius: 28px;
-      padding: clamp(36px, 5vw, 48px) clamp(28px, 4vw, 40px) 0;
-      min-height: clamp(420px, 48vw, 540px);
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      overflow: hidden;
-    }
-    #flow .flow-phone {
-      width: min(100%, 300px);
-    }
-    #flow .flow-phone .app-shell {
-      width: 100%;
-      max-height: min(480px, 72vh);
-      margin: 0;
-      border-radius: 24px 24px 0 0;
-    }
     @media (max-width: 960px) {
       #flow .flow-layout {
         grid-template-columns: 1fr;
         gap: 36px;
       }
-      #flow .flow-copy {
+      #flow .flow-pitch { order: -1; }
+      #flow .flow-pitch-frame {
+        align-items: center;
+        text-align: center;
+        min-height: auto;
+      }
+      #flow .flow-pitch h2,
+      #flow .flow-pitch .flow-lead {
+        text-align: center;
+        margin-inline: auto;
         max-width: none;
-        text-align: center;
       }
-      #flow .flow-copy .eyebrow,
-      #flow .flow-copy h2 {
-        text-align: center;
-        margin-inline: auto;
-      }
-      #flow .flow-copy h2 { max-width: none; }
-      #flow .flow-lead {
-        text-align: center;
-        margin-inline: auto;
-      }
+      #flow .flow-pitch h2 { max-width: none; }
       #flow .flow-cta { margin-inline: auto; }
-      #flow .flow-step { text-align: left; }
-      #flow .flow-visual-frame {
-        min-height: 380px;
-        padding-top: 28px;
+      #flow .flow-steps-col {
+        max-width: none;
       }
+      #flow .flow-steps-title {
+        text-align: center;
+        margin-inline: auto;
+        max-width: none;
+      }
+      #flow .flow-step { text-align: left; }
     }
 
     #included .section-head {
@@ -3570,10 +3586,8 @@
     <section class="section" id="flow">
       <div class="wrap">
         <div class="flow-layout">
-          <div class="flow-copy">
-            <span class="eyebrow" data-i18n="flowEyebrow">Запуск</span>
-            <h2 data-i18n="flowTitle">Запуск за 5 минут</h2>
-            <p class="flow-lead" data-i18n="flowLead">От регистрации до пропуска гостей на входе — без кассы, без абонентки и без сложной настройки.</p>
+          <div class="flow-steps-col">
+            <h2 class="flow-steps-title" data-i18n="flowStepsTitle">Как это работает</h2>
             <div class="flow-steps" aria-label="5 шагов">
               <article class="flow-step">
                 <span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
@@ -3596,52 +3610,12 @@
                 <p class="flow-step-copy"><strong data-i18n="flow5t">Пропуск гостей</strong> <span data-i18n="flow5d">Сканируйте QR-коды на билетах прямо с телефона. Пропускайте гостей без очередей и списков.</span></p>
               </article>
             </div>
-            <a class="btn btn-accent flow-cta" href="#" data-lead-modal data-lead-source="flowCta" data-i18n="flowCta">Начать продажи</a>
           </div>
-          <div class="flow-visual" aria-hidden="true">
-            <div class="flow-visual-frame">
-              <div class="flow-phone">
-                <div class="app-shell">
-                  <div class="app-nav">
-                    <img src="assets/showcase/ico-back.svg" alt="" width="22" height="22" />
-                    <strong>City Live</strong>
-                    <img src="assets/showcase/ico-share.svg" alt="" width="22" height="22" />
-                  </div>
-                  <div class="app-scroll">
-                    <div class="app-profile">
-                      <div class="app-profile-top">
-                        <img class="app-avatar" src="assets/showcase/avatar.png" alt="" width="52" height="52" />
-                        <div class="app-profile-meta">
-                          <strong>City Live</strong>
-                          <span>ИП Event Pro</span>
-                        </div>
-                      </div>
-                      <p class="app-bio">Концерты, лекции и вечеринки — витрина для вашей аудитории.</p>
-                    </div>
-                    <div class="app-events">
-                      <strong>Предстоящие события</strong>
-                      <div class="app-event-grid">
-                        <article class="app-event">
-                          <div class="app-event-cover">
-                            <img src="assets/showcase/cover1.jpg" alt="" />
-                            <span class="app-price">120 000 сум</span>
-                          </div>
-                          <h4>Summer Open Air</h4>
-                          <time>15 авг · 21:00</time>
-                        </article>
-                        <article class="app-event">
-                          <div class="app-event-cover">
-                            <img src="assets/showcase/cover2.jpg" alt="" />
-                            <span class="app-price">85 000 сум</span>
-                          </div>
-                          <h4>Morning Trek</h4>
-                          <time>17 авг · 07:30</time>
-                        </article>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div class="flow-pitch">
+            <div class="flow-pitch-frame">
+              <h2 data-i18n="flowTitle">Запуск за 5 минут</h2>
+              <p class="flow-lead" data-i18n="flowLead">От регистрации до пропуска гостей на входе — без кассы, без абонентки и без сложной настройки.</p>
+              <a class="btn btn-accent flow-cta" href="#" data-lead-modal data-lead-source="flowCta" data-i18n="flowCta">Начать продажи</a>
             </div>
           </div>
         </div>
