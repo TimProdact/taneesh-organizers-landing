@@ -665,9 +665,68 @@
     .metric-card {
       text-align: center;
     }
-    .fees-hint { font-size: 13px; color: var(--muted); text-align: center; }
-    .calc-viz { text-align: center; }
-    .calc-viz-note { text-align: center; }
+    .fees-board {
+      grid-template-columns: 1fr;
+      max-width: 720px;
+      margin-inline: auto;
+      gap: 20px;
+    }
+    .fees-result {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+    .fees-result-card {
+      padding: 22px 18px;
+      border-radius: 20px;
+      background: rgba(28, 25, 23, 0.03);
+      text-align: center;
+      display: grid;
+      gap: 8px;
+      justify-items: center;
+    }
+    .fees-result-card.is-you {
+      background: rgba(30, 215, 96, 0.1);
+    }
+    .fees-result-card span {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .fees-result-card.is-you span { color: #0f7a38; }
+    .fees-result-card strong {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 48px);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .fees-result-card em {
+      font-style: normal;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .fees-result-arrow {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(28, 25, 23, 0.06);
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+    .fees-result-arrow svg { width: 18px; height: 18px; }
+    .fees-panel { width: 100%; }
+
+    @media (max-width: 560px) {
+      .fees-result {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .fees-result-arrow { transform: rotate(90deg); margin-inline: auto; }
+    }
 
     /* Conversion */
     .live-conv { grid-template-columns: 1fr; }
@@ -1478,27 +1537,19 @@
           <h2 data-i18n="feesTitle">Сбор платит гость</h2>
         </div>
         <div class="calc-shell fees-board">
-          <div class="calc-viz" id="feesPunch">
-            <div class="calc-rate">
+          <div class="fees-result" id="feesPunch">
+            <div class="fees-result-card is-you">
               <span data-i18n="feesYou">вам · 100% цены билета</span>
               <strong id="feesPunchOrg">100 000</strong>
+              <em data-i18n="currency">сум</em>
             </div>
-            <div class="calc-chart" aria-hidden="true">
-              <svg viewBox="0 0 320 140" preserveAspectRatio="none">
-                <line x1="0" y1="30" x2="320" y2="30" class="grid"/>
-                <line x1="0" y1="70" x2="320" y2="70" class="grid"/>
-                <line x1="0" y1="110" x2="320" y2="110" class="grid"/>
-                <path class="line-good" d="M0 100 C50 96, 100 88, 150 82 S250 70, 320 58"/>
-                <circle class="dot-good" cx="320" cy="58" r="4.5"/>
-              </svg>
-              <div class="calc-chart-labels">
-                <span data-i18n="feesYou">Орг</span>
-                <span data-i18n="feesGuest">Гость</span>
-              </div>
+            <div class="fees-result-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </div>
-            <div class="calc-rate soft">
+            <div class="fees-result-card">
               <span data-i18n="feesGuest">гость платит</span>
               <strong id="feesPunchTotal">105 000</strong>
+              <em data-i18n="currency">сум</em>
             </div>
           </div>
           <div class="calc-side fees-panel">
