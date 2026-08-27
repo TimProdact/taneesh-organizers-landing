@@ -552,11 +552,11 @@
       position: relative;
       width: 100%;
       height: 100%;
+      min-height: 0;
       display: flex;
       align-items: center;
       justify-content: center;
       background: var(--admin-bg);
-      aspect-ratio: 16 / 10;
     }
     .admin-video-slot video,
     .admin-video-slot .admin-video-poster {
@@ -1841,7 +1841,8 @@
                 </div>
                 <div class="app-events">
                   <strong>Предстоящие события</strong>
-                  <div class="app-event-grid">
+                  <div class="app-events-carousel">
+                    <div class="app-events-track">
                     <article class="app-event">
                       <div class="app-event-cover">
                         <img src="assets/showcase/cover1.jpg" alt="" />
@@ -1898,6 +1899,63 @@
                       <time>22 авг (пт) · 18:30</time>
                       <div class="app-chips"><i>Лекции</i></div>
                     </article>
+                    <article class="app-event" aria-hidden="true">
+                      <div class="app-event-cover">
+                        <img src="assets/showcase/cover1.jpg" alt="" />
+                        <span class="app-price">120 000 сум</span>
+                        <span class="app-like"><img src="assets/showcase/ico-heart-outline.svg" alt="" /></span>
+                        <div class="app-metrics">
+                          <span><img src="assets/showcase/ico-eye.svg" alt="" />2140</span>
+                          <span><img src="assets/showcase/ico-heart.svg" alt="" />186</span>
+                        </div>
+                      </div>
+                      <h4>Summer Open Air</h4>
+                      <time>15 авг (пт) · 21:00</time>
+                      <div class="app-chips"><i>Музыка</i><i>Вечеринки</i></div>
+                    </article>
+                    <article class="app-event" aria-hidden="true">
+                      <div class="app-event-cover">
+                        <img src="assets/showcase/cover2.jpg" alt="" />
+                        <span class="app-price">85 000 сум</span>
+                        <span class="app-like"><img src="assets/showcase/ico-heart-outline.svg" alt="" /></span>
+                        <div class="app-metrics">
+                          <span><img src="assets/showcase/ico-eye.svg" alt="" />980</span>
+                          <span><img src="assets/showcase/ico-heart.svg" alt="" />74</span>
+                        </div>
+                      </div>
+                      <h4>Morning Trek</h4>
+                      <time>17 авг (вс) · 07:30</time>
+                      <div class="app-chips"><i>Походы</i><i>Природа</i></div>
+                    </article>
+                    <article class="app-event" aria-hidden="true">
+                      <div class="app-event-cover">
+                        <img src="assets/showcase/cover3.jpg" alt="" />
+                        <span class="app-price">Бесплатно</span>
+                        <span class="app-like"><img src="assets/showcase/ico-heart-outline.svg" alt="" /></span>
+                        <div class="app-metrics">
+                          <span><img src="assets/showcase/ico-eye.svg" alt="" />1560</span>
+                          <span><img src="assets/showcase/ico-heart.svg" alt="" />92</span>
+                        </div>
+                      </div>
+                      <h4>Networking Meetup</h4>
+                      <time>20 авг (ср) · 19:00</time>
+                      <div class="app-chips"><i>Нетворкинг</i></div>
+                    </article>
+                    <article class="app-event" aria-hidden="true">
+                      <div class="app-event-cover">
+                        <img src="assets/showcase/cover4.jpg" alt="" />
+                        <span class="app-price">Бесплатно</span>
+                        <span class="app-like"><img src="assets/showcase/ico-heart-outline.svg" alt="" /></span>
+                        <div class="app-metrics">
+                          <span><img src="assets/showcase/ico-eye.svg" alt="" />720</span>
+                          <span><img src="assets/showcase/ico-heart.svg" alt="" />41</span>
+                        </div>
+                      </div>
+                      <h4>Business Talk</h4>
+                      <time>22 авг (пт) · 18:30</time>
+                      <div class="app-chips"><i>Лекции</i></div>
+                    </article>
+                    </div>
                   </div>
                 </div>
               </div>
