@@ -42,7 +42,7 @@ window.TaneeshI18n = (function () {
       m100: 'цены билета вам',
       m5: 'до первой витрины',
       m0: 'абонентки орга',
-      whyEyebrow: 'Экономика орга',
+      whyEyebrow: 'Экономика организатора',
       whyTitle: 'Не отдавайте 15% с билета',
       whyTicket: 'Цена билета на концерт',
       whyBad: 'Обычная касса · 15%',
@@ -52,7 +52,7 @@ window.TaneeshI18n = (function () {
       currency: 'сум',
       perTicket: 'с билета',
       ofPrice: 'с цены',
-      convEyebrow: 'Открытость',
+      convEyebrow: 'Прозрачность',
       convTitle: 'Конверсия в реальном времени',
       livePill: 'Live · платформа',
       liveDesc: 'Витрина → оплата — без приукрашивания.',
@@ -71,7 +71,7 @@ window.TaneeshI18n = (function () {
       audLargeAlt: 'Крупный концерт и площадка',
       audLargeTag: 'Масштаб',
       audLargeH: 'Агентства и площадки',
-      audLargeP: 'Серии ивентов и объём. FixedFee растёт вместе с вами.',
+      audLargeP: 'Серии ивентов и объём. FixedFee растёт вместе с вами — кастомные настройки в Super Admin.',
       audLarge1: 'Свой FixedFee',
       audLarge2: 'Серии и объём',
       audLarge3: 'Один кабинет на всё',
@@ -194,18 +194,6 @@ window.TaneeshI18n = (function () {
           a: 'Оплата через платёжную систему с безопасным удержанием средств. После ивента выплаты проходят автоматически. В кабинете — баланс и статистика в реальном времени.',
         },
         {
-          q: 'Что с возвратами, если ивент отменили?',
-          a: 'Возврат в один клик: при отмене ивента средства возвращаются покупателям автоматически. До события средства удерживаются на стороне оплаты — защита от мошенничества.',
-        },
-        {
-          q: 'Есть ли сканер билетов на входе?',
-          a: 'Да. Smart-сканер мгновенно читает билет и фиксирует статус входа. В кабинете — продажи, возвраты и контроль доступа в реальном времени. Можно также отправлять VIP-приглашения партнёрам.',
-        },
-        {
-          q: 'Можно ли работать параллельно с другой кассой?',
-          a: 'Да. Можно оставить текущие каналы и добавить Taneesh как канал без комиссии с вашей цены — дополнительный источник продаж.',
-        },
-        {
           q: 'Есть ли условия для крупных партнёров?',
           a: 'Да. Для агентств и площадок FixedFee настраивается в админке (часто от 3–5 тыс. сум) — экономика растёт вместе с объёмом. Мы — резиденты IT Park Uzbekistan.',
         },
@@ -259,7 +247,7 @@ window.TaneeshI18n = (function () {
       currency: 'so‘m',
       perTicket: 'chiptadan',
       ofPrice: 'narxidan',
-      convEyebrow: 'Ochiqlik',
+      convEyebrow: 'Shaffoflik',
       convTitle: 'Real vaqtda konversiya',
       livePill: 'Live · platforma',
       liveDesc: 'Vitrina → to‘lov — bezatmasdan.',
@@ -278,7 +266,7 @@ window.TaneeshI18n = (function () {
       audLargeAlt: 'Yirik kontsert va maydon',
       audLargeTag: 'Masshtab',
       audLargeH: 'Agentliklar va maydonlar',
-      audLargeP: 'Tadbirlar seriyasi va hajm. FixedFee siz bilan o‘sadi.',
+      audLargeP: 'Tadbirlar seriyasi va hajm. FixedFee siz bilan o‘sadi — Super Admin’da individual sozlamalar.',
       audLarge1: 'O‘z FixedFee',
       audLarge2: 'Seriya va hajm',
       audLarge3: 'Hammasi uchun bitta kabinet',
@@ -401,18 +389,6 @@ window.TaneeshI18n = (function () {
           a: 'To‘lov tizimi orqali xavfsiz ushlab turish bilan. Tadbirdan keyin to‘lovlar avtomatik. Kabinetda — balans va statistika real vaqtda.',
         },
         {
-          q: 'Tadbir bekor qilinsa, qaytarishlar qanday?',
-          a: 'Bir bosishda qaytarish: bekor qilinsa, mablag‘ xaridorlarga avtomatik qaytadi. Tadbirgacha mablag‘ to‘lov tomonida ushlab turiladi.',
-        },
-        {
-          q: 'Kirishda chipta skaneri bormi?',
-          a: 'Ha. Smart-skaner chiptani darhol o‘qiydi va kirish holatini belgilaydi. Kabinetda sotuv, qaytarish va kirish nazorati real vaqtda. VIP taklifnomalar ham yuborish mumkin.',
-        },
-        {
-          q: 'Boshqa kassa bilan parallel ishlasa bo‘ladimi?',
-          a: 'Ha. Joriy kanallarni qoldirib, Taneeshni narxingizdan komissiyasiz qo‘shimcha kanal sifatida qo‘shishingiz mumkin.',
-        },
-        {
           q: 'Yirik hamkorlar uchun shartlar bormi?',
           a: 'Ha. Agentlik va maydonlar uchun FixedFee adminpanelda sozlanadi (ko‘pincha 3–5 ming so‘mdan). Biz — IT Park Uzbekistan rezidentimiz.',
         },
@@ -485,7 +461,7 @@ window.TaneeshI18n = (function () {
       audLargeAlt: 'Large concert venue',
       audLargeTag: 'Scale',
       audLargeH: 'Agencies and venues',
-      audLargeP: 'Event series and volume. FixedFee grows with you.',
+      audLargeP: 'Event series and volume. FixedFee grows with you — custom settings in Super Admin.',
       audLarge1: 'Your FixedFee',
       audLarge2: 'Series and volume',
       audLarge3: 'One dashboard for everything',
@@ -608,18 +584,6 @@ window.TaneeshI18n = (function () {
           a: 'Payment via a payment system with secure holding. After the event, payouts run automatically. In the cabinet — balance and stats in real time.',
         },
         {
-          q: 'What about refunds if the event is canceled?',
-          a: 'Refund in one click: if canceled, funds return to buyers automatically. Until the event, funds are held on the payment side — fraud protection.',
-        },
-        {
-          q: 'Is there a ticket scanner at entry?',
-          a: 'Yes. The smart scanner reads tickets instantly and tracks entry status. In the cabinet — sales, refunds, and access control in real time. You can also send VIP invites to partners.',
-        },
-        {
-          q: 'Can I run Taneesh alongside another box office?',
-          a: 'Yes. Keep your current channels and add Taneesh as a commission-free channel on your price — an extra sales source.',
-        },
-        {
           q: 'Are there terms for large partners?',
           a: 'Yes. For agencies and venues FixedFee is set in admin (often from 3–5k sum) — economics grow with volume. We are IT Park Uzbekistan residents.',
         },
@@ -684,10 +648,12 @@ window.TaneeshI18n = (function () {
       if (typeof val === 'string') el.setAttribute('alt', val);
     });
 
-    // FAQ buttons
+    // FAQ buttons + accordion answers
     const faqBtns = document.querySelectorAll('.faq-q[data-faq]');
     d.faq.forEach((item, i) => {
       if (faqBtns[i]) faqBtns[i].textContent = item.q;
+      const ans = document.querySelector(`.faq-a[data-faq="${i}"]`);
+      if (ans) ans.textContent = item.a;
     });
 
     // lang menu active state
