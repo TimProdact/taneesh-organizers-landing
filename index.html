@@ -392,377 +392,797 @@
       border-radius: 10px;
       margin: 0 6px;
       padding: 12px;
-      display: flex;
-      flex-direction: column;
+      display: grid;
       gap: 10px;
       min-height: 0;
       flex: 1;
-      overflow: hidden;
     }
     .app-events > strong {
       font-size: 14px;
       font-weight: 800;
       color: #222;
       letter-spacing: -0.02em;
-      flex-shrink: 0;
     }
-    .app-events-carousel {
-      container-type: inline-size;
+    .app-event-slider {
+      position: relative;
       overflow: hidden;
       margin: 0 -12px;
-      padding: 0 12px;
       flex: 1;
       min-height: 0;
-      mask-image: linear-gradient(to right, #000 0%, #000 78%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to right, #000 0%, #000 78%, transparent 100%);
-    }
-    .app-events-track {
       display: flex;
-      flex-wrap: nowrap;
-      align-items: flex-start;
-      gap: 8px;
-      width: max-content;
-      will-change: transform;
-      animation: app-events-marquee 36s linear infinite;
+      align-items: flex-end;
+      mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
     }
-    .app-events-carousel:hover .app-events-track {
+    .app-event-track {
+      display: flex;
+      gap: 10px;
+      width: max-content;
+      padding: 0 12px 2px;
+      animation: hero-events-flow 26s linear infinite;
+      will-change: transform;
+    }
+    .app-event-slider:hover .app-event-track {
       animation-play-state: paused;
     }
-    @keyframes app-events-marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .app-events-track { animation: none; }
-      .app-events-carousel {
-        mask-image: none;
-        -webkit-mask-image: none;
-      }
-    }
-    .app-event {
-      display: grid;
-      gap: 6px;
-      min-width: 0;
-      flex: 0 0 85cqw;
-      width: 85cqw;
-    }
-    .app-event-cover {
-      position: relative;
-      aspect-ratio: 176 / 220;
+    .app-event-slide {
+      flex: 0 0 168px;
+      width: 168px;
       border-radius: 14px;
       overflow: hidden;
-      background: #ddd;
+      background: #f5f5f5;
+      border: 1px solid rgba(28, 25, 23, 0.08);
+      box-shadow: 0 6px 20px rgba(28, 25, 23, 0.1);
     }
-    .app-event-cover img {
+    .app-event-slide img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       display: block;
+      aspect-ratio: 390 / 844;
+      object-fit: cover;
+      object-position: top center;
     }
-    .app-event-cover::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.42) 0%, transparent 32%, rgba(0,0,0,0.2) 78%, rgba(0,0,0,0.45) 100%);
-      pointer-events: none;
+    @keyframes hero-events-flow {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(calc(-50% - 5px)); }
     }
-    .app-price {
-      position: absolute;
-      top: 6px;
-      left: 6px;
-      z-index: 1;
-      background: #ffe8b2;
-      color: #222;
-      font-size: 10px;
-      font-weight: 600;
-      padding: 3px 6px;
-      border-radius: 9999px;
-    }
-    .app-like {
-      position: absolute;
-      top: 6px;
-      right: 6px;
-      z-index: 1;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: rgba(0,0,0,0.35);
-      display: grid;
-      place-items: center;
-    }
-    .app-like img { width: 14px; height: 14px; display: block; }
-    .app-metrics {
-      position: absolute;
-      left: 6px;
-      bottom: 6px;
-      z-index: 1;
-      display: flex;
-      gap: 4px;
-    }
-    .app-metrics span {
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
-      background: rgba(255,255,255,0.24);
-      backdrop-filter: blur(6px);
-      color: #fff;
-      font-size: 10px;
-      padding: 2px 5px;
-      border-radius: 9999px;
-    }
-    .app-metrics img { width: 12px; height: 12px; display: block; }
-    .app-event h4 {
-      font-size: 11px;
-      font-weight: 700;
-      color: #222;
-      line-height: 1.25;
-      letter-spacing: -0.02em;
-    }
-    .app-event time {
-      font-size: 10px;
-      color: #888;
-    }
-    .app-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 3px;
-    }
-    .app-chips i {
-      font-style: normal;
-      font-size: 9px;
-      color: #555;
-      background: #f1f1f1;
-      padding: 3px 5px;
-      border-radius: 9999px;
-      white-space: nowrap;
+    @media (prefers-reduced-motion: reduce) {
+      .app-event-track {
+        animation: none;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .app-event-track::-webkit-scrollbar { display: none; }
+      .app-event-slide { scroll-snap-align: center; }
+      .app-event-slider { mask-image: none; -webkit-mask-image: none; }
     }
 
     .hero-card-admin {
-      --admin-bg: #0a0a0a;
-      --admin-accent: #1ed760;
+      --admin-bg: #0a0a0b;
+      --admin-card: #121214;
+      --admin-border: rgba(255, 255, 255, 0.08);
       --admin-blue: #3b82f6;
+      --admin-muted: #71717a;
       background: var(--admin-bg);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #fff;
+      border: 1px solid var(--admin-border);
       border-radius: 28px;
-      display: flex;
-      align-items: stretch;
+      display: block;
       padding: 0;
       overflow: hidden;
       position: relative;
     }
-    .admin-video-slot {
-      position: relative;
-      width: 100%;
+    .dash-viewport {
       height: 100%;
-      min-height: 0;
-      display: flex;
-      align-items: stretch;
-      justify-content: stretch;
-      background: var(--admin-bg);
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
     }
-    .admin-video-slot video {
-      width: 100%;
+    .dash-viewport::-webkit-scrollbar { display: none; }
+    .dash-canvas {
+      width: max(100%, 880px);
       height: 100%;
-      object-fit: cover;
-      display: block;
-      background: var(--admin-bg);
+      padding: 16px 18px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(200px, 240px);
+      grid-template-rows: auto auto 1fr;
+      gap: 10px 12px;
+      box-sizing: border-box;
+      align-content: stretch;
     }
-    .admin-video-banner {
-      position: relative;
-      flex: 1;
+    .dash-head {
+      grid-column: 1 / -1;
       display: flex;
       align-items: center;
-      justify-content: center;
-      min-height: 0;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding-left: 0;
+    }
+    .dash-head h3 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fff;
+      font-family: var(--font-ui);
+    }
+    .dash-periods {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    .dash-periods button {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--admin-muted);
+      padding: 6px 10px;
+      border-radius: 9999px;
+      background: transparent;
+      border: 0;
       cursor: pointer;
-      overflow: hidden;
-      background:
-        radial-gradient(ellipse 80% 60% at 72% 38%, rgba(59, 130, 246, 0.18) 0%, transparent 55%),
-        radial-gradient(ellipse 50% 40% at 18% 82%, rgba(30, 215, 96, 0.08) 0%, transparent 50%),
-        linear-gradient(145deg, #0a0a0a 0%, #0f0f12 45%, #0a0a0a 100%);
+      transition: background 0.2s var(--ease), color 0.2s var(--ease);
     }
-    .admin-video-banner::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      background-size: 32px 32px;
-      mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, #000 20%, transparent 75%);
-      -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, #000 20%, transparent 75%);
-      pointer-events: none;
-    }
-    .admin-banner-deco {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.55;
-    }
-    .admin-banner-deco-sidebar {
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 18%;
-      background: rgba(255, 255, 255, 0.02);
-      border-right: 1px solid rgba(255, 255, 255, 0.06);
-    }
-    .admin-banner-deco-sidebar::after {
-      content: "";
-      position: absolute;
-      left: 14%;
-      top: 10%;
-      width: 72%;
-      height: 5%;
-      border-radius: 8px;
+    .dash-periods button.on {
+      color: #fff;
       background: rgba(255, 255, 255, 0.08);
     }
-    .admin-banner-deco-card {
-      position: absolute;
-      border-radius: 12px;
-      background: rgba(18, 18, 20, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+    .dash-periods .cal {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      border: 1px solid var(--admin-border);
+      display: grid;
+      place-items: center;
+      color: var(--admin-muted);
+      background: transparent;
+      cursor: default;
+      padding: 0;
     }
-    .admin-banner-deco-card--kpi1 {
-      right: 8%;
-      top: 12%;
-      width: 28%;
-      height: 14%;
-      border-color: rgba(59, 130, 246, 0.35);
+    .dash-periods .cal svg { width: 14px; height: 14px; }
+    .dash-kpis {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(6, minmax(88px, 1fr));
+      gap: 8px;
+      padding-left: 0;
     }
-    .admin-banner-deco-card--kpi2 {
-      right: 40%;
-      top: 12%;
-      width: 22%;
-      height: 14%;
+    .dash-kpi {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 14px;
+      padding: 10px 10px 9px;
+      min-width: 0;
+      cursor: pointer;
+      transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+      text-align: left;
+      color: inherit;
+      font: inherit;
     }
-    .admin-banner-deco-card--chart {
-      left: 22%;
-      bottom: 10%;
-      width: 52%;
-      height: 38%;
+    .dash-kpi.is-active {
+      border-color: rgba(59, 130, 246, 0.55);
+      box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.25);
     }
-    .admin-banner-deco-card--chart::before {
+    .dash-kpi:active { transform: scale(0.98); }
+    .dash-kpi .label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      font-size: 10px;
+      color: var(--admin-muted);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .dash-kpi .label i {
+      width: 18px;
+      height: 18px;
+      border-radius: 6px;
+      background: rgba(59, 130, 246, 0.15);
+      color: var(--admin-blue);
+      display: grid;
+      place-items: center;
+      font-style: normal;
+      font-size: 10px;
+      flex-shrink: 0;
+    }
+    .dash-kpi strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .dash-kpi em {
+      display: inline-block;
+      margin-top: 4px;
+      font-style: normal;
+      font-size: 10px;
+      font-weight: 700;
+      color: #22c55e;
+    }
+    .dash-kpi em.down { color: #ef4444; }
+    .dash-kpi em.flat { color: var(--admin-muted); }
+    .dash-main {
+      grid-column: 1;
+      grid-row: 3;
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 0;
+    }
+    .dash-main h4 {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .dash-chart {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 8px;
+      align-items: stretch;
+      min-height: 0;
+      flex: 1;
+    }
+    .dash-chart-y {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 4px 0 30px;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--admin-muted);
+      line-height: 1;
+    }
+    .dash-chart-plot {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+      gap: 8px;
+    }
+    .dash-hours {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      height: 100px;
+      padding: 4px 4px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      position: relative;
+    }
+    .dash-hours::before {
       content: "";
       position: absolute;
-      left: 8%;
-      right: 8%;
-      bottom: 18%;
-      height: 55%;
-      display: flex;
-      background: linear-gradient(90deg,
-        rgba(59, 130, 246, 0.5) 0%, rgba(59, 130, 246, 0.5) 12%,
-        transparent 12%, transparent 18%,
-        rgba(59, 130, 246, 0.35) 18%, rgba(59, 130, 246, 0.35) 28%,
-        transparent 28%, transparent 34%,
-        rgba(59, 130, 246, 0.6) 34%, rgba(59, 130, 246, 0.6) 48%,
-        transparent 48%, transparent 54%,
-        rgba(59, 130, 246, 0.45) 54%, rgba(59, 130, 246, 0.45) 68%,
-        transparent 68%, transparent 74%,
-        rgba(59, 130, 246, 0.7) 74%, rgba(59, 130, 246, 0.7) 100%);
-      border-radius: 4px 4px 0 0;
-    }
-    .admin-banner-deco-card--list {
-      right: 8%;
-      bottom: 10%;
-      width: 26%;
-      height: 38%;
-    }
-    .admin-banner-deco-dot {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--admin-accent);
-      box-shadow: 0 0 12px rgba(30, 215, 96, 0.6);
-      top: 22%;
-      left: 24%;
-    }
-    .admin-banner-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: 32px 28px;
-      max-width: 88%;
-    }
-    .admin-banner-eyebrow {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--admin-accent);
-      margin-bottom: 14px;
-    }
-    .admin-banner-title {
-      font-family: var(--font-display);
-      font-size: clamp(22px, 2.8vw, 32px);
-      font-weight: 400;
-      letter-spacing: -0.03em;
-      line-height: 1.12;
-      color: #fff;
-      margin-bottom: 10px;
-    }
-    .admin-banner-sub {
-      font-size: clamp(13px, 1.4vw, 15px);
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.52);
-      line-height: 1.45;
-      max-width: 28em;
-      margin-inline: auto;
-    }
-    .admin-video-play {
-      position: absolute;
       inset: 0;
-      z-index: 3;
+      background:
+        linear-gradient(to top, transparent 24.5%, rgba(255,255,255,0.04) 25%, transparent 25.5%),
+        linear-gradient(to top, transparent 49.5%, rgba(255,255,255,0.04) 50%, transparent 50.5%),
+        linear-gradient(to top, transparent 74.5%, rgba(255,255,255,0.04) 75%, transparent 75.5%);
+      pointer-events: none;
+    }
+    .dash-hour {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      min-width: 0;
+      z-index: 1;
+    }
+    .dash-hour i {
+      display: block;
+      width: 100%;
+      max-width: 36px;
+      height: var(--h, 40%);
+      border-radius: 8px 8px 3px 3px;
+      background: linear-gradient(180deg, #60a5fa 0%, var(--admin-blue) 100%);
+      font-style: normal;
+      transition: height 0.45s var(--ease);
+      box-shadow: 0 0 16px rgba(59, 130, 246, 0.25);
+    }
+    .dash-chart-x {
+      display: flex;
+      gap: 8px;
+      padding: 0 4px;
+    }
+    .dash-chart-x span {
+      flex: 1;
+      text-align: center;
+      font-size: 10px;
+      color: var(--admin-muted);
+      font-weight: 600;
+      min-width: 0;
+    }
+    .dash-bottom {
+      grid-column: 2;
+      grid-row: 3;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-left: 0;
+      min-height: 0;
+    }
+    .dash-panel {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 14px;
+      padding: 12px;
+      min-width: 0;
+    }
+    .dash-panel:first-child {
+      border-radius: 14px;
+      border-left: 1px solid var(--admin-border);
+      padding-left: 12px;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .dash-panel:last-child {
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .dash-panel h4 {
+      margin: 0 0 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .dash-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 11px;
+    }
+    .dash-top-row:last-child { border: 0; padding-bottom: 0; }
+    .dash-top-row .rank {
+      color: var(--admin-muted);
+      width: 14px;
+      flex-shrink: 0;
+    }
+    .dash-top-row .name {
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #e4e4e7;
+      font-weight: 600;
+    }
+    .dash-top-row .rev {
+      color: #fff;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .dash-funnel {
       display: grid;
-      place-items: center;
+      gap: 10px;
+    }
+    .dash-funnel-row {
+      display: grid;
+      gap: 4px;
+    }
+    .dash-funnel-row .meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: var(--admin-muted);
+      font-weight: 600;
+    }
+    .dash-funnel-row .bar {
+      height: 7px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.06);
+      overflow: hidden;
+    }
+    .dash-funnel-row .bar i {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--admin-blue);
+      font-style: normal;
+      transition: width 0.45s var(--ease);
+    }
+
+    /* Admin sidebar + multi-screen mock */
+    .admin-shell {
+      display: flex;
+      height: 100%;
+      min-height: 0;
+    }
+    .admin-sidebar {
+      width: 152px;
+      flex-shrink: 0;
+      background: var(--admin-bg);
+      border-right: 1px solid var(--admin-border);
+      padding: 14px 8px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      overflow-y: auto;
+      scrollbar-width: none;
+    }
+    .admin-sidebar::-webkit-scrollbar { display: none; }
+    .admin-sidebar-brand {
+      padding: 2px 10px 12px;
+      margin-bottom: 6px;
+      border-bottom: 1px solid var(--admin-border);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #fff;
+      font-family: var(--font-ui);
+    }
+    .admin-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 10px;
       border: 0;
       background: transparent;
+      color: var(--admin-muted);
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1.2;
       cursor: pointer;
-      opacity: 0;
-      transition: opacity 220ms var(--ease);
+      text-align: left;
+      width: 100%;
+      transition: background 0.2s var(--ease), color 0.2s var(--ease);
+      font-family: var(--font-ui);
     }
-    .admin-video-banner:hover .admin-video-play,
-    .admin-video-banner:focus-within .admin-video-play,
-    .admin-video-play:focus-visible {
+    .admin-nav-item svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .admin-nav-item.is-active {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+    .admin-nav-item:hover:not(.is-active) {
+      background: rgba(255, 255, 255, 0.04);
+      color: #e4e4e7;
+    }
+    .admin-nav-item span {
+      min-width: 0;
+    }
+    .admin-main {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .admin-main .dash-viewport.is-screen-alt {
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+    .admin-screen {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.22s var(--ease);
+    }
+    .admin-screen.is-active {
+      display: block;
       opacity: 1;
     }
-    .admin-play-ring {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.14);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    .admin-screen[hidden] {
+      display: none !important;
+    }
+    .admin-screen-inner {
+      padding: 16px 20px 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 100%;
+      box-sizing: border-box;
+    }
+    .admin-screen-inner h3 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fff;
+      font-family: var(--font-ui);
+    }
+    .admin-screen-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .admin-screen-head .hint {
+      font-size: 11px;
+      color: var(--admin-muted);
+      font-weight: 600;
+    }
+    .admin-events-list {
+      display: grid;
+      gap: 8px;
+    }
+    .admin-event-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 14px;
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 14px;
+    }
+    .admin-event-info {
+      min-width: 0;
+      display: grid;
+      gap: 3px;
+    }
+    .admin-event-info strong {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .admin-event-info span {
+      font-size: 10px;
+      color: var(--admin-muted);
+      font-weight: 600;
+    }
+    .admin-pill {
+      flex-shrink: 0;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 9999px;
+      white-space: nowrap;
+    }
+    .admin-pill--pub {
+      background: rgba(34, 197, 94, 0.15);
+      color: #4ade80;
+    }
+    .admin-pill--draft {
+      background: rgba(255, 255, 255, 0.08);
+      color: #a1a1aa;
+    }
+    .admin-pill--mod {
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+    }
+    .admin-crm-table {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .admin-crm-head,
+    .admin-crm-row {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 0.7fr;
+      gap: 8px;
+      padding: 10px 14px;
+      font-size: 11px;
+      align-items: center;
+    }
+    .admin-crm-head {
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--admin-muted);
+      font-weight: 700;
+      border-bottom: 1px solid var(--admin-border);
+    }
+    .admin-crm-row {
+      color: #e4e4e7;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .admin-crm-row:last-child { border-bottom: 0; }
+    .admin-crm-row .name { color: #fff; font-weight: 700; }
+    .admin-crm-row .tix {
+      text-align: right;
+      color: var(--admin-blue);
+      font-weight: 700;
+    }
+    .admin-ctrl-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .admin-ctrl-card {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 14px;
+      padding: 12px;
+      display: grid;
+      gap: 8px;
+    }
+    .admin-ctrl-card .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: rgba(59, 130, 246, 0.18);
+      color: var(--admin-blue);
       display: grid;
       place-items: center;
-      transition: transform 180ms var(--ease), background 180ms var(--ease);
+      font-size: 12px;
+      font-weight: 800;
     }
-    .admin-video-play:hover .admin-play-ring,
-    .admin-video-play:focus-visible .admin-play-ring {
-      transform: scale(1.06);
-      background: rgba(30, 215, 96, 0.22);
-      border-color: rgba(30, 215, 96, 0.45);
+    .admin-ctrl-card strong {
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
     }
-    .admin-video-play svg {
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      fill: #fff;
-      margin-left: 3px;
+    .admin-ctrl-card .stat {
+      font-size: 10px;
+      color: var(--admin-muted);
+      font-weight: 600;
     }
-    .hero-card-admin.is-playing .admin-video-banner {
-      display: none;
+    .admin-ctrl-card .stat em {
+      display: block;
+      margin-top: 2px;
+      font-style: normal;
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
     }
-    .hero-card-admin.is-playing .admin-video-play {
-      display: none;
+    .admin-fin-summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
     }
-    @media (hover: none) {
-      .admin-video-play { opacity: 0.85; }
+    .admin-fin-card {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .admin-fin-card .label {
+      font-size: 10px;
+      color: var(--admin-muted);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .admin-fin-card strong {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #fff;
+    }
+    .admin-fin-card em {
+      display: block;
+      margin-top: 4px;
+      font-style: normal;
+      font-size: 10px;
+      font-weight: 700;
+      color: #22c55e;
+    }
+    .admin-fin-payout {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .admin-fin-payout .meta {
+      min-width: 0;
+    }
+    .admin-fin-payout .meta strong {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .admin-fin-payout .meta span {
+      font-size: 10px;
+      color: var(--admin-muted);
+      font-weight: 600;
+    }
+    .admin-fin-payout .amount {
+      font-size: 14px;
+      font-weight: 800;
+      color: #fff;
+      white-space: nowrap;
+    }
+    .admin-profile-card {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 14px;
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+    }
+    .admin-profile-org {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .admin-profile-org .logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .admin-profile-org .info strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .admin-profile-org .info span {
+      font-size: 11px;
+      color: var(--admin-muted);
+      font-weight: 600;
+    }
+    .admin-verified {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #4ade80;
+      background: rgba(34, 197, 94, 0.12);
+      padding: 5px 9px;
+      border-radius: 9999px;
+      width: fit-content;
+    }
+    .admin-verified svg {
+      width: 12px;
+      height: 12px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+    .admin-profile-slug {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--admin-border);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--admin-muted);
+    }
+    .admin-profile-slug code {
+      color: var(--admin-blue);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 11px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .admin-screen { transition: none; }
     }
     @media (max-width: 960px) {
       .hero-duo {
@@ -775,13 +1195,38 @@
         max-height: none;
       }
       .hero-card-admin {
-        min-height: 0;
-        max-height: none;
+        min-height: 380px;
+        max-height: 440px;
       }
-      .admin-video-slot {
-        aspect-ratio: 16 / 10;
-        min-height: 280px;
+      .admin-sidebar {
+        width: 52px;
+        padding: 10px 6px;
       }
+      .admin-sidebar-brand,
+      .admin-nav-item span { display: none; }
+      .admin-nav-item { justify-content: center; padding: 9px 6px; }
+      .dash-viewport {
+        overflow-x: auto;
+        overflow-y: hidden;
+      }
+      .dash-canvas {
+        width: max(100%, 720px);
+        height: 100%;
+        padding: 14px;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr auto;
+      }
+      .dash-kpis { grid-template-columns: repeat(3, 1fr); }
+      .dash-main { grid-column: 1; grid-row: 3; }
+      .dash-bottom {
+        grid-column: 1;
+        grid-row: 4;
+        flex-direction: row;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .dash-panel:first-child,
+      .dash-panel:last-child { flex: unset; }
       .hero-card-app {
         order: -1;
         height: 460px;
@@ -792,6 +1237,12 @@
         max-height: calc(100% - 24px);
         border-radius: 24px 24px 0 0;
       }
+    }
+    @media (max-width: 560px) {
+      .dash-kpis { grid-template-columns: 1fr 1fr; }
+      .dash-hours { height: 110px; }
+      .admin-ctrl-grid { grid-template-columns: 1fr; }
+      .admin-fin-summary { grid-template-columns: 1fr; }
     }
 
     /* Calc shells */
@@ -808,6 +1259,23 @@
     }
     .section-alt .calc-shell { background: #fff; }
     .calc-viz { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+    .calc-rate {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-align: center;
+      flex-wrap: wrap;
+    }
+    .calc-rate span { font-size: 13px; font-weight: 700; color: var(--muted); }
+    .calc-rate strong {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 56px);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .calc-rate.soft strong { color: var(--muted); font-size: clamp(28px, 4vw, 40px); }
     .calc-chart {
       flex: 1;
       min-height: 180px;
@@ -947,9 +1415,13 @@
     .fees-panel { width: 100%; }
     .calc-sliders {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 14px;
       width: 100%;
+    }
+
+    @media (max-width: 640px) {
+      .calc-sliders { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 560px) {
@@ -984,6 +1456,7 @@
       70% { box-shadow: 0 0 0 8px rgba(30, 215, 96, 0); }
       100% { box-shadow: 0 0 0 0 rgba(30, 215, 96, 0); }
     }
+    .calc-rate .rate small { font-size: 0.45em; }
     .live-filters {
       display: flex;
       flex-wrap: wrap;
@@ -1240,44 +1713,24 @@
       }
     }
 
-    /* Offer marquee */
-    #included {
-      overflow: visible;
-    }
-    #included .section-head {
-      margin-bottom: 0;
-    }
-    .offer-marquee-outer {
-      width: 100vw;
-      max-width: 100vw;
-      margin-left: calc(50% - 50vw);
-      margin-top: 48px;
-      overflow: hidden;
-    }
-    .offer-track {
-      display: flex;
-      flex-wrap: nowrap;
-      align-items: stretch;
+    /* Offer rail */
+    .offer-rail-wrap { position: relative; }
+    .offer-rail {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(220px, 248px);
       gap: 28px;
-      width: max-content;
-      padding-inline: max(20px, calc((100vw - var(--max)) / 2 + 20px));
-      will-change: transform;
-      animation: offer-marquee 52s linear infinite;
+      column-gap: 28px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
-    .offer-marquee-outer:hover .offer-track {
-      animation-play-state: paused;
-    }
-    @keyframes offer-marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .offer-track { animation: none; }
-    }
+    .offer-rail::-webkit-scrollbar { display: none; }
     .offer-card {
       position: relative;
-      flex: 0 0 auto;
-      width: clamp(220px, 22vw, 248px);
+      scroll-snap-align: start;
       aspect-ratio: 3 / 4.4;
       min-height: 360px;
       padding: 22px;
@@ -1332,6 +1785,43 @@
       color: #fff;
     }
     .offer-body p { color: rgba(255, 255, 255, 0.78); font-size: 14px; }
+    .offer-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .offer-nav {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 0;
+      background: rgba(28, 25, 23, 0.08);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: background 160ms var(--ease), transform 160ms var(--ease);
+    }
+    .offer-nav:hover { background: rgba(28, 25, 23, 0.14); transform: translateY(-1px); }
+    .offer-nav:disabled { opacity: 0.35; cursor: default; transform: none; }
+    .offer-nav svg { width: 18px; height: 18px; }
+    .offer-progress {
+      height: 3px;
+      width: min(120px, 30%);
+      border-radius: 9999px;
+      background: rgba(28, 25, 23, 0.08);
+      margin: 16px auto 0;
+      overflow: hidden;
+    }
+    .offer-progress i {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      border-radius: inherit;
+    }
 
     /* Trust / niches / quote / payments */
     .trust-strip {
@@ -1398,195 +1888,85 @@
       width: auto;
       max-width: 132px;
     }
-    #niches {
-      overflow: visible;
-    }
-    #niches .niches-head {
-      margin-bottom: 0;
-    }
-    .niches-marquee-outer {
-      width: 100vw;
-      max-width: 100vw;
-      margin-left: calc(50% - 50vw);
-      margin-top: 48px;
-      overflow: hidden;
-    }
-    .niches-track {
-      display: flex;
-      flex-wrap: nowrap;
-      align-items: stretch;
+    .niche-rail {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(200px, 230px);
       gap: 20px;
-      width: max-content;
-      padding-inline: max(20px, calc((100vw - var(--max)) / 2 + 20px));
-      will-change: transform;
-      animation: niches-marquee 46s linear infinite;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 4px;
+      scrollbar-width: none;
     }
-    .niches-marquee-outer:hover .niches-track {
-      animation-play-state: paused;
-    }
-    @keyframes niches-marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .niches-track { animation: none; }
-    }
+    .niche-rail::-webkit-scrollbar { display: none; }
     .niche-card {
-      flex: 0 0 auto;
-      width: clamp(200px, 22vw, 240px);
+      position: relative;
       aspect-ratio: 3 / 4.2;
-      min-height: 300px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 20px;
-      border-radius: 20px;
-      background: #fff;
-      color: var(--text);
-      border: 1px solid #e8e8e8;
-      box-shadow: 0 4px 24px rgba(10, 10, 10, 0.06);
+      min-height: 320px;
+      border-radius: 28px;
+      overflow: hidden;
+      scroll-snap-align: start;
+      background: #111;
+      color: #fff;
+      isolation: isolate;
     }
     .niche-emoji {
-      flex: 1;
+      position: absolute;
+      inset: 0 0 72px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: clamp(48px, 12vw, 64px);
       line-height: 1;
+      z-index: 0;
       user-select: none;
       pointer-events: none;
       animation: niche-float 4.2s ease-in-out infinite;
     }
-    .niche-card:nth-child(6n+1) .niche-emoji { animation-delay: 0s; }
-    .niche-card:nth-child(6n+2) .niche-emoji { animation-delay: 0.5s; }
-    .niche-card:nth-child(6n+3) .niche-emoji { animation-delay: 1s; }
-    .niche-card:nth-child(6n+4) .niche-emoji { animation-delay: 1.5s; }
-    .niche-card:nth-child(6n+5) .niche-emoji { animation-delay: 2s; }
-    .niche-card:nth-child(6n+6) .niche-emoji { animation-delay: 2.5s; }
+    .niche-card:nth-child(1) .niche-emoji { animation-delay: 0s; }
+    .niche-card:nth-child(2) .niche-emoji { animation-delay: 0.5s; }
+    .niche-card:nth-child(3) .niche-emoji { animation-delay: 1s; }
+    .niche-card:nth-child(4) .niche-emoji { animation-delay: 1.5s; }
+    .niche-card:nth-child(5) .niche-emoji { animation-delay: 2s; }
+    .niche-card:nth-child(6) .niche-emoji { animation-delay: 2.5s; }
     @keyframes niche-float {
       0%, 100% { transform: translateY(0) scale(1); }
       50% { transform: translateY(-10px) scale(1.06); }
     }
+    .niche-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.82) 100%);
+    }
     .niche-card strong {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      z-index: 1;
       font-size: 18px;
       font-weight: 700;
       letter-spacing: -0.02em;
-      color: var(--text);
-      line-height: 1.25;
     }
-    #quote {
-      background: #fff;
-    }
-    .quote-slider {
-      max-width: 900px;
+    .quote-block {
+      max-width: 820px;
       margin-inline: auto;
       text-align: center;
     }
-    .quote-nav {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 32px;
-    }
-    .quote-arrow {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: 1px solid rgba(10, 10, 10, 0.12);
-      background: #fff;
-      color: rgba(10, 10, 10, 0.55);
-      cursor: pointer;
-      transition: border-color 0.2s var(--ease), color 0.2s var(--ease), background 0.2s var(--ease);
-    }
-    .quote-arrow:hover {
-      border-color: rgba(10, 10, 10, 0.22);
-      color: var(--text);
-      background: #fafafa;
-    }
-    .quote-arrow svg {
-      display: block;
-      width: 18px;
-      height: 18px;
-    }
-    .quote-pill {
-      display: inline-block;
-      margin-bottom: 28px;
-      padding: 8px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(10, 10, 10, 0.1);
-      background: #fff;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      color: rgba(10, 10, 10, 0.65);
-    }
-    .quote-stage {
-      min-height: clamp(180px, 28vw, 240px);
-      margin-bottom: 56px;
-    }
-    .quote-text {
-      font-family: var(--font-ui);
-      font-size: clamp(24px, 3.4vw, 38px);
-      font-weight: 700;
-      line-height: 1.25;
+    .quote-block blockquote {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 3.6vw, 40px);
+      line-height: 1.2;
       letter-spacing: -0.03em;
       color: var(--text);
-      margin: 0 auto 28px;
-      max-width: 34em;
-      transition: opacity 0.28s var(--ease);
+      margin: 0 0 20px;
     }
-    .quote-text.is-fading {
-      opacity: 0;
-    }
-    .quote-meta {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      transition: opacity 0.28s var(--ease);
-    }
-    .quote-meta.is-fading {
-      opacity: 0;
-    }
-    .quote-stars {
-      display: inline-flex;
-      gap: 2px;
-      font-size: 16px;
-      letter-spacing: 0.08em;
-      color: #f5b301;
-      line-height: 1;
-    }
-    .quote-author {
-      font-size: 15px;
-      line-height: 1.4;
-      color: rgba(10, 10, 10, 0.5);
-    }
-    .quote-author strong {
+    .quote-block cite {
+      font-style: normal;
+      font-size: 14px;
       font-weight: 600;
-      color: rgba(10, 10, 10, 0.72);
-    }
-    .quote-logos {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: clamp(20px, 4vw, 40px);
-      padding-top: 12px;
-      border-top: 1px solid rgba(10, 10, 10, 0.06);
-    }
-    .quote-logos .trust-logo {
-      height: 28px;
-      opacity: 0.55;
-    }
-    @media (max-width: 640px) {
-      .quote-nav { margin-bottom: 24px; }
-      .quote-stage { min-height: 200px; margin-bottom: 40px; }
-      .quote-logos { gap: 16px 24px; }
-      .quote-logos .trust-logo { height: 24px; }
+      color: var(--muted);
     }
     .paytrust {
       display: flex;
@@ -1829,9 +2209,6 @@
       background: rgba(10, 10, 10, 0.45);
       opacity: 0;
       transition: opacity 200ms var(--ease);
-    }
-    .lead-overlay[hidden] {
-      display: none !important;
     }
     .lead-overlay.is-visible { opacity: 1; }
     .lead-dialog {
@@ -2088,120 +2465,16 @@
                 </div>
                 <div class="app-events">
                   <strong>Предстоящие события</strong>
-                  <div class="app-events-carousel">
-                    <div class="app-events-track">
-                    <article class="app-event">
-                      <div class="app-event-cover">
-                        <img src="assets/showcase/cover1.jpg" alt="" />
-                        <span class="app-price">120 000 сум</span>
-                        <span class="app-like"><img src="assets/showcase/ico-heart-outline.svg" alt="" /></span>
-                        <div class="app-metrics">
-                          <span><img src="assets/showcase/ico-eye.svg" alt="" />2140</span>
-                          <span><img src="assets/showcase/ico-heart.svg" alt="" />186</span>
-                        </div>
-                      </div>
-                      <h4>Summer Open Air</h4>
-                      <time>15 авг (пт) · 21:00</time>
-                      <div class="app-chips"><i>Музыка</i><i>Вечеринки</i></div>
-                    </article>
-                    <article class="app-event">
-                      <div class="app-event-cover">
-                        <img src="assets/showcase/cover2.jpg" alt="" />
-                        <span class="app-price">85 000 сум</span>
-                        <span class="app-like"><img src="assets/showcase/ico-heart-outline.svg" alt="" /></span>
-                        <div class="app-metrics">
-                          <span><img src="assets/showcase/ico-eye.svg" alt="" />980</span>
-                          <span><img src="assets/showcase/ico-heart.svg" alt="" />74</span>
-                        </div>
-                      </div>
-                      <h4>Morning Trek</h4>
-                      <time>17 авг (вс) · 07:30</time>
-                      <div class="app-chips"><i>Походы</i><i>Природа</i></div>
-                    </article>
-                    <article class="app-event">
-                      <div class="app-event-cover">
-                        <img src="assets/showcase/cover3.jpg" alt="" />
-                        <span class="app-price">Бесплатно</span>
-                        <span class="app-like"><img src="assets/showcase/ico-heart-outline.svg" alt="" /></span>
-                        <div class="app-metrics">
-                          <span><img src="assets/showcase/ico-eye.svg" alt="" />1560</span>
-                          <span><img src="assets/showcase/ico-heart.svg" alt="" />92</span>
-                        </div>
-                      </div>
-                      <h4>Networking Meetup</h4>
-                      <time>20 авг (ср) · 19:00</time>
-                      <div class="app-chips"><i>Нетворкинг</i></div>
-                    </article>
-                    <article class="app-event">
-                      <div class="app-event-cover">
-                        <img src="assets/showcase/cover4.jpg" alt="" />
-                        <span class="app-price">Бесплатно</span>
-                        <span class="app-like"><img src="assets/showcase/ico-heart-outline.svg" alt="" /></span>
-                        <div class="app-metrics">
-                          <span><img src="assets/showcase/ico-eye.svg" alt="" />720</span>
-                          <span><img src="assets/showcase/ico-heart.svg" alt="" />41</span>
-                        </div>
-                      </div>
-                      <h4>Business Talk</h4>
-                      <time>22 авг (пт) · 18:30</time>
-                      <div class="app-chips"><i>Лекции</i></div>
-                    </article>
-                    <article class="app-event" aria-hidden="true">
-                      <div class="app-event-cover">
-                        <img src="assets/showcase/cover1.jpg" alt="" />
-                        <span class="app-price">120 000 сум</span>
-                        <span class="app-like"><img src="assets/showcase/ico-heart-outline.svg" alt="" /></span>
-                        <div class="app-metrics">
-                          <span><img src="assets/showcase/ico-eye.svg" alt="" />2140</span>
-                          <span><img src="assets/showcase/ico-heart.svg" alt="" />186</span>
-                        </div>
-                      </div>
-                      <h4>Summer Open Air</h4>
-                      <time>15 авг (пт) · 21:00</time>
-                      <div class="app-chips"><i>Музыка</i><i>Вечеринки</i></div>
-                    </article>
-                    <article class="app-event" aria-hidden="true">
-                      <div class="app-event-cover">
-                        <img src="assets/showcase/cover2.jpg" alt="" />
-                        <span class="app-price">85 000 сум</span>
-                        <span class="app-like"><img src="assets/showcase/ico-heart-outline.svg" alt="" /></span>
-                        <div class="app-metrics">
-                          <span><img src="assets/showcase/ico-eye.svg" alt="" />980</span>
-                          <span><img src="assets/showcase/ico-heart.svg" alt="" />74</span>
-                        </div>
-                      </div>
-                      <h4>Morning Trek</h4>
-                      <time>17 авг (вс) · 07:30</time>
-                      <div class="app-chips"><i>Походы</i><i>Природа</i></div>
-                    </article>
-                    <article class="app-event" aria-hidden="true">
-                      <div class="app-event-cover">
-                        <img src="assets/showcase/cover3.jpg" alt="" />
-                        <span class="app-price">Бесплатно</span>
-                        <span class="app-like"><img src="assets/showcase/ico-heart-outline.svg" alt="" /></span>
-                        <div class="app-metrics">
-                          <span><img src="assets/showcase/ico-eye.svg" alt="" />1560</span>
-                          <span><img src="assets/showcase/ico-heart.svg" alt="" />92</span>
-                        </div>
-                      </div>
-                      <h4>Networking Meetup</h4>
-                      <time>20 авг (ср) · 19:00</time>
-                      <div class="app-chips"><i>Нетворкинг</i></div>
-                    </article>
-                    <article class="app-event" aria-hidden="true">
-                      <div class="app-event-cover">
-                        <img src="assets/showcase/cover4.jpg" alt="" />
-                        <span class="app-price">Бесплатно</span>
-                        <span class="app-like"><img src="assets/showcase/ico-heart-outline.svg" alt="" /></span>
-                        <div class="app-metrics">
-                          <span><img src="assets/showcase/ico-eye.svg" alt="" />720</span>
-                          <span><img src="assets/showcase/ico-heart.svg" alt="" />41</span>
-                        </div>
-                      </div>
-                      <h4>Business Talk</h4>
-                      <time>22 авг (пт) · 18:30</time>
-                      <div class="app-chips"><i>Лекции</i></div>
-                    </article>
+                  <div class="app-event-slider" aria-hidden="true">
+                    <div class="app-event-track">
+                      <div class="app-event-slide"><img src="assets/hero-events/card-event-detail.png" alt="" width="168" height="363" loading="lazy" decoding="async" /></div>
+                      <div class="app-event-slide"><img src="assets/hero-events/card-tickets.png" alt="" width="168" height="363" loading="lazy" decoding="async" /></div>
+                      <div class="app-event-slide"><img src="assets/hero-events/card-checkout.png" alt="" width="168" height="363" loading="lazy" decoding="async" /></div>
+                      <div class="app-event-slide"><img src="assets/hero-events/card-ticket-qr.png" alt="" width="168" height="363" loading="lazy" decoding="async" /></div>
+                      <div class="app-event-slide"><img src="assets/hero-events/card-event-detail.png" alt="" width="168" height="363" loading="lazy" decoding="async" /></div>
+                      <div class="app-event-slide"><img src="assets/hero-events/card-tickets.png" alt="" width="168" height="363" loading="lazy" decoding="async" /></div>
+                      <div class="app-event-slide"><img src="assets/hero-events/card-checkout.png" alt="" width="168" height="363" loading="lazy" decoding="async" /></div>
+                      <div class="app-event-slide"><img src="assets/hero-events/card-ticket-qr.png" alt="" width="168" height="363" loading="lazy" decoding="async" /></div>
                     </div>
                   </div>
                 </div>
@@ -2209,29 +2482,294 @@
             </div>
           </aside>
 
-          <aside class="hero-card hero-card-admin" data-admin-video>
-            <div class="admin-video-slot">
-              <div class="admin-video-banner" data-admin-banner tabindex="0" role="button" data-i18n-aria="adminPlayAria">
-                <div class="admin-banner-deco" aria-hidden="true">
-                  <div class="admin-banner-deco-sidebar"></div>
-                  <div class="admin-banner-deco-dot"></div>
-                  <div class="admin-banner-deco-card admin-banner-deco-card--kpi1"></div>
-                  <div class="admin-banner-deco-card admin-banner-deco-card--kpi2"></div>
-                  <div class="admin-banner-deco-card admin-banner-deco-card--chart"></div>
-                  <div class="admin-banner-deco-card admin-banner-deco-card--list"></div>
-                </div>
-                <div class="admin-banner-content">
-                  <span class="admin-banner-eyebrow">Taneesh</span>
-                  <h3 class="admin-banner-title" data-i18n="adminBannerTitle">Панель организатора</h3>
-                  <p class="admin-banner-sub" data-i18n="adminBannerSub">Дашборд, продажи, CRM — в одном месте</p>
-                </div>
-                <button type="button" class="admin-video-play" data-admin-play data-i18n-aria="adminPlayAria">
-                  <span class="admin-play-ring" aria-hidden="true"></span>
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          <aside class="hero-card hero-card-admin" data-dash>
+            <div class="admin-shell">
+              <nav class="admin-sidebar" data-admin-nav aria-label="Навигация админки">
+                <div class="admin-sidebar-brand">Taneesh</div>
+                <button type="button" class="admin-nav-item is-active" data-admin-screen="dashboard" aria-current="page">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+                  <span>Дашборд</span>
                 </button>
+                <button type="button" class="admin-nav-item" data-admin-screen="events">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+                  <span>Мероприятия</span>
+                </button>
+                <button type="button" class="admin-nav-item" data-admin-screen="crm">
+                  <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  <span>Аудитория (CRM)</span>
+                </button>
+                <button type="button" class="admin-nav-item" data-admin-screen="controllers">
+                  <svg viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/></svg>
+                  <span>Контролеры</span>
+                </button>
+                <button type="button" class="admin-nav-item" data-admin-screen="finance">
+                  <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h2"/></svg>
+                  <span>Финансы и документы</span>
+                </button>
+                <button type="button" class="admin-nav-item" data-admin-screen="profile">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                  <span>Профиль</span>
+                </button>
+              </nav>
+              <div class="admin-main">
+                <div class="dash-viewport" data-dash-scroll>
+                  <div class="admin-screen is-active" data-admin-panel="dashboard">
+                    <div class="dash-canvas">
+                      <div class="dash-head">
+                        <h3>Дашборд</h3>
+                        <div class="dash-periods" role="tablist" aria-label="Период">
+                          <button type="button" class="on" data-dash-range="today">Сегодня</button>
+                          <button type="button" data-dash-range="week">7 дн.</button>
+                          <button type="button" data-dash-range="month">30 дн.</button>
+                          <button type="button" data-dash-range="all">Всё</button>
+                          <button type="button" class="cal" aria-label="Календарь" tabindex="-1">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="dash-kpis" data-dash-kpis>
+                        <button type="button" class="dash-kpi is-active" data-dash-kpi="rev">
+                          <div class="label">Выручка <i>$</i></div>
+                          <strong data-k="rev">18.4M UZS</strong>
+                          <em data-k="revDelta">+12% ↑</em>
+                        </button>
+                        <button type="button" class="dash-kpi" data-dash-kpi="tix">
+                          <div class="label">Билеты <i>◎</i></div>
+                          <strong data-k="tix">312</strong>
+                          <em data-k="tixDelta">+8% ↑</em>
+                        </button>
+                        <button type="button" class="dash-kpi" data-dash-kpi="ref">
+                          <div class="label">Возвраты <i>↺</i></div>
+                          <strong data-k="ref">0 UZS</strong>
+                          <em class="flat" data-k="refDelta">0% →</em>
+                        </button>
+                        <button type="button" class="dash-kpi" data-dash-kpi="views">
+                          <div class="label">Просмотры <i>◉</i></div>
+                          <strong data-k="views">9 840</strong>
+                          <em data-k="viewsDelta">+15% ↑</em>
+                        </button>
+                        <button type="button" class="dash-kpi" data-dash-kpi="chk">
+                          <div class="label">Оформление <i>›</i></div>
+                          <strong data-k="chk">2 180</strong>
+                          <em data-k="chkDelta">+11% ↑</em>
+                        </button>
+                        <button type="button" class="dash-kpi" data-dash-kpi="conv">
+                          <div class="label">Конверсия <i>%</i></div>
+                          <strong data-k="conv">3.2%</strong>
+                          <em data-k="convDelta">+0.4% ↑</em>
+                        </button>
+                      </div>
+                      <div class="dash-main">
+                        <h4 data-dash-chart-title>Общая выручка</h4>
+                        <div class="dash-chart">
+                          <div class="dash-chart-y" data-dash-y aria-hidden="true">
+                            <span>12M</span><span>9M</span><span>6M</span><span>3M</span><span>0</span>
+                          </div>
+                          <div class="dash-chart-plot">
+                            <div class="dash-hours" data-dash-bars aria-hidden="true">
+                              <div class="dash-hour"><i style="--h:28%"></i></div>
+                              <div class="dash-hour"><i style="--h:42%"></i></div>
+                              <div class="dash-hour"><i style="--h:55%"></i></div>
+                              <div class="dash-hour"><i style="--h:48%"></i></div>
+                              <div class="dash-hour"><i style="--h:70%"></i></div>
+                              <div class="dash-hour"><i style="--h:88%"></i></div>
+                              <div class="dash-hour"><i style="--h:100%"></i></div>
+                              <div class="dash-hour"><i style="--h:62%"></i></div>
+                            </div>
+                            <div class="dash-chart-x" data-dash-x aria-hidden="true">
+                              <span>08:00</span><span>10:00</span><span>12:00</span><span>14:00</span>
+                              <span>16:00</span><span>18:00</span><span>20:00</span><span>22:00</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="dash-bottom">
+                        <div class="dash-panel">
+                          <h4>Топ мероприятий</h4>
+                          <div data-dash-top>
+                            <div class="dash-top-row"><span class="rank">1</span><span class="name">Summer Open Air</span><span class="rev">6.2M</span></div>
+                            <div class="dash-top-row"><span class="rank">2</span><span class="name">Morning Trek</span><span class="rev">4.1M</span></div>
+                            <div class="dash-top-row"><span class="rank">3</span><span class="name">Networking Meetup</span><span class="rev">2.8M</span></div>
+                            <div class="dash-top-row"><span class="rank">4</span><span class="name">Business Talk</span><span class="rev">1.9M</span></div>
+                          </div>
+                        </div>
+                        <div class="dash-panel">
+                          <h4>Воронка продаж</h4>
+                          <div class="dash-funnel" data-dash-funnel>
+                            <div class="dash-funnel-row">
+                              <div class="meta"><span>Просмотры</span><span data-f="v">100%</span></div>
+                              <div class="bar"><i style="width:100%"></i></div>
+                            </div>
+                            <div class="dash-funnel-row">
+                              <div class="meta"><span>Начали оформление</span><span data-f="c">22.1%</span></div>
+                              <div class="bar"><i style="width:22%"></i></div>
+                            </div>
+                            <div class="dash-funnel-row">
+                              <div class="meta"><span>Оплатили</span><span data-f="p">3.2%</span></div>
+                              <div class="bar"><i style="width:3.2%"></i></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="admin-screen" data-admin-panel="events" hidden>
+                    <div class="admin-screen-inner">
+                      <div class="admin-screen-head">
+                        <h3>Мероприятия</h3>
+                        <span class="hint">4 активных</span>
+                      </div>
+                      <div class="admin-events-list">
+                        <div class="admin-event-row">
+                          <div class="admin-event-info">
+                            <strong>Summer Open Air</strong>
+                            <span>15 авг · Ташкент · 420 билетов</span>
+                          </div>
+                          <span class="admin-pill admin-pill--pub">Опубликовано</span>
+                        </div>
+                        <div class="admin-event-row">
+                          <div class="admin-event-info">
+                            <strong>IT Conference 2024</strong>
+                            <span>22 сен · Самарканд · 180 билетов</span>
+                          </div>
+                          <span class="admin-pill admin-pill--pub">Опубликовано</span>
+                        </div>
+                        <div class="admin-event-row">
+                          <div class="admin-event-info">
+                            <strong>Jazz Night</strong>
+                            <span>5 окт · Ташкент · черновик</span>
+                          </div>
+                          <span class="admin-pill admin-pill--draft">Черновик</span>
+                        </div>
+                        <div class="admin-event-row">
+                          <div class="admin-event-info">
+                            <strong>Startup Weekend</strong>
+                            <span>12 окт · Ташкент · на модерации</span>
+                          </div>
+                          <span class="admin-pill admin-pill--mod">Модерация</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="admin-screen" data-admin-panel="crm" hidden>
+                    <div class="admin-screen-inner">
+                      <div class="admin-screen-head">
+                        <h3>Аудитория (CRM)</h3>
+                        <span class="hint">842 контакта</span>
+                      </div>
+                      <div class="admin-crm-table">
+                        <div class="admin-crm-head">
+                          <span>Имя</span><span>Телефон</span><span>Билеты</span>
+                        </div>
+                        <div class="admin-crm-row">
+                          <span class="name">Алишер К.</span><span>+998 90 123 45 67</span><span class="tix">4</span>
+                        </div>
+                        <div class="admin-crm-row">
+                          <span class="name">Дилноза М.</span><span>+998 91 234 56 78</span><span class="tix">2</span>
+                        </div>
+                        <div class="admin-crm-row">
+                          <span class="name">Бахром Т.</span><span>+998 93 345 67 89</span><span class="tix">6</span>
+                        </div>
+                        <div class="admin-crm-row">
+                          <span class="name">Мадина S.</span><span>+998 97 456 78 90</span><span class="tix">1</span>
+                        </div>
+                        <div class="admin-crm-row">
+                          <span class="name">Жасур R.</span><span>+998 99 567 89 01</span><span class="tix">3</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="admin-screen" data-admin-panel="controllers" hidden>
+                    <div class="admin-screen-inner">
+                      <div class="admin-screen-head">
+                        <h3>Контролеры</h3>
+                        <span class="hint">3 активных</span>
+                      </div>
+                      <div class="admin-ctrl-grid">
+                        <div class="admin-ctrl-card">
+                          <div class="avatar">AK</div>
+                          <strong>Алишер К.</strong>
+                          <div class="stat">Сканов сегодня<em>142</em></div>
+                        </div>
+                        <div class="admin-ctrl-card">
+                          <div class="avatar">DM</div>
+                          <strong>Дилноза М.</strong>
+                          <div class="stat">Сканов сегодня<em>98</em></div>
+                        </div>
+                        <div class="admin-ctrl-card">
+                          <div class="avatar">BT</div>
+                          <strong>Бахром Т.</strong>
+                          <div class="stat">Сканов сегодня<em>76</em></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="admin-screen" data-admin-panel="finance" hidden>
+                    <div class="admin-screen-inner">
+                      <div class="admin-screen-head">
+                        <h3>Финансы и документы</h3>
+                        <span class="hint">Обновлено сегодня</span>
+                      </div>
+                      <div class="admin-fin-summary">
+                        <div class="admin-fin-card">
+                          <div class="label">Баланс к выплате</div>
+                          <strong>48.6M UZS</strong>
+                          <em>+12% за неделю</em>
+                        </div>
+                        <div class="admin-fin-card">
+                          <div class="label">Удержано комиссии</div>
+                          <strong>2.1M UZS</strong>
+                          <em>4.2% от оборота</em>
+                        </div>
+                      </div>
+                      <div class="admin-fin-payout">
+                        <div class="meta">
+                          <strong>Выплата · Summer Open Air</strong>
+                          <span>Расчётный счёт · ООО «Event Pro»</span>
+                        </div>
+                        <span class="amount">18.4M UZS</span>
+                      </div>
+                      <div class="admin-fin-payout">
+                        <div class="meta">
+                          <strong>Акт за август 2026</strong>
+                          <span>PDF · подписан электронно</span>
+                        </div>
+                        <span class="amount">Скачать</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="admin-screen" data-admin-panel="profile" hidden>
+                    <div class="admin-screen-inner">
+                      <div class="admin-screen-head">
+                        <h3>Профиль</h3>
+                      </div>
+                      <div class="admin-profile-card">
+                        <div class="admin-profile-org">
+                          <div class="logo">EP</div>
+                          <div class="info">
+                            <strong>Event Pro Tashkent</strong>
+                            <span>Организатор · с 2024</span>
+                          </div>
+                        </div>
+                        <span class="admin-verified">
+                          <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+                          Верифицирован
+                        </span>
+                        <div class="admin-profile-slug">
+                          <span>Публичная витрина</span>
+                          <code>taneesh.uz/event-pro</code>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </aside>
           </aside>
         </div>
       </div>
@@ -2572,198 +3110,109 @@
           <span class="eyebrow" data-i18n="offerEyebrow">Возможности</span>
           <h2 data-i18n="offerTitle">Возможности платформы</h2>
         </div>
-      </div>
-      <div class="offer-marquee-outer">
-        <div class="offer-track">
-          <article class="offer-card offer-card-1">
-            <span class="offer-tag" data-i18n="o1tag">Витрина</span>
-            <div class="offer-body">
-              <h3 data-i18n="o1t">Личная витрина</h3>
-              <p data-i18n="o1p">Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
-            </div>
-          </article>
-          <article class="offer-card offer-card-2">
-            <span class="offer-tag" data-i18n="o2tag">Оплата</span>
-            <div class="offer-body">
-              <h3 data-i18n="o2t">Оплата в 2 клика</h3>
-              <p data-i18n="o2p">Гость платит прямо в браузере телефона — ничего скачивать не нужно.</p>
-            </div>
-          </article>
-          <article class="offer-card offer-card-3">
-            <span class="offer-tag" data-i18n="o3tag">CRM</span>
-            <div class="offer-body">
-              <h3 data-i18n="o3t">CRM для гостей</h3>
-              <p data-i18n="o3p">Список покупателей, статусы оплат и контактные данные в едином дашборде.</p>
-            </div>
-          </article>
-          <article class="offer-card offer-card-4">
-            <span class="offer-tag" data-i18n="o4tag">Возврат</span>
-            <div class="offer-body">
-              <h3 data-i18n="o4t">Возврат в 1 клик</h3>
-              <p data-i18n="o4p">Мгновенно отменяйте и возвращайте билеты без долгих переписок с поддержкой.</p>
-            </div>
-          </article>
-          <article class="offer-card offer-card-5">
-            <span class="offer-tag" data-i18n="o5tag">Приглашения</span>
-            <div class="offer-body">
-              <h3 data-i18n="o5t">VIP-приглашения</h3>
-              <p data-i18n="o5p">Генерируйте закрытые ссылки или бесплатные билеты для особых гостей и партнеров.</p>
-            </div>
-          </article>
-          <article class="offer-card offer-card-6">
-            <span class="offer-tag" data-i18n="o6tag">Сканер</span>
-            <div class="offer-body">
-              <h3 data-i18n="o6t">Умный сканер</h3>
-              <p data-i18n="o6p">Быстрый контроль на входе по QR-кодам. Исключает подделки и повторные проходы.</p>
-            </div>
-          </article>
-          <article class="offer-card offer-card-1" aria-hidden="true">
-            <span class="offer-tag" data-i18n="o1tag">Витрина</span>
-            <div class="offer-body">
-              <h3 data-i18n="o1t">Личная витрина</h3>
-              <p data-i18n="o1p">Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
-            </div>
-          </article>
-          <article class="offer-card offer-card-2" aria-hidden="true">
-            <span class="offer-tag" data-i18n="o2tag">Оплата</span>
-            <div class="offer-body">
-              <h3 data-i18n="o2t">Оплата в 2 клика</h3>
-              <p data-i18n="o2p">Гость платит прямо в браузере телефона — ничего скачивать не нужно.</p>
-            </div>
-          </article>
-          <article class="offer-card offer-card-3" aria-hidden="true">
-            <span class="offer-tag" data-i18n="o3tag">CRM</span>
-            <div class="offer-body">
-              <h3 data-i18n="o3t">CRM для гостей</h3>
-              <p data-i18n="o3p">Список покупателей, статусы оплат и контактные данные в едином дашборде.</p>
-            </div>
-          </article>
-          <article class="offer-card offer-card-4" aria-hidden="true">
-            <span class="offer-tag" data-i18n="o4tag">Возврат</span>
-            <div class="offer-body">
-              <h3 data-i18n="o4t">Возврат в 1 клик</h3>
-              <p data-i18n="o4p">Мгновенно отменяйте и возвращайте билеты без долгих переписок с поддержкой.</p>
-            </div>
-          </article>
-          <article class="offer-card offer-card-5" aria-hidden="true">
-            <span class="offer-tag" data-i18n="o5tag">Приглашения</span>
-            <div class="offer-body">
-              <h3 data-i18n="o5t">VIP-приглашения</h3>
-              <p data-i18n="o5p">Генерируйте закрытые ссылки или бесплатные билеты для особых гостей и партнеров.</p>
-            </div>
-          </article>
-          <article class="offer-card offer-card-6" aria-hidden="true">
-            <span class="offer-tag" data-i18n="o6tag">Сканер</span>
-            <div class="offer-body">
-              <h3 data-i18n="o6t">Умный сканер</h3>
-              <p data-i18n="o6p">Быстрый контроль на входе по QR-кодам. Исключает подделки и повторные проходы.</p>
-            </div>
-          </article>
+        <div class="offer-rail-wrap">
+          <div class="offer-rail" tabindex="0" data-offer-rail data-i18n-aria="offerAria" aria-label="Возможности платформы">
+            <article class="offer-card offer-card-1">
+              <span class="offer-tag" data-i18n="o1tag">Витрина</span>
+              <div class="offer-body">
+                <h3 data-i18n="o1t">Личная витрина</h3>
+                <p data-i18n="o1p">Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
+              </div>
+            </article>
+            <article class="offer-card offer-card-2">
+              <span class="offer-tag" data-i18n="o2tag">Оплата</span>
+              <div class="offer-body">
+                <h3 data-i18n="o2t">Оплата в 2 клика</h3>
+                <p data-i18n="o2p">Гость платит прямо в браузере телефона — ничего скачивать не нужно.</p>
+              </div>
+            </article>
+            <article class="offer-card offer-card-3">
+              <span class="offer-tag" data-i18n="o3tag">CRM</span>
+              <div class="offer-body">
+                <h3 data-i18n="o3t">CRM для гостей</h3>
+                <p data-i18n="o3p">Список покупателей, статусы оплат и контактные данные в едином дашборде.</p>
+              </div>
+            </article>
+            <article class="offer-card offer-card-4">
+              <span class="offer-tag" data-i18n="o4tag">Возврат</span>
+              <div class="offer-body">
+                <h3 data-i18n="o4t">Возврат в 1 клик</h3>
+                <p data-i18n="o4p">Мгновенно отменяйте и возвращайте билеты без долгих переписок с поддержкой.</p>
+              </div>
+            </article>
+            <article class="offer-card offer-card-5">
+              <span class="offer-tag" data-i18n="o5tag">Приглашения</span>
+              <div class="offer-body">
+                <h3 data-i18n="o5t">VIP-приглашения</h3>
+                <p data-i18n="o5p">Генерируйте закрытые ссылки или бесплатные билеты для особых гостей и партнеров.</p>
+              </div>
+            </article>
+            <article class="offer-card offer-card-6">
+              <span class="offer-tag" data-i18n="o6tag">Сканер</span>
+              <div class="offer-body">
+                <h3 data-i18n="o6t">Умный сканер</h3>
+                <p data-i18n="o6p">Быстрый контроль на входе по QR-кодам. Исключает подделки и повторные проходы.</p>
+              </div>
+            </article>
+          </div>
+          <div class="offer-controls">
+            <button type="button" class="offer-nav" data-offer-prev aria-label="Назад">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button type="button" class="offer-nav" data-offer-next aria-label="Вперёд">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+          <div class="offer-progress" aria-hidden="true"><i data-offer-progress></i></div>
         </div>
       </div>
     </section>
 
     <section class="section" id="niches">
-      <div class="wrap niches-head">
+      <div class="wrap">
         <div class="section-head">
           <span class="eyebrow" data-i18n="nicheEyebrow">Форматы событий</span>
           <h2 data-i18n="nicheTitle">Тикетинг под любой формат</h2>
           <p class="lead" data-i18n="nicheLead">От стендапа до турнира — одна витрина, один чекаут, один сканер на входе.</p>
         </div>
-      </div>
-      <div class="niches-marquee-outer" aria-hidden="true">
-        <div class="niches-track">
+        <div class="niche-rail" data-niche-rail>
           <article class="niche-card">
-            <span class="niche-emoji">🎙</span>
+            <span class="niche-emoji" aria-hidden="true">🎙</span>
             <strong data-i18n="niche1">Стендап-концерты</strong>
           </article>
           <article class="niche-card">
-            <span class="niche-emoji">🤝</span>
+            <span class="niche-emoji" aria-hidden="true">🤝</span>
             <strong data-i18n="niche2">Бизнес-конференции</strong>
           </article>
           <article class="niche-card">
-            <span class="niche-emoji">🎤</span>
+            <span class="niche-emoji" aria-hidden="true">🎤</span>
             <strong data-i18n="niche3">Концерты и шоу</strong>
           </article>
           <article class="niche-card">
-            <span class="niche-emoji">🏆</span>
+            <span class="niche-emoji" aria-hidden="true">🏆</span>
             <strong data-i18n="niche4">Спортивные турниры</strong>
           </article>
           <article class="niche-card">
-            <span class="niche-emoji">🧩</span>
+            <span class="niche-emoji" aria-hidden="true">🧩</span>
             <strong data-i18n="niche5">Мастер-классы</strong>
           </article>
           <article class="niche-card">
-            <span class="niche-emoji">🎉</span>
-            <strong data-i18n="niche6">Вечеринки и тусовки</strong>
-          </article>
-          <article class="niche-card">
-            <span class="niche-emoji">🎙</span>
-            <strong data-i18n="niche1">Стендап-концерты</strong>
-          </article>
-          <article class="niche-card">
-            <span class="niche-emoji">🤝</span>
-            <strong data-i18n="niche2">Бизнес-конференции</strong>
-          </article>
-          <article class="niche-card">
-            <span class="niche-emoji">🎤</span>
-            <strong data-i18n="niche3">Концерты и шоу</strong>
-          </article>
-          <article class="niche-card">
-            <span class="niche-emoji">🏆</span>
-            <strong data-i18n="niche4">Спортивные турниры</strong>
-          </article>
-          <article class="niche-card">
-            <span class="niche-emoji">🧩</span>
-            <strong data-i18n="niche5">Мастер-классы</strong>
-          </article>
-          <article class="niche-card">
-            <span class="niche-emoji">🎉</span>
+            <span class="niche-emoji" aria-hidden="true">🎉</span>
             <strong data-i18n="niche6">Вечеринки и тусовки</strong>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="quote" aria-label="Отзывы организаторов">
+    <section class="section section-alt" id="quote">
       <div class="wrap">
-        <div class="quote-slider" id="quoteSlider">
-          <div class="quote-nav">
-            <button type="button" class="quote-arrow" data-quote-prev aria-label="Предыдущий отзыв">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
-            <button type="button" class="quote-arrow" data-quote-next aria-label="Следующий отзыв">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
-          </div>
-          <span class="quote-pill" data-i18n="quotePill">Что говорят организаторы</span>
-          <div class="quote-stage" aria-live="polite">
-            <blockquote class="quote-text" id="quoteText">«За вечер продали зал без кассы и без 15% посреднику. Гости платят с телефона, мы сканируем QR на входе — и всё.»</blockquote>
-            <div class="quote-meta" id="quoteMeta">
-              <div class="quote-stars" aria-hidden="true">★★★★★</div>
-              <p class="quote-author"><strong id="quoteName">Алина К.</strong> <span id="quoteRole">· организатор стендап-вечеров, Ташкент</span></p>
-            </div>
-          </div>
-          <div class="quote-logos" aria-hidden="true">
-            <span class="trust-logo" title="Pulse Live">
-              <svg viewBox="0 0 44 36" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="22" cy="18" r="14" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="22" cy="18" r="8.5" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.65"/><circle cx="22" cy="18" r="3.2"/></svg>
-            </span>
-            <span class="trust-logo" title="Velvet Stage">
-              <svg viewBox="0 0 88 36" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><text x="2" y="24" font-family="Instrument Serif, Georgia, serif" font-size="22" font-style="italic">Velvet</text></svg>
-            </span>
-            <span class="trust-logo" title="Hex Core">
-              <svg viewBox="0 0 44 36" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22 5l15 8.5v11L22 33 7 24.5v-11z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="22" cy="18" r="4.5"/></svg>
-            </span>
-            <span class="trust-logo" title="Stage Mic">
-              <svg viewBox="0 0 96 36" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="12" y="9" width="9" height="14" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 18a13 13 0 0026 0M21 31v3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><text x="36" y="16" font-family="Satoshi, system-ui, sans-serif" font-size="8.5" font-weight="800" letter-spacing="0.14em">STAGE</text><text x="36" y="27" font-family="Satoshi, system-ui, sans-serif" font-size="8.5" font-weight="800" letter-spacing="0.2em">LIVE</text></svg>
-            </span>
-            <span class="trust-logo" title="Summit">
-              <svg viewBox="0 0 52 36" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 28L18 8l7 11 9-15 14 24H4z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="36" cy="11" r="2.2"/></svg>
-            </span>
-            <span class="trust-logo" title="Orbit">
-              <svg viewBox="0 0 48 36" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="24" cy="18" r="9.5" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="24" cy="18" rx="17" ry="5.5" fill="none" stroke="currentColor" stroke-width="1.2" transform="rotate(-28 24 18)"/><circle cx="24" cy="18" r="3"/></svg>
-            </span>
-          </div>
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="quoteEyebrow">Отзывы</span>
+          <h2 data-i18n="quoteTitle">Что говорят организаторы</h2>
+        </div>
+        <div class="quote-block">
+          <blockquote data-i18n="quoteText">«За вечер продали зал без кассы и без 15% посреднику. Гости платят с телефона, мы сканируем QR на входе — и всё.»</blockquote>
+          <cite data-i18n="quoteCite">Алина К. · организатор стендап-вечеров, Ташкент</cite>
         </div>
       </div>
     </section>
@@ -2919,61 +3368,6 @@
       });
     });
 
-    // Testimonial slider
-    (function initQuoteSlider() {
-      const root = document.getElementById('quoteSlider');
-      const textEl = document.getElementById('quoteText');
-      const metaEl = document.getElementById('quoteMeta');
-      const nameEl = document.getElementById('quoteName');
-      const roleEl = document.getElementById('quoteRole');
-      const prevBtn = root && root.querySelector('[data-quote-prev]');
-      const nextBtn = root && root.querySelector('[data-quote-next]');
-      if (!root || !textEl || !metaEl || !nameEl || !roleEl) return;
-
-      let index = 0;
-      let animating = false;
-
-      function items() {
-        return (window.TaneeshI18n && window.TaneeshI18n.testimonials()) || [];
-      }
-
-      function render(nextIndex, animate) {
-        const list = items();
-        if (!list.length) return;
-        index = ((nextIndex % list.length) + list.length) % list.length;
-        const item = list[index];
-        const apply = () => {
-          textEl.textContent = item.text;
-          nameEl.textContent = item.name;
-          roleEl.textContent = '· ' + item.role;
-        };
-        if (!animate) {
-          apply();
-          return;
-        }
-        animating = true;
-        textEl.classList.add('is-fading');
-        metaEl.classList.add('is-fading');
-        window.setTimeout(() => {
-          apply();
-          textEl.classList.remove('is-fading');
-          metaEl.classList.remove('is-fading');
-          animating = false;
-        }, 180);
-      }
-
-      prevBtn && prevBtn.addEventListener('click', () => {
-        if (animating) return;
-        render(index - 1, true);
-      });
-      nextBtn && nextBtn.addEventListener('click', () => {
-        if (animating) return;
-        render(index + 1, true);
-      });
-      window.addEventListener('taneesh:locale', () => render(index, false));
-      render(0, false);
-    })();
-
     // Fee calculator
     const ticket = document.getElementById('ticketPrice');
     const fix = document.getElementById('fixFee');
@@ -3128,59 +3522,284 @@
       }, 3200);
     }
 
+    // Offer rail progress + nav
+    const rail = document.querySelector('[data-offer-rail]');
+    const progress = document.querySelector('[data-offer-progress]');
+    const prevBtn = document.querySelector('[data-offer-prev]');
+    const nextBtn = document.querySelector('[data-offer-next]');
+    if (rail && progress) {
+      const step = () => {
+        const card = rail.querySelector('.offer-card');
+        if (!card) return 280;
+        const styles = getComputedStyle(rail);
+        const gap = parseFloat(styles.columnGap || styles.gap || '16') || 16;
+        return card.getBoundingClientRect().width + gap;
+      };
+      const syncProgress = () => {
+        const max = rail.scrollWidth - rail.clientWidth;
+        const p = max > 0 ? (rail.scrollLeft / max) * 100 : 0;
+        progress.style.width = Math.max(12, Math.min(100, p || 12)) + '%';
+        if (prevBtn) prevBtn.disabled = rail.scrollLeft <= 4;
+        if (nextBtn) nextBtn.disabled = rail.scrollLeft >= max - 4;
+      };
+      const scrollByDir = (dir) => {
+        rail.scrollBy({ left: dir * step(), behavior: 'smooth' });
+      };
+      if (prevBtn) prevBtn.addEventListener('click', () => scrollByDir(-1));
+      if (nextBtn) nextBtn.addEventListener('click', () => scrollByDir(1));
+      rail.addEventListener('scroll', syncProgress, { passive: true });
+      window.addEventListener('resize', syncProgress);
+      syncProgress();
+    }
+
+    // Hero dashboard demo (periods, KPI tap, scroll tour) + admin nav
+    const dashRoot = document.querySelector('[data-dash]');
+    if (dashRoot && !dashRoot.dataset.ready) {
+      dashRoot.dataset.ready = '1';
+      const scrollEl = dashRoot.querySelector('[data-dash-scroll]');
+      const dashPanel = dashRoot.querySelector('[data-admin-panel="dashboard"]');
+      const barsEl = dashPanel?.querySelector('[data-dash-bars]');
+      const xEl = dashPanel?.querySelector('[data-dash-x]');
+      const yEl = dashPanel?.querySelector('[data-dash-y]');
+      const topEl = dashPanel?.querySelector('[data-dash-top]');
+      const titleEl = dashPanel?.querySelector('[data-dash-chart-title]');
+      const navItems = dashRoot.querySelectorAll('[data-admin-screen]');
+      const panels = dashRoot.querySelectorAll('[data-admin-panel]');
+      let activeScreen = 'dashboard';
+      let scrollTour = null;
+
+      const setScreen = (id) => {
+        activeScreen = id;
+        navItems.forEach((btn) => {
+          const on = btn.getAttribute('data-admin-screen') === id;
+          btn.classList.toggle('is-active', on);
+          btn.toggleAttribute('aria-current', on ? 'page' : false);
+        });
+        panels.forEach((panel) => {
+          const on = panel.getAttribute('data-admin-panel') === id;
+          panel.classList.toggle('is-active', on);
+          panel.hidden = !on;
+        });
+        if (scrollEl) {
+          scrollEl.classList.toggle('is-screen-alt', id !== 'dashboard');
+          scrollEl.scrollLeft = 0;
+          scrollEl.scrollTop = 0;
+        }
+        if (scrollTour) scrollTour.setEnabled(id === 'dashboard');
+      };
+
+      navItems.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          setScreen(btn.getAttribute('data-admin-screen'));
+        });
+      });
+      const ranges = {
+        today: {
+          y: ['4.5M', '3.4M', '2.3M', '1.1M', '0'],
+          labels: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
+          bars: [28, 42, 55, 48, 70, 88, 100, 62],
+          kpis: {
+            rev: '18.4M UZS', revDelta: '+12% ↑',
+            tix: '312', tixDelta: '+8% ↑',
+            ref: '0 UZS', refDelta: '0% →',
+            views: '9 840', viewsDelta: '+15% ↑',
+            chk: '2 180', chkDelta: '+11% ↑',
+            conv: '3.2%', convDelta: '+0.4% ↑',
+          },
+          funnel: { v: '100%', c: '22.1%', p: '3.2%', cw: 22, pw: 3.2 },
+          top: [
+            ['Summer Open Air', '6.2M'],
+            ['Morning Trek', '4.1M'],
+            ['Networking Meetup', '2.8M'],
+            ['Business Talk', '1.9M'],
+          ],
+        },
+        week: {
+          y: ['22M', '16.5M', '11M', '5.5M', '0'],
+          labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+          bars: [48, 62, 70, 55, 82, 94, 100],
+          kpis: {
+            rev: '125M UZS', revDelta: '+22% ↑',
+            tix: '450', tixDelta: '+5% ↑',
+            ref: '0 UZS', refDelta: '0% →',
+            views: '15 840', viewsDelta: '+18% ↑',
+            chk: '3 420', chkDelta: '+14% ↑',
+            conv: '2.8%', convDelta: '−1% ↓',
+          },
+          funnel: { v: '100%', c: '21.6%', p: '2.8%', cw: 22, pw: 2.8 },
+          top: [
+            ['IT Conference 2024', '45M'],
+            ['Design Meetup', '32M'],
+            ['Marketing Forum', '28M'],
+            ['Startup Weekend', '19M'],
+          ],
+        },
+        month: {
+          y: ['48M', '36M', '24M', '12M', '0'],
+          labels: ['1', '5', '10', '15', '20', '25', '30'],
+          bars: [40, 52, 68, 58, 74, 90, 100],
+          kpis: {
+            rev: '412M UZS', revDelta: '+18% ↑',
+            tix: '1 840', tixDelta: '+9% ↑',
+            ref: '1.2M UZS', refDelta: '+2% ↑',
+            views: '62 400', viewsDelta: '+21% ↑',
+            chk: '12 800', chkDelta: '+13% ↑',
+            conv: '3.0%', convDelta: '+0.2% ↑',
+          },
+          funnel: { v: '100%', c: '20.5%', p: '3.0%', cw: 21, pw: 3 },
+          top: [
+            ['Summer Open Air', '86M'],
+            ['IT Conference 2024', '72M'],
+            ['Jazz Night', '54M'],
+            ['Morning Trek', '41M'],
+          ],
+        },
+        all: {
+          y: ['180M', '135M', '90M', '45M', '0'],
+          labels: ['Янв', 'Мар', 'Май', 'Июл', 'Сен', 'Ноя'],
+          bars: [35, 48, 62, 78, 88, 100],
+          kpis: {
+            rev: '1.2B UZS', revDelta: '+34% ↑',
+            tix: '8 420', tixDelta: '+27% ↑',
+            ref: '4.8M UZS', refDelta: '+4% ↑',
+            views: '286K', viewsDelta: '+41% ↑',
+            chk: '54 200', chkDelta: '+29% ↑',
+            conv: '2.9%', convDelta: '+0.1% ↑',
+          },
+          funnel: { v: '100%', c: '19%', p: '2.9%', cw: 19, pw: 2.9 },
+          top: [
+            ['City Live Festival', '210M'],
+            ['IT Conference 2024', '168M'],
+            ['Summer Open Air', '142M'],
+            ['Design Week', '98M'],
+          ],
+        },
+      };
+
+      const chartTitles = {
+        rev: 'Общая выручка',
+        tix: 'Продажи билетов',
+        ref: 'Возвраты',
+        views: 'Просмотры витрины',
+        chk: 'Оформление',
+        conv: 'Конверсия',
+      };
+
+      const applyRange = (key) => {
+        const cfg = ranges[key] || ranges.today;
+        if (yEl) {
+          yEl.innerHTML = cfg.y.map((v) => `<span>${v}</span>`).join('');
+        }
+        if (barsEl) {
+          barsEl.innerHTML = cfg.bars.map((h) => (
+            `<div class="dash-hour"><i style="--h:${h}%"></i></div>`
+          )).join('');
+        }
+        if (xEl) {
+          xEl.innerHTML = cfg.labels.map((label) => `<span>${label}</span>`).join('');
+        }
+        Object.entries(cfg.kpis).forEach(([k, v]) => {
+          const el = dashPanel?.querySelector(`[data-k="${k}"]`);
+          if (!el) return;
+          el.textContent = v;
+          if (k.endsWith('Delta')) {
+            el.classList.toggle('down', v.includes('−') || v.includes('-'));
+            el.classList.toggle('flat', v.includes('→') || v.startsWith('0%'));
+          }
+        });
+        if (topEl) {
+          topEl.innerHTML = cfg.top.map((row, i) => (
+            `<div class="dash-top-row"><span class="rank">${i + 1}</span><span class="name">${row[0]}</span><span class="rev">${row[1]}</span></div>`
+          )).join('');
+        }
+        const f = cfg.funnel;
+        const setF = (sel, text) => {
+          const el = dashPanel?.querySelector(`[data-f="${sel}"]`);
+          if (el) el.textContent = text;
+        };
+        setF('v', f.v);
+        setF('c', f.c);
+        setF('p', f.p);
+        const bars = dashPanel?.querySelectorAll('[data-dash-funnel] .bar i');
+        if (bars[0]) bars[0].style.width = '100%';
+        if (bars[1]) bars[1].style.width = f.cw + '%';
+        if (bars[2]) bars[2].style.width = f.pw + '%';
+      };
+
+      dashPanel?.querySelectorAll('[data-dash-range]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          dashPanel.querySelectorAll('[data-dash-range]').forEach((b) => b.classList.remove('on'));
+          btn.classList.add('on');
+          applyRange(btn.getAttribute('data-dash-range'));
+        });
+      });
+
+      dashPanel?.querySelectorAll('[data-dash-kpi]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          dashPanel.querySelectorAll('[data-dash-kpi]').forEach((b) => b.classList.remove('is-active'));
+          btn.classList.add('is-active');
+          const key = btn.getAttribute('data-dash-kpi');
+          if (titleEl && chartTitles[key]) titleEl.textContent = chartTitles[key];
+          // subtle bar remix on metric tap
+          if (barsEl) {
+            barsEl.querySelectorAll('.dash-hour i').forEach((bar, i) => {
+              const base = parseFloat(getComputedStyle(bar).getPropertyValue('--h')) || 50;
+              const next = Math.max(18, Math.min(100, base + ((i % 2 === 0 ? 1 : -1) * (8 + (i * 3) % 12))));
+              bar.style.setProperty('--h', next + '%');
+            });
+          }
+        });
+      });
+
+      applyRange('today');
+      setScreen('dashboard');
+
+      // Soft horizontal scroll tour on dashboard when hero is visible
+      if (scrollEl && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        let dir = 1;
+        let paused = false;
+        let enabled = true;
+        let timer = null;
+        const tick = () => {
+          if (paused || !enabled || activeScreen !== 'dashboard') return;
+          const maxX = scrollEl.scrollWidth - scrollEl.clientWidth;
+          if (maxX > 8) {
+            scrollEl.scrollLeft += dir * 0.45;
+            if (scrollEl.scrollLeft >= maxX - 1) dir = -1;
+            if (scrollEl.scrollLeft <= 1) dir = 1;
+          }
+        };
+        const start = () => {
+          if (timer || !enabled) return;
+          timer = setInterval(tick, 32);
+        };
+        const stop = () => {
+          if (timer) clearInterval(timer);
+          timer = null;
+        };
+        const pause = () => { paused = true; };
+        const resume = () => { paused = false; };
+        scrollEl.addEventListener('pointerdown', pause);
+        scrollEl.addEventListener('wheel', pause, { passive: true });
+        scrollEl.addEventListener('pointerleave', () => setTimeout(resume, 1800));
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => (e.isIntersecting && enabled ? start() : stop()));
+        }, { threshold: 0.35 });
+        io.observe(dashRoot);
+        scrollTour = {
+          setEnabled(on) {
+            enabled = on;
+            if (!on) stop();
+            else if (dashRoot.getBoundingClientRect().height) start();
+          },
+        };
+      }
+    }
+
     window.addEventListener('taneesh:locale', () => {
       syncTicket(false);
       document.querySelectorAll('.faq-item.open').forEach((item) => item.classList.remove('open'));
     });
-
-    // Admin hero video — banner → click to play
-    (function initAdminVideo() {
-      const root = document.querySelector('[data-admin-video]');
-      if (!root || root.dataset.adminReady) return;
-      root.dataset.adminReady = '1';
-      const slot = root.querySelector('.admin-video-slot');
-      const banner = root.querySelector('[data-admin-banner]');
-      const playBtn = root.querySelector('[data-admin-play]');
-      const VIDEO_SRC = 'assets/showcase/admin-demo.mp4';
-      const POSTER_SRC = 'assets/showcase/admin-poster.svg';
-
-      const playLabel = () => {
-        const d = (window.TaneeshI18n && window.TaneeshI18n.t()) || {};
-        return d.adminPlayAria || 'Play organizer dashboard demo';
-      };
-
-      const startVideo = () => {
-        if (root.classList.contains('is-playing')) return;
-        let video = root.querySelector('.admin-video-el');
-        if (!video) {
-          video = document.createElement('video');
-          video.className = 'admin-video-el';
-          video.src = VIDEO_SRC;
-          video.poster = POSTER_SRC;
-          video.controls = true;
-          video.playsInline = true;
-          video.preload = 'metadata';
-          slot.appendChild(video);
-        }
-        video.setAttribute('aria-label', playLabel());
-        root.classList.add('is-playing');
-        video.play().catch(() => {
-          /* demo file may not exist yet — poster + controls still shown */
-        });
-      };
-
-      playBtn?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        startVideo();
-      });
-      banner?.addEventListener('click', startVideo);
-      banner?.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          startVideo();
-        }
-      });
-    })();
 
     if (window.TaneeshI18n) window.TaneeshI18n.init();
     if (window.TaneeshLeadModal) window.TaneeshLeadModal.init();
