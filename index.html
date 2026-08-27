@@ -247,15 +247,15 @@
     /* Hero duo: narrow app + wide admin */
     .hero-duo {
       display: grid;
-      grid-template-columns: minmax(260px, 0.36fr) minmax(0, 0.64fr);
+      grid-template-columns: minmax(280px, 0.38fr) minmax(0, 0.62fr);
       gap: 18px;
       align-items: stretch;
-      min-height: 420px;
+      min-height: 560px;
     }
     .hero-card {
       border-radius: 28px;
       overflow: hidden;
-      min-height: 420px;
+      min-height: 560px;
       box-shadow: 0 24px 60px rgba(28, 25, 23, 0.08);
     }
     .hero-card-app {
@@ -263,146 +263,225 @@
       border: 1px solid rgba(28, 25, 23, 0.06);
       display: grid;
       place-items: center;
-      padding: 22px 18px;
+      padding: 18px 14px;
     }
     .app-shell {
-      width: min(100%, 280px);
-      height: 100%;
-      min-height: 376px;
+      width: min(100%, 300px);
+      height: min(100%, 560px);
+      min-height: 520px;
       border-radius: 28px;
-      background: #fff;
+      background: #f9f9f9;
       border: 1px solid rgba(28, 25, 23, 0.08);
       box-shadow: 0 12px 40px rgba(28, 25, 23, 0.1);
       overflow: hidden;
       display: flex;
       flex-direction: column;
     }
-    .app-cover {
-      height: 112px;
-      background:
-        linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.55) 100%),
-        radial-gradient(circle at 70% 30%, #9fe870 0%, transparent 45%),
-        linear-gradient(135deg, #1ed760 0%, #0b3d22 55%, #12281c 100%);
-      position: relative;
-      padding: 14px;
+    .app-nav {
       display: flex;
-      align-items: flex-end;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 12px 12px 8px;
+      background: #fff;
+      flex-shrink: 0;
     }
-    .app-cover-badge {
-      font-size: 11px;
+    .app-nav strong {
+      font-size: 14px;
       font-weight: 700;
-      color: #fff;
-      background: rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(8px);
-      padding: 5px 10px;
-      border-radius: 9999px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      letter-spacing: -0.02em;
+      color: #222;
     }
-    .app-body {
-      padding: 16px 14px 14px;
+    .app-nav img {
+      width: 22px;
+      height: 22px;
+      display: block;
+    }
+    .app-scroll {
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      flex: 1;
+      gap: 6px;
+      padding: 0 0 10px;
     }
-    .app-brand {
+    .app-profile {
+      background: #fff;
+      border-radius: 10px;
+      margin: 0 6px;
+      padding: 14px 12px 12px;
+      display: grid;
+      gap: 10px;
+    }
+    .app-profile-top {
       display: flex;
       align-items: center;
       gap: 10px;
     }
     .app-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 14px;
-      background: linear-gradient(145deg, #1ed760, #0f7a38);
-      color: #fff;
-      font-weight: 800;
-      font-size: 13px;
-      display: grid;
-      place-items: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #fff;
+      border: 1px solid rgba(28, 25, 23, 0.06);
       flex-shrink: 0;
     }
-    .app-brand strong {
+    .app-profile-meta strong {
       display: block;
       font-size: 15px;
-      letter-spacing: -0.02em;
+      font-weight: 800;
+      color: #222;
+      letter-spacing: -0.03em;
       line-height: 1.2;
     }
-    .app-brand span {
+    .app-profile-meta span,
+    .app-profile-meta em {
       display: block;
+      font-style: normal;
       font-size: 12px;
-      color: var(--muted);
+      color: #888;
       margin-top: 2px;
     }
-    .app-tabs {
-      display: flex;
-      gap: 4px;
-      border-bottom: 1px solid rgba(28, 25, 23, 0.08);
-      padding-bottom: 2px;
-    }
-    .app-tabs i {
-      font-style: normal;
+    .app-bio {
       font-size: 12px;
-      font-weight: 700;
-      color: var(--muted);
-      padding: 6px 8px;
-      border-bottom: 2px solid transparent;
+      line-height: 1.4;
+      color: #222;
     }
-    .app-tabs i.on {
-      color: var(--text);
-      border-bottom-color: var(--accent);
-    }
-    .app-ticket {
+    .app-stats {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
       gap: 10px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      background: rgba(28, 25, 23, 0.03);
-      border: 1px solid rgba(28, 25, 23, 0.06);
+      font-size: 12px;
+      color: #888;
     }
-    .app-ticket strong {
-      display: block;
-      font-size: 13px;
-      letter-spacing: -0.01em;
-    }
-    .app-ticket em {
-      font-style: normal;
-      font-size: 11px;
-      color: var(--muted);
-      font-weight: 600;
-    }
-    .app-ticket .price {
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      white-space: nowrap;
-    }
-    .app-buy {
+    .app-stats b { color: #111; font-weight: 700; }
+    .app-socials {
       display: flex;
+      gap: 8px;
       align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      border-radius: 9999px;
-      background: var(--black);
-      color: #fff;
-      font-size: 13px;
-      font-weight: 700;
-      margin-top: auto;
     }
-    .app-feed {
+    .app-socials img {
+      width: 18px;
+      height: 18px;
+      display: block;
+      opacity: 0.75;
+    }
+    .app-events {
+      background: #fff;
+      border-radius: 10px;
+      margin: 0 6px;
+      padding: 12px;
+      display: grid;
+      gap: 10px;
+      min-height: 0;
+      flex: 1;
+    }
+    .app-events > strong {
+      font-size: 14px;
+      font-weight: 800;
+      color: #222;
+      letter-spacing: -0.02em;
+    }
+    .app-event-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .app-event {
       display: grid;
       gap: 6px;
+      min-width: 0;
     }
-    .app-feed span {
-      font-size: 11px;
+    .app-event-cover {
+      position: relative;
+      aspect-ratio: 176 / 220;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #ddd;
+    }
+    .app-event-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .app-event-cover::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.42) 0%, transparent 32%, rgba(0,0,0,0.2) 78%, rgba(0,0,0,0.45) 100%);
+      pointer-events: none;
+    }
+    .app-price {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      z-index: 1;
+      background: #ffe8b2;
+      color: #222;
+      font-size: 10px;
       font-weight: 600;
-      color: #0f7a38;
-      background: rgba(30, 215, 96, 0.12);
+      padding: 3px 6px;
       border-radius: 9999px;
-      padding: 7px 10px;
-      text-align: center;
+    }
+    .app-like {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      z-index: 1;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.35);
+      display: grid;
+      place-items: center;
+    }
+    .app-like img { width: 14px; height: 14px; display: block; }
+    .app-metrics {
+      position: absolute;
+      left: 6px;
+      bottom: 6px;
+      z-index: 1;
+      display: flex;
+      gap: 4px;
+    }
+    .app-metrics span {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      background: rgba(255,255,255,0.24);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      font-size: 10px;
+      padding: 2px 5px;
+      border-radius: 9999px;
+    }
+    .app-metrics img { width: 12px; height: 12px; display: block; }
+    .app-event h4 {
+      font-size: 11px;
+      font-weight: 700;
+      color: #222;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+    .app-event time {
+      font-size: 10px;
+      color: #888;
+    }
+    .app-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+    }
+    .app-chips i {
+      font-style: normal;
+      font-size: 9px;
+      color: #555;
+      background: #f1f1f1;
+      padding: 3px 5px;
+      border-radius: 9999px;
+      white-space: nowrap;
     }
 
     .hero-card-admin {
@@ -1275,41 +1354,93 @@
         <div class="hero-duo" aria-hidden="true">
           <aside class="hero-card hero-card-app">
             <div class="app-shell">
-              <div class="app-cover">
-                <span class="app-cover-badge" data-i18n="winStore">Витрина</span>
+              <div class="app-nav">
+                <img src="assets/showcase/ico-back.svg" alt="" width="22" height="22" />
+                <strong>City Live</strong>
+                <img src="assets/showcase/ico-share.svg" alt="" width="22" height="22" />
               </div>
-              <div class="app-body">
-                <div class="app-brand">
-                  <span class="app-avatar">TS</span>
-                  <div>
-                    <strong data-i18n="winAdminTitle">Weekend Stand-up</strong>
-                    <span data-i18n="winAgent">Taneesh · Витрина</span>
+              <div class="app-scroll">
+                <div class="app-profile">
+                  <div class="app-profile-top">
+                    <img class="app-avatar" src="assets/showcase/avatar.png" alt="" width="52" height="52" />
+                    <div class="app-profile-meta">
+                      <strong>City Live</strong>
+                      <span>ИП Event Pro</span>
+                      <em>На Taneesh с 2024 года</em>
+                    </div>
+                  </div>
+                  <p class="app-bio">Концерты, лекции и вечеринки — всё в одной витрине для вашей аудитории.</p>
+                  <div class="app-stats">
+                    <span><b>28</b> мероприятий</span>
+                    <span><b>8 200</b> гостей</span>
+                  </div>
+                  <div class="app-socials">
+                    <img src="assets/showcase/ico-tg.svg" alt="" width="18" height="18" />
+                    <img src="assets/showcase/ico-ig.svg" alt="" width="18" height="18" />
+                    <img src="assets/showcase/ico-yt.svg" alt="" width="18" height="18" />
                   </div>
                 </div>
-                <div class="app-tabs">
-                  <i class="on" data-i18n="winTickets">Билеты</i>
-                  <i>Info</i>
-                  <i data-i18n="winScan">Сканер</i>
-                </div>
-                <div class="app-ticket">
-                  <div>
-                    <strong>У сцены</strong>
-                    <em>VIP</em>
+                <div class="app-events">
+                  <strong>Предстоящие события</strong>
+                  <div class="app-event-grid">
+                    <article class="app-event">
+                      <div class="app-event-cover">
+                        <img src="assets/showcase/cover1.jpg" alt="" />
+                        <span class="app-price">120 000 сум</span>
+                        <span class="app-like"><img src="assets/showcase/ico-heart-outline.svg" alt="" /></span>
+                        <div class="app-metrics">
+                          <span><img src="assets/showcase/ico-eye.svg" alt="" />2140</span>
+                          <span><img src="assets/showcase/ico-heart.svg" alt="" />186</span>
+                        </div>
+                      </div>
+                      <h4>Summer Open Air</h4>
+                      <time>15 авг (пт) · 21:00</time>
+                      <div class="app-chips"><i>Музыка</i><i>Вечеринки</i></div>
+                    </article>
+                    <article class="app-event">
+                      <div class="app-event-cover">
+                        <img src="assets/showcase/cover2.jpg" alt="" />
+                        <span class="app-price">85 000 сум</span>
+                        <span class="app-like"><img src="assets/showcase/ico-heart-outline.svg" alt="" /></span>
+                        <div class="app-metrics">
+                          <span><img src="assets/showcase/ico-eye.svg" alt="" />980</span>
+                          <span><img src="assets/showcase/ico-heart.svg" alt="" />74</span>
+                        </div>
+                      </div>
+                      <h4>Morning Trek</h4>
+                      <time>17 авг (вс) · 07:30</time>
+                      <div class="app-chips"><i>Походы</i><i>Природа</i></div>
+                    </article>
+                    <article class="app-event">
+                      <div class="app-event-cover">
+                        <img src="assets/showcase/cover3.jpg" alt="" />
+                        <span class="app-price">Бесплатно</span>
+                        <span class="app-like"><img src="assets/showcase/ico-heart-outline.svg" alt="" /></span>
+                        <div class="app-metrics">
+                          <span><img src="assets/showcase/ico-eye.svg" alt="" />1560</span>
+                          <span><img src="assets/showcase/ico-heart.svg" alt="" />92</span>
+                        </div>
+                      </div>
+                      <h4>Networking Meetup</h4>
+                      <time>20 авг (ср) · 19:00</time>
+                      <div class="app-chips"><i>Нетворкинг</i></div>
+                    </article>
+                    <article class="app-event">
+                      <div class="app-event-cover">
+                        <img src="assets/showcase/cover4.jpg" alt="" />
+                        <span class="app-price">Бесплатно</span>
+                        <span class="app-like"><img src="assets/showcase/ico-heart-outline.svg" alt="" /></span>
+                        <div class="app-metrics">
+                          <span><img src="assets/showcase/ico-eye.svg" alt="" />720</span>
+                          <span><img src="assets/showcase/ico-heart.svg" alt="" />41</span>
+                        </div>
+                      </div>
+                      <h4>Business Talk</h4>
+                      <time>22 авг (пт) · 18:30</time>
+                      <div class="app-chips"><i>Лекции</i></div>
+                    </article>
                   </div>
-                  <span class="price">297 000</span>
                 </div>
-                <div class="app-ticket">
-                  <div>
-                    <strong>Центр</strong>
-                    <em>Standard</em>
-                  </div>
-                  <span class="price">190 000</span>
-                </div>
-                <div class="app-feed">
-                  <span data-i18n="winPill1">Оплата прошла · Humo</span>
-                  <span data-i18n="winPill2">Билет выпущен · QR готов</span>
-                </div>
-                <div class="app-buy" data-i18n="winBuy">Купить билет</div>
               </div>
             </div>
           </aside>

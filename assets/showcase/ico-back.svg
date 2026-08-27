@@ -1,0 +1,9 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="arrow / arrow_left">
+<g id="Keylines">
+<path id="bg" d="M24 0V24H0V0H24Z" fill="white" fill-opacity="0.01"/>
+</g>
+<path id="Vector" d="M4.99997 12H20M10.0001 17.6569C7.89119 16.6019 6.40851 14.9967 5.10277 13.1354C4.73055 12.6048 4.54445 12.3395 4.55235 12.0106C4.56026 11.6816 4.76075 11.4232 5.16172 10.9063C6.53807 9.13215 8.04364 7.54909 10.0001 6.34315" stroke="#10161F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M5 12H20M10.0001 17.6568C7.94766 16.427 6.35623 14.926 5.0191 13.0275C4.68538 12.5537 4.51851 12.3168 4.51851 12C4.51851 11.6832 4.68537 11.4463 5.01909 10.9724C6.35619 9.07395 7.94762 7.57293 10.0001 6.34314" stroke="#10161F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>
