@@ -1779,6 +1779,7 @@
       grid-auto-columns: minmax(220px, 248px);
       gap: 28px;
       column-gap: 28px;
+      width: 100%;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scroll-padding-inline-start: max(20px, calc((100vw - var(--max)) / 2 + 20px));
@@ -3807,29 +3808,57 @@
     // Card rails (features + niches) — progress + nav
     document.querySelectorAll('[data-card-rail]').forEach((rail) => {
       const section = rail.closest('section');
-      const progress = section?.querySelector('[data-rail-progress]');
-      const prevBtn = section?.querySelector('[data-rail-prev]');
-      const nextBtn = section?.querySelector('[data-rail-next]');
-      if (!progress) return;
-      const step = () => {
-        const card = rail.querySelector('article');
-        if (!card) return 280;
-        const styles = getComputedStyle(rail);
-        const gap = parseFloat(styles.columnGap || styles.gap || '16') || 16;
-        return card.getBoundingClientRect().width + gap;
+      if (!section) return;
+      const progress = section.querySelector('[data-rail-progress]');
+      const prevBtn = section.querySelector('[data-rail-prev]');
+      const nextBtn = section.querySelector('[data-rail-next]');
+      const cards = () => [...rail.querySelectorAll('article')];
+      const motion = () => !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const nearestIndex = () => {
+        const list = cards();
+        if (!list.length) return 0;
+        let idx = 0;
+        let best = Infinity;
+        list.forEach((card, i) => {
+          const dist = Math.abs(card.offsetLeft - rail.scrollLeft);
+          if (dist < best) {
+            best = dist;
+            idx = i;
+          }
+        });
+        return idx;
       };
+
+      const scrollToIndex = (index) => {
+        const list = cards();
+        if (!list.length) return;
+        const next = Math.max(0, Math.min(list.length - 1, index));
+        list[next].scrollIntoView({
+          behavior: motion() ? 'smooth' : 'auto',
+          inline: 'start',
+          block: 'nearest',
+        });
+      };
+
       const syncProgress = () => {
         const max = rail.scrollWidth - rail.clientWidth;
         const p = max > 0 ? (rail.scrollLeft / max) * 100 : 0;
-        progress.style.width = Math.max(12, Math.min(100, p || 12)) + '%';
+        if (progress) progress.style.width = Math.max(12, Math.min(100, p || 12)) + '%';
         if (prevBtn) prevBtn.disabled = rail.scrollLeft <= 4;
-        if (nextBtn) nextBtn.disabled = rail.scrollLeft >= max - 4;
+        if (nextBtn) nextBtn.disabled = max <= 4 || rail.scrollLeft >= max - 4;
       };
-      const scrollByDir = (dir) => {
-        rail.scrollBy({ left: dir * step(), behavior: 'smooth' });
-      };
-      if (prevBtn) prevBtn.addEventListener('click', () => scrollByDir(-1));
-      if (nextBtn) nextBtn.addEventListener('click', () => scrollByDir(1));
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          scrollToIndex(nearestIndex() - 1);
+        });
+      }
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          scrollToIndex(nearestIndex() + 1);
+        });
+      }
       rail.addEventListener('scroll', syncProgress, { passive: true });
       window.addEventListener('resize', syncProgress);
       syncProgress();
