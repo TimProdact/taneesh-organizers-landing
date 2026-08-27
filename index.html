@@ -860,12 +860,20 @@
     .fees-result-card.is-you {
       background: rgba(30, 215, 96, 0.1);
     }
+    .fees-result-card.is-bad {
+      background: rgba(239, 68, 68, 0.08);
+    }
     .fees-result-card span {
       font-size: 13px;
       font-weight: 700;
       color: var(--muted);
     }
     .fees-result-card.is-you span { color: #0f7a38; }
+    .fees-result-card.is-bad span { color: #b91c1c; }
+    .fees-result-card.is-bad strong { color: #dc2626; }
+    .why-board .fees-result-card strong {
+      font-size: clamp(28px, 4.5vw, 42px);
+    }
     .fees-result-card strong {
       font-family: var(--font-display);
       font-size: clamp(32px, 5vw, 48px);
