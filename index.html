@@ -4306,250 +4306,361 @@
       }
     }
 
-    /* Hero product window: admin + storefront */
+    /* Hero product window: admin + storefront (Tana-style) */
     .phone #slide-hero .wrap.board.board-hero {
       display: flex !important;
-      flex-direction: column !important;
-      gap: 14px !important;
+      flex-direction: row !important;
+      align-items: stretch !important;
+      gap: 20px !important;
       grid-template-columns: none !important;
       grid-template-rows: none !important;
       height: 100% !important;
       min-height: 0 !important;
+      padding: 8px 12px 16px !important;
     }
     .phone #slide-hero .board-hero .cell-story {
       grid-column: auto !important;
       grid-row: auto !important;
-      flex: 0 0 auto;
-      padding: 4px 6px 0 !important;
+      flex: 0 0 clamp(240px, 32%, 380px);
+      max-width: 380px;
+      padding: 8px 4px 0 !important;
+      justify-content: center !important;
     }
     .phone #slide-hero .hero-window {
       flex: 1 1 auto;
+      min-width: 0;
       min-height: 0;
       display: flex;
       flex-direction: column;
-      border-radius: 18px;
+      border-radius: 22px;
       background: #fff;
-      border: 1px solid rgba(28, 25, 23, .08);
+      border: 10px solid #fff;
       box-shadow:
-        0 1px 0 rgba(255,255,255,.8) inset,
-        0 18px 40px rgba(28, 25, 23, .12);
+        0 0 0 1px rgba(28, 25, 23, .06),
+        0 24px 60px rgba(28, 25, 23, .14),
+        0 4px 12px rgba(28, 25, 23, .06);
       overflow: hidden;
     }
     .phone #slide-hero .hero-window-chrome {
       flex: 0 0 auto;
+      position: relative;
       display: flex;
       align-items: center;
+      justify-content: center;
+      height: 36px;
+      padding: 0 12px;
+      background: #fff;
+    }
+    .phone #slide-hero .hero-window-dots {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
       gap: 6px;
-      padding: 10px 12px;
-      background: #f7f7f8;
-      border-bottom: 1px solid rgba(28, 25, 23, .06);
     }
     .phone #slide-hero .hero-window-chrome .dot {
-      width: 8px; height: 8px; border-radius: 50%;
+      width: 10px; height: 10px; border-radius: 50%;
     }
     .phone #slide-hero .hero-window-chrome .dot.r { background: #ff5f57; }
     .phone #slide-hero .hero-window-chrome .dot.y { background: #febc2e; }
     .phone #slide-hero .hero-window-chrome .dot.g { background: #28c840; }
     .phone #slide-hero .hero-window-title {
-      margin-left: 8px;
-      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
       font-weight: 600;
-      color: rgba(28, 25, 23, .45);
-      letter-spacing: .02em;
+      color: #1c1917;
+      letter-spacing: -.02em;
+    }
+    .phone #slide-hero .hero-window-title .mark {
+      width: 14px; height: 14px; border-radius: 4px;
+      background:
+        conic-gradient(from 210deg, #7dd3fc, #f9a8d4, #fde68a, #86efac, #7dd3fc);
+      box-shadow: 0 0 0 1px rgba(28,25,23,.06);
     }
     .phone #slide-hero .hero-window-body {
       flex: 1 1 auto;
       min-height: 0;
       display: grid;
-      grid-template-columns: 1.15fr 0.95fr;
-      gap: 8px;
-      padding: 8px;
-      background: #f3f1ec;
-    }
-    .phone #slide-hero .hero-pane {
-      min-height: 0;
-      border-radius: 14px;
-      overflow: hidden;
-      position: relative;
+      grid-template-columns: 1.35fr 0.9fr;
+      gap: 10px;
+      padding: 0 10px 10px;
+      background: #fff;
     }
     .phone #slide-hero .hero-pane-admin {
-      background: #111;
-      color: #fff;
-      padding: 10px;
+      min-height: 0;
       display: flex;
       flex-direction: column;
+      gap: 10px;
+      background: #f4f4f5;
+      border-radius: 16px;
+      padding: 10px;
+    }
+    .phone #slide-hero .admin-grid {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1.35fr 1fr;
       gap: 8px;
     }
-    .phone #slide-hero .admin-top {
+    .phone #slide-hero .admin-tile {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #1c1917;
+      color: #fff;
+      min-height: 0;
+    }
+    .phone #slide-hero .admin-tile-main {
+      grid-column: 1 / -1;
+      background:
+        linear-gradient(180deg, transparent 40%, rgba(0,0,0,.72)),
+        radial-gradient(ellipse 80% 60% at 70% 20%, #3f3f46 0%, transparent 55%),
+        linear-gradient(145deg, #27272a, #18181b 60%, #0c0c0d);
+      padding: 12px;
       display: flex;
       flex-direction: column;
+      justify-content: flex-end;
       gap: 4px;
     }
-    .phone #slide-hero .admin-badge {
-      align-self: flex-start;
+    .phone #slide-hero .admin-tile-main .badge {
+      position: absolute;
+      top: 10px; left: 10px;
       font-size: 9px;
       font-weight: 700;
       letter-spacing: .08em;
       text-transform: uppercase;
       color: #1ed760;
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(30,215,96,.35);
+      border-radius: 999px;
+      padding: 3px 8px;
+      backdrop-filter: blur(6px);
     }
-    .phone #slide-hero .admin-top strong {
-      font-size: 13px;
+    .phone #slide-hero .admin-tile-main strong {
+      font-size: 15px;
       font-weight: 700;
       letter-spacing: -.02em;
     }
-    .phone #slide-hero .admin-kpis {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 5px;
-    }
-    .phone #slide-hero .admin-kpi {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 10px;
-      padding: 6px;
-      display: grid;
-      gap: 2px;
-    }
-    .phone #slide-hero .admin-kpi b {
-      font-size: 12px;
-      font-weight: 800;
-      color: #1ed760;
-    }
-    .phone #slide-hero .admin-kpi span {
-      font-size: 8px;
-      color: rgba(255,255,255,.5);
-      text-transform: uppercase;
-      letter-spacing: .04em;
-    }
-    .phone #slide-hero .admin-list {
-      display: grid;
-      gap: 5px;
-      flex: 1 1 auto;
-      min-height: 0;
-    }
-    .phone #slide-hero .admin-row {
-      display: grid;
-      grid-template-columns: 10px 1fr auto;
-      gap: 7px;
-      align-items: center;
-      padding: 6px 7px;
-      border-radius: 10px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.06);
-    }
-    .phone #slide-hero .admin-row.on {
-      background: rgba(30,215,96,.12);
-      border-color: rgba(30,215,96,.28);
-    }
-    .phone #slide-hero .admin-row i {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: rgba(255,255,255,.25);
-    }
-    .phone #slide-hero .admin-row.on i { background: #1ed760; }
-    .phone #slide-hero .admin-row b {
-      display: block;
-      font-size: 10px;
-      font-weight: 650;
-    }
-    .phone #slide-hero .admin-row span {
-      display: block;
-      font-size: 8px;
-      color: rgba(255,255,255,.45);
-    }
-    .phone #slide-hero .admin-row em {
-      font-style: normal;
-      font-size: 10px;
-      font-weight: 700;
-      color: rgba(255,255,255,.85);
-    }
-    .phone #slide-hero .admin-bar {
+    .phone #slide-hero .admin-tile-main .kpis {
       display: flex;
-      gap: 8px;
-      justify-content: center;
-      padding-top: 2px;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 10px;
+      color: rgba(255,255,255,.72);
     }
-    .phone #slide-hero .admin-bar span {
-      width: 18px; height: 3px; border-radius: 99px;
-      background: rgba(255,255,255,.18);
+    .phone #slide-hero .admin-tile-main .kpis b {
+      color: #fff;
+      font-weight: 700;
     }
-    .phone #slide-hero .admin-bar span.accent { background: #1ed760; width: 28px; }
-
-    .phone #slide-hero .hero-pane-store {
-      background:
-        radial-gradient(ellipse 80% 60% at 20% 20%, #9ec9ff 0%, transparent 55%),
-        radial-gradient(ellipse 70% 55% at 85% 30%, #ffc4a8 0%, transparent 50%),
-        radial-gradient(ellipse 60% 50% at 60% 90%, #f7a8d8 0%, transparent 55%),
-        linear-gradient(160deg, #d7e8ff 0%, #f6d9c8 45%, #f3c6df 100%);
+    .phone #slide-hero .admin-tile-sm {
       padding: 10px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
+      background: #fff;
+      color: #1c1917;
+      border: 1px solid rgba(28,25,23,.06);
     }
-    .phone #slide-hero .store-badge {
-      align-self: flex-start;
+    .phone #slide-hero .admin-tile-sm .cap {
       font-size: 9px;
       font-weight: 700;
-      letter-spacing: .08em;
+      letter-spacing: .06em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.92);
-      text-shadow: 0 1px 8px rgba(0,0,0,.2);
+      color: rgba(28,25,23,.42);
+    }
+    .phone #slide-hero .admin-tile-sm .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(28,25,23,.06);
+    }
+    .phone #slide-hero .admin-tile-sm .row:last-child { border-bottom: none; }
+    .phone #slide-hero .admin-tile-sm .row em {
+      font-style: normal;
+      color: rgba(28,25,23,.45);
+      font-weight: 500;
+    }
+    .phone #slide-hero .admin-tile-sm .row.on b { color: #16a34a; }
+    .phone #slide-hero .admin-tile-scan {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 8px;
+      background:
+        radial-gradient(circle at 50% 40%, #ecfdf5, #fff 60%);
+    }
+    .phone #slide-hero .admin-tile-scan .qr {
+      width: 52px; height: 52px;
+      border-radius: 10px;
+      background:
+        repeating-linear-gradient(90deg, #1c1917 0 3px, transparent 3px 6px),
+        repeating-linear-gradient(#1c1917 0 3px, transparent 3px 6px);
+      background-size: 100% 100%;
+      opacity: .85;
+      box-shadow: inset 0 0 0 6px #fff, 0 0 0 1px rgba(28,25,23,.08);
+    }
+    .phone #slide-hero .admin-tile-scan .cap { margin-top: 2px; }
+    .phone #slide-hero .admin-tile-scan .hint {
+      font-size: 10px;
+      font-weight: 600;
+      color: #1c1917;
+    }
+    .phone #slide-hero .admin-toolbar {
+      flex: 0 0 auto;
+      align-self: center;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(28,25,23,.08);
+      box-shadow: 0 8px 20px rgba(28,25,23,.08);
+    }
+    .phone #slide-hero .admin-toolbar span {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: rgba(28,25,23,.55);
+      background: transparent;
+    }
+    .phone #slide-hero .admin-toolbar span svg {
+      width: 14px; height: 14px;
+    }
+    .phone #slide-hero .admin-toolbar span.end {
+      background: #ef4444;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(239,68,68,.35);
+    }
+
+    .phone #slide-hero .hero-pane-store {
+      min-height: 0;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      padding: 14px 12px 12px;
+      display: flex;
+      flex-direction: column;
+      background:
+        radial-gradient(ellipse 90% 70% at 15% 20%, #9ec9ff 0%, transparent 55%),
+        radial-gradient(ellipse 80% 60% at 90% 25%, #ffd0b5 0%, transparent 50%),
+        radial-gradient(ellipse 70% 55% at 55% 95%, #f7a8d8 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 40% 55%, #fde68a 0%, transparent 60%),
+        linear-gradient(165deg, #cfe4ff 0%, #f3d5c4 48%, #efc0dc 100%);
     }
     .phone #slide-hero .store-pills {
-      display: grid;
-      gap: 6px;
-      margin-top: 2px;
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      justify-content: center;
+      padding: 4px 2px 10px;
     }
     .phone #slide-hero .store-pill {
-      justify-self: start;
-      max-width: 100%;
-      padding: 7px 10px;
-      border-radius: 12px;
-      background: rgba(28, 25, 23, .78);
-      color: #fff;
-      font-size: 9px;
-      font-weight: 600;
-      box-shadow: 0 8px 20px rgba(28, 25, 23, .18);
-      backdrop-filter: blur(8px);
-    }
-    .phone #slide-hero .store-pill:nth-child(2) { margin-left: 8px; }
-    .phone #slide-hero .store-pill:nth-child(3) { margin-left: 2px; }
-    .phone #slide-hero .store-card {
-      margin-top: auto;
-      background: rgba(255,255,255,.88);
+      align-self: flex-start;
+      max-width: 92%;
+      padding: 9px 12px;
       border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 10px 28px rgba(28, 25, 23, .12);
-    }
-    .phone #slide-hero .store-cover {
-      height: 42px;
-      background:
-        linear-gradient(180deg, transparent 30%, rgba(0,0,0,.45)),
-        linear-gradient(135deg, #1a1a1a, #3a3a3a 50%, #111);
-    }
-    .phone #slide-hero .store-meta {
-      padding: 8px 9px 9px;
-      display: grid;
-      gap: 2px;
-    }
-    .phone #slide-hero .store-meta b {
+      background: rgba(36, 36, 40, .82);
+      color: #fff;
       font-size: 11px;
-      color: #1c1917;
+      font-weight: 550;
+      line-height: 1.25;
+      box-shadow: 0 10px 24px rgba(28, 25, 23, .16);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      animation: storePillIn .7s ease both;
     }
-    .phone #slide-hero .store-meta span {
-      font-size: 9px;
-      color: rgba(28, 25, 23, .5);
+    .phone #slide-hero .store-pill:nth-child(1) { animation-delay: .05s; }
+    .phone #slide-hero .store-pill:nth-child(2) { margin-left: 14px; animation-delay: .18s; }
+    .phone #slide-hero .store-pill:nth-child(3) { margin-left: 4px; animation-delay: .32s; }
+    .phone #slide-hero .store-pill:nth-child(4) { margin-left: 18px; animation-delay: .46s; }
+    .phone #slide-hero .store-pill:nth-child(5) { margin-left: 8px; animation-delay: .6s; }
+    @keyframes storePillIn {
+      from { opacity: 0; transform: translateY(8px) scale(.98); }
+      to { opacity: 1; transform: none; }
     }
-    .phone #slide-hero .store-meta strong {
-      margin-top: 2px;
-      font-size: 12px;
-      color: #1c1917;
+    .phone #slide-hero .store-ask {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 8px 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(255,255,255,.55);
+      box-shadow: 0 8px 24px rgba(28,25,23,.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
-    @media (max-width: 360px) {
+    .phone #slide-hero .store-ask .plus,
+    .phone #slide-hero .store-ask .mic,
+    .phone #slide-hero .store-ask .send {
+      flex: 0 0 auto;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: rgba(28,25,23,.55);
+    }
+    .phone #slide-hero .store-ask .send {
+      background: #1c1917;
+      color: #fff;
+    }
+    .phone #slide-hero .store-ask .plus svg,
+    .phone #slide-hero .store-ask .mic svg,
+    .phone #slide-hero .store-ask .send svg {
+      width: 13px; height: 13px;
+    }
+    .phone #slide-hero .store-ask .ph {
+      flex: 1 1 auto;
+      min-width: 0;
+      font-size: 11px;
+      color: rgba(28,25,23,.45);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .phone #slide-hero .store-agent {
+      position: absolute;
+      left: 14px;
+      bottom: 52px;
+      font-size: 10px;
+      font-weight: 500;
+      color: rgba(255,255,255,.85);
+      text-shadow: 0 1px 8px rgba(0,0,0,.2);
+      pointer-events: none;
+    }
+    @media (max-width: 720px) {
+      .phone #slide-hero .wrap.board.board-hero {
+        flex-direction: column !important;
+        gap: 12px !important;
+      }
+      .phone #slide-hero .board-hero .cell-story {
+        flex: 0 0 auto;
+        max-width: none;
+      }
+      .phone #slide-hero .hero-window {
+        min-height: 320px;
+      }
+    }
+    @media (max-width: 420px) {
       .phone #slide-hero .hero-window-body {
         grid-template-columns: 1fr;
+        grid-template-rows: 1.1fr 0.9fr;
       }
-      .phone #slide-hero .hero-pane-store { min-height: 140px; }
+      .phone #slide-hero .hero-pane-store { min-height: 160px; }
+      .phone #slide-hero .store-agent { display: none; }
     }
 
   </style>
@@ -4604,44 +4715,73 @@
 
         <div class="hero-window" aria-hidden="true">
           <div class="hero-window-chrome">
-            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-            <span class="hero-window-title">Taneesh</span>
+            <div class="hero-window-dots">
+              <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            </div>
+            <span class="hero-window-title"><i class="mark" aria-hidden="true"></i>taneesh</span>
           </div>
           <div class="hero-window-body">
-            <div class="hero-pane hero-pane-admin">
-              <div class="admin-top">
-                <span class="admin-badge" data-i18n="winAdmin">Админка</span>
-                <strong data-i18n="winAdminTitle">Weekend Stand-up</strong>
+            <div class="hero-pane-admin">
+              <div class="admin-grid">
+                <div class="admin-tile admin-tile-main">
+                  <span class="badge" data-i18n="winAdmin">Админка</span>
+                  <strong data-i18n="winAdminTitle">Weekend Stand-up</strong>
+                  <div class="kpis">
+                    <span><b>128</b> <span data-i18n="winSold">продано</span></span>
+                    <span><b>1.2M</b> <span data-i18n="winRevenue">оборот</span></span>
+                    <span><b>94%</b> <span data-i18n="winConv">конверсия</span></span>
+                  </div>
+                </div>
+                <div class="admin-tile admin-tile-sm">
+                  <span class="cap" data-i18n="winTickets">Тарифы</span>
+                  <div class="row"><b>У сцены</b><em>1 000</em></div>
+                  <div class="row"><b>Центр</b><em>900</em></div>
+                  <div class="row on"><b>Дальний</b><em>630</em></div>
+                </div>
+                <div class="admin-tile admin-tile-sm admin-tile-scan">
+                  <div class="qr" aria-hidden="true"></div>
+                  <span class="cap" data-i18n="winScan">Сканер</span>
+                  <span class="hint" data-i18n="winScanHint">68 / 70 прошли</span>
+                </div>
               </div>
-              <div class="admin-kpis">
-                <div class="admin-kpi"><b>128</b><span data-i18n="winSold">продано</span></div>
-                <div class="admin-kpi"><b>1.2M</b><span data-i18n="winRevenue">оборот</span></div>
-                <div class="admin-kpi"><b>94%</b><span data-i18n="winConv">конверсия</span></div>
-              </div>
-              <div class="admin-list">
-                <div class="admin-row"><i></i><div><b>У сцены</b><span>21+ · 12 / 40</span></div><em>1 000</em></div>
-                <div class="admin-row"><i></i><div><b>Центр</b><span>Любой · 48 / 90</span></div><em>900</em></div>
-                <div class="admin-row on"><i></i><div><b>Дальний зал</b><span>Любой · 68 / 70</span></div><em>630</em></div>
-              </div>
-              <div class="admin-bar">
-                <span></span><span></span><span class="accent"></span><span></span>
+              <div class="admin-toolbar" aria-hidden="true">
+                <span title="Events">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+                </span>
+                <span title="Tickets">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9a2 2 0 012-2h14a2 2 0 012 2v2a2 2 0 00-2 2 2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2a2 2 0 002-2 2 2 0 00-2-2V9z"/><path d="M9 7v10"/></svg>
+                </span>
+                <span title="Stats">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V9M12 19V5M20 19v-7"/></svg>
+                </span>
+                <span title="Team">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><circle cx="16" cy="9" r="2.5"/><path d="M3 19c0-2.8 2.7-5 6-5s6 2.2 6 5M14 19c0-1.8 1.6-3.2 3.5-3.5"/></svg>
+                </span>
+                <span class="end" title="Live">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
+                </span>
               </div>
             </div>
-            <div class="hero-pane hero-pane-store">
-              <div class="store-badge" data-i18n="winStore">Витрина</div>
+            <div class="hero-pane-store">
               <div class="store-pills">
                 <div class="store-pill" data-i18n="winPill1">Оплата прошла · Humo</div>
                 <div class="store-pill" data-i18n="winPill2">Билет выпущен · QR готов</div>
-                <div class="store-pill" data-i18n="winPill3">Гость в пути</div>
-                <div class="store-pill" data-i18n="winPill4">Скан на входе ✓</div>
+                <div class="store-pill" data-i18n="winPill3">Пуш гостю · «Ждём вас»</div>
+                <div class="store-pill" data-i18n="winPill4">Гость в пути</div>
+                <div class="store-pill" data-i18n="winPill5">Скан на входе ✓</div>
               </div>
-              <div class="store-card">
-                <div class="store-cover"></div>
-                <div class="store-meta">
-                  <b>Weekend Stand-up</b>
-                  <span>28 авг · 16:00</span>
-                  <strong>630 сум</strong>
-                </div>
+              <span class="store-agent" data-i18n="winAgent">Taneesh · Витрина</span>
+              <div class="store-ask">
+                <span class="plus" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+                <span class="ph" data-i18n="winAsk">Спросить агента витрины</span>
+                <span class="mic" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg>
+                </span>
+                <span class="send" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+                </span>
               </div>
             </div>
           </div>
