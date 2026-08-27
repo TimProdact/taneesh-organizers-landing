@@ -1581,8 +1581,12 @@
       }
     }
 
-    /* Offer rail */
-    .offer-rail-wrap { position: relative; }
+    /* Offer rail — full-bleed track, controls stay in .wrap */
+    .offer-rail-bleed {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      overflow: hidden;
+    }
     .offer-rail {
       display: grid;
       grid-auto-flow: column;
@@ -1591,9 +1595,16 @@
       column-gap: 28px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
+      scroll-padding-inline-start: max(20px, calc((100vw - var(--max)) / 2 + 20px));
+      padding-inline-start: max(20px, calc((100vw - var(--max)) / 2 + 20px));
+      padding-inline-end: 0;
       padding-bottom: 4px;
       scrollbar-width: none;
       -ms-overflow-style: none;
+    }
+    .offer-rail::after {
+      content: "";
+      width: max(20px, calc((100vw - var(--max)) / 2 + 20px));
     }
     .offer-rail::-webkit-scrollbar { display: none; }
     .offer-card {
@@ -2249,6 +2260,11 @@
     }
     @media (max-width: 560px) {
       .wrap { width: min(100% - 28px, var(--max)); }
+      .offer-rail {
+        scroll-padding-inline-start: 14px;
+        padding-inline-start: 14px;
+      }
+      .offer-rail::after { width: 14px; }
       .header-pill { padding: 8px 8px 8px 14px; }
       .calc-shell { padding: 18px; }
       .calc-summary,
@@ -2946,61 +2962,63 @@
           <span class="eyebrow" data-i18n="offerEyebrow">Возможности</span>
           <h2 data-i18n="offerTitle">Возможности платформы</h2>
         </div>
-        <div class="offer-rail-wrap">
-          <div class="offer-rail" tabindex="0" data-offer-rail data-i18n-aria="offerAria" aria-label="Возможности платформы">
-            <article class="offer-card offer-card-1">
-              <span class="offer-tag" data-i18n="o1tag">Витрина</span>
-              <div class="offer-body">
-                <h3 data-i18n="o1t">Личная витрина</h3>
-                <p data-i18n="o1p">Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
-              </div>
-            </article>
-            <article class="offer-card offer-card-2">
-              <span class="offer-tag" data-i18n="o2tag">Оплата</span>
-              <div class="offer-body">
-                <h3 data-i18n="o2t">Оплата в 2 клика</h3>
-                <p data-i18n="o2p">Гость платит прямо в браузере телефона — ничего скачивать не нужно.</p>
-              </div>
-            </article>
-            <article class="offer-card offer-card-3">
-              <span class="offer-tag" data-i18n="o3tag">CRM</span>
-              <div class="offer-body">
-                <h3 data-i18n="o3t">CRM для гостей</h3>
-                <p data-i18n="o3p">Список покупателей, статусы оплат и контактные данные в едином дашборде.</p>
-              </div>
-            </article>
-            <article class="offer-card offer-card-4">
-              <span class="offer-tag" data-i18n="o4tag">Возврат</span>
-              <div class="offer-body">
-                <h3 data-i18n="o4t">Возврат в 1 клик</h3>
-                <p data-i18n="o4p">Мгновенно отменяйте и возвращайте билеты без долгих переписок с поддержкой.</p>
-              </div>
-            </article>
-            <article class="offer-card offer-card-5">
-              <span class="offer-tag" data-i18n="o5tag">Приглашения</span>
-              <div class="offer-body">
-                <h3 data-i18n="o5t">VIP-приглашения</h3>
-                <p data-i18n="o5p">Генерируйте закрытые ссылки или бесплатные билеты для особых гостей и партнеров.</p>
-              </div>
-            </article>
-            <article class="offer-card offer-card-6">
-              <span class="offer-tag" data-i18n="o6tag">Сканер</span>
-              <div class="offer-body">
-                <h3 data-i18n="o6t">Умный сканер</h3>
-                <p data-i18n="o6p">Быстрый контроль на входе по QR-кодам. Исключает подделки и повторные проходы.</p>
-              </div>
-            </article>
-          </div>
-          <div class="offer-controls">
-            <button type="button" class="offer-nav" data-offer-prev aria-label="Назад">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
-            <button type="button" class="offer-nav" data-offer-next aria-label="Вперёд">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
-          </div>
-          <div class="offer-progress" aria-hidden="true"><i data-offer-progress></i></div>
+      </div>
+      <div class="offer-rail-bleed">
+        <div class="offer-rail" tabindex="0" data-offer-rail data-i18n-aria="offerAria" aria-label="Возможности платформы">
+          <article class="offer-card offer-card-1">
+            <span class="offer-tag" data-i18n="o1tag">Витрина</span>
+            <div class="offer-body">
+              <h3 data-i18n="o1t">Личная витрина</h3>
+              <p data-i18n="o1p">Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
+            </div>
+          </article>
+          <article class="offer-card offer-card-2">
+            <span class="offer-tag" data-i18n="o2tag">Оплата</span>
+            <div class="offer-body">
+              <h3 data-i18n="o2t">Оплата в 2 клика</h3>
+              <p data-i18n="o2p">Гость платит прямо в браузере телефона — ничего скачивать не нужно.</p>
+            </div>
+          </article>
+          <article class="offer-card offer-card-3">
+            <span class="offer-tag" data-i18n="o3tag">CRM</span>
+            <div class="offer-body">
+              <h3 data-i18n="o3t">CRM для гостей</h3>
+              <p data-i18n="o3p">Список покупателей, статусы оплат и контактные данные в едином дашборде.</p>
+            </div>
+          </article>
+          <article class="offer-card offer-card-4">
+            <span class="offer-tag" data-i18n="o4tag">Возврат</span>
+            <div class="offer-body">
+              <h3 data-i18n="o4t">Возврат в 1 клик</h3>
+              <p data-i18n="o4p">Мгновенно отменяйте и возвращайте билеты без долгих переписок с поддержкой.</p>
+            </div>
+          </article>
+          <article class="offer-card offer-card-5">
+            <span class="offer-tag" data-i18n="o5tag">Приглашения</span>
+            <div class="offer-body">
+              <h3 data-i18n="o5t">VIP-приглашения</h3>
+              <p data-i18n="o5p">Генерируйте закрытые ссылки или бесплатные билеты для особых гостей и партнеров.</p>
+            </div>
+          </article>
+          <article class="offer-card offer-card-6">
+            <span class="offer-tag" data-i18n="o6tag">Сканер</span>
+            <div class="offer-body">
+              <h3 data-i18n="o6t">Умный сканер</h3>
+              <p data-i18n="o6p">Быстрый контроль на входе по QR-кодам. Исключает подделки и повторные проходы.</p>
+            </div>
+          </article>
         </div>
+      </div>
+      <div class="wrap">
+        <div class="offer-controls">
+          <button type="button" class="offer-nav" data-offer-prev aria-label="Назад">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button type="button" class="offer-nav" data-offer-next aria-label="Вперёд">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+        <div class="offer-progress" aria-hidden="true"><i data-offer-progress></i></div>
       </div>
     </section>
 
