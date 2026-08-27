@@ -1398,35 +1398,55 @@
 
     /* Trust / niches / quote / payments */
     .trust-strip {
-      padding: 28px 0 8px;
+      padding: 36px 0 28px;
+      background: #fff;
     }
     .trust-strip .wrap {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px 28px;
+      justify-content: flex-start;
+      gap: clamp(24px, 4vw, 48px);
     }
     .trust-label {
+      flex: 0 0 auto;
+      margin: 0;
       font-size: 14px;
-      color: var(--muted);
+      line-height: 1.35;
+      color: rgba(10, 10, 10, 0.55);
       font-weight: 600;
-      white-space: nowrap;
+      letter-spacing: -0.01em;
+      white-space: normal;
+      max-width: 11em;
     }
     .trust-logos {
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px 18px;
+      flex-wrap: nowrap;
+      gap: clamp(20px, 3.2vw, 40px);
       align-items: center;
-      justify-content: flex-end;
+      justify-content: flex-start;
       flex: 1;
+      min-width: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-bottom: 2px;
     }
-    .trust-logos span {
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: rgba(10, 10, 10, 0.28);
+    .trust-logos::-webkit-scrollbar { display: none; }
+    .trust-logo {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 36px;
+      color: #b8b8b8;
+      opacity: 0.95;
+    }
+    .trust-logo svg {
+      display: block;
+      height: 100%;
+      width: auto;
+      max-width: 108px;
     }
     .niche-rail {
       display: grid;
@@ -1557,8 +1577,13 @@
       .footer-solutions { grid-template-columns: 1fr 1fr; }
       .paytrust { flex-direction: column; text-align: center; }
       .paytrust-logos { justify-content: center; }
-      .trust-strip .wrap { justify-content: center; text-align: center; }
-      .trust-logos { justify-content: center; }
+      .trust-strip .wrap {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 18px;
+      }
+      .trust-label { max-width: none; }
+      .trust-logos { width: 100%; }
     }
 
     /* FAQ */
@@ -1989,14 +2014,32 @@
 
     <section class="trust-strip" aria-label="Нам доверяют">
       <div class="wrap">
-        <p class="trust-label" data-i18n="trustLabel">Нам доверяют организаторы</p>
-        <div class="trust-logos">
-          <span>City Live</span>
-          <span>Open Air</span>
-          <span>StandUp Lab</span>
-          <span>BizMeet</span>
-          <span>Fit Arena</span>
-          <span>Night Circuit</span>
+        <p class="trust-label" data-i18n-html="trustLabel">Нам доверяют 1&nbsp;000+<br />организаторов</p>
+        <div class="trust-logos" aria-hidden="true">
+          <span class="trust-logo" title="City Live">
+            <svg viewBox="0 0 120 36" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="18" r="11" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 18h8M14 14v8" stroke="currentColor" stroke-width="1.6" fill="none"/><text x="32" y="22" font-family="Satoshi, system-ui, sans-serif" font-size="12" font-weight="700" letter-spacing="0.04em">CITY LIVE</text></svg>
+          </span>
+          <span class="trust-logo" title="Open Air">
+            <svg viewBox="0 0 108 36" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 26c4-10 12-16 20-16s16 6 20 16" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="18" cy="14" r="2.2"/><circle cx="28" cy="12" r="2.2"/><text x="52" y="22" font-family="Instrument Serif, Georgia, serif" font-size="15">Open Air</text></svg>
+          </span>
+          <span class="trust-logo" title="StandUp Lab">
+            <svg viewBox="0 0 118 36" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="8" width="20" height="20" rx="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 18h8M14 14v8" stroke="currentColor" stroke-width="1.5" fill="none"/><text x="32" y="16" font-family="Satoshi, system-ui, sans-serif" font-size="9" font-weight="700" letter-spacing="0.12em">STANDUP</text><text x="32" y="28" font-family="Satoshi, system-ui, sans-serif" font-size="9" font-weight="700" letter-spacing="0.18em">LAB</text></svg>
+          </span>
+          <span class="trust-logo" title="BizMeet">
+            <svg viewBox="0 0 100 36" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="18" r="12" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="16" y="22" text-anchor="middle" font-family="Satoshi, system-ui, sans-serif" font-size="9" font-weight="800">BM</text><text x="36" y="22" font-family="Satoshi, system-ui, sans-serif" font-size="13" font-weight="600">BizMeet</text></svg>
+          </span>
+          <span class="trust-logo" title="Fit Arena">
+            <svg viewBox="0 0 104 36" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 26V12l6 8 6-8v14M28 12v14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><text x="40" y="22" font-family="Satoshi, system-ui, sans-serif" font-size="13" font-weight="800" letter-spacing="0.06em">FIT ARENA</text></svg>
+          </span>
+          <span class="trust-logo" title="Night Circuit">
+            <svg viewBox="0 0 124 36" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="18" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="14" cy="18" r="4"/><text x="32" y="16" font-family="Instrument Serif, Georgia, serif" font-size="12">Night</text><text x="32" y="28" font-family="Satoshi, system-ui, sans-serif" font-size="9" font-weight="700" letter-spacing="0.16em">CIRCUIT</text></svg>
+          </span>
+          <span class="trust-logo" title="Jazz Hall">
+            <svg viewBox="0 0 96 36" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M10 26c0-8 4-14 10-14s10 6 10 14" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M14 26h12" stroke="currentColor" stroke-width="1.6"/><text x="38" y="22" font-family="Instrument Serif, Georgia, serif" font-size="14" font-style="italic">Jazz Hall</text></svg>
+          </span>
+          <span class="trust-logo" title="Trek Club">
+            <svg viewBox="0 0 100 36" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 26l8-16 8 16H8z" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="32" y="22" font-family="Satoshi, system-ui, sans-serif" font-size="12" font-weight="700">Trek Club</text></svg>
+          </span>
         </div>
       </div>
     </section>
