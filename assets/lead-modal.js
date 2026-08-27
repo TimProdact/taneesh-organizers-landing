@@ -88,6 +88,7 @@ window.TaneeshLeadModal = (function () {
     lastFocus = document.activeElement;
     resetForm();
     overlay.hidden = false;
+    overlay.removeAttribute('inert');
     document.body.classList.add('lead-modal-open');
     dialog.dataset.leadSource = source || 'unknown';
     requestAnimationFrame(() => {
@@ -102,6 +103,7 @@ window.TaneeshLeadModal = (function () {
     document.body.classList.remove('lead-modal-open');
     setTimeout(() => {
       overlay.hidden = true;
+      overlay.setAttribute('inert', '');
       resetForm();
       if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
     }, 200);
@@ -167,6 +169,7 @@ window.TaneeshLeadModal = (function () {
   function init() {
     overlay = document.getElementById('leadModal');
     if (!overlay) return;
+    if (overlay.hidden) overlay.setAttribute('inert', '');
     dialog = overlay.querySelector('.lead-dialog');
     form = document.getElementById('leadForm');
     phoneInput = document.getElementById('leadPhone');

@@ -7,7 +7,6 @@
   <meta name="description" content="Тикетинг для организаторов: витрина за 5 минут, цена билета — вам целиком. Сбор 1.5% + FixedFee платит гость. Для малых и крупных организаторов." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,800&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -22,7 +21,7 @@
       --border: rgba(10, 10, 10, 0.08);
       --max: 1120px;
       --pad-y: clamp(100px, 14vw, 160px);
-      --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
+      --font-display: "Satoshi", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
       --font-ui: "Satoshi", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
       --radius: 28px;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -33,6 +32,7 @@
     html { scroll-behavior: smooth; }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
+      .offer-rail { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
     body {
@@ -59,8 +59,8 @@
       margin-bottom: 16px;
     }
     h1, h2 {
-      font-family: var(--font-display);
-      font-weight: 400;
+      font-family: var(--font-ui);
+      font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 1.08;
     }
@@ -1815,6 +1815,7 @@
       column-gap: 28px;
       width: 100%;
       overflow-x: auto;
+      scroll-behavior: smooth;
       scroll-snap-type: x mandatory;
       scroll-padding-inline-start: max(20px, calc((100vw - var(--max)) / 2 + 20px));
       padding-inline-start: max(20px, calc((100vw - var(--max)) / 2 + 20px));
@@ -1877,9 +1878,9 @@
       margin-inline: 0;
     }
     .offer-body h3 {
-      font-family: var(--font-display);
+      font-family: var(--font-ui);
       font-size: 26px;
-      font-weight: 400;
+      font-weight: 700;
       margin-bottom: 8px;
       letter-spacing: -0.02em;
       color: #fff;
@@ -2421,7 +2422,7 @@
       background: var(--surface);
       border: 1px solid rgba(10, 10, 10, 0.1);
       box-shadow: 0 24px 64px rgba(10, 10, 10, 0.18);
-      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      font-family: var(--font-ui);
       transform: translateY(8px) scale(0.98);
       transition: transform 220ms var(--ease);
     }
@@ -3604,7 +3605,7 @@
     </div>
   </footer>
 
-  <div class="lead-overlay" id="leadModal" hidden role="presentation">
+  <div class="lead-overlay" id="leadModal" hidden inert role="presentation">
     <div class="lead-dialog" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
       <div class="lead-head">
         <div>
@@ -3856,13 +3857,20 @@
       const cards = () => [...rail.querySelectorAll('article')];
       const motion = () => !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+      const scrollLeftForIndex = (index) => {
+        const list = cards();
+        if (!list.length) return 0;
+        return Math.max(0, list[index].offsetLeft - list[0].offsetLeft);
+      };
+
       const nearestIndex = () => {
         const list = cards();
         if (!list.length) return 0;
+        const pos = rail.scrollLeft;
         let idx = 0;
         let best = Infinity;
-        list.forEach((card, i) => {
-          const dist = Math.abs(card.offsetLeft - rail.scrollLeft);
+        list.forEach((_, i) => {
+          const dist = Math.abs(scrollLeftForIndex(i) - pos);
           if (dist < best) {
             best = dist;
             idx = i;
@@ -3875,10 +3883,9 @@
         const list = cards();
         if (!list.length) return;
         const next = Math.max(0, Math.min(list.length - 1, index));
-        list[next].scrollIntoView({
-          behavior: motion() ? 'smooth' : 'auto',
-          inline: 'start',
-          block: 'nearest',
+        rail.scrollTo({
+          left: scrollLeftForIndex(next),
+          behavior: 'auto',
         });
       };
 
