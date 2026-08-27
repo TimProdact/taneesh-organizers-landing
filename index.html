@@ -73,6 +73,8 @@
       --space-stack-xl: 32px;
       --space-card: 22px;
       --space-island: clamp(32px, 5vw, 48px);
+      --features-card-width: 300px;
+      --features-card-min: 280px;
 
       --pad-y: var(--space-section-y);
       --section-head-gap: var(--space-head-content);
@@ -208,6 +210,15 @@
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       box-shadow: 0 10px 40px rgba(10, 10, 10, 0.05);
+      transition:
+        background 280ms var(--ease),
+        border-color 280ms var(--ease),
+        box-shadow 280ms var(--ease);
+    }
+    .header.is-over-footer .header-pill {
+      background: rgba(17, 24, 39, 0.88);
+      border-color: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
     }
     .logo {
       display: inline-flex;
@@ -219,6 +230,10 @@
       display: block;
       width: auto;
       height: 24px;
+      transition: filter 280ms var(--ease);
+    }
+    .header.is-over-footer .logo-wordmark {
+      filter: brightness(0) invert(1);
     }
     .logo-wordmark.is-on-dark {
       filter: brightness(0) invert(1);
@@ -242,6 +257,13 @@
       transition: color 160ms var(--ease), background 160ms var(--ease);
     }
     .header-nav a:hover { color: var(--text); background: rgba(28, 25, 23, 0.05); }
+    .header.is-over-footer .header-nav a {
+      color: rgba(255, 255, 255, 0.65);
+    }
+    .header.is-over-footer .header-nav a:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+    }
     .header-cta {
       display: inline-flex;
       align-items: center;
@@ -252,6 +274,14 @@
       color: #fff;
       font-size: 13px;
       font-weight: 700;
+      transition: background 160ms var(--ease), color 160ms var(--ease);
+    }
+    .header.is-over-footer .header-cta {
+      background: #fff;
+      color: #111827;
+    }
+    .header.is-over-footer .header-cta:hover {
+      background: #f3f4f6;
     }
     .header-lang { position: relative; }
     .header-lang-btn {
@@ -264,6 +294,14 @@
       place-items: center;
       cursor: pointer;
       color: var(--text);
+      transition: color 160ms var(--ease), border-color 160ms var(--ease), background 160ms var(--ease);
+    }
+    .header.is-over-footer .header-lang-btn {
+      border-color: rgba(255, 255, 255, 0.22);
+      color: #fff;
+    }
+    .header.is-over-footer .header-lang-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
     }
     .header-lang-btn svg { width: 18px; height: 18px; }
     .header-lang-menu {
@@ -377,15 +415,93 @@
       height: 100%;
       box-shadow: none;
       border: 1px solid rgba(10, 10, 10, 0.04);
+      position: relative;
+      cursor: pointer;
+    }
+    .hero-card-screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      border-radius: inherit;
+    }
+    .hero-card-hover {
+      position: absolute;
+      inset: 0;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 28px 20px;
+      text-align: center;
+      background: rgba(10, 10, 10, 0);
+      opacity: 0;
+      visibility: hidden;
+      border-radius: inherit;
+      transition:
+        opacity 280ms var(--ease),
+        background 280ms var(--ease),
+        visibility 280ms var(--ease);
+    }
+    .hero-card-hover-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 24px;
+      border-radius: 9999px;
+      background: #fff;
+      color: #0a0a0a;
+      font-family: var(--font-ui);
+      font-size: var(--text-body);
+      font-weight: var(--weight-bold);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+      transition: transform 160ms var(--ease), filter 160ms var(--ease);
+    }
+    .hero-card-hover-btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(0.97);
+    }
+    .hero-card-hover-text {
+      margin: 0;
+      max-width: 26em;
+      font-family: var(--font-ui);
+      font-size: var(--text-body-sm);
+      line-height: var(--leading-relaxed);
+      color: rgba(255, 255, 255, 0.92);
+    }
+    @media (hover: hover) {
+      .hero-card:hover .hero-card-hover,
+      .hero-card:focus-within .hero-card-hover {
+        opacity: 1;
+        visibility: visible;
+        background: rgba(10, 10, 10, 0.78);
+      }
+    }
+    .hero-card.is-open .hero-card-hover {
+      opacity: 1;
+      visibility: visible;
+      background: rgba(10, 10, 10, 0.78);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-card-hover { transition: none; }
     }
     .hero-card-app {
       background: #ececec;
       border: 1px solid rgba(10, 10, 10, 0.04);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      padding: 16px 10px 0;
+      align-items: stretch;
+      padding: 0;
       overflow: hidden;
+      box-sizing: border-box;
+    }
+    .hero-card-app .hero-card-screen {
+      display: flex;
+      flex-direction: column;
+      padding: 16px 10px 0;
       box-sizing: border-box;
     }
     .app-shell {
@@ -1707,6 +1823,8 @@
         order: -1;
         height: 460px;
         max-height: 480px;
+      }
+      .hero-card-app .hero-card-screen {
         padding: 16px 10px 0;
       }
       .app-shell {
@@ -2380,10 +2498,10 @@
     .features-loop::-webkit-scrollbar { display: none; }
     .features-card {
       position: relative;
-      flex: 0 0 248px;
-      width: 248px;
-      min-width: 220px;
-      max-width: 248px;
+      flex: 0 0 var(--features-card-width);
+      width: var(--features-card-width);
+      min-width: var(--features-card-min);
+      max-width: var(--features-card-width);
       scroll-snap-align: center;
       aspect-ratio: 3 / 4.4;
       min-height: 360px;
@@ -2978,6 +3096,11 @@
       background: #050505;
       color: #9ca3af;
       overflow: hidden;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
     }
     #footer.section {
       padding-block: 0;
@@ -3024,11 +3147,14 @@
       position: relative;
       z-index: 1;
       display: flex;
+      flex: 1 1 auto;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: clamp(20px, 4vh, 32px);
-      padding: clamp(72px, 12vw, 112px) 0 clamp(40px, 6vw, 56px);
+      padding:
+        clamp(96px, 16vh, 140px) 0
+        clamp(24px, 4vh, 40px);
       text-align: center;
     }
     .site-footer__mark {
@@ -3114,13 +3240,21 @@
     .site-footer__meta {
       position: relative;
       z-index: 1;
+      flex-shrink: 0;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 16px 24px;
-      padding: clamp(20px, 3vh, 28px) 0 max(24px, env(safe-area-inset-bottom, 0px));
+      width: 100%;
+      max-width: var(--max);
+      margin-inline: auto;
+      padding:
+        clamp(20px, 3vh, 28px)
+        max(20px, calc((100% - var(--max)) / 2))
+        max(24px, env(safe-area-inset-bottom, 0px));
       border-top: 1px solid rgba(255, 255, 255, 0.08);
+      box-sizing: border-box;
     }
     .site-footer__copy {
       margin: 0;
@@ -3410,7 +3544,8 @@
         </div>
 
         <div class="hero-duo">
-          <aside class="hero-card hero-card-app">
+          <aside class="hero-card hero-card-app" tabindex="0" data-hero-screen="app">
+            <div class="hero-card-screen">
             <div class="app-shell">
               <div class="app-nav">
                 <img src="assets/showcase/ico-back.svg" alt="" width="22" height="22" data-i18n-alt="appShowcaseBackAria" />
@@ -3501,9 +3636,15 @@
                 </div>
               </div>
             </div>
+            <div class="hero-card-hover">
+              <a class="hero-card-hover-btn" href="#flow" data-goto="flow" data-i18n="heroScreenMore">Подробнее</a>
+              <p class="hero-card-hover-text" data-i18n="heroAppFlow">Flow покупки: гость открывает витрину, выбирает билет, оплачивает Uzcard или Humo и получает QR на телефон.</p>
+            </div>
+            </div>
           </aside>
 
-          <aside class="hero-card hero-card-admin hero-card-admin--static" aria-hidden="true">
+          <aside class="hero-card hero-card-admin hero-card-admin--static" tabindex="0" data-hero-screen="admin">
+            <div class="hero-card-screen">
             <div class="admin-shell">
               <nav class="admin-sidebar admin-sidebar--mini">
                 <div class="admin-sidebar-mark" aria-hidden="true">
@@ -3606,7 +3747,12 @@
                 </div>
               </div>
             </div>
-          </aside>          </aside>
+            <div class="hero-card-hover">
+              <a class="hero-card-hover-btn" href="#flow" data-goto="flow" data-i18n="heroScreenMore">Подробнее</a>
+              <p class="hero-card-hover-text" data-i18n="heroAdminFlow">Flow организатора: кабинет → создание события → публикация витрины → продажи → сканер QR на входе.</p>
+            </div>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
@@ -4230,6 +4376,47 @@
         window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
       });
     });
+
+    // Hero screens — tap to reveal overlay on touch devices
+    (function initHeroScreens() {
+      const cards = [...document.querySelectorAll('[data-hero-screen]')];
+      if (!cards.length) return;
+      const canHover = () => window.matchMedia('(hover: hover)').matches;
+
+      cards.forEach((card) => {
+        card.addEventListener('click', (e) => {
+          if (canHover()) return;
+          if (e.target.closest('.hero-card-hover-btn')) return;
+          e.preventDefault();
+          const open = card.classList.contains('is-open');
+          cards.forEach((c) => c.classList.remove('is-open'));
+          if (!open) card.classList.add('is-open');
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if (canHover()) return;
+        if (e.target.closest('[data-hero-screen]')) return;
+        cards.forEach((c) => c.classList.remove('is-open'));
+      });
+    })();
+
+    // Header theme over full-screen footer
+    (function initHeaderFooterTheme() {
+      const header = document.querySelector('.header');
+      const footer = document.getElementById('footer');
+      if (!header || !footer) return;
+
+      const update = () => {
+        const headerBottom = header.getBoundingClientRect().bottom;
+        const footerTop = footer.getBoundingClientRect().top;
+        header.classList.toggle('is-over-footer', footerTop <= headerBottom + 4);
+      };
+
+      update();
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update, { passive: true });
+    })();
 
     // FAQ accordion — single-open details
     document.querySelectorAll('.faq-item[data-faq]').forEach((item) => {
