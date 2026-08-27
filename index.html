@@ -1067,24 +1067,44 @@
       }
     }
 
-    /* Offer rail */
-    .offer-rail-wrap { position: relative; }
-    .offer-rail {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: minmax(220px, 248px);
-      gap: 28px;
-      column-gap: 28px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      padding-bottom: 4px;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
+    /* Offer marquee */
+    #included {
+      overflow: visible;
     }
-    .offer-rail::-webkit-scrollbar { display: none; }
+    #included .section-head {
+      margin-bottom: 0;
+    }
+    .offer-marquee-outer {
+      width: 100vw;
+      max-width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-top: 48px;
+      overflow: hidden;
+    }
+    .offer-track {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      gap: 28px;
+      width: max-content;
+      padding-inline: max(20px, calc((100vw - var(--max)) / 2 + 20px));
+      will-change: transform;
+      animation: offer-marquee 52s linear infinite;
+    }
+    .offer-marquee-outer:hover .offer-track {
+      animation-play-state: paused;
+    }
+    @keyframes offer-marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .offer-track { animation: none; }
+    }
     .offer-card {
       position: relative;
-      scroll-snap-align: start;
+      flex: 0 0 auto;
+      width: clamp(220px, 22vw, 248px);
       aspect-ratio: 3 / 4.4;
       min-height: 360px;
       padding: 22px;
@@ -1139,43 +1159,6 @@
       color: #fff;
     }
     .offer-body p { color: rgba(255, 255, 255, 0.78); font-size: 14px; }
-    .offer-controls {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 22px;
-    }
-    .offer-nav {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: 0;
-      background: rgba(28, 25, 23, 0.08);
-      color: var(--text);
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-      transition: background 160ms var(--ease), transform 160ms var(--ease);
-    }
-    .offer-nav:hover { background: rgba(28, 25, 23, 0.14); transform: translateY(-1px); }
-    .offer-nav:disabled { opacity: 0.35; cursor: default; transform: none; }
-    .offer-nav svg { width: 18px; height: 18px; }
-    .offer-progress {
-      height: 3px;
-      width: min(120px, 30%);
-      border-radius: 9999px;
-      background: rgba(28, 25, 23, 0.08);
-      margin: 16px auto 0;
-      overflow: hidden;
-    }
-    .offer-progress i {
-      display: block;
-      height: 100%;
-      width: 0%;
-      background: var(--accent);
-      border-radius: inherit;
-    }
 
     /* Trust / niches / quote / payments */
     .trust-strip {
@@ -2411,60 +2394,93 @@
           <span class="eyebrow" data-i18n="offerEyebrow">Возможности</span>
           <h2 data-i18n="offerTitle">Возможности платформы</h2>
         </div>
-        <div class="offer-rail-wrap">
-          <div class="offer-rail" tabindex="0" data-offer-rail data-i18n-aria="offerAria" aria-label="Возможности платформы">
-            <article class="offer-card offer-card-1">
-              <span class="offer-tag" data-i18n="o1tag">Витрина</span>
-              <div class="offer-body">
-                <h3 data-i18n="o1t">Личная витрина</h3>
-                <p data-i18n="o1p">Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
-              </div>
-            </article>
-            <article class="offer-card offer-card-2">
-              <span class="offer-tag" data-i18n="o2tag">Оплата</span>
-              <div class="offer-body">
-                <h3 data-i18n="o2t">Оплата в 2 клика</h3>
-                <p data-i18n="o2p">Гость платит прямо в браузере телефона — ничего скачивать не нужно.</p>
-              </div>
-            </article>
-            <article class="offer-card offer-card-3">
-              <span class="offer-tag" data-i18n="o3tag">CRM</span>
-              <div class="offer-body">
-                <h3 data-i18n="o3t">CRM для гостей</h3>
-                <p data-i18n="o3p">Список покупателей, статусы оплат и контактные данные в едином дашборде.</p>
-              </div>
-            </article>
-            <article class="offer-card offer-card-4">
-              <span class="offer-tag" data-i18n="o4tag">Возврат</span>
-              <div class="offer-body">
-                <h3 data-i18n="o4t">Возврат в 1 клик</h3>
-                <p data-i18n="o4p">Мгновенно отменяйте и возвращайте билеты без долгих переписок с поддержкой.</p>
-              </div>
-            </article>
-            <article class="offer-card offer-card-5">
-              <span class="offer-tag" data-i18n="o5tag">Приглашения</span>
-              <div class="offer-body">
-                <h3 data-i18n="o5t">VIP-приглашения</h3>
-                <p data-i18n="o5p">Генерируйте закрытые ссылки или бесплатные билеты для особых гостей и партнеров.</p>
-              </div>
-            </article>
-            <article class="offer-card offer-card-6">
-              <span class="offer-tag" data-i18n="o6tag">Сканер</span>
-              <div class="offer-body">
-                <h3 data-i18n="o6t">Умный сканер</h3>
-                <p data-i18n="o6p">Быстрый контроль на входе по QR-кодам. Исключает подделки и повторные проходы.</p>
-              </div>
-            </article>
-          </div>
-          <div class="offer-controls">
-            <button type="button" class="offer-nav" data-offer-prev aria-label="Назад">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
-            <button type="button" class="offer-nav" data-offer-next aria-label="Вперёд">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
-          </div>
-          <div class="offer-progress" aria-hidden="true"><i data-offer-progress></i></div>
+      </div>
+      <div class="offer-marquee-outer">
+        <div class="offer-track">
+          <article class="offer-card offer-card-1">
+            <span class="offer-tag" data-i18n="o1tag">Витрина</span>
+            <div class="offer-body">
+              <h3 data-i18n="o1t">Личная витрина</h3>
+              <p data-i18n="o1p">Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
+            </div>
+          </article>
+          <article class="offer-card offer-card-2">
+            <span class="offer-tag" data-i18n="o2tag">Оплата</span>
+            <div class="offer-body">
+              <h3 data-i18n="o2t">Оплата в 2 клика</h3>
+              <p data-i18n="o2p">Гость платит прямо в браузере телефона — ничего скачивать не нужно.</p>
+            </div>
+          </article>
+          <article class="offer-card offer-card-3">
+            <span class="offer-tag" data-i18n="o3tag">CRM</span>
+            <div class="offer-body">
+              <h3 data-i18n="o3t">CRM для гостей</h3>
+              <p data-i18n="o3p">Список покупателей, статусы оплат и контактные данные в едином дашборде.</p>
+            </div>
+          </article>
+          <article class="offer-card offer-card-4">
+            <span class="offer-tag" data-i18n="o4tag">Возврат</span>
+            <div class="offer-body">
+              <h3 data-i18n="o4t">Возврат в 1 клик</h3>
+              <p data-i18n="o4p">Мгновенно отменяйте и возвращайте билеты без долгих переписок с поддержкой.</p>
+            </div>
+          </article>
+          <article class="offer-card offer-card-5">
+            <span class="offer-tag" data-i18n="o5tag">Приглашения</span>
+            <div class="offer-body">
+              <h3 data-i18n="o5t">VIP-приглашения</h3>
+              <p data-i18n="o5p">Генерируйте закрытые ссылки или бесплатные билеты для особых гостей и партнеров.</p>
+            </div>
+          </article>
+          <article class="offer-card offer-card-6">
+            <span class="offer-tag" data-i18n="o6tag">Сканер</span>
+            <div class="offer-body">
+              <h3 data-i18n="o6t">Умный сканер</h3>
+              <p data-i18n="o6p">Быстрый контроль на входе по QR-кодам. Исключает подделки и повторные проходы.</p>
+            </div>
+          </article>
+          <article class="offer-card offer-card-1" aria-hidden="true">
+            <span class="offer-tag" data-i18n="o1tag">Витрина</span>
+            <div class="offer-body">
+              <h3 data-i18n="o1t">Личная витрина</h3>
+              <p data-i18n="o1p">Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
+            </div>
+          </article>
+          <article class="offer-card offer-card-2" aria-hidden="true">
+            <span class="offer-tag" data-i18n="o2tag">Оплата</span>
+            <div class="offer-body">
+              <h3 data-i18n="o2t">Оплата в 2 клика</h3>
+              <p data-i18n="o2p">Гость платит прямо в браузере телефона — ничего скачивать не нужно.</p>
+            </div>
+          </article>
+          <article class="offer-card offer-card-3" aria-hidden="true">
+            <span class="offer-tag" data-i18n="o3tag">CRM</span>
+            <div class="offer-body">
+              <h3 data-i18n="o3t">CRM для гостей</h3>
+              <p data-i18n="o3p">Список покупателей, статусы оплат и контактные данные в едином дашборде.</p>
+            </div>
+          </article>
+          <article class="offer-card offer-card-4" aria-hidden="true">
+            <span class="offer-tag" data-i18n="o4tag">Возврат</span>
+            <div class="offer-body">
+              <h3 data-i18n="o4t">Возврат в 1 клик</h3>
+              <p data-i18n="o4p">Мгновенно отменяйте и возвращайте билеты без долгих переписок с поддержкой.</p>
+            </div>
+          </article>
+          <article class="offer-card offer-card-5" aria-hidden="true">
+            <span class="offer-tag" data-i18n="o5tag">Приглашения</span>
+            <div class="offer-body">
+              <h3 data-i18n="o5t">VIP-приглашения</h3>
+              <p data-i18n="o5p">Генерируйте закрытые ссылки или бесплатные билеты для особых гостей и партнеров.</p>
+            </div>
+          </article>
+          <article class="offer-card offer-card-6" aria-hidden="true">
+            <span class="offer-tag" data-i18n="o6tag">Сканер</span>
+            <div class="offer-body">
+              <h3 data-i18n="o6t">Умный сканер</h3>
+              <p data-i18n="o6p">Быстрый контроль на входе по QR-кодам. Исключает подделки и повторные проходы.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -2932,36 +2948,6 @@
           }
         }
       }, 3200);
-    }
-
-    // Offer rail progress + nav
-    const rail = document.querySelector('[data-offer-rail]');
-    const progress = document.querySelector('[data-offer-progress]');
-    const prevBtn = document.querySelector('[data-offer-prev]');
-    const nextBtn = document.querySelector('[data-offer-next]');
-    if (rail && progress) {
-      const step = () => {
-        const card = rail.querySelector('.offer-card');
-        if (!card) return 280;
-        const styles = getComputedStyle(rail);
-        const gap = parseFloat(styles.columnGap || styles.gap || '16') || 16;
-        return card.getBoundingClientRect().width + gap;
-      };
-      const syncProgress = () => {
-        const max = rail.scrollWidth - rail.clientWidth;
-        const p = max > 0 ? (rail.scrollLeft / max) * 100 : 0;
-        progress.style.width = Math.max(12, Math.min(100, p || 12)) + '%';
-        if (prevBtn) prevBtn.disabled = rail.scrollLeft <= 4;
-        if (nextBtn) nextBtn.disabled = rail.scrollLeft >= max - 4;
-      };
-      const scrollByDir = (dir) => {
-        rail.scrollBy({ left: dir * step(), behavior: 'smooth' });
-      };
-      if (prevBtn) prevBtn.addEventListener('click', () => scrollByDir(-1));
-      if (nextBtn) nextBtn.addEventListener('click', () => scrollByDir(1));
-      rail.addEventListener('scroll', syncProgress, { passive: true });
-      window.addEventListener('resize', syncProgress);
-      syncProgress();
     }
 
     window.addEventListener('taneesh:locale', () => {
