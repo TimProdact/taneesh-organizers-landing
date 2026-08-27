@@ -1074,16 +1074,17 @@
       width: 32px;
       height: 32px;
       margin: 0 auto 8px;
-      border-radius: 10px;
+      border-radius: 50%;
       overflow: hidden;
       flex-shrink: 0;
-      background: var(--accent);
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+      background: #f4f4f5;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
     }
-    .hero-card-admin--static .admin-sidebar-mark svg {
-      width: 18px;
-      height: 18px;
+    .hero-card-admin--static .admin-sidebar-mark img {
+      width: 100%;
+      height: 100%;
       display: block;
+      object-fit: cover;
     }
     .hero-card-admin--static .admin-nav-item {
       justify-content: center;
@@ -1754,6 +1755,12 @@
       border-radius: 14px;
       background: rgba(28, 25, 23, 0.03);
     }
+    .metric-card {
+      padding: 24px 16px;
+    }
+    .calc-summary > div {
+      padding: 26px 18px;
+    }
     .calc-summary .k,
     .metric-card .k {
       display: block;
@@ -1882,7 +1889,11 @@
     }
 
     /* Conversion */
-    .live-conv { grid-template-columns: 1fr; }
+    .live-conv { grid-template-columns: 1fr; gap: 32px; }
+    #conversion .island.live-conv {
+      max-width: min(calc(100% - 40px), 1180px);
+    }
+    .live-conv .calc-viz { gap: 20px; }
     .live-pill {
       display: inline-flex;
       align-items: center;
@@ -1934,17 +1945,17 @@
       flex: 0 0 auto;
       min-height: 0;
       height: auto;
-      padding: 12px 14px 10px;
+      padding: 22px 24px 18px;
     }
     .live-conv .calc-chart-live svg {
       flex: none;
-      height: 96px;
+      height: 112px;
       width: 100%;
     }
     .metric-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
+      gap: 14px;
     }
     .live-actions { display: flex; justify-content: center; margin-top: 4px; }
 
@@ -2071,7 +2082,7 @@
       display: grid;
       grid-template-columns: minmax(0, 1.06fr) minmax(300px, 0.94fr);
       gap: clamp(40px, 6vw, 72px);
-      align-items: start;
+      align-items: stretch;
     }
     #flow .flow-steps-col {
       max-width: 560px;
@@ -2097,12 +2108,6 @@
       line-height: 1.55;
       max-width: 34em;
     }
-    #flow .flow-steps-group {
-      padding: clamp(22px, 3vw, 28px);
-      border-radius: 22px;
-      background: rgba(28, 25, 23, 0.03);
-      border: 1px solid rgba(10, 10, 10, 0.05);
-    }
     #flow .flow-steps {
       display: grid;
       gap: clamp(16px, 2.2vw, 22px);
@@ -2124,7 +2129,7 @@
       border-radius: 12px;
       display: grid;
       place-items: center;
-      background: rgba(28, 25, 23, 0.06);
+      background: transparent;
       color: var(--text);
       flex-shrink: 0;
     }
@@ -2151,16 +2156,22 @@
       color: var(--muted);
       vertical-align: middle;
     }
+    #flow .flow-pitch {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
     #flow .flow-pitch-frame {
       background: var(--surface);
       border-radius: 28px;
       padding: clamp(36px, 5vw, 48px);
       display: flex;
+      flex: 1;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      min-height: clamp(320px, 40vw, 420px);
+      min-height: 0;
     }
     #flow .flow-pitch h2 {
       font-size: clamp(32px, 4.2vw, 46px);
@@ -2198,11 +2209,12 @@
         grid-template-columns: 1fr;
         gap: 36px;
       }
-      #flow .flow-pitch { order: -1; }
+      #flow .flow-pitch { order: -1; min-height: auto; }
       #flow .flow-pitch-frame {
         align-items: center;
         text-align: center;
-        min-height: auto;
+        flex: none;
+        min-height: clamp(240px, 52vw, 320px);
       }
       #flow .flow-pitch h2,
       #flow .flow-pitch .flow-lead {
@@ -3302,10 +3314,7 @@
             <div class="admin-shell">
               <nav class="admin-sidebar admin-sidebar--mini">
                 <div class="admin-sidebar-mark" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8.2 6.5c3.1-2.8 7.9-2.8 11 0 1.4 1.2 1.4 3.2 0 4.4l-4.2 3.6c-.8.7-2 .7-2.8 0L8.2 10.9c-1.4-1.2-1.4-3.2 0-4.4Z" fill="#fff"/>
-                    <path d="M8.2 13.1c3.1-2.8 7.9-2.8 11 0 1.4 1.2 1.4 3.2 0 4.4l-4.2 3.6c-.8.7-2 .7-2.8 0l-4.2-3.6c-1.4-1.2-1.4-3.2 0-4.4Z" fill="#fff" opacity="0.92"/>
-                  </svg>
+                  <img src="assets/taneesh-logo-round.png" alt="" width="32" height="32" />
                 </div>
                 <div class="admin-nav-item">
                   <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
@@ -3756,7 +3765,7 @@
             </button>
             <button type="button" class="features-tab" role="tab" aria-selected="false" id="feature-tab-5" aria-controls="feature-panel-5" data-feature-tab="5" tabindex="-1">
               <span class="features-tab-tag" data-i18n="o6tag">Сканер</span>
-              <span class="features-tab-title" data-i18n="o6t">Умный сканер</span>
+              <span class="features-tab-title" data-i18n="o6t">Быстрый, удобный сканер</span>
             </button>
           </div>
           <div class="features-stage">
@@ -3798,7 +3807,7 @@
             <article class="features-panel features-panel-6" role="tabpanel" id="feature-panel-5" aria-labelledby="feature-tab-5" data-feature-panel="5" hidden>
               <div class="features-panel-copy">
                 <span class="offer-tag" data-i18n="o6tag">Сканер</span>
-                <h3 data-i18n="o6t">Умный сканер</h3>
+                <h3 data-i18n="o6t">Быстрый, удобный сканер</h3>
                 <p data-i18n="o6p">Быстрый контроль на входе по QR-кодам. Исключает подделки и повторные проходы.</p>
               </div>
             </article>
@@ -3815,7 +3824,6 @@
               <h2 class="flow-steps-title" data-i18n="flowStepsTitle">Как это работает</h2>
               <p class="flow-steps-lead" data-i18n="flowStepsLead">Пять шагов — от кабинета до сканера на входе.</p>
             </div>
-            <div class="flow-steps-group">
             <div class="flow-steps" aria-label="5 шагов">
               <article class="flow-step">
                 <span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
@@ -3837,7 +3845,6 @@
                 <span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="4" width="14" height="16" rx="2"/><path d="M9 8h6v6H9z"/><path d="M9 17h4"/></svg></span>
                 <p class="flow-step-copy"><strong data-i18n="flow5t">Пропуск гостей</strong> <span data-i18n="flow5d">Сканируйте QR-коды на билетах прямо с телефона. Пропускайте гостей без очередей и списков.</span></p>
               </article>
-            </div>
             </div>
           </div>
           <div class="flow-pitch">
