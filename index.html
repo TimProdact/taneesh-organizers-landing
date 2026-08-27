@@ -1020,7 +1020,101 @@
       min-width: 0;
       overflow: hidden;
     }
-    .admin-events-filters button {
+    .hero-card-admin--static {
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .hero-card-admin--static .admin-sidebar--mini {
+      width: 52px;
+      padding: 10px 6px 12px;
+      align-items: center;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .hero-card-admin--static .admin-sidebar-brand,
+    .hero-card-admin--static .admin-nav-item span {
+      display: none;
+    }
+    .hero-card-admin--static .admin-sidebar-mark {
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      margin: 0 auto 8px;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .hero-card-admin--static .admin-sidebar-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-card-admin--static .admin-nav-item {
+      justify-content: center;
+      padding: 9px 6px;
+      width: 36px;
+      cursor: default;
+    }
+    .hero-card-admin--static .admin-nav-item:hover {
+      background: transparent;
+      color: var(--admin-muted);
+    }
+    .hero-card-admin--static .admin-nav-item.is-active {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+    .hero-card-admin--static .admin-sidebar-spacer {
+      flex: 1;
+      min-height: 8px;
+    }
+    .hero-card-admin--static .admin-sidebar-user {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      display: grid;
+      place-items: center;
+      font-size: 9px;
+      font-weight: 800;
+      color: #fff;
+      margin-top: 4px;
+    }
+    .hero-card-admin--static .admin-main {
+      overflow: hidden;
+    }
+    .hero-card-admin--static .admin-events-proto {
+      height: 100%;
+    }
+    .hero-card-admin--static .admin-events-grid {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 10px;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .hero-card-admin--static .admin-ev-card {
+      width: clamp(118px, 31%, 152px);
+      flex: 0 0 clamp(118px, 31%, 152px);
+      max-height: 100%;
+    }
+    .hero-card-admin--static .admin-ev-cover {
+      aspect-ratio: 4 / 5;
+      width: 100%;
+      flex: 0 0 auto;
+      max-height: none;
+    }
+    .hero-card-admin--static .admin-events-filters span,
+    .hero-card-admin--static .admin-events-add {
+      cursor: default;
+    }
+
+    .admin-events-filters button,
+    .admin-events-filters span.admin-events-filter {
       font-size: 9px;
       font-weight: 600;
       padding: 5px 8px;
@@ -1032,7 +1126,8 @@
       cursor: default;
       font-family: var(--font-ui);
     }
-    .admin-events-filters button.is-on {
+    .admin-events-filters button.is-on,
+    .admin-events-filters span.admin-events-filter.is-on {
       background: rgba(255, 255, 255, 0.12);
       color: #fff;
     }
@@ -3138,330 +3233,110 @@
             </div>
           </aside>
 
-          <aside class="hero-card hero-card-admin" data-dash>
+          <aside class="hero-card hero-card-admin hero-card-admin--static" aria-hidden="true">
             <div class="admin-shell">
-              <nav class="admin-sidebar" data-admin-nav data-i18n-aria="adminNavAria">
-                <div class="admin-sidebar-brand">Taneesh</div>
-                <button type="button" class="admin-nav-item" data-admin-screen="dashboard">
+              <nav class="admin-sidebar admin-sidebar--mini">
+                <div class="admin-sidebar-mark">
+                  <img src="assets/taneesh-logo-white.png" alt="" width="32" height="32" />
+                </div>
+                <div class="admin-nav-item">
                   <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
                   <span data-i18n="adminNavDash">Дашборд</span>
-                </button>
-                <button type="button" class="admin-nav-item is-active" data-admin-screen="events" aria-current="page">
+                </div>
+                <div class="admin-nav-item is-active">
                   <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
                   <span data-i18n="adminNavEvents">Мероприятия</span>
-                </button>
-                <button type="button" class="admin-nav-item" data-admin-screen="crm">
+                </div>
+                <div class="admin-nav-item">
                   <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                   <span data-i18n="adminNavCrm">Аудитория (CRM)</span>
-                </button>
-                <button type="button" class="admin-nav-item" data-admin-screen="controllers">
+                </div>
+                <div class="admin-nav-item">
                   <svg viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/></svg>
                   <span data-i18n="adminNavCtrl">Контролеры</span>
-                </button>
-                <button type="button" class="admin-nav-item" data-admin-screen="finance">
+                </div>
+                <div class="admin-nav-item">
                   <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h2"/></svg>
                   <span data-i18n="adminNavFin">Финансы и документы</span>
-                </button>
-                <button type="button" class="admin-nav-item" data-admin-screen="profile">
-                  <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-                  <span data-i18n="adminNavProfile">Профиль</span>
-                </button>
+                </div>
+                <div class="admin-sidebar-spacer"></div>
+                <div class="admin-sidebar-user">AK</div>
               </nav>
               <div class="admin-main">
-                <div class="dash-viewport is-screen-events" data-dash-scroll>
-                  <div class="admin-screen" data-admin-panel="dashboard" hidden>
-                    <div class="dash-canvas">
-                      <div class="dash-head">
-                        <h3>Дашборд</h3>
-                        <div class="dash-periods" role="tablist" aria-label="Период">
-                          <button type="button" class="on" data-dash-range="today">Сегодня</button>
-                          <button type="button" data-dash-range="week">7 дн.</button>
-                          <button type="button" data-dash-range="month">30 дн.</button>
-                          <button type="button" data-dash-range="all">Всё</button>
-                          <button type="button" class="cal" aria-label="Календарь" tabindex="-1">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
-                          </button>
-                        </div>
-                      </div>
-                      <div class="dash-kpis" data-dash-kpis>
-                        <button type="button" class="dash-kpi is-active" data-dash-kpi="rev">
-                          <div class="label">Выручка <i>$</i></div>
-                          <strong data-k="rev">18.4M UZS</strong>
-                          <em data-k="revDelta">+12% ↑</em>
-                        </button>
-                        <button type="button" class="dash-kpi" data-dash-kpi="tix">
-                          <div class="label">Билеты <i>◎</i></div>
-                          <strong data-k="tix">312</strong>
-                          <em data-k="tixDelta">+8% ↑</em>
-                        </button>
-                        <button type="button" class="dash-kpi" data-dash-kpi="ref">
-                          <div class="label">Возвраты <i>↺</i></div>
-                          <strong data-k="ref">0 UZS</strong>
-                          <em class="flat" data-k="refDelta">0% →</em>
-                        </button>
-                        <button type="button" class="dash-kpi" data-dash-kpi="views">
-                          <div class="label">Просмотры <i>◉</i></div>
-                          <strong data-k="views">9 840</strong>
-                          <em data-k="viewsDelta">+15% ↑</em>
-                        </button>
-                        <button type="button" class="dash-kpi" data-dash-kpi="chk">
-                          <div class="label">Оформление <i>›</i></div>
-                          <strong data-k="chk">2 180</strong>
-                          <em data-k="chkDelta">+11% ↑</em>
-                        </button>
-                        <button type="button" class="dash-kpi" data-dash-kpi="conv">
-                          <div class="label">Конверсия <i>%</i></div>
-                          <strong data-k="conv">3.2%</strong>
-                          <em data-k="convDelta">+0.4% ↑</em>
-                        </button>
-                      </div>
-                      <div class="dash-main">
-                        <h4 data-dash-chart-title>Общая выручка</h4>
-                        <div class="dash-chart">
-                          <div class="dash-chart-y" data-dash-y aria-hidden="true">
-                            <span>12M</span><span>9M</span><span>6M</span><span>3M</span><span>0</span>
-                          </div>
-                          <div class="dash-chart-plot">
-                            <div class="dash-hours" data-dash-bars aria-hidden="true">
-                              <div class="dash-hour"><i style="--h:28%"></i></div>
-                              <div class="dash-hour"><i style="--h:42%"></i></div>
-                              <div class="dash-hour"><i style="--h:55%"></i></div>
-                              <div class="dash-hour"><i style="--h:48%"></i></div>
-                              <div class="dash-hour"><i style="--h:70%"></i></div>
-                              <div class="dash-hour"><i style="--h:88%"></i></div>
-                              <div class="dash-hour"><i style="--h:100%"></i></div>
-                              <div class="dash-hour"><i style="--h:62%"></i></div>
-                            </div>
-                            <div class="dash-chart-x" data-dash-x aria-hidden="true">
-                              <span>08:00</span><span>10:00</span><span>12:00</span><span>14:00</span>
-                              <span>16:00</span><span>18:00</span><span>20:00</span><span>22:00</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="dash-bottom">
-                        <div class="dash-panel">
-                          <h4>Топ мероприятий</h4>
-                          <div data-dash-top>
-                            <div class="dash-top-row"><span class="rank">1</span><span class="name">Summer Open Air</span><span class="rev">6.2M</span></div>
-                            <div class="dash-top-row"><span class="rank">2</span><span class="name">Morning Trek</span><span class="rev">4.1M</span></div>
-                            <div class="dash-top-row"><span class="rank">3</span><span class="name">Networking Meetup</span><span class="rev">2.8M</span></div>
-                            <div class="dash-top-row"><span class="rank">4</span><span class="name">Business Talk</span><span class="rev">1.9M</span></div>
-                          </div>
-                        </div>
-                        <div class="dash-panel">
-                          <h4>Воронка продаж</h4>
-                          <div class="dash-funnel" data-dash-funnel>
-                            <div class="dash-funnel-row">
-                              <div class="meta"><span>Просмотры</span><span data-f="v">100%</span></div>
-                              <div class="bar"><i style="width:100%"></i></div>
-                            </div>
-                            <div class="dash-funnel-row">
-                              <div class="meta"><span>Начали оформление</span><span data-f="c">22.1%</span></div>
-                              <div class="bar"><i style="width:22%"></i></div>
-                            </div>
-                            <div class="dash-funnel-row">
-                              <div class="meta"><span>Оплатили</span><span data-f="p">3.2%</span></div>
-                              <div class="bar"><i style="width:3.2%"></i></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                <div class="admin-events-proto">
+                  <div class="admin-events-toolbar">
+                    <h3 data-i18n="adminEventsTitle">Мероприятия</h3>
+                    <div class="admin-events-filters">
+                      <span class="admin-events-filter is-on" data-i18n="adminEvUpcoming">Предстоящие</span>
+                      <span class="admin-events-filter" data-i18n="adminEvPast">Прошедшие</span>
+                      <span class="admin-events-filter" data-i18n="adminEvDrafts">Черновики</span>
+                      <span class="admin-events-filter" data-i18n="adminEvArchive">Архив</span>
                     </div>
+                    <span class="admin-events-add" data-i18n="adminEvAdd">+ Добавить событие</span>
                   </div>
-
-                  <div class="admin-screen is-active" data-admin-panel="events">
-                    <div class="admin-events-proto">
-                      <div class="admin-events-toolbar">
-                        <h3 data-i18n="adminEventsTitle">Мероприятия</h3>
-                        <div class="admin-events-filters" role="tablist" aria-label="Фильтр">
-                          <button type="button" class="is-on" data-i18n="adminEvUpcoming">Предстоящие</button>
-                          <button type="button" data-i18n="adminEvPast">Прошедшие</button>
-                          <button type="button" data-i18n="adminEvDrafts">Черновики</button>
-                          <button type="button" data-i18n="adminEvArchive">Архив</button>
-                        </div>
-                        <button type="button" class="admin-events-add" data-i18n="adminEvAdd">+ Добавить событие</button>
+                  <div class="admin-events-grid">
+                    <article class="admin-ev-card">
+                      <div class="admin-ev-cover">
+                        <img src="assets/niches/conference.jpg" alt="" data-i18n-alt="adminEv1Alt" />
+                        <span class="admin-ev-status admin-ev-status--pub" data-i18n="adminEvPub">Опубликовано</span>
+                        <span class="admin-ev-date" data-i18n-html="adminEvDate1">Окт.<br />24</span>
                       </div>
-                      <div class="admin-events-grid">
-                        <article class="admin-ev-card">
-                          <div class="admin-ev-cover">
-                            <img src="assets/niches/conference.jpg" alt="" data-i18n-alt="adminEv1Alt" />
-                            <span class="admin-ev-status admin-ev-status--pub" data-i18n="adminEvPub">Опубликовано</span>
-                            <span class="admin-ev-date" data-i18n-html="adminEvDate1">Окт.<br />24</span>
-                          </div>
-                          <div class="admin-ev-body">
-                            <h4 data-i18n="adminEv1Title">Tashkent Digital Marketing Conference 2026</h4>
-                            <p class="admin-ev-meta">
-                              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-                              <span data-i18n="adminEv1Time">10:00</span>
-                            </p>
-                            <p class="admin-ev-meta">
-                              <svg viewBox="0 0 24 24"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-                              <span data-i18n="adminEv1Loc">Hilton Tashkent City</span>
-                            </p>
-                            <span class="admin-ev-type admin-ev-type--paid" data-i18n="adminEvPaid">Платное</span>
-                          </div>
-                        </article>
-                        <article class="admin-ev-card">
-                          <div class="admin-ev-cover">
-                            <img src="assets/features/showcase.jpg" alt="" data-i18n-alt="adminEv2Alt" />
-                            <span class="admin-ev-status admin-ev-status--mod" data-i18n="adminEvMod">На модерации</span>
-                            <span class="admin-ev-date" data-i18n-html="adminEvDate2">Нояб.<br />12</span>
-                          </div>
-                          <div class="admin-ev-body">
-                            <h4 data-i18n="adminEv2Title">Uzbekistan Tech Summit</h4>
-                            <p class="admin-ev-meta">
-                              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-                              <span data-i18n="adminEv2Time">09:30</span>
-                            </p>
-                            <p class="admin-ev-meta">
-                              <svg viewBox="0 0 24 24"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-                              <span data-i18n="adminEv2Loc">UzExpoCenter</span>
-                            </p>
-                            <span class="admin-ev-type admin-ev-type--confirm" data-i18n="adminEvConfirm">С подтверждением</span>
-                          </div>
-                        </article>
-                        <article class="admin-ev-card">
-                          <div class="admin-ev-cover">
-                            <img src="assets/niches/party.jpg" alt="" data-i18n-alt="adminEv3Alt" />
-                            <span class="admin-ev-status admin-ev-status--mod" data-i18n="adminEvMod">На модерации</span>
-                            <span class="admin-ev-date" data-i18n-html="adminEvDate3">Сент.<br />6</span>
-                          </div>
-                          <div class="admin-ev-body">
-                            <h4 data-i18n="adminEv3Title">Community Hackathon</h4>
-                            <p class="admin-ev-meta">
-                              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-                              <span data-i18n="adminEv3Time">11:00</span>
-                            </p>
-                            <p class="admin-ev-meta">
-                              <svg viewBox="0 0 24 24"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-                              <span data-i18n="adminEv3Loc">IT Park Tashkent</span>
-                            </p>
-                            <span class="admin-ev-type admin-ev-type--free" data-i18n="adminEvFree">Бесплатно</span>
-                          </div>
-                        </article>
+                      <div class="admin-ev-body">
+                        <h4 data-i18n="adminEv1Title">Tashkent Digital Marketing Conference 2026</h4>
+                        <p class="admin-ev-meta">
+                          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                          <span data-i18n="adminEv1Time">10:00</span>
+                        </p>
+                        <p class="admin-ev-meta">
+                          <svg viewBox="0 0 24 24"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                          <span data-i18n="adminEv1Loc">Hilton Tashkent City</span>
+                        </p>
+                        <span class="admin-ev-type admin-ev-type--paid" data-i18n="adminEvPaid">Платное</span>
                       </div>
-                    </div>
-                  </div>
-
-                  <div class="admin-screen" data-admin-panel="crm" hidden>
-                    <div class="admin-screen-inner">
-                      <div class="admin-screen-head">
-                        <h3>Аудитория (CRM)</h3>
-                        <span class="hint">842 контакта</span>
+                    </article>
+                    <article class="admin-ev-card">
+                      <div class="admin-ev-cover">
+                        <img src="assets/features/showcase.jpg" alt="" data-i18n-alt="adminEv2Alt" />
+                        <span class="admin-ev-status admin-ev-status--mod" data-i18n="adminEvMod">На модерации</span>
+                        <span class="admin-ev-date" data-i18n-html="adminEvDate2">Нояб.<br />12</span>
                       </div>
-                      <div class="admin-crm-table">
-                        <div class="admin-crm-head">
-                          <span>Имя</span><span>Телефон</span><span>Билеты</span>
-                        </div>
-                        <div class="admin-crm-row">
-                          <span class="name">Алишер К.</span><span>+998 90 123 45 67</span><span class="tix">4</span>
-                        </div>
-                        <div class="admin-crm-row">
-                          <span class="name">Дилноза М.</span><span>+998 91 234 56 78</span><span class="tix">2</span>
-                        </div>
-                        <div class="admin-crm-row">
-                          <span class="name">Бахром Т.</span><span>+998 93 345 67 89</span><span class="tix">6</span>
-                        </div>
-                        <div class="admin-crm-row">
-                          <span class="name">Мадина S.</span><span>+998 97 456 78 90</span><span class="tix">1</span>
-                        </div>
-                        <div class="admin-crm-row">
-                          <span class="name">Жасур R.</span><span>+998 99 567 89 01</span><span class="tix">3</span>
-                        </div>
+                      <div class="admin-ev-body">
+                        <h4 data-i18n="adminEv2Title">Uzbekistan Tech Summit</h4>
+                        <p class="admin-ev-meta">
+                          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                          <span data-i18n="adminEv2Time">09:30</span>
+                        </p>
+                        <p class="admin-ev-meta">
+                          <svg viewBox="0 0 24 24"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                          <span data-i18n="adminEv2Loc">UzExpoCenter</span>
+                        </p>
+                        <span class="admin-ev-type admin-ev-type--confirm" data-i18n="adminEvConfirm">С подтверждением</span>
                       </div>
-                    </div>
-                  </div>
-
-                  <div class="admin-screen" data-admin-panel="controllers" hidden>
-                    <div class="admin-screen-inner">
-                      <div class="admin-screen-head">
-                        <h3>Контролеры</h3>
-                        <span class="hint">3 активных</span>
+                    </article>
+                    <article class="admin-ev-card">
+                      <div class="admin-ev-cover">
+                        <img src="assets/niches/party.jpg" alt="" data-i18n-alt="adminEv3Alt" />
+                        <span class="admin-ev-status admin-ev-status--mod" data-i18n="adminEvMod">На модерации</span>
+                        <span class="admin-ev-date" data-i18n-html="adminEvDate3">Сент.<br />6</span>
                       </div>
-                      <div class="admin-ctrl-grid">
-                        <div class="admin-ctrl-card">
-                          <div class="avatar">AK</div>
-                          <strong>Алишер К.</strong>
-                          <div class="stat">Сканов сегодня<em>142</em></div>
-                        </div>
-                        <div class="admin-ctrl-card">
-                          <div class="avatar">DM</div>
-                          <strong>Дилноза М.</strong>
-                          <div class="stat">Сканов сегодня<em>98</em></div>
-                        </div>
-                        <div class="admin-ctrl-card">
-                          <div class="avatar">BT</div>
-                          <strong>Бахром Т.</strong>
-                          <div class="stat">Сканов сегодня<em>76</em></div>
-                        </div>
+                      <div class="admin-ev-body">
+                        <h4 data-i18n="adminEv3Title">Community Hackathon</h4>
+                        <p class="admin-ev-meta">
+                          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                          <span data-i18n="adminEv3Time">11:00</span>
+                        </p>
+                        <p class="admin-ev-meta">
+                          <svg viewBox="0 0 24 24"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                          <span data-i18n="adminEv3Loc">IT Park Tashkent</span>
+                        </p>
+                        <span class="admin-ev-type admin-ev-type--free" data-i18n="adminEvFree">Бесплатно</span>
                       </div>
-                    </div>
-                  </div>
-
-                  <div class="admin-screen" data-admin-panel="finance" hidden>
-                    <div class="admin-screen-inner">
-                      <div class="admin-screen-head">
-                        <h3>Финансы и документы</h3>
-                        <span class="hint">Обновлено сегодня</span>
-                      </div>
-                      <div class="admin-fin-summary">
-                        <div class="admin-fin-card">
-                          <div class="label">Баланс к выплате</div>
-                          <strong>48.6M UZS</strong>
-                          <em>+12% за неделю</em>
-                        </div>
-                        <div class="admin-fin-card">
-                          <div class="label">Удержано комиссии</div>
-                          <strong>2.1M UZS</strong>
-                          <em>4.2% от оборота</em>
-                        </div>
-                      </div>
-                      <div class="admin-fin-payout">
-                        <div class="meta">
-                          <strong>Выплата · Summer Open Air</strong>
-                          <span>Расчётный счёт · ООО «Event Pro»</span>
-                        </div>
-                        <span class="amount">18.4M UZS</span>
-                      </div>
-                      <div class="admin-fin-payout">
-                        <div class="meta">
-                          <strong>Акт за август 2026</strong>
-                          <span>PDF · подписан электронно</span>
-                        </div>
-                        <span class="amount">Скачать</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="admin-screen" data-admin-panel="profile" hidden>
-                    <div class="admin-screen-inner">
-                      <div class="admin-screen-head">
-                        <h3>Профиль</h3>
-                      </div>
-                      <div class="admin-profile-card">
-                        <div class="admin-profile-org">
-                          <div class="logo">EP</div>
-                          <div class="info">
-                            <strong>Event Pro Tashkent</strong>
-                            <span>Организатор · с 2024</span>
-                          </div>
-                        </div>
-                        <span class="admin-verified">
-                          <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-                          Верифицирован
-                        </span>
-                        <div class="admin-profile-slug">
-                          <span>Публичная витрина</span>
-                          <code>taneesh.uz/event-pro</code>
-                        </div>
-                      </div>
-                    </div>
+                    </article>
                   </div>
                 </div>
               </div>
             </div>
-          </aside>
+          </aside>          </aside>
         </div>
       </div>
     </section>
