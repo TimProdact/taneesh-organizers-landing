@@ -4000,12 +4000,6 @@
     }
 
     /* Audience / fees: self-contained cards, no outer shell */
-    .phone #audience .bento-cats .tile {
-      background: var(--bg-1) !important;
-      box-shadow: var(--hairline), var(--shadow-soft) !important;
-      border-radius: var(--radius-xl) !important;
-      overflow: hidden;
-    }
     .phone #fees .fees-punch,
     .phone #fees .fees-panel {
       background: var(--bg-1) !important;
@@ -4014,6 +4008,236 @@
     }
     .phone #fees .fees-punch {
       background: linear-gradient(145deg, #0d2818, #121212) !important;
+    }
+
+    /* Audience: Tana-style glass cards */
+    .phone #audience.audience-reel {
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 0%, #ffffff 0%, transparent 55%),
+        radial-gradient(ellipse 70% 45% at 90% 100%, #ebe4da 0%, transparent 50%),
+        linear-gradient(180deg, #f7f4ef 0%, #f1ebe3 100%) !important;
+    }
+    .phone #audience .section-head h2 {
+      color: #1c1917 !important;
+      font-family: var(--font-display) !important;
+      font-weight: 400 !important;
+      letter-spacing: -.02em !important;
+    }
+    .phone #audience .aud-cards {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      width: 100%;
+    }
+    .phone #audience .aud-card {
+      position: relative;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow:
+        0 1px 0 rgba(255,255,255,.55) inset,
+        0 18px 40px rgba(28, 25, 23, .10);
+    }
+    .phone #audience .aud-visual {
+      flex: 1 1 auto;
+      min-height: 160px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 22px 18px 8px;
+    }
+    .phone #audience .aud-copy {
+      flex: 0 0 auto;
+      padding: 8px 20px 22px;
+      display: grid;
+      gap: 6px;
+    }
+    .phone #audience .aud-tag {
+      justify-self: start;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.78);
+      background: rgba(28,25,23,.22);
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 999px;
+      padding: 4px 10px;
+      backdrop-filter: blur(8px);
+    }
+    .phone #audience .aud-tag.dark {
+      color: rgba(28,25,23,.55);
+      background: rgba(255,255,255,.55);
+      border-color: rgba(28,25,23,.08);
+    }
+    .phone #audience .aud-copy h3 {
+      margin: 0;
+      font-family: var(--font-display) !important;
+      font-weight: 400 !important;
+      font-size: clamp(22px, 3.2vw, 30px) !important;
+      line-height: 1.1 !important;
+      letter-spacing: -.02em;
+      color: #fff !important;
+    }
+    .phone #audience .aud-card-stack .aud-copy h3 {
+      color: #1c1917 !important;
+    }
+    .phone #audience .aud-copy p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.45;
+      color: rgba(255,255,255,.78);
+      max-width: 32ch;
+    }
+    .phone #audience .aud-card-stack .aud-copy p {
+      color: rgba(28,25,23,.55);
+    }
+
+    /* Card 1 — mesh gradient + glass icons */
+    .phone #audience .aud-card-mesh {
+      background:
+        radial-gradient(ellipse 70% 55% at 15% 20%, #ffd39a 0%, transparent 55%),
+        radial-gradient(ellipse 65% 50% at 85% 15%, #86efac 0%, transparent 50%),
+        radial-gradient(ellipse 60% 50% at 70% 85%, #7dd3fc 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 20% 80%, #fdba74 0%, transparent 50%),
+        linear-gradient(155deg, #f59e0b 0%, #34d399 45%, #38bdf8 100%);
+    }
+    .phone #audience .aud-icons {
+      display: grid;
+      grid-template-columns: repeat(3, 56px);
+      gap: 10px;
+      transform: rotate(-2deg);
+    }
+    .phone #audience .aud-icon {
+      width: 56px; height: 56px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      color: rgba(255,255,255,.92);
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.35);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,.35) inset,
+        0 10px 24px rgba(28,25,23,.12);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .phone #audience .aud-icon:nth-child(2) { transform: translateY(-6px); }
+    .phone #audience .aud-icon:nth-child(3) { transform: translateY(4px); }
+    .phone #audience .aud-icon:nth-child(4) { transform: translateY(2px); }
+    .phone #audience .aud-icon:nth-child(5) { transform: translateY(-4px); }
+    .phone #audience .aud-icon svg { width: 22px; height: 22px; }
+
+    /* Card 2 — soft pastel + stacked glass */
+    .phone #audience .aud-card-stack {
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 10%, #ffffff 0%, transparent 50%),
+        radial-gradient(ellipse 70% 55% at 90% 80%, #e9d5ff 0%, transparent 55%),
+        linear-gradient(165deg, #f5f0ff 0%, #ede4f7 50%, #e8e0f2 100%);
+    }
+    .phone #audience .aud-stack {
+      position: relative;
+      width: min(100%, 240px);
+      height: 168px;
+    }
+    .phone #audience .aud-glass {
+      position: absolute;
+      left: 0; right: 0;
+      border-radius: 18px;
+      background: rgba(255,255,255,.42);
+      border: 1px solid rgba(255,255,255,.65);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,.7) inset,
+        0 14px 32px rgba(28,25,23,.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .phone #audience .aud-glass-back {
+      top: 0; height: 110px;
+      transform: scale(.88) translateY(0);
+      opacity: .55;
+    }
+    .phone #audience .aud-glass-mid {
+      top: 18px; height: 118px;
+      transform: scale(.94);
+      opacity: .78;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .phone #audience .aud-glass-front {
+      top: 42px; height: 126px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: rgba(255,255,255,.62);
+    }
+    .phone #audience .aud-pill {
+      align-self: flex-end;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 3px 8px;
+    }
+    .phone #audience .aud-pill.soft {
+      color: #6b21a8;
+      background: rgba(216,180,254,.45);
+    }
+    .phone #audience .aud-pill.accent {
+      color: #166534;
+      background: rgba(134,239,172,.55);
+    }
+    .phone #audience .aud-glass-lines {
+      display: grid; gap: 6px; margin-top: 8px;
+    }
+    .phone #audience .aud-glass-lines i {
+      display: block; height: 6px; border-radius: 99px;
+      background: rgba(28,25,23,.08);
+    }
+    .phone #audience .aud-glass-lines i:nth-child(1) { width: 72%; }
+    .phone #audience .aud-glass-lines i:nth-child(2) { width: 48%; }
+    .phone #audience .aud-glass-lines i:nth-child(3) { width: 60%; }
+    .phone #audience .aud-glass-front strong {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1c1917;
+      letter-spacing: -.01em;
+    }
+    .phone #audience .aud-glass-front ul {
+      margin: 2px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 3px;
+    }
+    .phone #audience .aud-glass-front li {
+      font-size: 11px;
+      color: rgba(28,25,23,.55);
+      font-weight: 500;
+    }
+    @media (max-width: 560px) {
+      .phone #audience .aud-cards {
+        grid-template-columns: 1fr;
+      }
+      .phone #audience .aud-card {
+        min-height: 280px;
+      }
+      .phone #audience .aud-icons {
+        grid-template-columns: repeat(3, 48px);
+        gap: 8px;
+      }
+      .phone #audience .aud-icon {
+        width: 48px; height: 48px; border-radius: 14px;
+      }
     }
 
     /* Design-system polish (Spotify × Linear × Revolut) */
@@ -4306,12 +4530,12 @@
       }
     }
 
-    /* Hero glass cards: admin + storefront */
+    /* Hero product window: admin + storefront (Tana-style) */
     .phone #slide-hero .wrap.board.board-hero {
       display: flex !important;
       flex-direction: row !important;
       align-items: stretch !important;
-      gap: 22px !important;
+      gap: 20px !important;
       grid-template-columns: none !important;
       grid-template-rows: none !important;
       height: 100% !important;
@@ -4321,200 +4545,326 @@
     .phone #slide-hero .board-hero .cell-story {
       grid-column: auto !important;
       grid-row: auto !important;
-      flex: 0 0 clamp(220px, 30%, 360px);
-      max-width: 360px;
+      flex: 0 0 clamp(240px, 32%, 380px);
+      max-width: 380px;
       padding: 8px 4px 0 !important;
       justify-content: center !important;
     }
-    .phone #slide-hero .hero-glass {
+    .phone #slide-hero .hero-window {
       flex: 1 1 auto;
       min-width: 0;
       min-height: 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-    .phone #slide-hero .glass-card {
-      position: relative;
-      min-height: 0;
       display: flex;
       flex-direction: column;
-      border-radius: 28px;
+      border-radius: 22px;
+      background: #fff;
+      border: 10px solid #fff;
+      box-shadow:
+        0 0 0 1px rgba(28, 25, 23, .06),
+        0 24px 60px rgba(28, 25, 23, .14),
+        0 4px 12px rgba(28, 25, 23, .06);
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,.55);
-      box-shadow:
-        0 1px 0 rgba(255,255,255,.65) inset,
-        0 18px 48px rgba(28, 25, 23, .1);
     }
-    .phone #slide-hero .glass-stage {
-      flex: 1 1 auto;
-      min-height: 0;
-      position: relative;
-      padding: 18px 16px 8px;
-    }
-    .phone #slide-hero .glass-copy {
+    .phone #slide-hero .hero-window-chrome {
       flex: 0 0 auto;
-      padding: 6px 20px 22px;
-      color: #1c1917;
-    }
-    .phone #slide-hero .glass-copy h3 {
-      margin: 0 0 6px;
-      font-family: var(--font-display);
-      font-weight: 400;
-      font-size: clamp(22px, 2.6vw, 30px);
-      letter-spacing: -.02em;
-      line-height: 1.1;
-    }
-    .phone #slide-hero .glass-copy p {
-      margin: 0;
-      font-size: 13px;
-      line-height: 1.45;
-      color: rgba(28,25,23,.58);
-      max-width: 28ch;
-    }
-
-    /* Admin card — warm mesh + floating glass tiles */
-    .phone #slide-hero .glass-admin {
-      background:
-        radial-gradient(ellipse 70% 55% at 18% 22%, #ffd6a8 0%, transparent 55%),
-        radial-gradient(ellipse 65% 50% at 88% 18%, #f9a8d4 0%, transparent 50%),
-        radial-gradient(ellipse 70% 55% at 70% 85%, #86efac 0%, transparent 55%),
-        radial-gradient(ellipse 50% 40% at 40% 60%, #fde68a 0%, transparent 60%),
-        linear-gradient(160deg, #ffc4a0 0%, #f4c4d4 45%, #d4f0c8 100%);
-    }
-    .phone #slide-hero .glass-admin .glass-icons {
-      height: 100%;
-      min-height: 180px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-      gap: 10px;
-      place-items: center;
-      padding: 8px 4px;
-    }
-    .phone #slide-hero .glass-admin .g-tile {
-      width: clamp(44px, 5.2vw, 58px);
-      height: clamp(44px, 5.2vw, 58px);
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      color: rgba(255,255,255,.92);
-      background: rgba(255,255,255,.22);
-      border: 1px solid rgba(255,255,255,.45);
-      box-shadow:
-        0 10px 28px rgba(28,25,23,.08),
-        inset 0 1px 0 rgba(255,255,255,.5);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      animation: glassFloat 5.5s ease-in-out infinite;
-    }
-    .phone #slide-hero .glass-admin .g-tile svg {
-      width: 22px; height: 22px;
-    }
-    .phone #slide-hero .glass-admin .g-tile:nth-child(1) { margin: 6px 0 0 4px; animation-delay: 0s; }
-    .phone #slide-hero .glass-admin .g-tile:nth-child(2) { margin: -8px 0 0 -2px; animation-delay: .4s; }
-    .phone #slide-hero .glass-admin .g-tile:nth-child(3) { margin: 2px 0 0 6px; animation-delay: .8s; }
-    .phone #slide-hero .glass-admin .g-tile:nth-child(4) { margin: 4px 0 0 -6px; animation-delay: .2s; }
-    .phone #slide-hero .glass-admin .g-tile:nth-child(5) { margin: -4px 0 0 2px; animation-delay: 1s; width: clamp(52px, 6vw, 68px); height: clamp(52px, 6vw, 68px); }
-    .phone #slide-hero .glass-admin .g-tile:nth-child(6) { margin: 8px 0 0 4px; animation-delay: .6s; }
-    .phone #slide-hero .glass-admin .g-tile:nth-child(7) { margin: -2px 0 0 8px; animation-delay: 1.2s; }
-    .phone #slide-hero .glass-admin .g-tile:nth-child(8) { margin: 6px 0 0 -4px; animation-delay: .3s; }
-    .phone #slide-hero .glass-admin .g-tile:nth-child(9) { margin: -6px 0 0 0; animation-delay: .9s; }
-    @keyframes glassFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-
-    /* Storefront card — soft lilac + stacked glass sheets */
-    .phone #slide-hero .glass-store {
-      background:
-        radial-gradient(ellipse 80% 60% at 20% 15%, #e9d5ff 0%, transparent 50%),
-        radial-gradient(ellipse 70% 55% at 90% 30%, #ddd6fe 0%, transparent 55%),
-        radial-gradient(ellipse 60% 50% at 50% 90%, #fce7f3 0%, transparent 55%),
-        linear-gradient(165deg, #f5f3ff 0%, #ede9fe 48%, #faf5ff 100%);
-    }
-    .phone #slide-hero .glass-stack {
       position: relative;
-      height: 100%;
-      min-height: 180px;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 6px 4px;
+      height: 36px;
+      padding: 0 12px;
+      background: #fff;
     }
-    .phone #slide-hero .glass-sheet {
+    .phone #slide-hero .hero-window-dots {
       position: absolute;
-      left: 50%;
-      width: min(88%, 240px);
-      border-radius: 18px;
-      background: rgba(255,255,255,.42);
-      border: 1px solid rgba(255,255,255,.7);
-      box-shadow: 0 16px 40px rgba(28,25,23,.08);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      padding: 14px 14px 12px;
-      color: #1c1917;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      gap: 6px;
     }
-    .phone #slide-hero .glass-sheet.back {
-      top: 18%;
-      transform: translateX(-42%) rotate(-6deg) scale(.94);
-      opacity: .55;
-      z-index: 1;
+    .phone #slide-hero .hero-window-chrome .dot {
+      width: 10px; height: 10px; border-radius: 50%;
     }
-    .phone #slide-hero .glass-sheet.mid {
-      top: 26%;
-      transform: translateX(-58%) rotate(5deg) scale(.96);
-      opacity: .7;
-      z-index: 2;
-    }
-    .phone #slide-hero .glass-sheet.front {
-      top: 22%;
-      transform: translateX(-50%);
-      z-index: 3;
-      background: rgba(255,255,255,.62);
-    }
-    .phone #slide-hero .glass-sheet .tag {
+    .phone #slide-hero .hero-window-chrome .dot.r { background: #ff5f57; }
+    .phone #slide-hero .hero-window-chrome .dot.y { background: #febc2e; }
+    .phone #slide-hero .hero-window-chrome .dot.g { background: #28c840; }
+    .phone #slide-hero .hero-window-title {
       display: inline-flex;
       align-items: center;
-      margin-bottom: 8px;
-      padding: 3px 9px;
-      border-radius: 999px;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .02em;
-      color: #fff;
-      background: #7c3aed;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #1c1917;
+      letter-spacing: -.02em;
     }
-    .phone #slide-hero .glass-sheet .tag.green { background: #16a34a; }
-    .phone #slide-hero .glass-sheet .tag.rose { background: #e11d48; }
-    .phone #slide-hero .glass-sheet strong {
-      display: block;
-      font-size: 14px;
+    .phone #slide-hero .hero-window-title .mark {
+      width: 14px; height: 14px; border-radius: 4px;
+      background:
+        conic-gradient(from 210deg, #7dd3fc, #f9a8d4, #fde68a, #86efac, #7dd3fc);
+      box-shadow: 0 0 0 1px rgba(28,25,23,.06);
+    }
+    .phone #slide-hero .hero-window-body {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 1.35fr 0.9fr;
+      gap: 10px;
+      padding: 0 10px 10px;
+      background: #fff;
+    }
+    .phone #slide-hero .hero-pane-admin {
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: #f4f4f5;
+      border-radius: 16px;
+      padding: 10px;
+    }
+    .phone #slide-hero .admin-grid {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1.35fr 1fr;
+      gap: 8px;
+    }
+    .phone #slide-hero .admin-tile {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #1c1917;
+      color: #fff;
+      min-height: 0;
+    }
+    .phone #slide-hero .admin-tile-main {
+      grid-column: 1 / -1;
+      background:
+        linear-gradient(180deg, transparent 40%, rgba(0,0,0,.72)),
+        radial-gradient(ellipse 80% 60% at 70% 20%, #3f3f46 0%, transparent 55%),
+        linear-gradient(145deg, #27272a, #18181b 60%, #0c0c0d);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 4px;
+    }
+    .phone #slide-hero .admin-tile-main .badge {
+      position: absolute;
+      top: 10px; left: 10px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #1ed760;
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(30,215,96,.35);
+      border-radius: 999px;
+      padding: 3px 8px;
+      backdrop-filter: blur(6px);
+    }
+    .phone #slide-hero .admin-tile-main strong {
+      font-size: 15px;
       font-weight: 700;
       letter-spacing: -.02em;
-      margin-bottom: 4px;
     }
-    .phone #slide-hero .glass-sheet span {
-      display: block;
-      font-size: 11px;
-      line-height: 1.4;
-      color: rgba(28,25,23,.55);
+    .phone #slide-hero .admin-tile-main .kpis {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 10px;
+      color: rgba(255,255,255,.72);
     }
-    .phone #slide-hero .glass-sheet .meta {
-      margin-top: 10px;
+    .phone #slide-hero .admin-tile-main .kpis b {
+      color: #fff;
+      font-weight: 700;
+    }
+    .phone #slide-hero .admin-tile-sm {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: #fff;
+      color: #1c1917;
+      border: 1px solid rgba(28,25,23,.06);
+    }
+    .phone #slide-hero .admin-tile-sm .cap {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: rgba(28,25,23,.42);
+    }
+    .phone #slide-hero .admin-tile-sm .row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 11px;
-      font-weight: 650;
-      color: #1c1917;
+      gap: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(28,25,23,.06);
     }
-    .phone #slide-hero .glass-sheet .meta em {
+    .phone #slide-hero .admin-tile-sm .row:last-child { border-bottom: none; }
+    .phone #slide-hero .admin-tile-sm .row em {
       font-style: normal;
       color: rgba(28,25,23,.45);
       font-weight: 500;
     }
+    .phone #slide-hero .admin-tile-sm .row.on b { color: #16a34a; }
+    .phone #slide-hero .admin-tile-scan {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 8px;
+      background:
+        radial-gradient(circle at 50% 40%, #ecfdf5, #fff 60%);
+    }
+    .phone #slide-hero .admin-tile-scan .qr {
+      width: 52px; height: 52px;
+      border-radius: 10px;
+      background:
+        repeating-linear-gradient(90deg, #1c1917 0 3px, transparent 3px 6px),
+        repeating-linear-gradient(#1c1917 0 3px, transparent 3px 6px);
+      background-size: 100% 100%;
+      opacity: .85;
+      box-shadow: inset 0 0 0 6px #fff, 0 0 0 1px rgba(28,25,23,.08);
+    }
+    .phone #slide-hero .admin-tile-scan .cap { margin-top: 2px; }
+    .phone #slide-hero .admin-tile-scan .hint {
+      font-size: 10px;
+      font-weight: 600;
+      color: #1c1917;
+    }
+    .phone #slide-hero .admin-toolbar {
+      flex: 0 0 auto;
+      align-self: center;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(28,25,23,.08);
+      box-shadow: 0 8px 20px rgba(28,25,23,.08);
+    }
+    .phone #slide-hero .admin-toolbar span {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: rgba(28,25,23,.55);
+      background: transparent;
+    }
+    .phone #slide-hero .admin-toolbar span svg {
+      width: 14px; height: 14px;
+    }
+    .phone #slide-hero .admin-toolbar span.end {
+      background: #ef4444;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(239,68,68,.35);
+    }
 
+    .phone #slide-hero .hero-pane-store {
+      min-height: 0;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      padding: 14px 12px 12px;
+      display: flex;
+      flex-direction: column;
+      background:
+        radial-gradient(ellipse 90% 70% at 15% 20%, #9ec9ff 0%, transparent 55%),
+        radial-gradient(ellipse 80% 60% at 90% 25%, #ffd0b5 0%, transparent 50%),
+        radial-gradient(ellipse 70% 55% at 55% 95%, #f7a8d8 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 40% 55%, #fde68a 0%, transparent 60%),
+        linear-gradient(165deg, #cfe4ff 0%, #f3d5c4 48%, #efc0dc 100%);
+    }
+    .phone #slide-hero .store-pills {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      justify-content: center;
+      padding: 4px 2px 10px;
+    }
+    .phone #slide-hero .store-pill {
+      align-self: flex-start;
+      max-width: 92%;
+      padding: 9px 12px;
+      border-radius: 14px;
+      background: rgba(36, 36, 40, .82);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 550;
+      line-height: 1.25;
+      box-shadow: 0 10px 24px rgba(28, 25, 23, .16);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      animation: storePillIn .7s ease both;
+    }
+    .phone #slide-hero .store-pill:nth-child(1) { animation-delay: .05s; }
+    .phone #slide-hero .store-pill:nth-child(2) { margin-left: 14px; animation-delay: .18s; }
+    .phone #slide-hero .store-pill:nth-child(3) { margin-left: 4px; animation-delay: .32s; }
+    .phone #slide-hero .store-pill:nth-child(4) { margin-left: 18px; animation-delay: .46s; }
+    .phone #slide-hero .store-pill:nth-child(5) { margin-left: 8px; animation-delay: .6s; }
+    @keyframes storePillIn {
+      from { opacity: 0; transform: translateY(8px) scale(.98); }
+      to { opacity: 1; transform: none; }
+    }
+    .phone #slide-hero .store-ask {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 8px 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(255,255,255,.55);
+      box-shadow: 0 8px 24px rgba(28,25,23,.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .phone #slide-hero .store-ask .plus,
+    .phone #slide-hero .store-ask .mic,
+    .phone #slide-hero .store-ask .send {
+      flex: 0 0 auto;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: rgba(28,25,23,.55);
+    }
+    .phone #slide-hero .store-ask .send {
+      background: #1c1917;
+      color: #fff;
+    }
+    .phone #slide-hero .store-ask .plus svg,
+    .phone #slide-hero .store-ask .mic svg,
+    .phone #slide-hero .store-ask .send svg {
+      width: 13px; height: 13px;
+    }
+    .phone #slide-hero .store-ask .ph {
+      flex: 1 1 auto;
+      min-width: 0;
+      font-size: 11px;
+      color: rgba(28,25,23,.45);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .phone #slide-hero .store-agent {
+      position: absolute;
+      left: 14px;
+      bottom: 52px;
+      font-size: 10px;
+      font-weight: 500;
+      color: rgba(255,255,255,.85);
+      text-shadow: 0 1px 8px rgba(0,0,0,.2);
+      pointer-events: none;
+    }
     @media (max-width: 720px) {
       .phone #slide-hero .wrap.board.board-hero {
         flex-direction: column !important;
@@ -4524,20 +4874,17 @@
         flex: 0 0 auto;
         max-width: none;
       }
-      .phone #slide-hero .hero-glass {
-        min-height: 340px;
+      .phone #slide-hero .hero-window {
+        min-height: 320px;
       }
-      .phone #slide-hero .glass-copy h3 { font-size: 22px; }
-      .phone #slide-hero .glass-copy p { font-size: 12px; }
     }
     @media (max-width: 420px) {
-      .phone #slide-hero .hero-glass {
+      .phone #slide-hero .hero-window-body {
         grid-template-columns: 1fr;
-        min-height: 0;
+        grid-template-rows: 1.1fr 0.9fr;
       }
-      .phone #slide-hero .glass-card { min-height: 260px; }
-      .phone #slide-hero .glass-admin .glass-icons { min-height: 140px; }
-      .phone #slide-hero .glass-stack { min-height: 140px; }
+      .phone #slide-hero .hero-pane-store { min-height: 160px; }
+      .phone #slide-hero .store-agent { display: none; }
     }
 
   </style>
@@ -4590,53 +4937,78 @@
           <span class="hero-note" data-i18n="heroNote">Без абонентки · подключение за 5 минут</span>
         </article>
 
-        <div class="hero-glass" aria-hidden="true">
-          <article class="glass-card glass-admin">
-            <div class="glass-stage">
-              <div class="glass-icons">
-                <span class="g-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 19c1.2-3 3.6-4.5 6.5-4.5S17.8 16 19 19"/></svg></span>
-                <span class="g-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 6h16v12H4z"/><path d="M4 10h16"/></svg></span>
-                <span class="g-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M8 4h8v16H8z"/><path d="M11 8h2M11 12h2M11 16h2"/></svg></span>
-                <span class="g-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 12l4 4L19 6"/></svg></span>
-                <span class="g-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16"/></svg></span>
-                <span class="g-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7h16M4 12h16M4 17h10"/></svg></span>
-                <span class="g-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 19V9M12 19V5M20 19v-7"/></svg></span>
-                <span class="g-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="5" width="14" height="14" rx="3"/><path d="M9 12h6M12 9v6"/></svg></span>
-                <span class="g-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l2.2 4.5L19 8.2l-3.5 3.4.8 4.9L12 14.8 7.7 16.5l.8-4.9L5 8.2l4.8-.7L12 3z"/></svg></span>
-              </div>
+        <div class="hero-window" aria-hidden="true">
+          <div class="hero-window-chrome">
+            <div class="hero-window-dots">
+              <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
             </div>
-            <div class="glass-copy">
-              <h3 data-i18n="winAdmin">Админка</h3>
-              <p data-i18n="winAdminDesc">Тарифы, сканер, гости и оборот — один кабинет без абонентки.</p>
-            </div>
-          </article>
-
-          <article class="glass-card glass-store">
-            <div class="glass-stage">
-              <div class="glass-stack">
-                <div class="glass-sheet back">
-                  <span class="tag green" data-i18n="winTagLive">Live</span>
-                  <strong data-i18n="winSheetBackTitle">Пуш гостю</strong>
-                  <span data-i18n="winSheetBackDesc">«Ждём вас» — напомним перед ивентом.</span>
-                </div>
-                <div class="glass-sheet mid">
-                  <span class="tag" data-i18n="winTagPay">Оплата</span>
-                  <strong data-i18n="winSheetMidTitle">Humo · 630 сум</strong>
-                  <span data-i18n="winSheetMidDesc">Оплата в браузере — без установки приложения.</span>
-                </div>
-                <div class="glass-sheet front">
-                  <span class="tag rose" data-i18n="winTagTicket">Билет</span>
+            <span class="hero-window-title"><i class="mark" aria-hidden="true"></i>taneesh</span>
+          </div>
+          <div class="hero-window-body">
+            <div class="hero-pane-admin">
+              <div class="admin-grid">
+                <div class="admin-tile admin-tile-main">
+                  <span class="badge" data-i18n="winAdmin">Админка</span>
                   <strong data-i18n="winAdminTitle">Weekend Stand-up</strong>
-                  <span data-i18n="winSheetFrontDesc">QR готов. Гость открывает витрину и покупает в 2 клика.</span>
-                  <div class="meta"><em data-i18n="winSheetMeta">28 авг · 16:00</em><b>630 сум</b></div>
+                  <div class="kpis">
+                    <span><b>128</b> <span data-i18n="winSold">продано</span></span>
+                    <span><b>1.2M</b> <span data-i18n="winRevenue">оборот</span></span>
+                    <span><b>94%</b> <span data-i18n="winConv">конверсия</span></span>
+                  </div>
+                </div>
+                <div class="admin-tile admin-tile-sm">
+                  <span class="cap" data-i18n="winTickets">Тарифы</span>
+                  <div class="row"><b>У сцены</b><em>1 000</em></div>
+                  <div class="row"><b>Центр</b><em>900</em></div>
+                  <div class="row on"><b>Дальний</b><em>630</em></div>
+                </div>
+                <div class="admin-tile admin-tile-sm admin-tile-scan">
+                  <div class="qr" aria-hidden="true"></div>
+                  <span class="cap" data-i18n="winScan">Сканер</span>
+                  <span class="hint" data-i18n="winScanHint">68 / 70 прошли</span>
                 </div>
               </div>
+              <div class="admin-toolbar" aria-hidden="true">
+                <span title="Events">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+                </span>
+                <span title="Tickets">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9a2 2 0 012-2h14a2 2 0 012 2v2a2 2 0 00-2 2 2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2a2 2 0 002-2 2 2 0 00-2-2V9z"/><path d="M9 7v10"/></svg>
+                </span>
+                <span title="Stats">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V9M12 19V5M20 19v-7"/></svg>
+                </span>
+                <span title="Team">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><circle cx="16" cy="9" r="2.5"/><path d="M3 19c0-2.8 2.7-5 6-5s6 2.2 6 5M14 19c0-1.8 1.6-3.2 3.5-3.5"/></svg>
+                </span>
+                <span class="end" title="Live">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
+                </span>
+              </div>
             </div>
-            <div class="glass-copy">
-              <h3 data-i18n="winStore">Витрина</h3>
-              <p data-i18n="winStoreDesc">Личная страница ивента и smart-link — одна ссылка в соцсети.</p>
+            <div class="hero-pane-store">
+              <div class="store-pills">
+                <div class="store-pill" data-i18n="winPill1">Оплата прошла · Humo</div>
+                <div class="store-pill" data-i18n="winPill2">Билет выпущен · QR готов</div>
+                <div class="store-pill" data-i18n="winPill3">Пуш гостю · «Ждём вас»</div>
+                <div class="store-pill" data-i18n="winPill4">Гость в пути</div>
+                <div class="store-pill" data-i18n="winPill5">Скан на входе ✓</div>
+              </div>
+              <span class="store-agent" data-i18n="winAgent">Taneesh · Витрина</span>
+              <div class="store-ask">
+                <span class="plus" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+                <span class="ph" data-i18n="winAsk">Спросить агента витрины</span>
+                <span class="mic" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg>
+                </span>
+                <span class="send" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+                </span>
+              </div>
             </div>
-          </article>
+          </div>
         </div>
       </div>
     </section>
@@ -4731,28 +5103,66 @@
       </div>
     </section>
 
-    <section class="reel" id="audience" data-slide>
+    <section class="reel audience-reel" id="audience" data-slide>
       <div class="wrap fill-screen">
         <div class="section-head reveal">
           <h2 data-i18n="audTitle">Для кого</h2>
         </div>
-        <div class="bento-cats reveal">
-          <article class="tile">
-            <img class="tile-media" src="assets/audience-small-org.jpg" data-i18n-alt="audSmallAlt" alt="Небольшой ивент в своём кругу" width="1400" height="595" loading="lazy" />
-            <div class="tile-body">
-              <span class="tag" data-i18n="audSmallTag">Свой круг</span>
+        <div class="aud-cards reveal">
+          <article class="aud-card aud-card-mesh">
+            <div class="aud-visual" aria-hidden="true">
+              <div class="aud-icons">
+                <span class="aud-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 9a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 00-2 2 2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2a2 2 0 002-2 2 2 0 00-2-2V9z"/><path d="M9 7v10"/></svg>
+                </span>
+                <span class="aud-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
+                </span>
+                <span class="aud-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><circle cx="16" cy="9" r="2.5"/><path d="M3 19c0-2.8 2.7-5 6-5s6 2.2 6 5"/></svg>
+                </span>
+                <span class="aud-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                </span>
+                <span class="aud-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 13a5 5 0 007.07 0l2.12-2.12a5 5 0 00-7.07-7.07L11 5"/><path d="M14 11a5 5 0 00-7.07 0L4.8 13.12a5 5 0 007.07 7.07L13 19"/></svg>
+                </span>
+                <span class="aud-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+                </span>
+              </div>
+            </div>
+            <div class="aud-copy">
+              <span class="aud-tag" data-i18n="audSmallTag">Свой круг</span>
               <h3 data-i18n="audSmallH">Интересные ивенты без бизнеса</h3>
               <p data-i18n="audSmallP">До сотни гостей без ИП и кассы — объявили ивент и продаёте вход.</p>
-              <ul><li data-i18n="audSmall1">Старт за минуты</li><li data-i18n="audSmall2">Оплата с телефона</li><li data-i18n="audSmall3">Группа вокруг ивента</li></ul>
             </div>
           </article>
-          <article class="tile">
-            <img class="tile-media" src="assets/audience-large-org.jpg" data-i18n-alt="audLargeAlt" alt="Крупный концерт и площадка" width="1400" height="595" loading="lazy" />
-            <div class="tile-body">
-              <span class="tag" data-i18n="audLargeTag">Масштаб</span>
+
+          <article class="aud-card aud-card-stack">
+            <div class="aud-visual" aria-hidden="true">
+              <div class="aud-stack">
+                <div class="aud-glass aud-glass-back"></div>
+                <div class="aud-glass aud-glass-mid">
+                  <span class="aud-pill soft" data-i18n="audLargeTag">Масштаб</span>
+                  <div class="aud-glass-lines">
+                    <i></i><i></i><i></i>
+                  </div>
+                </div>
+                <div class="aud-glass aud-glass-front">
+                  <span class="aud-pill accent">FixedFee</span>
+                  <strong data-i18n="audLarge1">Свой FixedFee</strong>
+                  <ul>
+                    <li data-i18n="audLarge2">Серии и объём</li>
+                    <li data-i18n="audLarge3">Один кабинет на всё</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="aud-copy">
+              <span class="aud-tag dark" data-i18n="audLargeTag">Масштаб</span>
               <h3 data-i18n="audLargeH">Агентства и площадки</h3>
               <p data-i18n="audLargeP">Серии ивентов и объём. FixedFee растёт вместе с вами.</p>
-              <ul><li data-i18n="audLarge1">Свой FixedFee</li><li data-i18n="audLarge2">Серии и объём</li><li data-i18n="audLarge3">Один кабинет на всё</li></ul>
             </div>
           </article>
         </div>
