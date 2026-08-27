@@ -73,8 +73,9 @@
       --space-stack-xl: 32px;
       --space-card: 22px;
       --space-island: clamp(32px, 5vw, 48px);
-      --features-card-width: 300px;
-      --features-card-min: 280px;
+      --features-card-width: 520px;
+      --features-card-min: 460px;
+      --features-card-ratio: 16 / 10;
 
       --pad-y: var(--space-section-y);
       --section-head-gap: var(--space-head-content);
@@ -2503,16 +2504,17 @@
       min-width: var(--features-card-min);
       max-width: var(--features-card-width);
       scroll-snap-align: center;
-      aspect-ratio: 3 / 4.4;
-      min-height: 360px;
-      padding: 22px;
+      aspect-ratio: var(--features-card-ratio);
+      min-height: 0;
+      height: auto;
+      padding: 24px 28px;
       border-radius: 28px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       align-items: flex-start;
-      gap: 12px;
+      gap: 10px;
       text-align: left;
       color: #fff;
       background-color: #1c1917;
@@ -2538,16 +2540,17 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.06) 30%, rgba(0, 0, 0, 0.78) 100%);
+      background: linear-gradient(105deg, rgba(0, 0, 0, 0.08) 20%, rgba(0, 0, 0, 0.55) 58%, rgba(0, 0, 0, 0.82) 100%);
       z-index: 0;
     }
     .features-card-copy {
       position: relative;
       z-index: 1;
       width: 100%;
+      max-width: 34em;
     }
     .features-card-copy h3 {
-      margin: 10px 0 8px;
+      margin: 8px 0 6px;
       color: #fff;
     }
     .features-card-copy p {
@@ -2562,6 +2565,15 @@
     .features-card-4 { background-image: url("assets/features/refund.jpg"); }
     .features-card-5 { background-image: url("assets/features/invites.jpg"); }
     .features-card-6 { background-image: url("assets/features/scanner.jpg"); }
+    @media (max-width: 720px) {
+      :root {
+        --features-card-width: min(92vw, 440px);
+        --features-card-min: 320px;
+      }
+      .features-card {
+        padding: 20px 22px;
+      }
+    }
 
     /* Offer rail — full-bleed track, controls stay in .wrap */
     .offer-rail-bleed {
