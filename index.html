@@ -485,155 +485,247 @@
     }
 
     .hero-card-admin {
-      background: #111;
+      --admin-bg: #0a0a0b;
+      --admin-card: #121214;
+      --admin-border: rgba(255, 255, 255, 0.08);
+      --admin-blue: #3b82f6;
+      --admin-muted: #71717a;
+      background: var(--admin-bg);
       color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--admin-border);
       display: flex;
       flex-direction: column;
-      padding: 22px;
-      gap: 14px;
+      padding: 18px 16px 16px;
+      gap: 12px;
+      overflow: hidden;
     }
-    .admin-top {
+    .dash-head {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .admin-top .badge {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 8px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-    .admin-top h3 {
-      font-family: var(--font-display);
-      font-size: clamp(26px, 3vw, 34px);
-      font-weight: 400;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-    }
-    .admin-kpis {
-      display: flex;
       gap: 10px;
       flex-wrap: wrap;
     }
-    .admin-kpis span {
-      min-width: 88px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 11px;
-      color: rgba(255, 255, 255, 0.5);
-      font-weight: 600;
-    }
-    .admin-kpis b {
-      display: block;
-      color: #fff;
-      font-size: 18px;
-      font-weight: 800;
+    .dash-head h3 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
       letter-spacing: -0.02em;
-      margin-bottom: 2px;
+      color: #fff;
+      font-family: var(--font-ui);
     }
-    .admin-grid {
+    .dash-periods {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    .dash-periods span {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--admin-muted);
+      padding: 6px 10px;
+      border-radius: 9999px;
+      background: transparent;
+    }
+    .dash-periods span.on {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .dash-periods .cal {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      border: 1px solid var(--admin-border);
       display: grid;
-      grid-template-columns: 1.25fr 1fr;
-      gap: 12px;
+      place-items: center;
+      color: var(--admin-muted);
+    }
+    .dash-periods .cal svg { width: 14px; height: 14px; }
+    .dash-kpis {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .dash-kpi {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 14px;
+      padding: 10px 10px 9px;
+      min-width: 0;
+    }
+    .dash-kpi .label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      font-size: 10px;
+      color: var(--admin-muted);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .dash-kpi .label i {
+      width: 18px;
+      height: 18px;
+      border-radius: 6px;
+      background: rgba(59, 130, 246, 0.15);
+      color: var(--admin-blue);
+      display: grid;
+      place-items: center;
+      font-style: normal;
+      font-size: 10px;
+      flex-shrink: 0;
+    }
+    .dash-kpi strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .dash-kpi em {
+      display: inline-block;
+      margin-top: 4px;
+      font-style: normal;
+      font-size: 10px;
+      font-weight: 700;
+      color: #22c55e;
+    }
+    .dash-kpi em.down { color: #ef4444; }
+    .dash-kpi em.flat { color: var(--admin-muted); }
+    .dash-main {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 14px;
+      padding: 12px 12px 10px;
       flex: 1;
       min-height: 0;
-    }
-    .admin-tile {
-      background: #1a1a1a;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 16px;
-      padding: 16px;
-    }
-    .admin-tile .cap {
-      font-size: 11px;
-      color: rgba(255, 255, 255, 0.45);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      margin-bottom: 10px;
-      display: block;
-    }
-    .admin-tile .row {
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      padding: 9px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      font-size: 13px;
-    }
-    .admin-tile .row:last-child { border: 0; }
-    .admin-tile .row.on { color: var(--accent); }
-    .admin-tile-scan {
-      display: grid;
-      gap: 10px;
-      align-content: start;
-    }
-    .admin-scan-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .qr {
-      width: 52px;
-      height: 52px;
-      flex-shrink: 0;
-      background:
-        linear-gradient(#fff 0 0) 0 0 / 40% 40%,
-        linear-gradient(#fff 0 0) 100% 0 / 40% 40%,
-        linear-gradient(#fff 0 0) 0 100% / 40% 40%,
-        linear-gradient(#fff 0 0) 100% 100% / 40% 40%,
-        repeating-linear-gradient(90deg, #fff 0 2px, transparent 2px 6px);
-      background-repeat: no-repeat;
-      border-radius: 8px;
-      opacity: 0.9;
-    }
-    .admin-tile .hint {
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.55);
-      font-weight: 600;
-    }
-    .admin-chart {
-      border-radius: 16px;
-      background: #1a1a1a;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 14px 16px 10px;
-      min-height: 110px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-    }
-    .admin-chart .cap {
-      font-size: 11px;
-      color: rgba(255, 255, 255, 0.45);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-    .admin-chart svg { width: 100%; height: 72px; }
-    .admin-chart .line-good { fill: none; stroke: var(--accent); stroke-width: 2.5; }
-    .admin-chart .area-good {
-      fill: url(#adminFill);
-      opacity: 0.9;
-    }
-    .admin-toolbar {
-      display: flex;
       gap: 10px;
-      align-items: center;
-      padding: 10px 12px;
-      border-radius: 14px;
-      background: #161616;
-      color: rgba(255, 255, 255, 0.45);
     }
-    .admin-toolbar svg { width: 18px; height: 18px; }
-    .admin-toolbar .end { margin-left: auto; color: var(--accent); }
+    .dash-main h4 {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .dash-hours {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 6px;
+      align-items: end;
+      flex: 1;
+      min-height: 88px;
+      padding-top: 4px;
+    }
+    .dash-hour {
+      display: grid;
+      gap: 4px;
+      justify-items: center;
+      height: 100%;
+      align-content: end;
+    }
+    .dash-hour i {
+      display: block;
+      width: 100%;
+      max-width: 28px;
+      border-radius: 6px 6px 2px 2px;
+      background: var(--admin-blue);
+      font-style: normal;
+    }
+    .dash-hour span {
+      font-size: 9px;
+      color: var(--admin-muted);
+      font-weight: 600;
+    }
+    .dash-bottom {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 8px;
+      min-height: 0;
+    }
+    .dash-panel {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 14px;
+      padding: 12px;
+      min-width: 0;
+    }
+    .dash-panel h4 {
+      margin: 0 0 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .dash-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 11px;
+    }
+    .dash-top-row:last-child { border: 0; padding-bottom: 0; }
+    .dash-top-row .rank {
+      color: var(--admin-muted);
+      width: 14px;
+      flex-shrink: 0;
+    }
+    .dash-top-row .name {
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #e4e4e7;
+      font-weight: 600;
+    }
+    .dash-top-row .rev {
+      color: #fff;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .dash-funnel {
+      display: grid;
+      gap: 10px;
+    }
+    .dash-funnel-row {
+      display: grid;
+      gap: 4px;
+    }
+    .dash-funnel-row .meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: var(--admin-muted);
+      font-weight: 600;
+    }
+    .dash-funnel-row .bar {
+      height: 7px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.06);
+      overflow: hidden;
+    }
+    .dash-funnel-row .bar i {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--admin-blue);
+      font-style: normal;
+    }
+    @media (max-width: 960px) {
+      .dash-kpis { grid-template-columns: repeat(3, 1fr); }
+      .dash-bottom { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .dash-kpis { grid-template-columns: 1fr 1fr; }
+      .dash-hours { grid-template-columns: repeat(4, 1fr); min-height: 72px; }
+    }
 
     /* Calc shells */
     .calc-shell {
@@ -1288,7 +1380,6 @@
       .footer-cols { grid-template-columns: 1fr; }
       .hero-card { min-height: 380px; }
       .hero-card-app { order: -1; }
-      .admin-grid { grid-template-columns: 1fr 1fr; }
       .metric-grid { grid-template-columns: 1fr 1fr; }
       .flow-story { max-width: none; }
     }
@@ -1297,12 +1388,9 @@
       .header-pill { padding: 8px 8px 8px 14px; }
       .calc-shell { padding: 18px; }
       .calc-summary,
-      .metric-grid,
-      .admin-grid { grid-template-columns: 1fr; }
+      .metric-grid { grid-template-columns: 1fr; }
       .btn { width: 100%; }
       .btn-row { flex-direction: column; }
-      .admin-kpis { width: 100%; }
-      .admin-kpis span { flex: 1; min-width: 0; }
     }
   </style>
   <script src="assets/i18n.js"></script>
@@ -1446,51 +1534,88 @@
           </aside>
 
           <aside class="hero-card hero-card-admin">
-            <div class="admin-top">
-              <div>
-                <span class="badge" data-i18n="winAdmin">Админка</span>
-                <h3 data-i18n="winAdminTitle">Weekend Stand-up</h3>
-              </div>
-              <div class="admin-kpis">
-                <span><b>128</b> <span data-i18n="winSold">продано</span></span>
-                <span><b>1.2M</b> <span data-i18n="winRevenue">оборот</span></span>
-                <span><b>94%</b> <span data-i18n="winConv">конверсия</span></span>
+            <div class="dash-head">
+              <h3>Дашборд</h3>
+              <div class="dash-periods">
+                <span class="on">Сегодня</span>
+                <span>7 дн.</span>
+                <span>30 дн.</span>
+                <span>Всё</span>
+                <span class="cal" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+                </span>
               </div>
             </div>
-            <div class="admin-grid">
-              <div class="admin-tile">
-                <span class="cap" data-i18n="winTickets">Тарифы</span>
-                <div class="row"><b>У сцены</b><em>297 000</em></div>
-                <div class="row"><b>Центр</b><em>190 000</em></div>
-                <div class="row on"><b>Дальний</b><em>120 000</em></div>
+            <div class="dash-kpis">
+              <div class="dash-kpi">
+                <div class="label">Выручка <i>$</i></div>
+                <strong>18.4M UZS</strong>
+                <em>+12% ↑</em>
               </div>
-              <div class="admin-tile admin-tile-scan">
-                <span class="cap" data-i18n="winScan">Сканер</span>
-                <div class="admin-scan-row">
-                  <div class="qr" aria-hidden="true"></div>
-                  <span class="hint" data-i18n="winScanHint">68 / 70 прошли</span>
+              <div class="dash-kpi">
+                <div class="label">Билеты <i>◎</i></div>
+                <strong>312</strong>
+                <em>+8% ↑</em>
+              </div>
+              <div class="dash-kpi">
+                <div class="label">Возвраты <i>↺</i></div>
+                <strong>0 UZS</strong>
+                <em class="flat">0% →</em>
+              </div>
+              <div class="dash-kpi">
+                <div class="label">Просмотры <i>◉</i></div>
+                <strong>9 840</strong>
+                <em>+15% ↑</em>
+              </div>
+              <div class="dash-kpi">
+                <div class="label">Оформление <i>›</i></div>
+                <strong>2 180</strong>
+                <em>+11% ↑</em>
+              </div>
+              <div class="dash-kpi">
+                <div class="label">Конверсия <i>%</i></div>
+                <strong>3.2%</strong>
+                <em>+0.4% ↑</em>
+              </div>
+            </div>
+            <div class="dash-main">
+              <h4>Общая выручка</h4>
+              <div class="dash-hours" aria-hidden="true">
+                <div class="dash-hour"><i style="height:28%"></i><span>08:00</span></div>
+                <div class="dash-hour"><i style="height:42%"></i><span>10:00</span></div>
+                <div class="dash-hour"><i style="height:55%"></i><span>12:00</span></div>
+                <div class="dash-hour"><i style="height:48%"></i><span>14:00</span></div>
+                <div class="dash-hour"><i style="height:70%"></i><span>16:00</span></div>
+                <div class="dash-hour"><i style="height:88%"></i><span>18:00</span></div>
+                <div class="dash-hour"><i style="height:100%"></i><span>20:00</span></div>
+                <div class="dash-hour"><i style="height:62%"></i><span>22:00</span></div>
+              </div>
+            </div>
+            <div class="dash-bottom">
+              <div class="dash-panel">
+                <h4>Топ мероприятий</h4>
+                <div class="dash-top-row"><span class="rank">1</span><span class="name">Summer Open Air</span><span class="rev">6.2M</span></div>
+                <div class="dash-top-row"><span class="rank">2</span><span class="name">Morning Trek</span><span class="rev">4.1M</span></div>
+                <div class="dash-top-row"><span class="rank">3</span><span class="name">Networking Meetup</span><span class="rev">2.8M</span></div>
+                <div class="dash-top-row"><span class="rank">4</span><span class="name">Business Talk</span><span class="rev">1.9M</span></div>
+              </div>
+              <div class="dash-panel">
+                <h4>Воронка продаж</h4>
+                <div class="dash-funnel">
+                  <div class="dash-funnel-row">
+                    <div class="meta"><span>Просмотры</span><span>100%</span></div>
+                    <div class="bar"><i style="width:100%"></i></div>
+                  </div>
+                  <div class="dash-funnel-row">
+                    <div class="meta"><span>Начали оформление</span><span>22.1%</span></div>
+                    <div class="bar"><i style="width:22%"></i></div>
+                  </div>
+                  <div class="dash-funnel-row">
+                    <div class="meta"><span>Оплатили</span><span>3.2%</span></div>
+                    <div class="bar"><i style="width:3.2%"></i></div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="admin-chart">
-              <span class="cap" data-i18n="livePays">Оплаты / час</span>
-              <svg viewBox="0 0 320 72" preserveAspectRatio="none" aria-hidden="true">
-                <defs>
-                  <linearGradient id="adminFill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#1ed760" stop-opacity="0.35"/>
-                    <stop offset="100%" stop-color="#1ed760" stop-opacity="0"/>
-                  </linearGradient>
-                </defs>
-                <path class="area-good" d="M0 58 C40 52, 70 40, 110 36 S180 28, 220 22 S280 18, 320 12 L320 72 L0 72 Z"/>
-                <path class="line-good" d="M0 58 C40 52, 70 40, 110 36 S180 28, 220 22 S280 18, 320 12"/>
-              </svg>
-            </div>
-            <div class="admin-toolbar">
-              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
-              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9a2 2 0 012-2h14a2 2 0 012 2v2a2 2 0 00-2 2 2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2a2 2 0 002-2 2 2 0 00-2-2V9z"/><path d="M9 7v10"/></svg></span>
-              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V9M12 19V5M20 19v-7"/></svg></span>
-              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><circle cx="16" cy="9" r="2.5"/><path d="M3 19c0-2.8 2.7-5 6-5s6 2.2 6 5M14 19c0-1.8 1.6-3.2 3.5-3.5"/></svg></span>
-              <span class="end"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg></span>
             </div>
           </aside>
         </div>
