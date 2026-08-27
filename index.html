@@ -935,13 +935,19 @@
       overflow-x: hidden;
       overflow-y: auto;
     }
+    .admin-main .dash-viewport.is-screen-events {
+      overflow: hidden;
+    }
     .admin-screen {
       display: none;
       opacity: 0;
       transition: opacity 0.22s var(--ease);
     }
     .admin-screen.is-active {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 0;
       opacity: 1;
     }
     .admin-screen[hidden] {
@@ -978,6 +984,197 @@
     .admin-events-list {
       display: grid;
       gap: 8px;
+    }
+
+    /* Events screen — card grid (superadmin prototype) */
+    .admin-events-proto {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 0;
+      padding: 12px 14px 14px 12px;
+      gap: 10px;
+      box-sizing: border-box;
+    }
+    .admin-events-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      min-width: 0;
+    }
+    .admin-events-toolbar h3 {
+      margin: 0;
+      font-size: clamp(14px, 1.6vw, 18px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fff;
+      font-family: var(--font-ui);
+      flex-shrink: 0;
+    }
+    .admin-events-filters {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+    }
+    .admin-events-filters button {
+      font-size: 9px;
+      font-weight: 600;
+      padding: 5px 8px;
+      border-radius: 9999px;
+      border: 0;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--admin-muted);
+      white-space: nowrap;
+      cursor: default;
+      font-family: var(--font-ui);
+    }
+    .admin-events-filters button.is-on {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+    .admin-events-add {
+      flex-shrink: 0;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 6px 10px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: #fff;
+      color: #0a0a0b;
+      white-space: nowrap;
+      cursor: default;
+      font-family: var(--font-ui);
+    }
+    .admin-events-grid {
+      flex: 1;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(6px, 1.2vw, 10px);
+      align-items: stretch;
+    }
+    .admin-ev-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      min-width: 0;
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .admin-ev-cover {
+      position: relative;
+      flex: 1 1 auto;
+      min-height: 0;
+      max-height: 58%;
+      background: #18181b;
+    }
+    .admin-ev-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .admin-ev-status {
+      position: absolute;
+      top: 7px;
+      left: 7px;
+      font-size: 7px;
+      font-weight: 700;
+      padding: 3px 6px;
+      border-radius: 9999px;
+      line-height: 1.2;
+      font-family: var(--font-ui);
+    }
+    .admin-ev-status--pub {
+      background: rgba(34, 197, 94, 0.22);
+      color: #4ade80;
+    }
+    .admin-ev-status--mod {
+      background: rgba(234, 179, 8, 0.22);
+      color: #facc15;
+    }
+    .admin-ev-date {
+      position: absolute;
+      top: 7px;
+      right: 7px;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.72);
+      display: grid;
+      place-content: center;
+      text-align: center;
+      font-size: 7px;
+      font-weight: 700;
+      line-height: 1.15;
+      color: #fff;
+      font-family: var(--font-ui);
+    }
+    .admin-ev-body {
+      flex-shrink: 0;
+      padding: 8px 9px 9px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-height: 0;
+    }
+    .admin-ev-body h4 {
+      margin: 0;
+      font-size: clamp(8px, 1.05vw, 10px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.25;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      font-family: var(--font-ui);
+    }
+    .admin-ev-meta {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 7px;
+      color: var(--admin-muted);
+      font-weight: 600;
+      font-family: var(--font-ui);
+    }
+    .admin-ev-meta svg {
+      width: 9px;
+      height: 9px;
+      flex-shrink: 0;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .admin-ev-type {
+      margin-top: 2px;
+      align-self: flex-start;
+      font-size: 7px;
+      font-weight: 700;
+      padding: 3px 7px;
+      border-radius: 9999px;
+      font-family: var(--font-ui);
+    }
+    .admin-ev-type--paid {
+      background: rgba(168, 85, 247, 0.2);
+      color: #c084fc;
+    }
+    .admin-ev-type--confirm {
+      background: rgba(217, 119, 6, 0.22);
+      color: #fbbf24;
+    }
+    .admin-ev-type--free {
+      background: rgba(34, 197, 94, 0.15);
+      color: #4ade80;
     }
     .admin-event-row {
       display: flex;
@@ -2943,36 +3140,36 @@
 
           <aside class="hero-card hero-card-admin" data-dash>
             <div class="admin-shell">
-              <nav class="admin-sidebar" data-admin-nav aria-label="Навигация админки">
+              <nav class="admin-sidebar" data-admin-nav data-i18n-aria="adminNavAria">
                 <div class="admin-sidebar-brand">Taneesh</div>
-                <button type="button" class="admin-nav-item is-active" data-admin-screen="dashboard" aria-current="page">
+                <button type="button" class="admin-nav-item" data-admin-screen="dashboard">
                   <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
-                  <span>Дашборд</span>
+                  <span data-i18n="adminNavDash">Дашборд</span>
                 </button>
-                <button type="button" class="admin-nav-item" data-admin-screen="events">
+                <button type="button" class="admin-nav-item is-active" data-admin-screen="events" aria-current="page">
                   <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
-                  <span>Мероприятия</span>
+                  <span data-i18n="adminNavEvents">Мероприятия</span>
                 </button>
                 <button type="button" class="admin-nav-item" data-admin-screen="crm">
                   <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                  <span>Аудитория (CRM)</span>
+                  <span data-i18n="adminNavCrm">Аудитория (CRM)</span>
                 </button>
                 <button type="button" class="admin-nav-item" data-admin-screen="controllers">
                   <svg viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/></svg>
-                  <span>Контролеры</span>
+                  <span data-i18n="adminNavCtrl">Контролеры</span>
                 </button>
                 <button type="button" class="admin-nav-item" data-admin-screen="finance">
                   <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h2"/></svg>
-                  <span>Финансы и документы</span>
+                  <span data-i18n="adminNavFin">Финансы и документы</span>
                 </button>
                 <button type="button" class="admin-nav-item" data-admin-screen="profile">
                   <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-                  <span>Профиль</span>
+                  <span data-i18n="adminNavProfile">Профиль</span>
                 </button>
               </nav>
               <div class="admin-main">
-                <div class="dash-viewport" data-dash-scroll>
-                  <div class="admin-screen is-active" data-admin-panel="dashboard">
+                <div class="dash-viewport is-screen-events" data-dash-scroll>
+                  <div class="admin-screen" data-admin-panel="dashboard" hidden>
                     <div class="dash-canvas">
                       <div class="dash-head">
                         <h3>Дашборд</h3>
@@ -3073,41 +3270,76 @@
                     </div>
                   </div>
 
-                  <div class="admin-screen" data-admin-panel="events" hidden>
-                    <div class="admin-screen-inner">
-                      <div class="admin-screen-head">
-                        <h3>Мероприятия</h3>
-                        <span class="hint">4 активных</span>
+                  <div class="admin-screen is-active" data-admin-panel="events">
+                    <div class="admin-events-proto">
+                      <div class="admin-events-toolbar">
+                        <h3 data-i18n="adminEventsTitle">Мероприятия</h3>
+                        <div class="admin-events-filters" role="tablist" aria-label="Фильтр">
+                          <button type="button" class="is-on" data-i18n="adminEvUpcoming">Предстоящие</button>
+                          <button type="button" data-i18n="adminEvPast">Прошедшие</button>
+                          <button type="button" data-i18n="adminEvDrafts">Черновики</button>
+                          <button type="button" data-i18n="adminEvArchive">Архив</button>
+                        </div>
+                        <button type="button" class="admin-events-add" data-i18n="adminEvAdd">+ Добавить событие</button>
                       </div>
-                      <div class="admin-events-list">
-                        <div class="admin-event-row">
-                          <div class="admin-event-info">
-                            <strong>Summer Open Air</strong>
-                            <span>15 авг · Ташкент · 420 билетов</span>
+                      <div class="admin-events-grid">
+                        <article class="admin-ev-card">
+                          <div class="admin-ev-cover">
+                            <img src="assets/niches/conference.jpg" alt="" data-i18n-alt="adminEv1Alt" />
+                            <span class="admin-ev-status admin-ev-status--pub" data-i18n="adminEvPub">Опубликовано</span>
+                            <span class="admin-ev-date" data-i18n-html="adminEvDate1">Окт.<br />24</span>
                           </div>
-                          <span class="admin-pill admin-pill--pub">Опубликовано</span>
-                        </div>
-                        <div class="admin-event-row">
-                          <div class="admin-event-info">
-                            <strong>IT Conference 2024</strong>
-                            <span>22 сен · Самарканд · 180 билетов</span>
+                          <div class="admin-ev-body">
+                            <h4 data-i18n="adminEv1Title">Tashkent Digital Marketing Conference 2026</h4>
+                            <p class="admin-ev-meta">
+                              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                              <span data-i18n="adminEv1Time">10:00</span>
+                            </p>
+                            <p class="admin-ev-meta">
+                              <svg viewBox="0 0 24 24"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                              <span data-i18n="adminEv1Loc">Hilton Tashkent City</span>
+                            </p>
+                            <span class="admin-ev-type admin-ev-type--paid" data-i18n="adminEvPaid">Платное</span>
                           </div>
-                          <span class="admin-pill admin-pill--pub">Опубликовано</span>
-                        </div>
-                        <div class="admin-event-row">
-                          <div class="admin-event-info">
-                            <strong>Jazz Night</strong>
-                            <span>5 окт · Ташкент · черновик</span>
+                        </article>
+                        <article class="admin-ev-card">
+                          <div class="admin-ev-cover">
+                            <img src="assets/features/showcase.jpg" alt="" data-i18n-alt="adminEv2Alt" />
+                            <span class="admin-ev-status admin-ev-status--mod" data-i18n="adminEvMod">На модерации</span>
+                            <span class="admin-ev-date" data-i18n-html="adminEvDate2">Нояб.<br />12</span>
                           </div>
-                          <span class="admin-pill admin-pill--draft">Черновик</span>
-                        </div>
-                        <div class="admin-event-row">
-                          <div class="admin-event-info">
-                            <strong>Startup Weekend</strong>
-                            <span>12 окт · Ташкент · на модерации</span>
+                          <div class="admin-ev-body">
+                            <h4 data-i18n="adminEv2Title">Uzbekistan Tech Summit</h4>
+                            <p class="admin-ev-meta">
+                              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                              <span data-i18n="adminEv2Time">09:30</span>
+                            </p>
+                            <p class="admin-ev-meta">
+                              <svg viewBox="0 0 24 24"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                              <span data-i18n="adminEv2Loc">UzExpoCenter</span>
+                            </p>
+                            <span class="admin-ev-type admin-ev-type--confirm" data-i18n="adminEvConfirm">С подтверждением</span>
                           </div>
-                          <span class="admin-pill admin-pill--mod">Модерация</span>
-                        </div>
+                        </article>
+                        <article class="admin-ev-card">
+                          <div class="admin-ev-cover">
+                            <img src="assets/niches/party.jpg" alt="" data-i18n-alt="adminEv3Alt" />
+                            <span class="admin-ev-status admin-ev-status--mod" data-i18n="adminEvMod">На модерации</span>
+                            <span class="admin-ev-date" data-i18n-html="adminEvDate3">Сент.<br />6</span>
+                          </div>
+                          <div class="admin-ev-body">
+                            <h4 data-i18n="adminEv3Title">Community Hackathon</h4>
+                            <p class="admin-ev-meta">
+                              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                              <span data-i18n="adminEv3Time">11:00</span>
+                            </p>
+                            <p class="admin-ev-meta">
+                              <svg viewBox="0 0 24 24"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                              <span data-i18n="adminEv3Loc">IT Park Tashkent</span>
+                            </p>
+                            <span class="admin-ev-type admin-ev-type--free" data-i18n="adminEvFree">Бесплатно</span>
+                          </div>
+                        </article>
                       </div>
                     </div>
                   </div>
@@ -4152,7 +4384,7 @@
       const titleEl = dashPanel?.querySelector('[data-dash-chart-title]');
       const navItems = dashRoot.querySelectorAll('[data-admin-screen]');
       const panels = dashRoot.querySelectorAll('[data-admin-panel]');
-      let activeScreen = 'dashboard';
+      let activeScreen = 'events';
       let scrollTour = null;
 
       const setScreen = (id) => {
@@ -4168,7 +4400,8 @@
           panel.hidden = !on;
         });
         if (scrollEl) {
-          scrollEl.classList.toggle('is-screen-alt', id !== 'dashboard');
+          scrollEl.classList.toggle('is-screen-alt', id !== 'dashboard' && id !== 'events');
+          scrollEl.classList.toggle('is-screen-events', id === 'events');
           scrollEl.scrollLeft = 0;
           scrollEl.scrollTop = 0;
         }
@@ -4339,7 +4572,7 @@
       });
 
       applyRange('today');
-      setScreen('dashboard');
+      setScreen('events');
 
       // Soft horizontal scroll tour on dashboard when hero is visible
       if (scrollEl && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
