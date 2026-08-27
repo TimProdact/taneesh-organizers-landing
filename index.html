@@ -2201,6 +2201,10 @@
         </div>
         <div class="calc-shell live-conv" data-live-conv>
           <div class="calc-viz">
+            <div class="calc-rate">
+              <span data-i18n="convRateLabel">Конверсия</span>
+              <strong class="rate"><span id="liveConvRate" data-live="34">34</span><small>%</small></strong>
+            </div>
             <div class="live-filters" role="tablist" aria-label="Период">
               <button type="button" class="live-filter is-active" data-live-range="week" data-i18n="liveRangeWeek">За неделю</button>
               <button type="button" class="live-filter" data-live-range="month" data-i18n="liveRangeMonth">За месяц</button>
@@ -2702,6 +2706,7 @@
     const liveRoot = document.querySelector('[data-live-conv]');
     if (liveRoot && !liveRoot.dataset.ticking) {
       liveRoot.dataset.ticking = '1';
+      const rateEl = document.getElementById('liveConvRate');
       const viewsEl = document.getElementById('liveViews');
       const paysEl = document.getElementById('livePays');
       const checkoutEl = document.getElementById('liveCheckout');
@@ -2711,19 +2716,19 @@
       const ranges = {
         week: {
           label: { ru: '7д', uz: '7k', en: '7d' },
-          views: 1284, pays: 47, checkout: 41, drop: 7,
+          rate: 34, views: 1284, pays: 47, checkout: 41, drop: 7,
           path: 'M0 62 C40 58, 70 48, 110 42 S180 28, 220 34 S270 18, 320 16',
           y: 16,
         },
         month: {
           label: { ru: '30д', uz: '30k', en: '30d' },
-          views: 4820, pays: 52, checkout: 43, drop: 6,
+          rate: 36, views: 4820, pays: 52, checkout: 43, drop: 6,
           path: 'M0 70 C36 64, 72 52, 108 56 S180 30, 216 38 S270 22, 320 20',
           y: 20,
         },
         all: {
           label: { ru: 'всё', uz: 'jami', en: 'all' },
-          views: 15840, pays: 61, checkout: 45, drop: 5,
+          rate: 38, views: 15840, pays: 61, checkout: 45, drop: 5,
           path: 'M0 74 C48 68, 90 60, 130 48 S200 36, 240 28 S290 18, 320 14',
           y: 14,
         },
@@ -2743,6 +2748,7 @@
         const cfg = ranges[id] || ranges.week;
         currentRange = id;
         Object.assign(base, cfg);
+        if (rateEl) rateEl.textContent = String(cfg.rate);
         if (viewsEl) viewsEl.textContent = cfg.views.toLocaleString(tag());
         if (paysEl) paysEl.textContent = String(cfg.pays);
         if (checkoutEl) checkoutEl.textContent = String(cfg.checkout);
@@ -2760,8 +2766,10 @@
       setInterval(() => {
         const jitter = (n, amp) => n + Math.round((Math.random() * 2 - 1) * amp);
         const cfg = ranges[currentRange] || ranges.week;
+        base.rate = Math.min(cfg.rate + 3, Math.max(cfg.rate - 3, jitter(base.rate, 1)));
         base.views = Math.max(cfg.views - 40, jitter(base.views, 18));
         base.pays = Math.max(cfg.pays - 4, jitter(base.pays, 2));
+        if (rateEl) rateEl.textContent = String(base.rate);
         if (viewsEl) viewsEl.textContent = base.views.toLocaleString(tag());
         if (paysEl) paysEl.textContent = String(base.pays);
         if (spark) {

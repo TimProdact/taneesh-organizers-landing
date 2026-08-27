@@ -55,6 +55,7 @@ window.TaneeshI18n = (function () {
       ofPrice: 'с цены',
       convEyebrow: 'Прозрачность',
       convTitle: 'Конверсия в реальном времени',
+      convRateLabel: 'Конверсия',
       livePill: 'Live · платформа',
       liveDesc: 'Витрина → оплата — без приукрашивания.',
       liveViews: 'Просмотры сейчас',
