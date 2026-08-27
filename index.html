@@ -1213,23 +1213,25 @@
     .aud-glass-lines i:nth-child(2),
     .aud-glass-lines i:nth-child(3) { margin-inline: auto; }
 
-    /* Flow */
-    .flow-layout {
+    /* Flow — desktop: steps left, story right (Time2book-style) */
+    #flow .flow-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
-      gap: clamp(28px, 5vw, 56px);
+      grid-template-columns: minmax(0, 1.12fr) minmax(300px, 0.88fr);
+      gap: clamp(32px, 5vw, 64px);
       align-items: center;
     }
-    .flow-steps {
+    #flow .flow-steps {
       display: grid;
       gap: 12px;
       width: 100%;
+      order: 1;
     }
-    .flow-step {
+    #flow .flow-step {
       display: flex;
       flex-direction: row;
       gap: 14px;
       align-items: flex-start;
+      justify-content: flex-start;
       text-align: left;
       padding: 18px 20px;
       border-radius: 18px;
@@ -1245,7 +1247,7 @@
       flex-shrink: 0;
     }
     .flow-ico svg { width: 20px; height: 20px; }
-    .flow-step-copy { display: grid; gap: 4px; min-width: 0; }
+    .flow-step-copy { display: grid; gap: 4px; min-width: 0; text-align: left; }
     .flow-step-copy strong { font-size: 15px; }
     .flow-step-copy span { font-size: 14px; color: var(--muted); line-height: 1.45; }
     .flow-soon {
@@ -1259,11 +1261,15 @@
       color: var(--muted);
       vertical-align: middle;
     }
-    .flow-story {
+    #flow .flow-story {
       max-width: none;
       margin: 0;
       text-align: left;
-      order: 0;
+      order: 2;
+    }
+    #flow .flow-story .eyebrow,
+    #flow .flow-story h2 {
+      text-align: left;
     }
     .flow-lead {
       margin: 16px 0 28px;
@@ -1271,19 +1277,36 @@
       font-size: 17px;
       max-width: 32em;
       line-height: 1.5;
+      text-align: left;
+    }
+    #flow .flow-cta {
+      display: inline-flex;
+      margin-inline: 0;
     }
     .flow-cta:hover { filter: brightness(0.97); transform: translateY(-1px); }
     @media (max-width: 960px) {
-      .flow-layout {
+      #flow .flow-layout {
         grid-template-columns: 1fr;
         gap: 32px;
       }
-      .flow-story {
+      #flow .flow-story {
         text-align: center;
         order: -1;
       }
-      .flow-lead { margin-inline: auto; }
-      .flow-cta { margin-inline: auto; }
+      #flow .flow-story .eyebrow,
+      #flow .flow-story h2 {
+        text-align: center;
+      }
+      #flow .flow-lead {
+        text-align: center;
+        margin-inline: auto;
+      }
+      #flow .flow-cta { margin-inline: auto; }
+      #flow .flow-steps {
+        order: 0;
+        width: min(100%, 720px);
+        margin-inline: auto;
+      }
     }
 
     /* Offer rail */
@@ -1418,35 +1441,47 @@
       letter-spacing: -0.01em;
       white-space: normal;
       max-width: 11em;
+      position: relative;
+      z-index: 1;
     }
     .trust-logos {
-      display: flex;
-      flex-wrap: nowrap;
-      gap: clamp(20px, 3.2vw, 40px);
-      align-items: center;
-      justify-content: flex-start;
       flex: 1;
       min-width: 0;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      padding-bottom: 2px;
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
     }
-    .trust-logos::-webkit-scrollbar { display: none; }
+    .trust-track {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: clamp(28px, 4vw, 52px);
+      width: max-content;
+      animation: trust-marquee 42s linear infinite;
+    }
+    .trust-logos:hover .trust-track {
+      animation-play-state: paused;
+    }
+    @keyframes trust-marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .trust-track { animation: none; }
+    }
     .trust-logo {
       flex: 0 0 auto;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      height: 36px;
+      height: 34px;
       color: #b8b8b8;
-      opacity: 0.95;
     }
     .trust-logo svg {
       display: block;
       height: 100%;
       width: auto;
-      max-width: 108px;
+      max-width: 132px;
     }
     .niche-rail {
       display: grid;
@@ -1748,11 +1783,9 @@
       .hero-duo,
       .calc-shell,
       .aud-cards,
-      .flow-layout,
       .footer-cols { grid-template-columns: 1fr; }
       .hero-card-app { order: -1; min-height: 420px; max-height: none; }
       .metric-grid { grid-template-columns: 1fr 1fr; }
-      .flow-story { max-width: none; }
     }
     @media (max-width: 560px) {
       .wrap { width: min(100% - 28px, var(--max)); }
