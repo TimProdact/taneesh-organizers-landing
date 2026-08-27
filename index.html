@@ -538,7 +538,9 @@
     }
 
     .hero-card-admin {
-      --admin-bg: #0a0a0b;
+      --admin-bg: #0a0a0a;
+      --admin-accent: #1ed760;
+      --admin-blue: #3b82f6;
       background: var(--admin-bg);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 28px;
@@ -554,42 +556,213 @@
       height: 100%;
       min-height: 0;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: stretch;
+      justify-content: stretch;
       background: var(--admin-bg);
     }
-    .admin-video-slot video,
-    .admin-video-slot .admin-video-poster {
+    .admin-video-slot video {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       display: block;
+      background: var(--admin-bg);
+    }
+    .admin-video-banner {
+      position: relative;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 0;
+      cursor: pointer;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 80% 60% at 72% 38%, rgba(59, 130, 246, 0.18) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 18% 82%, rgba(30, 215, 96, 0.08) 0%, transparent 50%),
+        linear-gradient(145deg, #0a0a0a 0%, #0f0f12 45%, #0a0a0a 100%);
+    }
+    .admin-video-banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, #000 20%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, #000 20%, transparent 75%);
+      pointer-events: none;
+    }
+    .admin-banner-deco {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+    .admin-banner-deco-sidebar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 18%;
+      background: rgba(255, 255, 255, 0.02);
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .admin-banner-deco-sidebar::after {
+      content: "";
+      position: absolute;
+      left: 14%;
+      top: 10%;
+      width: 72%;
+      height: 5%;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .admin-banner-deco-card {
+      position: absolute;
+      border-radius: 12px;
+      background: rgba(18, 18, 20, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .admin-banner-deco-card--kpi1 {
+      right: 8%;
+      top: 12%;
+      width: 28%;
+      height: 14%;
+      border-color: rgba(59, 130, 246, 0.35);
+    }
+    .admin-banner-deco-card--kpi2 {
+      right: 40%;
+      top: 12%;
+      width: 22%;
+      height: 14%;
+    }
+    .admin-banner-deco-card--chart {
+      left: 22%;
+      bottom: 10%;
+      width: 52%;
+      height: 38%;
+    }
+    .admin-banner-deco-card--chart::before {
+      content: "";
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      bottom: 18%;
+      height: 55%;
+      display: flex;
+      background: linear-gradient(90deg,
+        rgba(59, 130, 246, 0.5) 0%, rgba(59, 130, 246, 0.5) 12%,
+        transparent 12%, transparent 18%,
+        rgba(59, 130, 246, 0.35) 18%, rgba(59, 130, 246, 0.35) 28%,
+        transparent 28%, transparent 34%,
+        rgba(59, 130, 246, 0.6) 34%, rgba(59, 130, 246, 0.6) 48%,
+        transparent 48%, transparent 54%,
+        rgba(59, 130, 246, 0.45) 54%, rgba(59, 130, 246, 0.45) 68%,
+        transparent 68%, transparent 74%,
+        rgba(59, 130, 246, 0.7) 74%, rgba(59, 130, 246, 0.7) 100%);
+      border-radius: 4px 4px 0 0;
+    }
+    .admin-banner-deco-card--list {
+      right: 8%;
+      bottom: 10%;
+      width: 26%;
+      height: 38%;
+    }
+    .admin-banner-deco-dot {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--admin-accent);
+      box-shadow: 0 0 12px rgba(30, 215, 96, 0.6);
+      top: 22%;
+      left: 24%;
+    }
+    .admin-banner-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 32px 28px;
+      max-width: 88%;
+    }
+    .admin-banner-eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--admin-accent);
+      margin-bottom: 14px;
+    }
+    .admin-banner-title {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.8vw, 32px);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .admin-banner-sub {
+      font-size: clamp(13px, 1.4vw, 15px);
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.52);
+      line-height: 1.45;
+      max-width: 28em;
+      margin-inline: auto;
     }
     .admin-video-play {
       position: absolute;
       inset: 0;
+      z-index: 3;
       display: grid;
       place-items: center;
-      pointer-events: none;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 220ms var(--ease);
     }
-    .admin-video-play::before {
-      content: "";
-      width: 56px;
-      height: 56px;
+    .admin-video-banner:hover .admin-video-play,
+    .admin-video-banner:focus-within .admin-video-play,
+    .admin-video-play:focus-visible {
+      opacity: 1;
+    }
+    .admin-play-ring {
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+      background: rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+      display: grid;
+      place-items: center;
+      transition: transform 180ms var(--ease), background 180ms var(--ease);
+    }
+    .admin-video-play:hover .admin-play-ring,
+    .admin-video-play:focus-visible .admin-play-ring {
+      transform: scale(1.06);
+      background: rgba(30, 215, 96, 0.22);
+      border-color: rgba(30, 215, 96, 0.45);
     }
     .admin-video-play svg {
       position: absolute;
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       fill: #fff;
       margin-left: 3px;
-      opacity: 0.92;
+    }
+    .hero-card-admin.is-playing .admin-video-banner {
+      display: none;
+    }
+    .hero-card-admin.is-playing .admin-video-play {
+      display: none;
+    }
+    @media (hover: none) {
+      .admin-video-play { opacity: 0.85; }
     }
     @media (max-width: 960px) {
       .hero-duo {
@@ -2034,23 +2207,25 @@
           </aside>
 
           <aside class="hero-card hero-card-admin" data-admin-video>
-            <!--
-              VIDEO EMBED: when admin demo is ready, replace the poster block below with:
-              <video src="assets/showcase/admin-demo.mp4"
-                     poster="assets/showcase/admin-poster.svg"
-                     autoplay muted loop playsinline
-                     aria-label="Демо панели организатора Taneesh"></video>
-              Remove .admin-video-play overlay when using autoplay video.
-            -->
             <div class="admin-video-slot">
-              <img class="admin-video-poster"
-                   src="assets/showcase/admin-poster.svg"
-                   alt="Панель организатора Taneesh — дашборд, аналитика, CRM"
-                   width="1600"
-                   height="1000"
-                   loading="lazy" />
-              <div class="admin-video-play" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              <div class="admin-video-banner" data-admin-banner tabindex="0" role="button" data-i18n-aria="adminPlayAria">
+                <div class="admin-banner-deco" aria-hidden="true">
+                  <div class="admin-banner-deco-sidebar"></div>
+                  <div class="admin-banner-deco-dot"></div>
+                  <div class="admin-banner-deco-card admin-banner-deco-card--kpi1"></div>
+                  <div class="admin-banner-deco-card admin-banner-deco-card--kpi2"></div>
+                  <div class="admin-banner-deco-card admin-banner-deco-card--chart"></div>
+                  <div class="admin-banner-deco-card admin-banner-deco-card--list"></div>
+                </div>
+                <div class="admin-banner-content">
+                  <span class="admin-banner-eyebrow">Taneesh</span>
+                  <h3 class="admin-banner-title" data-i18n="adminBannerTitle">Панель организатора</h3>
+                  <p class="admin-banner-sub" data-i18n="adminBannerSub">Дашборд, продажи, CRM — в одном месте</p>
+                </div>
+                <button type="button" class="admin-video-play" data-admin-play data-i18n-aria="adminPlayAria">
+                  <span class="admin-play-ring" aria-hidden="true"></span>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                </button>
               </div>
             </div>
           </aside>
@@ -2954,6 +3129,55 @@
       syncTicket(false);
       document.querySelectorAll('.faq-item.open').forEach((item) => item.classList.remove('open'));
     });
+
+    // Admin hero video — banner → click to play
+    (function initAdminVideo() {
+      const root = document.querySelector('[data-admin-video]');
+      if (!root || root.dataset.adminReady) return;
+      root.dataset.adminReady = '1';
+      const slot = root.querySelector('.admin-video-slot');
+      const banner = root.querySelector('[data-admin-banner]');
+      const playBtn = root.querySelector('[data-admin-play]');
+      const VIDEO_SRC = 'assets/showcase/admin-demo.mp4';
+      const POSTER_SRC = 'assets/showcase/admin-poster.svg';
+
+      const playLabel = () => {
+        const d = (window.TaneeshI18n && window.TaneeshI18n.t()) || {};
+        return d.adminPlayAria || 'Play organizer dashboard demo';
+      };
+
+      const startVideo = () => {
+        if (root.classList.contains('is-playing')) return;
+        let video = root.querySelector('.admin-video-el');
+        if (!video) {
+          video = document.createElement('video');
+          video.className = 'admin-video-el';
+          video.src = VIDEO_SRC;
+          video.poster = POSTER_SRC;
+          video.controls = true;
+          video.playsInline = true;
+          video.preload = 'metadata';
+          slot.appendChild(video);
+        }
+        video.setAttribute('aria-label', playLabel());
+        root.classList.add('is-playing');
+        video.play().catch(() => {
+          /* demo file may not exist yet — poster + controls still shown */
+        });
+      };
+
+      playBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        startVideo();
+      });
+      banner?.addEventListener('click', startVideo);
+      banner?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          startVideo();
+        }
+      });
+    })();
 
     if (window.TaneeshI18n) window.TaneeshI18n.init();
     if (window.TaneeshLeadModal) window.TaneeshLeadModal.init();
