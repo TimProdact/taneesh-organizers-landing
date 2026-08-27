@@ -2241,16 +2241,20 @@
     }
     .features-loop {
       display: flex;
-      gap: clamp(16px, 2.4vw, 28px);
+      gap: 28px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
-      scroll-padding-inline: max(24px, calc((100vw - var(--max)) / 2 + 24px));
-      padding: 4px max(24px, calc((100vw - var(--max)) / 2 + 24px)) 10px;
+      scroll-padding-inline-start: max(20px, calc((100vw - var(--max)) / 2 + 20px));
+      padding: 4px max(20px, calc((100vw - var(--max)) / 2 + 20px)) 10px  max(20px, calc((100vw - var(--max)) / 2 + 20px));
       scrollbar-width: none;
       -ms-overflow-style: none;
       cursor: grab;
       touch-action: pan-x;
+    }
+    .features-loop::after {
+      content: "";
+      flex: 0 0 max(20px, calc((100vw - var(--max)) / 2 + 20px));
     }
     .features-loop.is-dragging {
       cursor: grabbing;
@@ -2261,45 +2265,52 @@
     .features-loop::-webkit-scrollbar { display: none; }
     .features-card {
       position: relative;
-      flex: 0 0 min(88vw, 680px);
-      scroll-snap-align: center;
-      min-height: clamp(380px, 44vw, 520px);
-      padding: clamp(28px, 4vw, 36px);
+      flex: 0 0 minmax(220px, 248px);
+      width: minmax(220px, 248px);
+      scroll-snap-align: start;
+      aspect-ratio: 3 / 4.4;
+      min-height: 360px;
+      padding: 22px;
       border-radius: 28px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
+      align-items: flex-start;
+      gap: 12px;
+      text-align: left;
       color: #fff;
       background-color: #1c1917;
       background-size: cover;
       background-position: center;
+      box-shadow: 0 8px 32px rgba(10, 10, 10, 0.1);
       isolation: isolate;
     }
     .features-card::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 15%, rgba(0, 0, 0, 0.76) 100%);
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.06) 30%, rgba(0, 0, 0, 0.78) 100%);
       z-index: 0;
     }
     .features-card-copy {
       position: relative;
       z-index: 1;
-      max-width: 36em;
+      width: 100%;
     }
     .features-card-copy h3 {
       font-family: var(--font-display);
-      font-size: clamp(28px, 3.8vw, 38px);
+      font-size: 26px;
       font-weight: 400;
       letter-spacing: -0.02em;
       margin: 10px 0 8px;
       color: #fff;
+      line-height: 1.15;
     }
     .features-card-copy p {
       color: rgba(255, 255, 255, 0.82);
-      font-size: 15px;
-      line-height: 1.5;
+      font-size: 14px;
+      line-height: 1.45;
       margin: 0;
     }
     .features-card-1 { background-image: url("assets/features/showcase.jpg"); }
@@ -2308,12 +2319,6 @@
     .features-card-4 { background-image: url("assets/features/refund.jpg"); }
     .features-card-5 { background-image: url("assets/features/invites.jpg"); }
     .features-card-6 { background-image: url("assets/features/scanner.jpg"); }
-    @media (max-width: 960px) {
-      .features-card {
-        flex-basis: min(92vw, 620px);
-        min-height: 360px;
-      }
-    }
 
     /* Offer rail — full-bleed track, controls stay in .wrap */
     .offer-rail-bleed {
