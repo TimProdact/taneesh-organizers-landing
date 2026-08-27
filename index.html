@@ -880,28 +880,50 @@
     .offer-rail {
       display: grid;
       grid-auto-flow: column;
-      grid-auto-columns: minmax(260px, 300px);
+      grid-auto-columns: minmax(220px, 260px);
       gap: 16px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
-      padding-bottom: 12px;
-      scrollbar-width: thin;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
+    .offer-rail::-webkit-scrollbar { display: none; }
     .offer-card {
+      position: relative;
       scroll-snap-align: start;
-      min-height: 220px;
+      aspect-ratio: 3 / 4.4;
+      min-height: 360px;
       padding: 22px;
-      border-radius: 22px;
-      background: #fff;
-      border: 1px solid var(--border);
+      border-radius: 28px;
+      border: 0;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-      text-align: center;
+      justify-content: flex-end;
+      align-items: flex-start;
+      gap: 12px;
+      text-align: left;
+      color: #fff;
+      background-color: #1c1917;
+      background-size: cover;
+      background-position: center;
+      isolation: isolate;
     }
-    .section-alt .offer-card { background: var(--cream); }
+    .offer-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.08) 20%, rgba(0,0,0,0.72) 100%);
+      z-index: 0;
+    }
+    .offer-card > * { position: relative; z-index: 1; }
+    .offer-card-1 { background-image: url("assets/features/showcase.jpg"); }
+    .offer-card-2 { background-image: url("assets/features/payment.jpg"); }
+    .offer-card-3 { background-image: url("assets/features/crm.jpg"); }
+    .offer-card-4 { background-image: url("assets/features/refund.jpg"); }
+    .offer-card-5 { background-image: url("assets/features/invites.jpg"); }
+    .offer-card-6 { background-image: url("assets/features/scanner.jpg"); }
     .offer-tag {
       display: inline-flex;
       width: fit-content;
@@ -909,9 +931,11 @@
       border-radius: 9999px;
       font-size: 12px;
       font-weight: 700;
-      background: rgba(30, 215, 96, 0.12);
-      color: #0f7a38;
-      margin-inline: auto;
+      background: rgba(255, 255, 255, 0.16);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(8px);
+      margin-inline: 0;
     }
     .offer-body h3 {
       font-family: var(--font-display);
@@ -919,13 +943,37 @@
       font-weight: 400;
       margin-bottom: 8px;
       letter-spacing: -0.02em;
+      color: #fff;
     }
-    .offer-body p { color: var(--muted); font-size: 14px; }
+    .offer-body p { color: rgba(255, 255, 255, 0.78); font-size: 14px; }
+    .offer-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .offer-nav {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 0;
+      background: rgba(28, 25, 23, 0.08);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: background 160ms var(--ease), transform 160ms var(--ease);
+    }
+    .offer-nav:hover { background: rgba(28, 25, 23, 0.14); transform: translateY(-1px); }
+    .offer-nav:disabled { opacity: 0.35; cursor: default; transform: none; }
+    .offer-nav svg { width: 18px; height: 18px; }
     .offer-progress {
       height: 3px;
+      width: min(120px, 30%);
       border-radius: 9999px;
       background: rgba(28, 25, 23, 0.08);
-      margin-top: 8px;
+      margin: 16px auto 0;
       overflow: hidden;
     }
     .offer-progress i {
@@ -1512,48 +1560,56 @@
         </div>
         <div class="offer-rail-wrap">
           <div class="offer-rail" tabindex="0" data-offer-rail data-i18n-aria="offerAria" aria-label="Возможности платформы">
-            <article class="offer-card">
+            <article class="offer-card offer-card-1">
               <span class="offer-tag" data-i18n="o1tag">Витрина</span>
               <div class="offer-body">
                 <h3 data-i18n="o1t">Личная витрина</h3>
                 <p data-i18n="o1p">Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
               </div>
             </article>
-            <article class="offer-card">
+            <article class="offer-card offer-card-2">
               <span class="offer-tag" data-i18n="o2tag">Оплата</span>
               <div class="offer-body">
                 <h3 data-i18n="o2t">Оплата в 2 клика</h3>
                 <p data-i18n="o2p">Гость платит прямо в браузере телефона — ничего скачивать не нужно.</p>
               </div>
             </article>
-            <article class="offer-card">
+            <article class="offer-card offer-card-3">
               <span class="offer-tag" data-i18n="o3tag">CRM</span>
               <div class="offer-body">
                 <h3 data-i18n="o3t">CRM для гостей</h3>
                 <p data-i18n="o3p">Список покупателей, статусы оплат и контактные данные в едином дашборде.</p>
               </div>
             </article>
-            <article class="offer-card">
+            <article class="offer-card offer-card-4">
               <span class="offer-tag" data-i18n="o4tag">Возврат</span>
               <div class="offer-body">
                 <h3 data-i18n="o4t">Возврат в 1 клик</h3>
                 <p data-i18n="o4p">Мгновенно отменяйте и возвращайте билеты без долгих переписок с поддержкой.</p>
               </div>
             </article>
-            <article class="offer-card">
+            <article class="offer-card offer-card-5">
               <span class="offer-tag" data-i18n="o5tag">Приглашения</span>
               <div class="offer-body">
                 <h3 data-i18n="o5t">VIP-приглашения</h3>
                 <p data-i18n="o5p">Генерируйте закрытые ссылки или бесплатные билеты для особых гостей и партнеров.</p>
               </div>
             </article>
-            <article class="offer-card">
+            <article class="offer-card offer-card-6">
               <span class="offer-tag" data-i18n="o6tag">Сканер</span>
               <div class="offer-body">
                 <h3 data-i18n="o6t">Умный сканер</h3>
                 <p data-i18n="o6p">Быстрый контроль на входе по QR-кодам. Исключает подделки и повторные проходы.</p>
               </div>
             </article>
+          </div>
+          <div class="offer-controls">
+            <button type="button" class="offer-nav" data-offer-prev aria-label="Назад">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button type="button" class="offer-nav" data-offer-next aria-label="Вперёд">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
           </div>
           <div class="offer-progress" aria-hidden="true"><i data-offer-progress></i></div>
         </div>
