@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="400" x2="300" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0c1210"/>
+      <stop offset="1" stop-color="#141a16"/>
+    </linearGradient>
+  </defs>
+  <rect width="300" height="400" fill="url(#bg)"/>
+  <!-- court/field lines -->
+  <rect x="30" y="200" width="240" height="160" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+  <line x1="150" y1="200" x2="150" y2="360" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <circle cx="150" cy="280" r="40" stroke="rgba(255,255,255,0.08)" stroke-width="1" fill="none"/>
+  <line x1="30" y1="280" x2="270" y2="280" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <!-- center circle dot -->
+  <circle cx="150" cy="280" r="4" fill="rgba(255,255,255,0.15)"/>
+  <!-- trophy -->
+  <path d="M120 60 L120 90 Q120 130 150 130 Q180 130 180 90 L180 60 Z" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+  <path d="M120 70 L105 70 Q95 70 95 85 Q95 100 110 100" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none"/>
+  <path d="M180 70 L195 70 Q205 70 205 85 Q205 100 190 100" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none"/>
+  <rect x="140" y="130" width="20" height="25" fill="rgba(255,255,255,0.08)"/>
+  <rect x="125" y="155" width="50" height="10" rx="3" fill="rgba(255,255,255,0.12)"/>
+  <path d="M145 80 L148 95 L163 95 L150 105 L155 120 L150 110 L135 110 L148 100 L143 85 Z" fill="#1ed760" opacity="0.85"/>
+  <!-- ball -->
+  <circle cx="210" cy="250" r="28" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+  <path d="M182 250 Q210 222 238 250" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="none"/>
+  <path d="M182 250 Q210 278 238 250" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="none"/>
+  <line x1="210" y1="222" x2="210" y2="278" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <!-- athlete silhouette -->
+  <circle cx="80" cy="230" r="16" fill="rgba(255,255,255,0.1)"/>
+  <path d="M55 280 Q80 250 105 280 L100 320 L60 320 Z" fill="rgba(255,255,255,0.06)"/>
+  <line x1="70" y1="260" x2="50" y2="240" stroke="rgba(255,255,255,0.15)" stroke-width="3" stroke-linecap="round"/>
+  <line x1="90" y1="255" x2="110" y2="235" stroke="rgba(255,255,255,0.15)" stroke-width="3" stroke-linecap="round"/>
+  <!-- scoreboard accent -->
+  <rect x="200" y="45" width="70" height="35" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+  <text x="215" y="68" fill="#9fe870" font-family="system-ui,sans-serif" font-size="16" font-weight="700" opacity="0.8">3:2</text>
+</svg>

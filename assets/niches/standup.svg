@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="300" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1a1a1a"/>
+      <stop offset="1" stop-color="#0d0d0d"/>
+    </linearGradient>
+    <radialGradient id="spot" cx="150" cy="120" r="140" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1ed760" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#1ed760" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="300" height="400" fill="url(#bg)"/>
+  <rect width="300" height="400" fill="url(#spot)"/>
+  <!-- stage floor -->
+  <path d="M0 280 L300 280" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+  <path d="M40 280 Q150 268 260 280" stroke="rgba(255,255,255,0.08)" stroke-width="1" fill="none"/>
+  <!-- spotlight cone -->
+  <path d="M120 0 L90 280 L210 280 L180 0" fill="rgba(255,255,255,0.04)"/>
+  <!-- mic stand -->
+  <line x1="150" y1="280" x2="150" y2="175" stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-linecap="round"/>
+  <rect x="138" y="168" width="24" height="10" rx="3" fill="rgba(255,255,255,0.15)"/>
+  <!-- microphone -->
+  <rect x="142" y="148" width="16" height="24" rx="8" fill="rgba(255,255,255,0.9)"/>
+  <line x1="150" y1="172" x2="150" y2="178" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+  <path d="M136 160 Q136 180 150 184 Q164 180 164 160" stroke="#1ed760" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- comedian silhouette -->
+  <circle cx="150" cy="210" r="22" fill="rgba(255,255,255,0.12)"/>
+  <path d="M118 280 Q150 248 182 280" fill="rgba(255,255,255,0.08)"/>
+  <!-- audience heads -->
+  <g fill="rgba(255,255,255,0.06)">
+    <circle cx="60" cy="310" r="14"/><circle cx="95" cy="318" r="12"/><circle cx="130" cy="312" r="13"/>
+    <circle cx="170" cy="318" r="12"/><circle cx="205" cy="310" r="14"/><circle cx="240" cy="316" r="11"/>
+  </g>
+  <!-- laugh curves -->
+  <path d="M55 295 Q65 285 75 295" stroke="rgba(255,255,255,0.15)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  <path d="M225 295 Q235 285 245 295" stroke="rgba(255,255,255,0.15)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  <!-- decorative dots -->
+  <circle cx="40" cy="60" r="2" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="260" cy="80" r="3" fill="rgba(255,255,255,0.08)"/>
+  <circle cx="220" cy="45" r="1.5" fill="#9fe870" opacity="0.6"/>
+</svg>

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="bg" x1="150" y1="0" x2="150" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#12101a"/>
+      <stop offset="1" stop-color="#080608"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="150" cy="200" r="160" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1ed760" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#1ed760" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="300" height="400" fill="url(#bg)"/>
+  <rect width="300" height="400" fill="url(#glow)"/>
+  <!-- stage lights beams -->
+  <path d="M60 0 L30 200 L90 200 Z" fill="rgba(255,255,255,0.03)"/>
+  <path d="M150 0 L110 220 L190 220 Z" fill="rgba(255,255,255,0.05)"/>
+  <path d="M240 0 L210 200 L270 200 Z" fill="rgba(255,255,255,0.03)"/>
+  <!-- light fixtures -->
+  <g fill="rgba(255,255,255,0.15)">
+    <circle cx="60" cy="30" r="8"/><circle cx="150" cy="25" r="10"/><circle cx="240" cy="30" r="8"/>
+  </g>
+  <circle cx="150" cy="25" r="5" fill="#1ed760" opacity="0.8"/>
+  <!-- stage platform -->
+  <path d="M20 240 L280 240 L300 280 L0 280 Z" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <!-- performer silhouettes -->
+  <circle cx="110" cy="195" r="20" fill="rgba(255,255,255,0.1)"/>
+  <path d="M85 240 L85 255 Q110 235 135 255 L135 240" fill="rgba(255,255,255,0.08)"/>
+  <circle cx="190" cy="190" r="22" fill="rgba(255,255,255,0.12)"/>
+  <path d="M162 240 L162 258 Q190 230 218 258 L218 240" fill="rgba(255,255,255,0.1)"/>
+  <!-- guitar shape -->
+  <ellipse cx="175" cy="220" rx="14" ry="18" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" fill="none"/>
+  <line x1="175" y1="202" x2="175" y2="175" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+  <!-- music notes -->
+  <g stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="rgba(255,255,255,0.2)">
+    <circle cx="230" cy="130" r="6"/><line x1="236" y1="130" x2="236" y2="100" stroke-linecap="round"/>
+    <path d="M236 100 Q250 95 250 110" fill="none"/>
+    <circle cx="50" cy="150" r="5" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)"/>
+    <line x1="55" y1="150" x2="55" y2="125" stroke-linecap="round"/>
+  </g>
+  <!-- crowd hands -->
+  <g fill="rgba(255,255,255,0.06)">
+    <path d="M40 300 L50 270 L60 300 Z"/><path d="M80 310 L88 285 L96 310 Z"/>
+    <path d="M200 305 L210 278 L220 305 Z"/><path d="M250 295 L258 272 L266 295 Z"/>
+  </g>
+  <!-- sound wave -->
+  <path d="M130 320 Q140 310 150 320 Q160 330 170 320 Q180 310 190 320" stroke="#9fe870" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.5"/>
+</svg>
