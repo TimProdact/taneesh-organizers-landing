@@ -1814,7 +1814,7 @@
       display: grid;
       grid-template-columns: minmax(0, 1.12fr) minmax(300px, 0.88fr);
       gap: clamp(32px, 5vw, 64px);
-      align-items: center;
+      align-items: start;
     }
     #flow .flow-steps {
       display: grid;
@@ -1867,25 +1867,20 @@
       text-align: left;
     }
     .flow-lead {
-      margin: 16px 0 28px;
+      margin: 16px 0 0;
       color: var(--muted);
       font-size: 17px;
       max-width: 32em;
       line-height: 1.5;
       text-align: left;
     }
+    #flow .flow-story .flow-cta {
+      margin-top: 28px;
+      min-width: min(100%, 280px);
+    }
     #flow .flow-cta {
       display: inline-flex;
       margin-inline: 0;
-    }
-    .flow-foot {
-      display: flex;
-      justify-content: center;
-      margin-top: clamp(36px, 5vw, 52px);
-    }
-    .flow-foot .flow-cta {
-      margin-top: 0;
-      min-width: min(100%, 280px);
     }
     .flow-cta:hover { filter: brightness(0.97); transform: translateY(-1px); }
     @media (max-width: 960px) {
@@ -1906,7 +1901,6 @@
         margin-inline: auto;
       }
       #flow .flow-cta { margin-inline: auto; }
-      .flow-foot { margin-top: 28px; }
       #flow .flow-steps {
         order: 0;
         width: min(100%, 720px);
@@ -3578,10 +3572,8 @@
             <span class="eyebrow" data-i18n="flowEyebrow">Запуск</span>
             <h2 data-i18n="flowTitle">Запуск за 5 минут</h2>
             <p class="flow-lead" data-i18n="flowLead">От регистрации до пропуска гостей на входе — без кассы, без абонентки и без сложной настройки.</p>
+            <a class="btn btn-accent flow-cta" href="#" data-lead-modal data-lead-source="flowCta" data-i18n="flowCta">Начать продажи</a>
           </div>
-        </div>
-        <div class="flow-foot">
-          <a class="btn btn-accent flow-cta" href="#" data-lead-modal data-lead-source="flowCta" data-i18n="flowCta">Начать продажи</a>
         </div>
       </div>
     </section>
