@@ -160,7 +160,8 @@
         <nav class="header-nav" data-i18n-aria="navAria" aria-label="Навигация">
           <a href="#why" data-goto="why" data-i18n="navWhy">Почему мы</a>
           <a href="#included" data-goto="included" data-i18n="navIncluded">Что даём</a>
-          <a href="#why" data-goto="why" data-i18n="navFees">Сборы</a>
+          <a href="#tickettypes" data-goto="tickettypes" data-i18n="navTickets">Типы билетов</a>
+          <a href="#ecosystem" data-goto="ecosystem" data-i18n="navEco">Экосистема</a>
           <a href="#audience" data-goto="audience" data-i18n="navOrgs">Организаторы</a>
           <a href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
         </nav>
@@ -197,7 +198,8 @@
       <nav class="mobile-menu__nav">
         <a href="#why" data-goto="why" data-i18n="navWhy">Почему мы</a>
         <a href="#included" data-goto="included" data-i18n="navIncluded">Что даём</a>
-        <a href="#why" data-goto="why" data-i18n="navFees">Сборы</a>
+        <a href="#tickettypes" data-goto="tickettypes" data-i18n="navTickets">Типы билетов</a>
+        <a href="#ecosystem" data-goto="ecosystem" data-i18n="navEco">Экосистема</a>
         <a href="#audience" data-goto="audience" data-i18n="navOrgs">Организаторы</a>
         <a href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
       </nav>
@@ -400,6 +402,43 @@
             </div>
           </div>
         </div>
+
+        <div class="why-compare" data-compare>
+          <h3 class="why-compare__title" data-i18n="cmpTitle">Не «ещё один агрегатор с наценкой» — а инфраструктура для ваших продаж</h3>
+          <div class="why-compare__table">
+            <div class="why-compare__row why-compare__head">
+              <span></span>
+              <span class="why-compare__bad" data-i18n="cmpOld">Обычная касса</span>
+              <span class="why-compare__good" data-i18n="cmpNew">Taneesh</span>
+            </div>
+            <div class="why-compare__row">
+              <span data-i18n="cmpFeeLabel">Доля с цены билета</span>
+              <span class="why-compare__bad" data-i18n="cmpFeeOld">5–15% и больше</span>
+              <span class="why-compare__good" data-i18n="cmpFeeNew">0% с вашей цены</span>
+            </div>
+            <div class="why-compare__row">
+              <span data-i18n="cmpStartLabel">Старт</span>
+              <span class="why-compare__bad" data-i18n="cmpStartOld">Договоры, касса, ожидание</span>
+              <span class="why-compare__good" data-i18n="cmpStartNew">Self-service за минуты</span>
+            </div>
+            <div class="why-compare__row">
+              <span data-i18n="cmpSubLabel">Абонентка кабинета</span>
+              <span class="why-compare__bad" data-i18n="cmpSubOld">Часто есть</span>
+              <span class="why-compare__good" data-i18n="cmpSubNew">0 сум за базовый кабинет</span>
+            </div>
+            <div class="why-compare__row">
+              <span data-i18n="cmpTransLabel">Прозрачность</span>
+              <span class="why-compare__bad" data-i18n="cmpTransOld">Скрытые наценки</span>
+              <span class="why-compare__good" data-i18n="cmpTransNew">1.5% карта + FixedFee — видно в чеке</span>
+            </div>
+            <div class="why-compare__row">
+              <span data-i18n="cmpEcoLabel">Экосистема</span>
+              <span class="why-compare__bad" data-i18n="cmpEcoOld">Только билет</span>
+              <span class="why-compare__good" data-i18n="cmpEcoNew">Витрина · CRM · сканер · трафик приложения</span>
+            </div>
+          </div>
+          <p class="why-compare__foot" data-i18n="cmpFoot">Инфраструктура в духе Shopify и Eventbrite — сервисный сбор платит гость, а не съедает вашу маржу.</p>
+        </div>
       </div>
     </section>
 
@@ -521,6 +560,42 @@
       </div>
     </section>
 
+    <section class="section" id="tickettypes">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="ttEyebrow">Типы билетов</span>
+          <h2 data-i18n="ttTitle">Четыре способа продать вход</h2>
+          <p class="lead" data-i18n="ttLead">Платёжные сценарии под любой формат — от платного онлайн-билета до бесплатного приглашения.</p>
+        </div>
+        <div class="tt-grid">
+          <article class="tt-card">
+            <span class="tt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="7" rx="2"/><path d="M3 8h18"/><path d="M6 8v1M18 8v1"/><path d="M6 11v9M18 11v9M10 11v9M14 11v9"/></svg></span>
+            <h3 data-i18n="ttOnlineTitle">Платно · онлайн</h3>
+            <p data-i18n="ttOnlineDesc">Гость платит цену билета + сервисный сбор прямо на витрине и сразу получает QR.</p>
+            <span class="tt-badge" data-i18n="ttOnlineBadge">до 100% цены — вам</span>
+          </article>
+          <article class="tt-card">
+            <span class="tt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2L3 14h7l-1 8L19 10h-7z"/></svg></span>
+            <h3 data-i18n="ttDoorTitle">На входе · at door</h3>
+            <p data-i18n="ttDoorDesc">Бронь с оплатой на месте: гость платит сбор заранее, цену билета — вам у двери.</p>
+            <span class="tt-badge" data-i18n="ttDoorBadge">до 5 билетов за раз</span>
+          </article>
+          <article class="tt-card">
+            <span class="tt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></span>
+            <h3 data-i18n="ttFreeTitle">Бесплатно</h3>
+            <p data-i18n="ttFreeDesc">Регистрация без оплаты — QR после подтверждения, если нужна модерация заявки.</p>
+            <span class="tt-badge" data-i18n="ttFreeBadge">1 билет на человека</span>
+          </article>
+          <article class="tt-card">
+            <span class="tt-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l2.4 5 5.6.7-4.1 3.9 1 5.4-4.9-2.6-4.9 2.6 1-5.4L4 8.7 9.6 8z"/></svg></span>
+            <h3 data-i18n="ttVipTitle">Приглашение / VIP</h3>
+            <p data-i18n="ttVipDesc">Закрытая ссылка или бесплатный билет для особых гостей и партнёров — «Приглашён» на сканере.</p>
+            <span class="tt-badge" data-i18n="ttVipBadge">по инвайту</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="included">
       <div class="wrap">
         <div class="section-head">
@@ -619,6 +694,26 @@
       </div>
     </section>
 
+    <section class="section" id="ecosystem">
+      <div class="wrap">
+        <div class="island eco">
+          <div class="eco-head">
+            <span class="eyebrow" data-i18n="ecoEyebrow">Экосистема</span>
+            <h2 data-i18n="ecoTitle">Гости и организаторы — в одной системе</h2>
+            <p class="lead" data-i18n="ecoLead">Вы продаёте билеты, а гость находит событие и компанию — в одном продукте, а не в восьми мессенджерах и кассах.</p>
+          </div>
+          <div class="eco-loop" aria-label="Экосистема">
+            <span class="eco-node" data-i18n="eco1">Событие</span>
+            <span class="eco-node" data-i18n="eco2">Люди рядом</span>
+            <span class="eco-node" data-i18n="eco3">Чат</span>
+            <span class="eco-node" data-i18n="eco4">Билет с QR</span>
+            <span class="eco-node" data-i18n="eco5">Вход по скан</span>
+          </div>
+          <p class="eco-foot" data-i18n="ecoFoot">«Я в пути» — организатор видит, кто уже едет на событие.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="paytrust">
       <div class="wrap">
         <div class="island paytrust">
@@ -703,7 +798,7 @@
       <nav class="site-footer__nav" aria-label="Footer">
         <a class="site-footer__pill" href="#why" data-goto="why" data-i18n="navWhy">Почему мы</a>
         <a class="site-footer__pill" href="#included" data-goto="included" data-i18n="navIncluded">Что даём</a>
-        <a class="site-footer__pill" href="#why" data-goto="why" data-i18n="navFees">Сборы</a>
+        <a class="site-footer__pill" href="#tickettypes" data-goto="tickettypes" data-i18n="navTickets">Типы билетов</a>
         <a class="site-footer__pill" href="#faq" data-goto="faq" data-i18n="faqTitle">FAQ</a>
         <a class="site-footer__pill is-accent" href="#" data-lead-modal data-lead-source="footCta" data-i18n="footCta">Заявка</a>
         <a class="site-footer__pill" href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
@@ -893,6 +988,7 @@
       setText('outAcq', fmt(acqShown));
       setText('outFix', fmt(fixShown));
       setText('outFee', fmt(feeTotal));
+      setText('feesPunchTotal', fmt(total));
       setText('tanPerTicket', fmt(t));
       setText('saveAmount', '+' + fmt(save));
       setText('savePack', fmt(pack));
@@ -1400,6 +1496,9 @@
         '.quote-block',
         '#faq .faq-item',
         '#paytrust',
+        '#ecosystem .eco',
+        '#tickettypes .tt-card',
+        '.why-compare',
         '.island.calc-shell',
       ].join(',');
 
