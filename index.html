@@ -340,12 +340,14 @@
       </div>
     </section>
 
-    <section class="strip-tech" id="tech" aria-label="Telegram Mini App">
-      <div class="wrap strip-tech__inner">
-        <span class="strip-tech__badge" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 5L3 11l6 2 2 6 3-5 4 1 3-10z"/></svg>
-        </span>
-        <p data-i18n-html="techText"><strong>Прямо в Telegram</strong> — Mini App на Flutter Web: гость покупает билет, не выходя из мессенджера, без скачивания приложений.</p>
+    <section class="section section--strip" id="tech" aria-label="Telegram Mini App">
+      <div class="wrap">
+        <div class="island tech-strip">
+          <span class="tech-strip__ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 5L3 11l6 2 2 6 3-5 4 1 3-10z"/></svg>
+          </span>
+          <p data-i18n-html="techText"><strong>Прямо в Telegram</strong> — Mini App на Flutter Web: гость покупает билет, не выходя из мессенджера, без скачивания приложений.</p>
+        </div>
       </div>
     </section>
 
@@ -737,12 +739,12 @@
 
     <section class="section" id="ecosystem">
       <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="ecoEyebrow">Экосистема</span>
+          <h2 data-i18n="ecoTitle">Гости и организаторы — в одной системе</h2>
+          <p class="lead" data-i18n="ecoLead">Вы продаёте билеты, а гость находит событие и компанию — в одном продукте, а не в восьми мессенджерах и кассах.</p>
+        </div>
         <div class="island eco">
-          <div class="eco-head">
-            <span class="eyebrow" data-i18n="ecoEyebrow">Экосистема</span>
-            <h2 data-i18n="ecoTitle">Гости и организаторы — в одной системе</h2>
-            <p class="lead" data-i18n="ecoLead">Вы продаёте билеты, а гость находит событие и компанию — в одном продукте, а не в восьми мессенджерах и кассах.</p>
-          </div>
           <div class="eco-loop" aria-label="Экосистема">
             <span class="eco-node" data-i18n="eco1">Событие</span>
             <span class="eco-node" data-i18n="eco2">Люди рядом</span>
@@ -750,7 +752,7 @@
             <span class="eco-node" data-i18n="eco4">Билет с QR</span>
             <span class="eco-node" data-i18n="eco5">Вход по скан</span>
           </div>
-          <p class="eco-foot" data-i18n="ecoFoot">«Я в пути» — организатор видит, кто уже едет на событие.</p>
+          <p class="eco-foot type-caption" data-i18n="ecoFoot">«Я в пути» — организатор видит, кто уже едет на событие.</p>
         </div>
       </div>
     </section>
@@ -1539,7 +1541,7 @@
         '#paytrust',
         '#ecosystem .eco',
         '#tickettypes .tt-card',
-        '#tech .strip-tech__inner',
+        '#tech .tech-strip',
         '#pains .pain-card',
         '.why-compare',
         '.island.calc-shell',

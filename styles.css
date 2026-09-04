@@ -2229,24 +2229,111 @@
       .fees-result-arrow { transform: rotate(90deg); margin-inline: auto; }
     }
 
-    /* Comparison: ordinary cash desk vs Taneesh */    .why-compare {
-      margin: 40px auto 0;
+    /* Telegram Mini App strip — compact island, same surface language as paytrust */
+    .section--strip {
+      padding-block: 0 0;
+      padding-top: 0;
+    }
+    .section--strip .wrap {
+      padding-top: clamp(24px, 4vw, 40px);
+    }
+    .tech-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-stack-md);
+      flex-wrap: wrap;
+      text-align: center;
+      padding: clamp(18px, 3vw, 24px) var(--space-island);
+    }
+    .tech-strip__ico {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      flex: none;
+      background: rgba(10, 10, 10, 0.06);
+      color: var(--text);
+    }
+    .tech-strip__ico svg { width: 22px; height: 22px; }
+    .tech-strip p {
+      margin: 0;
+      max-width: 42em;
+      font-size: var(--text-body);
+      line-height: var(--leading-relaxed);
+      color: var(--muted);
+    }
+    .tech-strip p strong {
+      color: var(--text);
+      font-weight: var(--weight-bold);
+    }
+
+    /* Four pains — cards on surface, display titles, flow-like icons */
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-stack-md);
+      max-width: var(--max);
+      margin-inline: auto;
+    }
+    .pain-card {
+      background: var(--surface);
+      border: 0;
+      border-radius: var(--radius);
+      padding: var(--space-card);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-stack-sm);
+      min-height: 100%;
+    }
+    .pain-ico {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: rgba(10, 10, 10, 0.06);
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .pain-ico svg { width: 22px; height: 22px; }
+    .pain-card h3 {
+      margin: 0;
+      font-size: var(--text-display-xs);
+    }
+    .pain-card p {
+      margin: 0;
+      font-size: var(--text-body-sm);
+      color: var(--muted);
+      line-height: var(--leading-body);
+    }
+    @media (max-width: 960px) {
+      .pain-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 560px) {
+      .pain-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Comparison: ordinary cash desk vs Taneesh */
+    .why-compare {
+      margin: var(--space-stack-xl) auto 0;
       max-width: 800px;
       text-align: center;
     }
     .why-compare__title {
-      margin: 0 0 20px;
-      font-family: var(--font-ui);
-      font-size: clamp(18px, 2.6vw, 24px);
-      font-weight: var(--weight-bold);
-      line-height: 1.2;
-      letter-spacing: -0.02em;
+      margin: 0 0 var(--space-stack-lg);
+      font-family: var(--font-display);
+      font-size: var(--text-display-xs);
+      font-weight: var(--weight-display);
+      line-height: var(--leading-tight);
+      letter-spacing: var(--track-heading);
     }
     .why-compare__table {
-      border: 1px solid rgba(28, 25, 23, 0.1);
-      border-radius: 20px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
       overflow: hidden;
-      background: rgba(255, 255, 255, 0.5);
+      background: #fff;
       text-align: left;
     }
     .why-compare__row {
@@ -2279,69 +2366,6 @@
       .why-compare__row { grid-template-columns: 1fr; gap: 4px; padding: 12px 16px; }
       .why-compare__head { grid-template-columns: 1fr 1fr; gap: 8px; }
       .why-compare__head > span:first-child { display: none; }
-    }
-
-    /* Telegram Mini App strip */
-    .strip-tech {
-      background: linear-gradient(90deg, rgba(25, 194, 72, 0.1), rgba(25, 194, 72, 0.02));
-      border-bottom: 1px solid rgba(25, 194, 72, 0.15);
-    }
-    .strip-tech__inner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      text-align: center;
-      padding: 14px 0;
-    }
-    .strip-tech__badge {
-      display: inline-grid;
-      place-items: center;
-      width: 26px;
-      height: 26px;
-      flex: none;
-      color: #0f7a38;
-    }
-    .strip-tech__badge svg { width: 22px; height: 22px; }
-    .strip-tech p { margin: 0; font-size: var(--text-body-sm); }
-    .strip-tech p strong { color: #0f7a38; }
-
-    /* Four pains */
-    .pain-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 14px;
-      max-width: 1080px;
-      margin-inline: auto;
-    }
-    .pain-card {
-      border: 1px solid rgba(28, 25, 23, 0.1);
-      border-radius: 18px;
-      padding: 22px;
-      background: rgba(255, 255, 255, 0.5);
-    }
-    .pain-ico {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      background: rgba(185, 28, 28, 0.1);
-      color: #b91c1c;
-      margin-bottom: 12px;
-    }
-    .pain-ico svg { width: 22px; height: 22px; }
-    .pain-card h3 {
-      margin: 0 0 6px;
-      font-family: var(--font-ui);
-      font-size: 17px;
-      font-weight: var(--weight-bold);
-      letter-spacing: -0.01em;
-    }
-    .pain-card p { margin: 0; font-size: var(--text-body-sm); color: var(--muted); line-height: 1.5; }
-    @media (max-width: 560px) {
-      .pain-grid { grid-template-columns: 1fr; }
     }
 
     /* Conversion */
@@ -3092,66 +3116,64 @@
       font-weight: 700;
     }
 
-    /* Ticket types */
+    /* Ticket types — same card language as pains / flow icons */
     .tt-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 16px;
-      max-width: 1080px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-stack-md);
+      max-width: var(--max);
       margin-inline: auto;
     }
     .tt-card {
-      border: 1px solid rgba(28, 25, 23, 0.1);
-      border-radius: 22px;
-      padding: 24px;
-      background: rgba(255, 255, 255, 0.55);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: var(--surface);
+      border: 0;
+      border-radius: var(--radius);
+      padding: var(--space-card);
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: var(--space-stack-sm);
+      min-height: 100%;
     }
     .tt-ico {
-      width: 46px;
-      height: 46px;
+      width: 48px;
+      height: 48px;
       border-radius: 14px;
       display: grid;
       place-items: center;
-      background: rgba(25, 194, 72, 0.12);
-      color: #0f7a38;
+      background: rgba(10, 10, 10, 0.06);
+      color: var(--text);
       margin-bottom: 4px;
     }
-    .tt-ico svg { width: 24px; height: 24px; }
+    .tt-ico svg { width: 22px; height: 22px; }
     .tt-card h3 {
       margin: 0;
-      font-family: var(--font-ui);
-      font-size: 18px;
-      font-weight: var(--weight-bold);
-      letter-spacing: -0.01em;
+      font-size: var(--text-display-xs);
     }
-    .tt-card p { margin: 0; font-size: var(--text-body-sm); color: var(--muted); line-height: 1.5; flex: 1; }
+    .tt-card p {
+      margin: 0;
+      font-size: var(--text-body-sm);
+      color: var(--muted);
+      line-height: var(--leading-body);
+      flex: 1;
+    }
     .tt-badge {
       align-self: flex-start;
-      padding: 5px 10px;
+      margin-top: 4px;
+      padding: 4px 10px;
       border-radius: 9999px;
-      background: rgba(25, 194, 72, 0.12);
-      color: #0f7a38;
-      font-size: 12px;
-      font-weight: 700;
+      background: rgba(10, 10, 10, 0.06);
+      color: var(--muted);
+      font-family: var(--font-ui);
+      font-size: var(--text-micro);
+      font-weight: var(--weight-bold);
+      letter-spacing: 0.02em;
     }
 
-    /* Ecosystem */
+    /* Ecosystem — section-head + quiet island (paytrust language) */
     .eco {
       text-align: center;
-      padding: clamp(32px, 6vw, 56px);
-      background:
-        radial-gradient(circle at 20% 10%, rgba(159, 232, 112, 0.25), transparent 45%),
-        radial-gradient(circle at 80% 90%, rgba(25, 194, 72, 0.14), transparent 40%),
-        var(--surface, #ececec);
+      padding: var(--space-island);
     }
-    .eco-head { max-width: 640px; margin: 0 auto 28px; }
-    .eco-head h2 { margin: 0 0 10px; }
-    .eco-head .lead { margin-inline: auto; }
     .eco-loop {
       display: flex;
       flex-wrap: wrap;
@@ -3161,18 +3183,25 @@
       margin-inline: auto;
     }
     .eco-node {
-      padding: 10px 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 16px;
       border-radius: 9999px;
-      border: 1px solid rgba(25, 194, 72, 0.35);
-      background: rgba(255, 255, 255, 0.6);
-      font-weight: 600;
-      font-size: var(--text-body-sm);
+      border: 1px solid var(--border);
+      background: #fff;
+      font-family: var(--font-ui);
+      font-weight: var(--weight-semibold);
+      font-size: var(--text-caption);
       color: var(--text);
     }
     .eco-foot {
-      margin: 22px 0 0;
-      font-size: var(--text-body-sm);
-      color: var(--muted);
+      margin: var(--space-stack-lg) 0 0;
+      text-align: center;
+    }
+    @media (max-width: 960px) {
+      .tt-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 560px) {
       .tt-grid { grid-template-columns: 1fr; }
