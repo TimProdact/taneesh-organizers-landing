@@ -1,0 +1,24 @@
+{
+  "name": "Taneesh — тикетинг для организаторов",
+  "short_name": "Taneesh",
+  "description": "Продавайте билеты, получайте 100% цены. Витрина за 5 минут.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#19c248",
+  "lang": "ru",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

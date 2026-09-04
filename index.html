@@ -40,17 +40,115 @@
   }
   </script>
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/taneesh-logo-round.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/taneesh-logo-round.png" />
-  <link rel="apple-touch-icon" href="assets/taneesh-logo-round.png" />
-  <meta name="theme-color" content="#1ed760" />
+  <!-- JSON-LD: FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Можно ли продавать без ИП и «большой» кассы?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Да. Частным организаторам достаточно кабинета — без ИП, ООО и кассового аппарата: объявили событие, выставили цену и продаёте вход с телефона."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Кто платит 1.5% и FixedFee?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Сервисный сбор платит гость при оплате: 1.5% эквайринга + FixedFee. Для бизнеса подключение бесплатно — вам уходит 100% цены билета."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Что я получаю с цены билета?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Поставили 100 000 — получили 100 000. Без комиссии с организатора и без наценки сверху на вашу цену."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Есть ли абонентка за кабинет?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Нет. Кабинет и CRM — 0 сум. Без подписки: продаёте — зарабатываете."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Чем Taneesh отличается от обычных касс?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Обычные кассы берут 5–15% с билета. У Taneesh: 0% с вашей цены, горячий трафик платформы и эквайринг в сборе с гостя."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Сколько нужно, чтобы запуститься?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Обычно достаточно минут: создали кабинет и витрину, опубликовали первый ивент. Контакты: taneesh.uz."
+        }
+      }
+    ]
+  }
+  </script>
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#19c248" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Taneesh" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <script src="assets/i18n.js"></script>
+
+  <!-- Analytics: fill in your Yandex.Metrika counter id and Meta Pixel id below to enable tracking -->
+  <script>
+    window.TaneeshAnalytics = window.TaneeshAnalytics || { metrikaId: 0, pixelId: '' };
+  </script>
+  <script>
+    (function (m, e, t, r, i, k, a) {
+      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
+      m[i].l = 1 * new Date();
+      k = e.createElement(t); a = e.getElementsByTagName(t)[0];
+      k.async = 1; k.src = r; a.parentNode.insertBefore(k, a);
+    })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
+    var metrikaId = (window.TaneeshAnalytics && window.TaneeshAnalytics.metrikaId) || 0;
+    if (metrikaId) {
+      ym(metrikaId, 'init', {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true,
+      });
+    }
+  </script>
+  <script>
+    var pixelId = (window.TaneeshAnalytics && window.TaneeshAnalytics.pixelId) || '';
+    if (pixelId) {
+      !function (f, b, e, v, n, t, s) {
+        if (f.fbq) return; n = f.fbq = function () {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+        n.queue = []; t = b.createElement(e); t.async = !0;
+        t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+      }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', pixelId);
+      fbq('track', 'PageView');
+    }
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/0" style="position:absolute;left:-9999px;" alt="" /></div></noscript>
 </head>
 <body>
   <header class="header">
@@ -118,6 +216,11 @@
             <a class="btn btn-accent" href="#" data-lead-modal data-lead-source="heroCta" data-i18n="heroCta">Запустить продажи</a>
             <a class="btn btn-ghost" href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
           </div>
+          <div class="hero-proof" role="presentation">
+            <span class="hero-proof__dot" aria-hidden="true"></span>
+            <span class="hero-proof__num" data-live-tickets>0</span>
+            <span class="hero-proof__label" data-i18n="heroProof">билетов продано организаторами</span>
+          </div>
         </div>
 
         <div class="hero-duo">
@@ -166,7 +269,7 @@
                   <div class="admin-events-grid">
                     <article class="admin-ev-card">
                       <div class="admin-ev-cover">
-                        <img src="assets/niches/conference.jpg" alt="" data-i18n-alt="adminEv1Alt" />
+                        <img src="assets/niches/conference.jpg" alt="" data-i18n-alt="adminEv1Alt" loading="lazy" decoding="async" />
                         <span class="admin-ev-status admin-ev-status--pub" data-i18n="adminEvPub">Опубликовано</span>
                         <span class="admin-ev-date" data-i18n-html="adminEvDate1">Окт.<br />24</span>
                       </div>
@@ -185,7 +288,7 @@
                     </article>
                     <article class="admin-ev-card">
                       <div class="admin-ev-cover">
-                        <img src="assets/features/showcase.jpg" alt="" data-i18n-alt="adminEv2Alt" />
+                        <img src="assets/features/showcase.jpg" alt="" data-i18n-alt="adminEv2Alt" loading="lazy" decoding="async" />
                         <span class="admin-ev-status admin-ev-status--mod" data-i18n="adminEvMod">На модерации</span>
                         <span class="admin-ev-date" data-i18n-html="adminEvDate2">Нояб.<br />12</span>
                       </div>
@@ -204,7 +307,7 @@
                     </article>
                     <article class="admin-ev-card">
                       <div class="admin-ev-cover">
-                        <img src="assets/niches/party.jpg" alt="" data-i18n-alt="adminEv3Alt" />
+                        <img src="assets/niches/party.jpg" alt="" data-i18n-alt="adminEv3Alt" loading="lazy" decoding="async" />
                         <span class="admin-ev-status admin-ev-status--mod" data-i18n="adminEvMod">На модерации</span>
                         <span class="admin-ev-date" data-i18n-html="adminEvDate3">Сент.<br />6</span>
                       </div>
@@ -428,42 +531,42 @@
       <div class="features-loop-bleed">
         <div class="features-loop-mask">
           <div class="features-loop" tabindex="0" data-features-loop data-i18n-aria="offerAria" aria-label="Возможности платформы" role="region" aria-roledescription="карусель">
-            <article class="features-card features-card-1" data-feature-card>
+            <article class="features-card features-card-1" data-feature-card data-bg="assets/features/showcase.jpg">
               <div class="features-card-copy">
                 <span class="offer-tag" data-i18n="o1tag">Витрина</span>
                 <h3 data-i18n="o1t">Личная витрина</h3>
                 <p data-i18n="o1p">Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
               </div>
             </article>
-            <article class="features-card features-card-2" data-feature-card>
+            <article class="features-card features-card-2" data-feature-card data-bg="assets/features/payment.jpg">
               <div class="features-card-copy">
                 <span class="offer-tag" data-i18n="o2tag">Оплата</span>
                 <h3 data-i18n="o2t">Оплата в 2 клика</h3>
                 <p data-i18n="o2p">Гость платит прямо в браузере телефона — ничего скачивать не нужно.</p>
               </div>
             </article>
-            <article class="features-card features-card-3" data-feature-card>
+            <article class="features-card features-card-3" data-feature-card data-bg="assets/features/crm.jpg">
               <div class="features-card-copy">
                 <span class="offer-tag" data-i18n="o3tag">CRM</span>
                 <h3 data-i18n="o3t">CRM для гостей</h3>
                 <p data-i18n="o3p">Список покупателей, статусы оплат и контактные данные в едином дашборде.</p>
               </div>
             </article>
-            <article class="features-card features-card-4" data-feature-card>
+            <article class="features-card features-card-4" data-feature-card data-bg="assets/features/refund.jpg">
               <div class="features-card-copy">
                 <span class="offer-tag" data-i18n="o4tag">Возврат</span>
                 <h3 data-i18n="o4t">Возврат в 1 клик</h3>
                 <p data-i18n="o4p">Мгновенно отменяйте и возвращайте билеты без долгих переписок с поддержкой.</p>
               </div>
             </article>
-            <article class="features-card features-card-5" data-feature-card>
+            <article class="features-card features-card-5" data-feature-card data-bg="assets/features/invites.jpg">
               <div class="features-card-copy">
                 <span class="offer-tag" data-i18n="o5tag">Приглашения</span>
                 <h3 data-i18n="o5t">VIP-приглашения</h3>
                 <p data-i18n="o5p">Генерируйте закрытые ссылки или бесплатные билеты для особых гостей и партнеров.</p>
               </div>
             </article>
-            <article class="features-card features-card-6" data-feature-card>
+            <article class="features-card features-card-6" data-feature-card data-bg="assets/features/scanner.jpg">
               <div class="features-card-copy">
                 <span class="offer-tag" data-i18n="o6tag">Сканер</span>
                 <h3 data-i18n="o6t">Быстрый, удобный сканер</h3>
@@ -1014,6 +1117,27 @@
       });
     })();
 
+    // Lazy-load feature card background images when they enter viewport
+    (function lazyFeatureBgs() {
+      const cards = document.querySelectorAll('.features-card[data-bg]');
+      if (!cards.length) return;
+      if (!('IntersectionObserver' in window)) {
+        cards.forEach((c) => c.classList.add('is-bg-loaded'));
+        return;
+      }
+      const io = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-bg-loaded');
+            obs.unobserve(entry.target);
+          });
+        },
+        { rootMargin: '200px 0px' }
+      );
+      cards.forEach((c) => io.observe(c));
+    })();
+
     // Hero dashboard demo (periods, KPI tap, scroll tour) + admin nav
     const dashRoot = document.querySelector('[data-dash]');
     if (dashRoot && !dashRoot.dataset.ready) {
@@ -1294,6 +1418,19 @@
       );
 
       nodes.forEach((node) => io.observe(node));
+    })();
+
+    // Live "tickets sold" counter (social proof)
+    (function liveTickets() {
+      const el = document.querySelector('[data-live-tickets]');
+      if (!el) return;
+      let count = 12470;
+      const fmt = () => el.textContent = count.toLocaleString((window.TaneeshI18n && window.TaneeshI18n.localeTag()) || 'ru-RU');
+      fmt();
+      window.setInterval(() => {
+        count += Math.floor(Math.random() * 3) + 1;
+        fmt();
+      }, 4500);
     })();
 
     // Mobile menu

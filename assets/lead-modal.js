@@ -150,10 +150,38 @@ window.TaneeshLeadModal = (function () {
         throw new Error(body || 'HTTP ' + res.status);
       }
       showSuccess();
+      trackLead(payload);
     } catch (_) {
       showError(d.leadErrorText || 'Something went wrong. Try again or call us.');
     } finally {
       setLoading(false);
+    }
+  }
+
+  function trackLead(payload) {
+    try {
+      if (window.ym && window.ym.a) {
+        window.ym(analyticsCounterId(), 'reachGoal', 'lead_form', {
+          phone: payload.phone,
+          source: payload.source,
+        });
+      }
+    } catch (_) {}
+    try {
+      if (window.fbq) {
+        window.fbq('track', 'Lead', {
+          content_name: 'lead_form',
+          source: payload.source,
+        });
+      }
+    } catch (_) {}
+  }
+
+  function analyticsCounterId() {
+    try {
+      return Number(window.TaneeshAnalytics && window.TaneeshAnalytics.metrikaId);
+    } catch (_) {
+      return 0;
     }
   }
 

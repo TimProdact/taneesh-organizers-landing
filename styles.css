@@ -469,6 +469,40 @@
     .hero-copy .btn-row {
       margin-top: var(--space-hero-lead);
     }
+    .hero-proof {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      padding: 7px 14px;
+      border: 1px solid var(--border);
+      border-radius: 9999px;
+      background: var(--bg-soft, rgba(255, 255, 255, 0.5));
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .hero-proof__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 0 rgba(25, 194, 72, 0.5);
+      animation: proof-pulse 2s var(--ease) infinite;
+      flex-shrink: 0;
+    }
+    @keyframes proof-pulse {
+      0% { box-shadow: 0 0 0 0 rgba(25, 194, 72, 0.45); }
+      70% { box-shadow: 0 0 0 8px rgba(25, 194, 72, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(25, 194, 72, 0); }
+    }
+    .hero-proof__num {
+      font-weight: 700;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-proof__dot { animation: none; }
+    }
 
     /* Hero duo: phone + admin dashboard (Time2book-style) */
     .hero-duo {
@@ -2632,12 +2666,12 @@
       line-height: var(--leading-snug);
       margin: 0;
     }
-    .features-card-1 { background-image: url("assets/features/showcase.jpg"); }
-    .features-card-2 { background-image: url("assets/features/payment.jpg"); }
-    .features-card-3 { background-image: url("assets/features/crm.jpg"); }
-    .features-card-4 { background-image: url("assets/features/refund.jpg"); }
-    .features-card-5 { background-image: url("assets/features/invites.jpg"); }
-    .features-card-6 { background-image: url("assets/features/scanner.jpg"); }
+    .features-card-1.is-bg-loaded { background-image: url("assets/features/showcase.jpg"); }
+    .features-card-2.is-bg-loaded { background-image: url("assets/features/payment.jpg"); }
+    .features-card-3.is-bg-loaded { background-image: url("assets/features/crm.jpg"); }
+    .features-card-4.is-bg-loaded { background-image: url("assets/features/refund.jpg"); }
+    .features-card-5.is-bg-loaded { background-image: url("assets/features/invites.jpg"); }
+    .features-card-6.is-bg-loaded { background-image: url("assets/features/scanner.jpg"); }
     @media (max-width: 720px) {
       :root {
         --features-card-width: min(92vw, 440px);
