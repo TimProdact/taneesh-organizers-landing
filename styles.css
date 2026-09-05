@@ -2701,14 +2701,16 @@
       #footer.snap-panel,
       #footer.section.snap-panel {
         min-height: 100vh;
-        min-height: 100svh;
         min-height: 100dvh;
+        min-height: 100svh;
+        min-height: 100lvh;
         height: auto;
         max-height: none;
         padding: 0;
-        padding-top: calc(56px + env(safe-area-inset-top, 0px));
+        padding-top: calc(64px + env(safe-area-inset-top, 0px));
         overflow: visible;
-        scroll-snap-align: none;
+        scroll-snap-align: end;
+        scroll-snap-stop: always;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -3438,6 +3440,8 @@
       background: #050505;
       color: #9ca3af;
       overflow: visible;
+      min-height: 100vh;
+      min-height: 100svh;
       min-height: 100dvh;
       display: flex;
       flex-direction: column;
@@ -3632,23 +3636,31 @@
 
     /* Mobile footer finale — must come after base #footer rules so it wins */
     @media (max-width: 900px) {
+      html {
+        /* Only the finale snaps; other sections stay free-scroll */
+        scroll-snap-type: y proximity;
+      }
       #footer,
       #footer.section,
       #footer.snap-panel,
       #footer.section.snap-panel {
+        /* Use the largest viewport unit so nothing from the previous section peeks */
         min-height: 100vh;
-        min-height: 100svh;
         min-height: 100dvh;
+        min-height: 100svh;
+        min-height: 100lvh;
         height: auto;
         max-height: none;
         padding: 0;
-        padding-top: calc(56px + env(safe-area-inset-top, 0px));
+        padding-top: calc(64px + env(safe-area-inset-top, 0px));
         overflow: visible;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         gap: 0;
         box-sizing: border-box;
+        scroll-snap-align: end;
+        scroll-snap-stop: always;
       }
       #footer > .site-footer__main,
       #footer > .site-footer__meta {
