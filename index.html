@@ -1224,8 +1224,8 @@
         const el = document.getElementById(id);
         if (el) el.textContent = v;
       };
-      setText('ticketLabel', d.money(fmt(t)));
-      setText('fixLabel', d.money(fmt(f)));
+      setText('ticketLabel', fmt(t));
+      setText('fixLabel', fmt(f));
       setText('outAcq', fmt(acqShown));
       setText('outFix', fmt(fixShown));
       setText('outFee', fmt(feeTotal));
