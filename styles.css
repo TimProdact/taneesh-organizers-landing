@@ -2996,6 +2996,9 @@
       gap: clamp(24px, 4vw, 48px);
       align-items: center;
     }
+    .feat-row.is-flip {
+      grid-template-columns: minmax(0, 1.35fr) minmax(220px, 0.85fr);
+    }
     .feat-row.is-flip .feat-row__copy { order: 2; }
     .feat-row.is-flip .feat-row__visual { order: 1; }
     .feat-row.is-flip .feat-row__copy { text-align: left; }
@@ -3922,7 +3925,7 @@
     }
     @media (prefers-reduced-motion: reduce) {
       .fp-invite__item.is-new,
-      .fp-scan__frame img { animation: none; transition: none; }
+      .fp-scan__ticket { animation: none; transition: none; }
     }
 
     /* Legacy phone/feature slide styles kept inert below */
