@@ -2848,6 +2848,298 @@
       margin-inline: 0;
     }
 
+    /* Features as phone slider (Posh-style) */
+    .feat-phone {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+      gap: clamp(32px, 6vw, 72px);
+      align-items: center;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .feat-phone__copy {
+      max-width: 28em;
+    }
+    .feat-phone__tag {
+      display: inline-block;
+      margin-bottom: var(--space-eyebrow-title);
+      font-family: var(--font-ui);
+      font-size: var(--text-caption);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--track-eyebrow);
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .feat-phone__title {
+      margin: 0 0 var(--space-title-lead);
+      font-size: var(--text-display-md);
+      max-width: 12ch;
+    }
+    .feat-phone__desc {
+      margin: 0;
+      font-size: var(--text-lead);
+      line-height: var(--leading-relaxed);
+      color: var(--muted);
+      max-width: 28em;
+    }
+    .feat-phone__controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: var(--space-stack-xl);
+    }
+    .feat-phone__btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 0;
+      background: rgba(10, 10, 10, 0.06);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: background 160ms var(--ease), transform 160ms var(--ease);
+    }
+    .feat-phone__btn:hover {
+      background: rgba(10, 10, 10, 0.12);
+      transform: translateY(-1px);
+    }
+    .feat-phone__btn svg { width: 18px; height: 18px; }
+    .feat-phone__dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex: 1;
+      justify-content: center;
+    }
+    .feat-phone__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      border: 0;
+      padding: 0;
+      background: rgba(10, 10, 10, 0.18);
+      cursor: pointer;
+      transition: width 200ms var(--ease), background 200ms var(--ease);
+    }
+    .feat-phone__dot.is-active {
+      width: 22px;
+      background: var(--text);
+    }
+    .feat-phone__device {
+      display: flex;
+      justify-content: center;
+    }
+    .feat-phone__bezel {
+      width: min(300px, 78vw);
+      background: #0a0a0a;
+      border-radius: 42px;
+      padding: 12px;
+      box-shadow:
+        0 40px 80px rgba(10, 10, 10, 0.22),
+        0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+    }
+    .feat-phone__notch {
+      width: 108px;
+      height: 24px;
+      margin: 2px auto 10px;
+      border-radius: 0 0 16px 16px;
+      background: #0a0a0a;
+    }
+    .feat-phone__screen {
+      border-radius: 30px;
+      overflow: hidden;
+      background: #111;
+      touch-action: pan-y;
+      cursor: grab;
+      aspect-ratio: 9 / 17.5;
+    }
+    .feat-phone__screen:active { cursor: grabbing; }
+    .feat-phone__track {
+      display: flex;
+      height: 100%;
+      will-change: transform;
+    }
+    .feat-slide {
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      color: #fff;
+      background: #141414;
+    }
+    .feat-slide__visual {
+      position: relative;
+      flex: 1.15;
+      min-height: 0;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 8px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.78) 100%),
+        var(--feat-img) center / cover no-repeat;
+    }
+    .feat-slide__visual strong {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: var(--weight-display);
+      letter-spacing: var(--track-heading);
+      line-height: 1.1;
+      max-width: 10ch;
+    }
+    .feat-slide__pill {
+      align-self: flex-start;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .feat-slide__body {
+      flex: 0.95;
+      padding: 16px 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: #0f0f0f;
+    }
+    .feat-slide__body > p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.72);
+    }
+    .feat-slide__row {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 13px;
+    }
+    .feat-slide__row em {
+      font-style: normal;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #04140a;
+      font-weight: 700;
+      font-size: 12px;
+    }
+    .feat-pay {
+      display: grid;
+      gap: 8px;
+      font-size: 13px;
+    }
+    .feat-pay > div {
+      display: flex;
+      justify-content: space-between;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .feat-pay strong { color: #fff; font-weight: 650; }
+    .feat-pay .is-total {
+      margin-top: 4px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font-weight: 650;
+    }
+    .feat-slide__cta {
+      margin-top: auto;
+      border: 0;
+      border-radius: 999px;
+      min-height: 42px;
+      background: var(--accent);
+      color: #04140a;
+      font-weight: 700;
+      font-size: 13px;
+      pointer-events: none;
+    }
+    .feat-slide__cta.is-soft {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+    .feat-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+    }
+    .feat-list li {
+      display: grid;
+      grid-template-columns: 28px 1fr auto;
+      gap: 10px;
+      align-items: center;
+      font-size: 13px;
+    }
+    .feat-list i {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #9fe870, #19c248);
+    }
+    .feat-list em {
+      font-style: normal;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    .feat-invite {
+      margin-top: auto;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+      color: var(--lime);
+      word-break: break-all;
+    }
+    .feat-scan {
+      text-align: center;
+      display: grid;
+      gap: 8px;
+      justify-items: center;
+      margin-top: 8px;
+    }
+    .feat-scan__ok {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(159, 232, 112, 0.2);
+      color: var(--lime);
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .feat-scan strong { font-size: 15px; }
+    .feat-scan p {
+      margin: 0;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.45;
+    }
+    @media (max-width: 860px) {
+      .feat-phone {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+      }
+      .feat-phone__copy { order: 2; }
+      .feat-phone__device { order: 1; }
+      .feat-phone__title { margin-inline: auto; }
+      .feat-phone__desc { margin-inline: auto; }
+      .feat-phone__controls { justify-content: center; }
+    }
+
     /* Trust / niches / quote / payments */
     .trust-strip {
       padding: 8px 0 28px;
