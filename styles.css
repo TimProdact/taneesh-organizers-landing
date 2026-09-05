@@ -3132,9 +3132,37 @@
       .fp-showcase__title { font-size: clamp(24px, 6.5vw, 30px); }
       .fp-pay__head strong { font-size: 22px; }
       .fp-pay__cta { min-height: 48px; }
-      .fp-pay__checkout,
-      .fp-pay.is-paid .fp-pay__checkout,
-      .fp-pay__success { position: static; }
+      .fp-pay__checkout {
+        position: static;
+      }
+      .fp-pay.is-paid .fp-pay__checkout {
+        display: none;
+      }
+      .fp-pay__success {
+        position: static;
+        flex: 0 0 auto;
+        align-self: stretch;
+        width: 100%;
+        min-height: 0;
+        height: auto;
+        margin: 0;
+        padding: 18px 16px;
+        gap: 8px;
+        place-content: center;
+      }
+      .fp-pay.is-paid .fp-pay__main {
+        min-height: 0;
+        padding: 16px;
+        display: block;
+      }
+      .fp-pay.is-paid {
+        min-height: 0;
+        height: auto !important;
+      }
+      .fp-pay.is-paid .fp-pay__side {
+        /* keep side summary below success, no extra stretch */
+        flex: none;
+      }
       .fp-crm { padding: 14px; height: auto; }
       .fp-crm__toolbar {
         flex-direction: column;
