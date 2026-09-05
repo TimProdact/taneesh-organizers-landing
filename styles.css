@@ -2884,15 +2884,15 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 16px;
+      justify-content: flex-start;
+      gap: 0;
       padding: calc(var(--feat-header) + 12px) 20px 24px;
       background: #050505;
       color: #fff;
     }
     .feat-scroll__head {
       text-align: center;
-      margin: 0;
+      margin: 0 auto var(--section-head-gap);
       max-width: 40em;
       flex: 0 0 auto;
     }
@@ -3950,28 +3950,6 @@
     }
 
     .feat-scroll__mobile { display: none; }
-
-    .feat-scroll__dots {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      justify-content: center;
-      flex: 0 0 auto;
-    }
-    .feat-scroll__dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      border: 0;
-      padding: 0;
-      background: rgba(255, 255, 255, 0.22);
-      cursor: pointer;
-      transition: width 200ms var(--ease), background 200ms var(--ease);
-    }
-    .feat-scroll__dot.is-active {
-      width: 22px;
-      background: #fff;
-    }
 
     .feat-slide__visual {
       position: relative;

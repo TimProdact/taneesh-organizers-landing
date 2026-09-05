@@ -855,8 +855,6 @@
               <p class="feat-scroll__desc" data-feat-m-desc>Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
             </div>
           </div>
-
-          <div class="feat-scroll__dots" data-feat-dots role="tablist" aria-label="Фичи"></div>
         </div>
       </div>
     </section>
@@ -1469,7 +1467,6 @@
 
       const slides = [...root.querySelectorAll('[data-feat-slide]')];
       const cards = [...root.querySelectorAll('[data-feat-card]')];
-      const dotsWrap = root.querySelector('[data-feat-dots]');
       const mobile = root.querySelector('[data-feat-mobile]');
       const mTag = root.querySelector('[data-feat-m-tag]');
       const mTitle = root.querySelector('[data-feat-m-title]');
@@ -1479,11 +1476,6 @@
 
       let index = 0;
       const reduce = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      dotsWrap.innerHTML = slides
-        .map((_, i) => `<button type="button" role="tab" class="feat-scroll__dot" data-feat-dot="${i}" aria-label="Фича ${i + 1}"></button>`)
-        .join('');
-      const dots = [...dotsWrap.querySelectorAll('[data-feat-dot]')];
 
       const syncMobile = (i) => {
         const card = cards.find((c) => Number(c.getAttribute('data-feat-card')) === i);
@@ -1509,10 +1501,6 @@
           const n = Number(c.getAttribute('data-feat-card'));
           c.classList.toggle('is-active', n === i);
         });
-        dots.forEach((d, n) => {
-          d.classList.toggle('is-active', n === i);
-          d.setAttribute('aria-selected', n === i ? 'true' : 'false');
-        });
         syncMobile(i);
       };
 
@@ -1533,18 +1521,6 @@
           setActive(progressToIndex());
         });
       };
-
-      const scrollToIndex = (i) => {
-        const travel = Math.max(1, root.offsetHeight - window.innerHeight);
-        const top = root.getBoundingClientRect().top + window.scrollY;
-        const target = top + (i / Math.max(1, count - 1)) * travel;
-        window.scrollTo({ top: target, behavior: reduce() ? 'auto' : 'smooth' });
-        setActive(i);
-      };
-
-      dots.forEach((d) => d.addEventListener('click', () => {
-        scrollToIndex(Number(d.getAttribute('data-feat-dot')));
-      }));
 
       window.addEventListener('scroll', onScroll, { passive: true });
       window.addEventListener('resize', onScroll, { passive: true });
