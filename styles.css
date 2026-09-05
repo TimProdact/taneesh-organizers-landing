@@ -2409,59 +2409,6 @@
       font-weight: var(--weight-bold);
     }
 
-    /* Comparison: ordinary cash desk vs Taneesh */
-    .why-compare {
-      margin: var(--space-stack-xl) auto 0;
-      max-width: 800px;
-      text-align: center;
-    }
-    .why-compare__title {
-      margin: 0 0 var(--space-stack-lg);
-      font-family: var(--font-display);
-      font-size: var(--text-display-xs);
-      font-weight: var(--weight-display);
-      line-height: var(--leading-tight);
-      letter-spacing: var(--track-heading);
-    }
-    .why-compare__table {
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      background: #fff;
-      text-align: left;
-    }
-    .why-compare__row {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr 1fr;
-      gap: 12px;
-      align-items: center;
-      padding: 14px 18px;
-      border-top: 1px solid rgba(28, 25, 23, 0.08);
-      font-size: var(--text-body-sm);
-    }
-    .why-compare__row:first-child { border-top: 0; }
-    .why-compare__row > span:first-child {
-      color: var(--muted);
-      font-weight: 600;
-    }
-    .why-compare__bad { color: #b91c1c; }
-    .why-compare__good { color: #0f7a38; font-weight: 700; }
-    .why-compare__head {
-      background: rgba(28, 25, 23, 0.04);
-      font-weight: var(--weight-bold);
-    }
-    .why-compare__head .why-compare__good { font-size: 15px; }
-    .why-compare__foot {
-      margin: 16px 0 0;
-      font-size: var(--text-body-sm);
-      color: var(--muted);
-    }
-    @media (max-width: 640px) {
-      .why-compare__row { grid-template-columns: 1fr; gap: 4px; padding: 12px 16px; }
-      .why-compare__head { grid-template-columns: 1fr 1fr; gap: 8px; }
-      .why-compare__head > span:first-child { display: none; }
-    }
-
     /* Conversion */
     .live-conv { grid-template-columns: 1fr; gap: 32px; }
     #conversion .island.live-conv {
