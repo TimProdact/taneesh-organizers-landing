@@ -218,11 +218,6 @@
             <a class="btn btn-accent" href="#" data-lead-modal data-lead-source="heroCta" data-i18n="heroCta">Запустить продажи</a>
             <a class="btn btn-ghost" href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
           </div>
-          <div class="hero-proof" role="presentation">
-            <span class="hero-proof__dot" aria-hidden="true"></span>
-            <span class="hero-proof__num" data-live-tickets>0</span>
-            <span class="hero-proof__label" data-i18n="heroProof">билетов продано организаторами</span>
-          </div>
         </div>
 
         <div class="hero-vibe" data-hero-vibe>
@@ -1657,19 +1652,6 @@
       );
 
       nodes.forEach((node) => io.observe(node));
-    })();
-
-    // Live "tickets sold" counter (social proof)
-    (function liveTickets() {
-      const el = document.querySelector('[data-live-tickets]');
-      if (!el) return;
-      let count = 12470;
-      const fmt = () => el.textContent = count.toLocaleString((window.TaneeshI18n && window.TaneeshI18n.localeTag()) || 'ru-RU');
-      fmt();
-      window.setInterval(() => {
-        count += Math.floor(Math.random() * 3) + 1;
-        fmt();
-      }, 4500);
     })();
 
     // Mobile menu
