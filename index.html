@@ -109,8 +109,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=1542088" />
-  <script src="assets/i18n.js?v=1542088"></script>
+  <link rel="stylesheet" href="styles.css?v=1542200" />
+  <script src="assets/i18n.js?v=1542200"></script>
 
   <!-- Analytics: fill in your Yandex.Metrika counter id and Meta Pixel id below to enable tracking -->
   <script>
@@ -1013,9 +1013,15 @@
 
       const update = () => {
         const headerBottom = header.getBoundingClientRect().bottom;
+        const viewH = window.innerHeight || document.documentElement.clientHeight;
         const overDark = darkSections.some((section) => {
           const rect = section.getBoundingClientRect();
-          return rect.top <= headerBottom + 4 && rect.bottom >= headerBottom - 4;
+          // Pill overlaps the dark block, or dark block already fills most of the viewport
+          const overlapsHeader =
+            rect.top <= headerBottom + 8 && rect.bottom >= headerBottom - 8;
+          const fillsViewport =
+            rect.top < viewH * 0.4 && rect.bottom > headerBottom + 24;
+          return overlapsHeader || fillsViewport;
         });
         header.classList.toggle('is-over-dark', overDark);
       };
@@ -1023,6 +1029,7 @@
       update();
       window.addEventListener('scroll', update, { passive: true });
       window.addEventListener('resize', update, { passive: true });
+      window.addEventListener('scrollend', update, { passive: true });
     })();
 
     // FAQ accordion — single-open details
