@@ -3144,7 +3144,9 @@
       transition: opacity 200ms var(--ease);
     }
     .phone-mock:has(.feat-slide--shot.is-active) .phone-mock__island,
-    .phone-mock:has(.feat-slide--shot.is-active) .phone-mock__home {
+    .phone-mock:has(.feat-slide--shot.is-active) .phone-mock__home,
+    .phone-mock:has(.feat-slide--crm.is-active) .phone-mock__island,
+    .phone-mock:has(.feat-slide--crm.is-active) .phone-mock__home {
       opacity: 0;
     }
     .feat-slide--shot {
@@ -3156,6 +3158,243 @@
       height: 100%;
       object-fit: cover;
       object-position: top center;
+    }
+
+    /* In-phone CRM (Telegram Mini App Audience) */
+    .feat-slide--crm {
+      background: #000;
+      color: #fff;
+      font-family: var(--font-ui);
+    }
+    .crm-screen {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 28px 10px 10px;
+      box-sizing: border-box;
+      background: #000;
+      overflow: hidden;
+    }
+    .crm-screen__top {
+      flex: 0 0 auto;
+      display: grid;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .crm-screen__tg {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.72);
+      padding: 0 2px;
+    }
+    .crm-screen__tg-actions {
+      letter-spacing: 0.12em;
+      opacity: 0.7;
+    }
+    .crm-screen__title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2px;
+    }
+    .crm-screen__title-row h4 {
+      margin: 0;
+      font-family: var(--font-ui);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+    .crm-screen__title-row > span {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1;
+    }
+    .crm-screen__tools {
+      display: grid;
+      grid-template-columns: 1fr 34px;
+      gap: 6px;
+      align-items: center;
+    }
+    .crm-screen__search {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 34px;
+      padding: 0 10px;
+      border-radius: 12px;
+      background: #161617;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.38);
+      font-size: 10px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .crm-screen__search svg {
+      width: 12px;
+      height: 12px;
+      flex: 0 0 auto;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+    .crm-screen__filter {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: #161617;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: grid;
+      place-items: center;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .crm-screen__filter svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+    .crm-screen__list {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: grid;
+      gap: 8px;
+      align-content: start;
+      overflow: hidden;
+    }
+    .crm-card {
+      background: #161617;
+      border: 1px solid #2c2c2e;
+      border-radius: 16px;
+      padding: 10px;
+      display: grid;
+      gap: 8px;
+    }
+    .crm-card__head {
+      display: grid;
+      grid-template-columns: 32px 1fr auto;
+      gap: 8px;
+      align-items: center;
+    }
+    .crm-card__avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #2c2c2e;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .crm-card__avatar--img {
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.35)),
+        var(--crm-ava) center / cover no-repeat;
+      color: transparent;
+    }
+    .crm-card__who {
+      min-width: 0;
+      display: grid;
+      gap: 1px;
+    }
+    .crm-card__who strong {
+      font-size: 12px;
+      font-weight: 650;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .crm-card__who em {
+      font-style: normal;
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.42);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .crm-card__chev {
+      color: rgba(255, 255, 255, 0.28);
+      font-size: 16px;
+      line-height: 1;
+    }
+    .crm-card__meta {
+      display: grid;
+      grid-template-columns: 1.2fr 0.7fr 1.1fr;
+      gap: 4px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .crm-card__meta > div {
+      display: grid;
+      gap: 2px;
+      min-width: 0;
+    }
+    .crm-card__meta span {
+      font-size: 8px;
+      font-weight: 650;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.42);
+    }
+    .crm-card__meta b {
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.88);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .crm-card__meta b.is-money {
+      color: #34d399;
+    }
+    .crm-screen__nav {
+      flex: 0 0 auto;
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      align-items: end;
+      gap: 2px;
+      min-height: 52px;
+      padding: 8px 6px 6px;
+      border-radius: 22px;
+      background: rgba(28, 28, 30, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+    }
+    .crm-screen__nav > span {
+      display: grid;
+      justify-items: center;
+      gap: 2px;
+      font-size: 7px;
+      color: rgba(255, 255, 255, 0.45);
+      font-weight: 600;
+    }
+    .crm-screen__nav > span.is-active {
+      color: #fff;
+    }
+    .crm-screen__nav svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.7;
+    }
+    .crm-screen__nav-add {
+      width: 34px !important;
+      height: 34px;
+      margin: 0 auto 6px;
+      border-radius: 50%;
+      background: #fff;
+      color: #0a0a0a !important;
+      display: grid !important;
+      place-items: center;
+      font-size: 22px !important;
+      font-weight: 500;
+      line-height: 1;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
     }
 
     .feat-scroll__screen .feat-slide {

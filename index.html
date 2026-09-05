@@ -596,17 +596,93 @@
                         loading="lazy"
                       />
                     </article>
-                    <article class="feat-slide" data-feat-slide="2">
-                      <div class="feat-slide__visual feat-slide__visual--list" style="--feat-img:url('assets/features/crm.jpg')">
-                        <span class="feat-slide__pill" data-i18n="o3tag">CRM</span>
-                        <strong data-i18n="o3t">CRM для гостей</strong>
-                      </div>
-                      <div class="feat-slide__body">
-                        <ul class="feat-list">
-                          <li><i></i><span>Алина К.</span><em>оплачен</em></li>
-                          <li><i></i><span>Дмитрий Р.</span><em>оплачен</em></li>
-                          <li><i></i><span>Карина М.</span><em>возврат</em></li>
-                        </ul>
+                    <article class="feat-slide feat-slide--crm" data-feat-slide="2">
+                      <div class="crm-screen">
+                        <header class="crm-screen__top">
+                          <div class="crm-screen__tg">
+                            <span>Taneesh.org</span>
+                            <span class="crm-screen__tg-actions" aria-hidden="true">⋯ ✕</span>
+                          </div>
+                          <div class="crm-screen__title-row">
+                            <h4>Аудитория</h4>
+                            <span aria-hidden="true">⋯</span>
+                          </div>
+                          <div class="crm-screen__tools">
+                            <label class="crm-screen__search">
+                              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                              <span>Поиск по имени, телефону или email...</span>
+                            </label>
+                            <span class="crm-screen__filter" aria-hidden="true">
+                              <svg viewBox="0 0 24 24"><path d="M4 5h16l-6 7v5l-4 2v-7L4 5z"/></svg>
+                            </span>
+                          </div>
+                        </header>
+                        <div class="crm-screen__list">
+                          <article class="crm-card">
+                            <div class="crm-card__head">
+                              <span class="crm-card__avatar crm-card__avatar--img" style="--crm-ava:url('assets/features/crm.jpg')"></span>
+                              <div class="crm-card__who">
+                                <strong>Timur Mun</strong>
+                                <em>timur@example.com</em>
+                              </div>
+                              <span class="crm-card__chev" aria-hidden="true">›</span>
+                            </div>
+                            <div class="crm-card__meta">
+                              <div><span>Сумма</span><b class="is-money">1 200 000 UZS</b></div>
+                              <div><span>Билеты</span><b>6</b></div>
+                              <div><span>Последняя покупка</span><b>1 Май 2026</b></div>
+                            </div>
+                          </article>
+                          <article class="crm-card">
+                            <div class="crm-card__head">
+                              <span class="crm-card__avatar">A</span>
+                              <div class="crm-card__who">
+                                <strong>Alice Smith</strong>
+                                <em>alice@example.com</em>
+                              </div>
+                              <span class="crm-card__chev" aria-hidden="true">›</span>
+                            </div>
+                            <div class="crm-card__meta">
+                              <div><span>Сумма</span><b class="is-money">450 000 UZS</b></div>
+                              <div><span>Билеты</span><b>2</b></div>
+                              <div><span>Последняя покупка</span><b>3 Апр 2026</b></div>
+                            </div>
+                          </article>
+                          <article class="crm-card">
+                            <div class="crm-card__head">
+                              <span class="crm-card__avatar">B</span>
+                              <div class="crm-card__who">
+                                <strong>Bob Johnson</strong>
+                                <em>bob@example.com</em>
+                              </div>
+                              <span class="crm-card__chev" aria-hidden="true">›</span>
+                            </div>
+                            <div class="crm-card__meta">
+                              <div><span>Сумма</span><b>0 UZS</b></div>
+                              <div><span>Билеты</span><b>0</b></div>
+                              <div><span>Последняя покупка</span><b>—</b></div>
+                            </div>
+                          </article>
+                        </div>
+                        <nav class="crm-screen__nav" aria-hidden="true">
+                          <span>
+                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+                            Дашборд
+                          </span>
+                          <span>
+                            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+                            События
+                          </span>
+                          <span class="crm-screen__nav-add">+</span>
+                          <span class="is-active">
+                            <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            CRM
+                          </span>
+                          <span>
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 12 0v1"/></svg>
+                            Профиль
+                          </span>
+                        </nav>
                       </div>
                     </article>
                     <article class="feat-slide" data-feat-slide="3">
