@@ -72,10 +72,10 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 88px;
+      scroll-padding-top: 0;
     }
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
+      html { scroll-behavior: auto; scroll-snap-type: none !important; }
       .features-loop { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
@@ -84,28 +84,32 @@
         scroll-snap-type: y mandatory;
       }
       .snap-panel {
+        height: 100svh;
         min-height: 100svh;
-        scroll-snap-align: start;
+        max-height: 100svh;
+        scroll-snap-align: center;
         scroll-snap-stop: always;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding-block: 104px 48px;
+        align-items: stretch;
+        padding: 96px 0 36px;
+        overflow: hidden;
       }
       .snap-panel > .wrap,
       .snap-panel > .feat-list-wrap {
         width: min(100% - 40px, var(--max));
         margin-inline: auto;
-      }
-      #faq.snap-panel,
-      #niches.snap-panel {
-        justify-content: flex-start;
-        padding-top: 112px;
+        flex: 0 1 auto;
+        max-height: 100%;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
       }
       #footer.snap-panel {
-        justify-content: space-between;
-        padding-block: 72px 40px;
+        justify-content: center;
+        padding: 72px 0 40px;
+        overflow: hidden;
       }
     }
     body {
@@ -189,15 +193,10 @@
     }
     @media (min-width: 901px) {
       .section.snap-panel {
-        padding-block: 104px 48px;
+        padding: 96px 0 36px;
       }
       #footer.snap-panel {
-        padding-block: 72px 40px;
-      }
-      #faq.snap-panel,
-      #niches.snap-panel {
-        padding-top: 112px;
-        padding-bottom: 48px;
+        padding: 72px 0 40px;
       }
     }
     .section-alt { background: #fff; }
@@ -3064,9 +3063,13 @@
         grid-template-columns: minmax(220px, 0.85fr) minmax(0, 1.35fr);
         align-items: center;
         align-content: center;
-        justify-content: initial;
+        justify-content: center;
+        height: 100svh;
         min-height: 100svh;
-        padding-block: 148px 48px;
+        max-height: 100svh;
+        padding: 120px 0 36px;
+        overflow: hidden;
+        scroll-snap-align: center;
       }
       .feat-row.is-flip.snap-panel {
         grid-template-columns: minmax(0, 1.35fr) minmax(220px, 0.85fr);
