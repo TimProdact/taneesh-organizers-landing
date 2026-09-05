@@ -114,6 +114,12 @@
         /* end-align so the dark finale can fully settle under the sticky header */
         scroll-snap-align: end;
       }
+      /* Title + content from the top — avoid a huge empty band under the header */
+      #niches.snap-panel,
+      #faq.snap-panel {
+        justify-content: flex-start;
+        padding-top: 112px;
+      }
       /* Hero stays natural height: video peeks below the fold; first snap is the vibe block */
       #slide-hero {
         height: auto;
@@ -5278,8 +5284,11 @@
       max-width: 132px;
     }
     /* Event format pills — 4 marquee tracks */
+    #niches .section-head {
+      margin-bottom: var(--space-title-lead, 16px);
+    }
     #niches .formats-stream {
-      margin-top: clamp(32px, 5vw, 56px);
+      margin-top: clamp(16px, 2.5vw, 28px);
     }
     .formats-stream {
       padding: clamp(8px, 2vw, 16px) 0 clamp(4px, 1vw, 8px);
