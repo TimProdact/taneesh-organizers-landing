@@ -510,6 +510,15 @@
             <h2 data-i18n="offerTitle">Возможности платформы</h2>
           </div>
 
+          <div class="feat-cinema" data-feat-cinema>
+            <div class="feat-cinema__copy" aria-live="polite">
+              <span class="feat-cinema__tag" data-feat-cinema-tag>Витрина</span>
+              <div class="feat-cinema__line">
+                <h3 class="feat-cinema__title" data-feat-cinema-title>Личная витрина</h3>
+              </div>
+              <p class="feat-cinema__desc" data-feat-cinema-desc>Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
+            </div>
+
           <div class="feat-scroll__stage">
             <div class="feat-scroll__rail feat-scroll__rail--left" data-feat-rail="left" aria-live="polite">
               <article class="feat-scroll__card is-active" data-feat-card="0" data-side="left">
@@ -530,7 +539,10 @@
             </div>
 
             <div class="feat-scroll__device" aria-hidden="true">
-              <div class="phone-mock">
+              <div class="phone-mock" data-feat-phone>
+                <span class="feat-cursor" data-feat-cursor aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M5.5 2.5l14 7.2-6.2 2.1-2.1 6.3L5.5 2.5z"/></svg>
+                </span>
                 <span class="phone-mock__side phone-mock__side--silent"></span>
                 <span class="phone-mock__side phone-mock__side--vol-up"></span>
                 <span class="phone-mock__side phone-mock__side--vol-down"></span>
@@ -859,6 +871,7 @@
               <p class="feat-scroll__desc" data-feat-m-desc>Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
             </div>
           </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1113,6 +1126,7 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="assets/lead-config.js"></script>
   <script src="assets/lead-modal.js"></script>
   <script>
@@ -1486,74 +1500,143 @@
       });
     })();
 
-    // Features scroll phone (#included) — sticky device, alternating side copy
-    (function initFeatScroll() {
+    // Features cinematic demo (#included) — GSAP timeline + cursor
+    (function initFeatCinema() {
       const root = document.querySelector('[data-feat-scroll]');
       if (!root || root.dataset.ready) return;
       root.dataset.ready = '1';
 
       const slides = [...root.querySelectorAll('[data-feat-slide]')];
-      const cards = [...root.querySelectorAll('[data-feat-card]')];
-      const mobile = root.querySelector('[data-feat-mobile]');
-      const mTag = root.querySelector('[data-feat-m-tag]');
-      const mTitle = root.querySelector('[data-feat-m-title]');
-      const mDesc = root.querySelector('[data-feat-m-desc]');
+      const cards = [...root.querySelectorAll('[data-feat-card]')].sort(
+        (a, b) => Number(a.getAttribute('data-feat-card')) - Number(b.getAttribute('data-feat-card'))
+      );
+      const tagEl = root.querySelector('[data-feat-cinema-tag]');
+      const titleEl = root.querySelector('[data-feat-cinema-title]');
+      const descEl = root.querySelector('[data-feat-cinema-desc]');
+      const titleLine = root.querySelector('.feat-cinema__line');
+      const cursor = root.querySelector('[data-feat-cursor]');
+      const phone = root.querySelector('[data-feat-phone]');
       const count = slides.length;
-      if (!count) return;
+      if (!count || !window.gsap) {
+        // Fallback without GSAP: simple interval
+        let i = 0;
+        const apply = (n) => {
+          slides.forEach((s, idx) => s.classList.toggle('is-active', idx === n));
+          const card = cards.find((c) => Number(c.getAttribute('data-feat-card')) === n) || cards[0];
+          if (!card) return;
+          if (tagEl) tagEl.textContent = card.querySelector('.feat-scroll__tag')?.textContent || '';
+          if (titleEl) titleEl.textContent = card.querySelector('.feat-scroll__title')?.textContent || '';
+          if (descEl) descEl.textContent = card.querySelector('.feat-scroll__desc')?.textContent || '';
+        };
+        apply(0);
+        setInterval(() => { i = (i + 1) % count; apply(i); }, 3200);
+        return;
+      }
 
-      let index = 0;
+      const gsap = window.gsap;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      const syncMobile = (i) => {
-        const card = cards.find((c) => Number(c.getAttribute('data-feat-card')) === i);
-        if (!card || !mobile) return;
-        const tag = card.querySelector('.feat-scroll__tag');
-        const title = card.querySelector('.feat-scroll__title');
-        const desc = card.querySelector('.feat-scroll__desc');
-        if (mTag && tag) mTag.textContent = tag.textContent;
-        if (mTitle && title) mTitle.textContent = title.textContent;
-        if (mDesc && desc) mDesc.textContent = desc.textContent;
+      // Cursor click targets per slide (percent of phone box)
+      const clicks = [
+        { x: '54%', y: '78%' }, // showcase CTA
+        { x: '50%', y: '86%' }, // pay button
+        { x: '62%', y: '42%' }, // CRM card
+        { x: '55%', y: '70%' }, // refund sheet
+        { x: '50%', y: '82%' }, // invite CTA
+        { x: '50%', y: '48%' }, // scanner center
+      ];
+
+      const readCard = (n) => {
+        const card = cards.find((c) => Number(c.getAttribute('data-feat-card')) === n);
+        if (!card) return { tag: '', title: '', desc: '' };
+        return {
+          tag: card.querySelector('.feat-scroll__tag')?.textContent?.trim() || '',
+          title: card.querySelector('.feat-scroll__title')?.textContent?.trim() || '',
+          desc: card.querySelector('.feat-scroll__desc')?.textContent?.trim() || '',
+        };
       };
 
-      const setActive = (next) => {
-        const i = Math.max(0, Math.min(count - 1, next));
-        if (i === index && root.dataset.boot) return;
-        index = i;
-        root.dataset.boot = '1';
-        root.dataset.active = String(i);
-        root.dataset.side = i % 2 === 0 ? 'left' : 'right';
-
-        slides.forEach((s, n) => s.classList.toggle('is-active', n === i));
-        cards.forEach((c) => {
-          const n = Number(c.getAttribute('data-feat-card'));
-          c.classList.toggle('is-active', n === i);
-        });
-        syncMobile(i);
+      const setSlide = (n) => {
+        slides.forEach((s, idx) => s.classList.toggle('is-active', idx === n));
+        root.dataset.active = String(n);
       };
 
-      const progressToIndex = () => {
-        const rect = root.getBoundingClientRect();
-        const travel = Math.max(1, root.offsetHeight - window.innerHeight);
-        const scrolled = Math.min(Math.max(-rect.top, 0), travel);
-        const t = scrolled / travel;
-        return Math.round(t * (count - 1));
+      const showCopy = (n) => {
+        const { tag, title, desc } = readCard(n);
+        if (tagEl) tagEl.textContent = tag;
+        if (titleEl) titleEl.textContent = title;
+        if (descEl) descEl.textContent = desc;
       };
 
-      let ticking = false;
-      const onScroll = () => {
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(() => {
-          ticking = false;
-          setActive(progressToIndex());
-        });
-      };
+      showCopy(0);
+      setSlide(0);
 
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll, { passive: true });
-      window.addEventListener('taneesh:locale', () => syncMobile(index));
+      if (reduce) {
+        let i = 0;
+        setInterval(() => {
+          i = (i + 1) % count;
+          showCopy(i);
+          setSlide(i);
+        }, 2800);
+        return;
+      }
 
-      setActive(0);
-      onScroll();
+      if (cursor) gsap.set(cursor, { opacity: 0, scale: 1, xPercent: -20, yPercent: -10 });
+      if (titleEl) gsap.set(titleEl, { yPercent: 110 });
+      if (tagEl) gsap.set(tagEl, { opacity: 0, y: 8 });
+      if (descEl) gsap.set(descEl, { opacity: 0, y: 10 });
+
+      const tl = gsap.timeline({
+        repeat: -1,
+        defaults: { ease: 'power3.out' },
+      });
+
+      const sceneHold = 2.4;
+
+      for (let n = 0; n < count; n += 1) {
+        const click = clicks[n] || { x: '50%', y: '70%' };
+        const at = n === 0 ? 0 : '>';
+
+        tl.call(() => { showCopy(n); setSlide(n); }, null, at);
+
+        tl.fromTo(tagEl, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35 }, '<');
+        tl.fromTo(titleEl, { yPercent: 110 }, { yPercent: 0, duration: 0.55, ease: 'power4.out' }, '<0.05');
+        tl.fromTo(descEl, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4 }, '<0.12');
+
+        if (cursor && phone) {
+          tl.fromTo(
+            cursor,
+            { opacity: 0, left: '40%', top: '40%', scale: 1 },
+            { opacity: 1, left: click.x, top: click.y, duration: 0.7, ease: 'power2.inOut' },
+            '<0.25'
+          );
+          tl.to(cursor, { scale: 0.86, duration: 0.1, yoyo: true, repeat: 1 }, '>-0.05');
+          tl.to(phone, { scale: 0.985, duration: 0.1, yoyo: true, repeat: 1, transformOrigin: '50% 50%' }, '<');
+        }
+
+        tl.to({}, { duration: sceneHold });
+
+        tl.to([tagEl, descEl], { opacity: 0, y: -6, duration: 0.28, stagger: 0.04 }, '>-0.15');
+        tl.to(titleEl, { yPercent: -110, duration: 0.35, ease: 'power3.in' }, '<');
+        if (cursor) tl.to(cursor, { opacity: 0, duration: 0.2 }, '<');
+      }
+
+      // Pause when off-screen
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) tl.play();
+            else tl.pause();
+          });
+        },
+        { threshold: 0.35 }
+      );
+      io.observe(root);
+
+      window.addEventListener('taneesh:locale', () => {
+        const active = Number(root.dataset.active || 0);
+        showCopy(active);
+      });
     })();
 
     // Lazy-load feature card background images when they enter viewport
