@@ -109,8 +109,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=1542600" />
-  <script src="assets/i18n.js?v=1542600"></script>
+  <link rel="stylesheet" href="styles.css?v=1542700" />
+  <script src="assets/i18n.js?v=1542700"></script>
 
   <!-- Analytics: fill in your Yandex.Metrika counter id and Meta Pixel id below to enable tracking -->
   <script>
@@ -164,9 +164,6 @@
           <a href="#audience" data-goto="audience" data-i18n="navOrgs">Для кого</a>
           <a href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
         </nav>
-        <button type="button" class="header-burger" id="burgerBtn" data-i18n-aria="menuOpen" aria-label="Меню" aria-expanded="false" aria-controls="mobileMenu">
-          <span></span><span></span><span></span>
-        </button>
         <div class="header-lang" id="langWrap">
           <button type="button" class="header-lang-btn" id="langBtn" aria-expanded="false" aria-haspopup="listbox" aria-controls="langMenu" aria-label="Сменить язык">
             <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
@@ -184,26 +181,6 @@
       </div>
     </div>
   </header>
-
-  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-    <div class="mobile-menu__overlay"></div>
-    <div class="mobile-menu__panel">
-      <div class="mobile-menu__head">
-        <img class="logo-wordmark" src="assets/taneesh-wordmark.svg" alt="Taneesh" width="130" height="24" />
-        <button type="button" class="mobile-menu__close" id="mobileMenuClose" data-i18n-aria="menuClose" aria-label="Закрыть">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-        </button>
-      </div>
-      <nav class="mobile-menu__nav">
-        <a href="#why" data-goto="why" data-i18n="navWhy">Почему мы</a>
-        <a href="#included" data-goto="included" data-i18n="navIncluded">Что даём</a>
-        <a href="#tickettypes" data-goto="tickettypes" data-i18n="navTickets">Типы билетов</a>
-        <a href="#audience" data-goto="audience" data-i18n="navOrgs">Для кого</a>
-        <a href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
-      </nav>
-      <a class="btn btn-accent mobile-menu__cta" href="#" data-lead-modal data-lead-source="mobileMenu" data-i18n="navStart">Запустить</a>
-    </div>
-  </div>
 
   <main>
     <section class="section" id="slide-hero">
@@ -1592,35 +1569,6 @@
 
       nodes.forEach((node) => io.observe(node));
     })();
-
-    // Mobile menu
-    const burgerBtn = document.getElementById('burgerBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileMenuClose = document.getElementById('mobileMenuClose');
-
-    function openMobileMenu() {
-      mobileMenu.classList.add('is-open');
-      mobileMenu.setAttribute('aria-hidden', 'false');
-      burgerBtn.classList.add('is-open');
-      burgerBtn.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeMobileMenu() {
-      mobileMenu.classList.remove('is-open');
-      mobileMenu.setAttribute('aria-hidden', 'true');
-      burgerBtn.classList.remove('is-open');
-      burgerBtn.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
-
-    burgerBtn.addEventListener('click', () => {
-      mobileMenu.classList.contains('is-open') ? closeMobileMenu() : openMobileMenu();
-    });
-    mobileMenuClose.addEventListener('click', closeMobileMenu);
-    mobileMenu.querySelector('.mobile-menu__overlay').addEventListener('click', closeMobileMenu);
-    mobileMenu.querySelectorAll('.mobile-menu__nav a, .mobile-menu__cta').forEach(a => {
-      a.addEventListener('click', closeMobileMenu);
-    });
 
     if (window.TaneeshI18n) window.TaneeshI18n.init();
     if (window.TaneeshLeadModal) window.TaneeshLeadModal.init();
