@@ -2697,17 +2697,22 @@
       }
 
       #footer,
-      #footer.snap-panel {
-        height: auto;
+      #footer.section,
+      #footer.snap-panel,
+      #footer.section.snap-panel {
+        min-height: 100vh;
         min-height: 100svh;
+        min-height: 100dvh;
+        height: auto;
         max-height: none;
-        padding: 72px 0 24px;
-        overflow: hidden;
+        padding: 0;
+        padding-top: calc(56px + env(safe-area-inset-top, 0px));
+        overflow: visible;
         scroll-snap-align: none;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        gap: 28px;
+        gap: 0;
         box-sizing: border-box;
       }
       #footer.snap-panel > .site-footer__main,
@@ -2717,14 +2722,17 @@
       }
       #footer .site-footer__main {
         flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         justify-content: center;
         gap: 18px;
-        padding: 0;
+        padding: 12px 0 20px;
         min-height: 0;
       }
       #footer .site-footer__watermark {
         font-size: clamp(3.5rem, 18vw, 8rem);
-        top: 42%;
+        top: 46%;
         opacity: 1;
       }
       .site-footer__headline {
@@ -2763,9 +2771,13 @@
       }
       #footer .site-footer__meta {
         flex: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
         margin-top: 0;
-        padding-top: 18px;
-        padding-bottom: max(16px, env(safe-area-inset-bottom, 0px));
+        padding-top: 16px;
+        padding-bottom: max(20px, env(safe-area-inset-bottom, 0px));
       }
 
       /* Hero: tight stack */
@@ -3433,7 +3445,6 @@
       box-sizing: border-box;
     }
     #footer.section {
-      padding-block: 0;
       background: #050505;
     }
     .site-footer__glow {
@@ -3616,6 +3627,55 @@
       .site-footer__headline {
         max-width: none;
         text-wrap: balance;
+      }
+    }
+
+    /* Mobile footer finale — must come after base #footer rules so it wins */
+    @media (max-width: 900px) {
+      #footer,
+      #footer.section,
+      #footer.snap-panel,
+      #footer.section.snap-panel {
+        min-height: 100vh;
+        min-height: 100svh;
+        min-height: 100dvh;
+        height: auto;
+        max-height: none;
+        padding: 0;
+        padding-top: calc(56px + env(safe-area-inset-top, 0px));
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 0;
+        box-sizing: border-box;
+      }
+      #footer > .site-footer__main,
+      #footer > .site-footer__meta {
+        width: min(100% - 28px, var(--max));
+        margin-inline: auto;
+      }
+      #footer > .site-footer__main {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        padding: 12px 0 20px;
+        min-height: 0;
+      }
+      #footer > .site-footer__meta {
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 10px;
+        margin-top: 0;
+        padding-top: 16px;
+        padding-bottom: max(20px, env(safe-area-inset-bottom, 0px));
       }
     }
 
