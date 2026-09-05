@@ -1475,7 +1475,6 @@
       if (!count) return;
 
       let index = 0;
-      const reduce = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       const syncMobile = (i) => {
         const card = cards.find((c) => Number(c.getAttribute('data-feat-card')) === i);
