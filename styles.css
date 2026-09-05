@@ -4420,6 +4420,25 @@
       max-width: 880px;
       margin-inline: auto;
     }
+    .eco-col {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .eco-photo {
+      margin: 0 0 var(--space-stack-md);
+      border-radius: calc(var(--radius) - 8px);
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      background: rgba(10, 10, 10, 0.06);
+    }
+    .eco-photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+    }
     .eco-col-label {
       display: inline-block;
       font-family: var(--font-ui);
