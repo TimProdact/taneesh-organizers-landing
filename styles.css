@@ -2753,44 +2753,74 @@
         text-align: center;
       }
 
+      #footer,
       #footer.snap-panel {
         height: auto;
-        min-height: 100svh;
+        min-height: 0 !important;
         max-height: none;
-        padding: 88px 0 28px;
-        overflow: visible;
+        padding: 56px 0 24px;
+        overflow: hidden;
         scroll-snap-align: none;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: flex-start;
+        gap: 28px;
       }
       #footer.snap-panel > .site-footer__main,
       #footer.snap-panel > .site-footer__meta {
         width: min(100% - 28px, var(--max));
         margin-inline: auto;
       }
+      #footer .site-footer__main {
+        flex: 0 0 auto;
+        justify-content: flex-start;
+        gap: 18px;
+        padding: 0;
+      }
+      #footer .site-footer__watermark {
+        font-size: clamp(3.5rem, 18vw, 8rem);
+        top: 42%;
+        opacity: 1;
+      }
       .site-footer__headline {
-        font-size: clamp(26px, 7vw, 34px);
-        max-width: none;
-        width: 100%;
+        font-size: clamp(24px, 6.2vw, 30px);
+        max-width: 16em;
+        width: auto;
+        margin-inline: auto;
         text-wrap: balance;
         overflow-wrap: normal;
         word-break: normal;
         hyphens: none;
-        line-height: 1.12;
+        line-height: 1.18;
       }
-      .site-footer__nav { gap: 8px; }
+      .site-footer__nav {
+        gap: 8px;
+        width: 100%;
+        justify-content: center;
+      }
       .site-footer__pill {
-        min-height: 40px;
-        padding: 0 14px;
-        font-size: 13px;
+        min-height: 44px;
+        padding: 0 18px;
+        font-size: 14px;
       }
       .site-footer__contact {
-        flex-wrap: wrap;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
         justify-content: center;
-        text-align: center;
-        gap: 6px 8px;
+        gap: 8px;
         font-size: 13px;
+        line-height: 1.35;
+      }
+      .site-footer__contact > span[aria-hidden="true"] {
+        display: none;
+      }
+      #footer .site-footer__meta {
+        flex: 0 0 auto;
+        margin-top: 8px;
+        padding-top: 18px;
+        padding-bottom: max(16px, env(safe-area-inset-bottom, 0px));
       }
 
       /* Hero: tight stack */
