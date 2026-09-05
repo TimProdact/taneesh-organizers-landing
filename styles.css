@@ -2876,19 +2876,73 @@
       margin-inline: 0;
     }
 
-    /* Features as phone slider (Posh-style) */
-    .feat-phone {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
-      gap: clamp(32px, 6vw, 72px);
+    /* Features scroll: sticky phone, alternating side copy */
+    .section--feat-scroll {
+      padding-bottom: 0;
+    }
+    .feat-scroll__head {
+      text-align: center;
+      margin: 0 auto 8px;
+      max-width: 40em;
+    }
+    .feat-scroll__head h2 {
+      margin-bottom: 0;
+    }
+    .feat-scroll {
+      --feat-count: 6;
+      position: relative;
+      height: calc(var(--feat-count) * 88vh);
+    }
+    .feat-scroll__sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      max-width: 980px;
-      margin: 0 auto;
+      justify-content: center;
+      gap: 18px;
+      padding: 88px 0 28px;
+      box-sizing: border-box;
+      overflow: hidden;
     }
-    .feat-phone__copy {
-      max-width: 28em;
+    .feat-scroll__stage {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      gap: clamp(20px, 4vw, 56px);
+      width: 100%;
+      max-width: 1100px;
     }
-    .feat-phone__tag {
+    .feat-scroll__rail {
+      position: relative;
+      min-height: 220px;
+      display: grid;
+      align-items: center;
+    }
+    .feat-scroll__rail--left { justify-items: end; text-align: right; }
+    .feat-scroll__rail--right { justify-items: start; text-align: left; }
+    .feat-scroll__card {
+      grid-area: 1 / 1;
+      max-width: 22em;
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        opacity 420ms var(--ease),
+        transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .feat-scroll__rail--left .feat-scroll__card {
+      transform: translateX(-28px) translateY(8px);
+    }
+    .feat-scroll__rail--right .feat-scroll__card {
+      transform: translateX(28px) translateY(8px);
+    }
+    .feat-scroll__card.is-active {
+      opacity: 1;
+      transform: translate(0, 0);
+      pointer-events: auto;
+    }
+    .feat-scroll__tag {
       display: inline-block;
       margin-bottom: var(--space-eyebrow-title);
       font-family: var(--font-ui);
@@ -2898,49 +2952,82 @@
       text-transform: uppercase;
       color: var(--muted);
     }
-    .feat-phone__title {
+    .feat-scroll__title {
       margin: 0 0 var(--space-title-lead);
-      font-size: var(--text-display-md);
-      max-width: 12ch;
+      font-size: clamp(28px, 3.2vw, 42px);
+      line-height: 1.1;
+      max-width: 11ch;
     }
-    .feat-phone__desc {
+    .feat-scroll__rail--left .feat-scroll__title { margin-left: auto; }
+    .feat-scroll__desc {
       margin: 0;
       font-size: var(--text-lead);
       line-height: var(--leading-relaxed);
       color: var(--muted);
       max-width: 28em;
     }
-    .feat-phone__controls {
+    .feat-scroll__rail--left .feat-scroll__desc { margin-left: auto; }
+
+    .feat-scroll__device {
       display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: var(--space-stack-xl);
+      justify-content: center;
+      z-index: 2;
     }
-    .feat-phone__btn {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: 0;
-      background: rgba(10, 10, 10, 0.06);
-      color: var(--text);
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-      transition: background 160ms var(--ease), transform 160ms var(--ease);
+    .feat-scroll__bezel {
+      width: min(248px, 58vw);
+      background: #0a0a0a;
+      border-radius: 40px;
+      padding: 11px;
+      box-shadow:
+        0 40px 80px rgba(10, 10, 10, 0.22),
+        0 0 0 1px rgba(255, 255, 255, 0.06) inset;
     }
-    .feat-phone__btn:hover {
-      background: rgba(10, 10, 10, 0.12);
-      transform: translateY(-1px);
+    .feat-scroll__notch {
+      width: 108px;
+      height: 24px;
+      margin: 2px auto 10px;
+      border-radius: 0 0 16px 16px;
+      background: #0a0a0a;
     }
-    .feat-phone__btn svg { width: 18px; height: 18px; }
-    .feat-phone__dots {
+    .feat-scroll__screen {
+      position: relative;
+      border-radius: 30px;
+      overflow: hidden;
+      background: #111;
+      aspect-ratio: 9 / 17.5;
+    }
+    .feat-scroll__screen .feat-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: scale(1.02);
+      transition:
+        opacity 380ms var(--ease),
+        transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      color: #fff;
+      background: #141414;
+    }
+    .feat-scroll__screen .feat-slide.is-active {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+      z-index: 1;
+    }
+
+    .feat-scroll__mobile { display: none; }
+
+    .feat-scroll__dots {
       display: flex;
       gap: 8px;
       align-items: center;
-      flex: 1;
       justify-content: center;
     }
-    .feat-phone__dot {
+    .feat-scroll__dot {
       width: 8px;
       height: 8px;
       border-radius: 999px;
@@ -2950,53 +3037,11 @@
       cursor: pointer;
       transition: width 200ms var(--ease), background 200ms var(--ease);
     }
-    .feat-phone__dot.is-active {
+    .feat-scroll__dot.is-active {
       width: 22px;
       background: var(--text);
     }
-    .feat-phone__device {
-      display: flex;
-      justify-content: center;
-    }
-    .feat-phone__bezel {
-      width: min(300px, 78vw);
-      background: #0a0a0a;
-      border-radius: 42px;
-      padding: 12px;
-      box-shadow:
-        0 40px 80px rgba(10, 10, 10, 0.22),
-        0 0 0 1px rgba(255, 255, 255, 0.06) inset;
-    }
-    .feat-phone__notch {
-      width: 108px;
-      height: 24px;
-      margin: 2px auto 10px;
-      border-radius: 0 0 16px 16px;
-      background: #0a0a0a;
-    }
-    .feat-phone__screen {
-      border-radius: 30px;
-      overflow: hidden;
-      background: #111;
-      touch-action: pan-y;
-      cursor: grab;
-      aspect-ratio: 9 / 17.5;
-    }
-    .feat-phone__screen:active { cursor: grabbing; }
-    .feat-phone__track {
-      display: flex;
-      height: 100%;
-      will-change: transform;
-    }
-    .feat-slide {
-      flex: 0 0 100%;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      color: #fff;
-      background: #141414;
-    }
+
     .feat-slide__visual {
       position: relative;
       flex: 1.15;
@@ -3155,17 +3200,40 @@
       color: rgba(255, 255, 255, 0.65);
       line-height: 1.45;
     }
-    @media (max-width: 860px) {
-      .feat-phone {
+
+    @media (max-width: 900px) {
+      .feat-scroll {
+        height: calc(var(--feat-count) * 92vh);
+      }
+      .feat-scroll__stage {
         grid-template-columns: 1fr;
         justify-items: center;
-        text-align: center;
+        gap: 20px;
       }
-      .feat-phone__copy { order: 2; }
-      .feat-phone__device { order: 1; }
-      .feat-phone__title { margin-inline: auto; }
-      .feat-phone__desc { margin-inline: auto; }
-      .feat-phone__controls { justify-content: center; }
+      .feat-scroll__rail { display: none; }
+      .feat-scroll__mobile {
+        display: block;
+        text-align: center;
+        max-width: 28em;
+        min-height: 140px;
+      }
+      .feat-scroll__mobile .feat-scroll__title {
+        margin-inline: auto;
+        max-width: 14ch;
+      }
+      .feat-scroll__bezel {
+        width: min(240px, 62vw);
+      }
+      .feat-scroll__sticky {
+        padding-top: 64px;
+        gap: 18px;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .feat-scroll__card,
+      .feat-scroll__screen .feat-slide {
+        transition: none;
+      }
     }
 
     /* Trust / niches / quote / payments */

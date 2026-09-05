@@ -533,35 +533,45 @@
       </div>
     </section>
 
-    <section class="section" id="included">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="eyebrow" data-i18n="offerEyebrow">Возможности</span>
-          <h2 data-i18n="offerTitle">Возможности платформы</h2>
-        </div>
-
-        <div class="feat-phone" data-feat-phone data-i18n-aria="offerAria" aria-label="Возможности платформы" role="region">
-          <div class="feat-phone__copy">
-            <span class="feat-phone__tag" data-feat-tag>Витрина</span>
-            <h3 class="feat-phone__title" data-feat-title>Личная витрина</h3>
-            <p class="feat-phone__desc" data-feat-desc>Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
-            <div class="feat-phone__controls">
-              <button type="button" class="feat-phone__btn" data-feat-prev aria-label="Назад">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>
-              </button>
-              <div class="feat-phone__dots" data-feat-dots role="tablist" aria-label="Слайды"></div>
-              <button type="button" class="feat-phone__btn" data-feat-next aria-label="Вперёд">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
-              </button>
-            </div>
+    <section class="section section--feat-scroll" id="included">
+      <div
+        class="feat-scroll"
+        data-feat-scroll
+        data-i18n-aria="offerAria"
+        aria-label="Возможности платформы"
+        role="region"
+        style="--feat-count: 6"
+      >
+        <div class="feat-scroll__sticky">
+          <div class="section-head feat-scroll__head">
+            <span class="eyebrow" data-i18n="offerEyebrow">Возможности</span>
+            <h2 data-i18n="offerTitle">Возможности платформы</h2>
           </div>
 
-          <div class="feat-phone__device">
-            <div class="feat-phone__bezel">
-              <div class="feat-phone__notch" aria-hidden="true"></div>
-              <div class="feat-phone__screen">
-                <div class="feat-phone__track" data-feat-track>
-                  <article class="feat-slide is-active" data-feat-slide data-tag-key="o1tag" data-title-key="o1t" data-desc-key="o1p">
+          <div class="wrap feat-scroll__stage">
+            <div class="feat-scroll__rail feat-scroll__rail--left" data-feat-rail="left" aria-live="polite">
+              <article class="feat-scroll__card is-active" data-feat-card="0" data-side="left">
+                <span class="feat-scroll__tag" data-i18n="o1tag">Витрина</span>
+                <h3 class="feat-scroll__title" data-i18n="o1t">Личная витрина</h3>
+                <p class="feat-scroll__desc" data-i18n="o1p">Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
+              </article>
+              <article class="feat-scroll__card" data-feat-card="2" data-side="left">
+                <span class="feat-scroll__tag" data-i18n="o3tag">CRM</span>
+                <h3 class="feat-scroll__title" data-i18n="o3t">CRM для гостей</h3>
+                <p class="feat-scroll__desc" data-i18n="o3p">Список покупателей, статусы оплат и контакты — всё ваше, с выгрузкой базы. Стройте свой LTV, а не отдавайте данные кассе.</p>
+              </article>
+              <article class="feat-scroll__card" data-feat-card="4" data-side="left">
+                <span class="feat-scroll__tag" data-i18n="o5tag">Приглашения</span>
+                <h3 class="feat-scroll__title" data-i18n="o5t">VIP-приглашения</h3>
+                <p class="feat-scroll__desc" data-i18n="o5p">Генерируйте закрытые ссылки или бесплатные билеты для особых гостей и партнеров.</p>
+              </article>
+            </div>
+
+            <div class="feat-scroll__device" aria-hidden="true">
+              <div class="feat-scroll__bezel">
+                <div class="feat-scroll__notch"></div>
+                <div class="feat-scroll__screen">
+                  <article class="feat-slide is-active" data-feat-slide="0">
                     <div class="feat-slide__visual" style="--feat-img:url('assets/features/showcase.jpg')">
                       <span class="feat-slide__pill" data-i18n="o1tag">Витрина</span>
                       <strong data-i18n="o1t">Личная витрина</strong>
@@ -574,7 +584,7 @@
                       </div>
                     </div>
                   </article>
-                  <article class="feat-slide" data-feat-slide data-tag-key="o2tag" data-title-key="o2t" data-desc-key="o2p">
+                  <article class="feat-slide" data-feat-slide="1">
                     <div class="feat-slide__visual feat-slide__visual--pay" style="--feat-img:url('assets/features/payment.jpg')">
                       <span class="feat-slide__pill" data-i18n="o2tag">Оплата</span>
                       <strong data-i18n="o2t">Оплата в 2 клика</strong>
@@ -588,7 +598,7 @@
                       <button type="button" class="feat-slide__cta" tabindex="-1" data-i18n="o2t">Оплата в 2 клика</button>
                     </div>
                   </article>
-                  <article class="feat-slide" data-feat-slide data-tag-key="o3tag" data-title-key="o3t" data-desc-key="o3p">
+                  <article class="feat-slide" data-feat-slide="2">
                     <div class="feat-slide__visual feat-slide__visual--list" style="--feat-img:url('assets/features/crm.jpg')">
                       <span class="feat-slide__pill" data-i18n="o3tag">CRM</span>
                       <strong data-i18n="o3t">CRM для гостей</strong>
@@ -601,7 +611,7 @@
                       </ul>
                     </div>
                   </article>
-                  <article class="feat-slide" data-feat-slide data-tag-key="o4tag" data-title-key="o4t" data-desc-key="o4p">
+                  <article class="feat-slide" data-feat-slide="3">
                     <div class="feat-slide__visual" style="--feat-img:url('assets/features/refund.jpg')">
                       <span class="feat-slide__pill" data-i18n="o4tag">Возврат</span>
                       <strong data-i18n="o4t">Возврат в 1 клик</strong>
@@ -611,7 +621,7 @@
                       <button type="button" class="feat-slide__cta is-soft" tabindex="-1" data-i18n="o4t">Возврат в 1 клик</button>
                     </div>
                   </article>
-                  <article class="feat-slide" data-feat-slide data-tag-key="o5tag" data-title-key="o5t" data-desc-key="o5p">
+                  <article class="feat-slide" data-feat-slide="4">
                     <div class="feat-slide__visual" style="--feat-img:url('assets/features/invites.jpg')">
                       <span class="feat-slide__pill" data-i18n="o5tag">Приглашения</span>
                       <strong data-i18n="o5t">VIP-приглашения</strong>
@@ -621,7 +631,7 @@
                       <div class="feat-invite">taneesh.uz/i/vip-…</div>
                     </div>
                   </article>
-                  <article class="feat-slide" data-feat-slide data-tag-key="o6tag" data-title-key="o6t" data-desc-key="o6p">
+                  <article class="feat-slide" data-feat-slide="5">
                     <div class="feat-slide__visual feat-slide__visual--scan" style="--feat-img:url('assets/features/scanner.jpg')">
                       <span class="feat-slide__pill" data-i18n="o6tag">Сканер</span>
                       <strong data-i18n="o6t">Быстрый, удобный сканер</strong>
@@ -637,7 +647,34 @@
                 </div>
               </div>
             </div>
+
+            <div class="feat-scroll__rail feat-scroll__rail--right" data-feat-rail="right" aria-live="polite">
+              <article class="feat-scroll__card" data-feat-card="1" data-side="right">
+                <span class="feat-scroll__tag" data-i18n="o2tag">Оплата</span>
+                <h3 class="feat-scroll__title" data-i18n="o2t">Оплата в 2 клика</h3>
+                <p class="feat-scroll__desc" data-i18n="o2p">Гость платит прямо в браузере телефона — ничего скачивать не нужно.</p>
+              </article>
+              <article class="feat-scroll__card" data-feat-card="3" data-side="right">
+                <span class="feat-scroll__tag" data-i18n="o4tag">Возврат</span>
+                <h3 class="feat-scroll__title" data-i18n="o4t">Возврат в 1 клик</h3>
+                <p class="feat-scroll__desc" data-i18n="o4p">Мгновенно отменяйте и возвращайте билеты без долгих переписок с поддержкой.</p>
+              </article>
+              <article class="feat-scroll__card" data-feat-card="5" data-side="right">
+                <span class="feat-scroll__tag" data-i18n="o6tag">Сканер</span>
+                <h3 class="feat-scroll__title" data-i18n="o6t">Быстрый, удобный сканер</h3>
+                <p class="feat-scroll__desc" data-i18n="o6p">Быстрый контроль на входе по QR-кодам. Исключает подделки и повторные проходы.</p>
+              </article>
+            </div>
+
+            <!-- Mobile: active copy under phone -->
+            <div class="feat-scroll__mobile" data-feat-mobile aria-hidden="true">
+              <span class="feat-scroll__tag" data-feat-m-tag>Витрина</span>
+              <h3 class="feat-scroll__title" data-feat-m-title>Личная витрина</h3>
+              <p class="feat-scroll__desc" data-feat-m-desc>Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
+            </div>
           </div>
+
+          <div class="feat-scroll__dots" data-feat-dots role="tablist" aria-label="Фичи"></div>
         </div>
       </div>
     </section>
@@ -1234,113 +1271,97 @@
       });
     })();
 
-    // Features phone slider (#included) — Posh-style device with sliding capability
-    (function initFeatPhone() {
-      const root = document.querySelector('[data-feat-phone]');
+    // Features scroll phone (#included) — sticky device, alternating side copy
+    (function initFeatScroll() {
+      const root = document.querySelector('[data-feat-scroll]');
       if (!root || root.dataset.ready) return;
       root.dataset.ready = '1';
 
       const slides = [...root.querySelectorAll('[data-feat-slide]')];
-      const track = root.querySelector('[data-feat-track]');
+      const cards = [...root.querySelectorAll('[data-feat-card]')];
       const dotsWrap = root.querySelector('[data-feat-dots]');
-      const tagEl = root.querySelector('[data-feat-tag]');
-      const titleEl = root.querySelector('[data-feat-title]');
-      const descEl = root.querySelector('[data-feat-desc]');
-      const prevBtn = root.querySelector('[data-feat-prev]');
-      const nextBtn = root.querySelector('[data-feat-next]');
-      if (!slides.length || !track) return;
+      const mobile = root.querySelector('[data-feat-mobile]');
+      const mTag = root.querySelector('[data-feat-m-tag]');
+      const mTitle = root.querySelector('[data-feat-m-title]');
+      const mDesc = root.querySelector('[data-feat-m-desc]');
+      const count = slides.length;
+      if (!count) return;
 
       let index = 0;
-      let timer = 0;
-      let startX = 0;
-      let deltaX = 0;
-      let dragging = false;
       const reduce = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      const dict = () => {
-        try {
-          return (window.TaneeshI18n && typeof window.TaneeshI18n.t === 'function' && window.TaneeshI18n.t()) || null;
-        } catch (_) {
-          return null;
-        }
-      };
-
-      const readKey = (slide, attr) => {
-        const key = slide.getAttribute(attr);
-        if (!key) return '';
-        const d = dict();
-        if (d && typeof d[key] === 'string') return d[key];
-        const nested = slide.querySelector(`[data-i18n="${key}"]`);
-        return nested ? nested.textContent.trim() : '';
-      };
-
       dotsWrap.innerHTML = slides
-        .map((_, i) => `<button type="button" role="tab" class="feat-phone__dot" data-feat-dot="${i}" aria-label="Слайд ${i + 1}"></button>`)
+        .map((_, i) => `<button type="button" role="tab" class="feat-scroll__dot" data-feat-dot="${i}" aria-label="Фича ${i + 1}"></button>`)
         .join('');
       const dots = [...dotsWrap.querySelectorAll('[data-feat-dot]')];
 
-      const syncCopy = (slide) => {
-        if (tagEl) tagEl.textContent = readKey(slide, 'data-tag-key');
-        if (titleEl) titleEl.textContent = readKey(slide, 'data-title-key');
-        if (descEl) descEl.textContent = readKey(slide, 'data-desc-key');
+      const syncMobile = (i) => {
+        const card = cards.find((c) => Number(c.getAttribute('data-feat-card')) === i);
+        if (!card || !mobile) return;
+        const tag = card.querySelector('.feat-scroll__tag');
+        const title = card.querySelector('.feat-scroll__title');
+        const desc = card.querySelector('.feat-scroll__desc');
+        if (mTag && tag) mTag.textContent = tag.textContent;
+        if (mTitle && title) mTitle.textContent = title.textContent;
+        if (mDesc && desc) mDesc.textContent = desc.textContent;
       };
 
-      const go = (next, { animate = true } = {}) => {
-        index = (next + slides.length) % slides.length;
-        track.style.transition = animate && !reduce() ? 'transform 420ms cubic-bezier(0.22, 1, 0.36, 1)' : 'none';
-        track.style.transform = `translate3d(${-index * 100}%, 0, 0)`;
-        slides.forEach((s, i) => s.classList.toggle('is-active', i === index));
-        dots.forEach((d, i) => {
-          d.classList.toggle('is-active', i === index);
-          d.setAttribute('aria-selected', i === index ? 'true' : 'false');
+      const setActive = (next) => {
+        const i = Math.max(0, Math.min(count - 1, next));
+        if (i === index && root.dataset.boot) return;
+        index = i;
+        root.dataset.boot = '1';
+        root.dataset.active = String(i);
+        root.dataset.side = i % 2 === 0 ? 'left' : 'right';
+
+        slides.forEach((s, n) => s.classList.toggle('is-active', n === i));
+        cards.forEach((c) => {
+          const n = Number(c.getAttribute('data-feat-card'));
+          c.classList.toggle('is-active', n === i);
         });
-        syncCopy(slides[index]);
+        dots.forEach((d, n) => {
+          d.classList.toggle('is-active', n === i);
+          d.setAttribute('aria-selected', n === i ? 'true' : 'false');
+        });
+        syncMobile(i);
       };
 
-      const restart = () => {
-        window.clearInterval(timer);
-        if (reduce()) return;
-        timer = window.setInterval(() => go(index + 1), 4200);
+      const progressToIndex = () => {
+        const rect = root.getBoundingClientRect();
+        const travel = Math.max(1, root.offsetHeight - window.innerHeight);
+        const scrolled = Math.min(Math.max(-rect.top, 0), travel);
+        const t = scrolled / travel;
+        return Math.round(t * (count - 1));
       };
 
-      prevBtn?.addEventListener('click', () => { go(index - 1); restart(); });
-      nextBtn?.addEventListener('click', () => { go(index + 1); restart(); });
+      let ticking = false;
+      const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          ticking = false;
+          setActive(progressToIndex());
+        });
+      };
+
+      const scrollToIndex = (i) => {
+        const travel = Math.max(1, root.offsetHeight - window.innerHeight);
+        const top = root.getBoundingClientRect().top + window.scrollY;
+        const target = top + (i / Math.max(1, count - 1)) * travel;
+        window.scrollTo({ top: target, behavior: reduce() ? 'auto' : 'smooth' });
+        setActive(i);
+      };
+
       dots.forEach((d) => d.addEventListener('click', () => {
-        go(Number(d.getAttribute('data-feat-dot')));
-        restart();
+        scrollToIndex(Number(d.getAttribute('data-feat-dot')));
       }));
 
-      const screen = root.querySelector('.feat-phone__screen');
-      screen?.addEventListener('pointerdown', (e) => {
-        if (e.button !== 0) return;
-        dragging = true;
-        startX = e.clientX;
-        deltaX = 0;
-        screen.setPointerCapture(e.pointerId);
-        window.clearInterval(timer);
-      });
-      screen?.addEventListener('pointermove', (e) => {
-        if (!dragging) return;
-        deltaX = e.clientX - startX;
-        if (!reduce()) {
-          track.style.transition = 'none';
-          track.style.transform = `translate3d(calc(${-index * 100}% + ${deltaX}px), 0, 0)`;
-        }
-      });
-      const endPointer = () => {
-        if (!dragging) return;
-        dragging = false;
-        if (Math.abs(deltaX) > 48) go(index + (deltaX < 0 ? 1 : -1));
-        else go(index);
-        restart();
-      };
-      screen?.addEventListener('pointerup', endPointer);
-      screen?.addEventListener('pointercancel', endPointer);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      window.addEventListener('taneesh:locale', () => syncMobile(index));
 
-      window.addEventListener('taneesh:locale', () => syncCopy(slides[index]));
-
-      go(0, { animate: false });
-      restart();
+      setActive(0);
+      onScroll();
     })();
 
     // Lazy-load feature card background images when they enter viewport
@@ -1629,7 +1650,7 @@
         '#ecosystem .eco',
         '#ecosystem .eco-col',
         '#tickettypes .tt-card',
-        '#included .feat-phone',
+        '#included .feat-scroll',
         '#pains .pain-card',
         '#pains .pain-bridge',
         '.why-compare',
