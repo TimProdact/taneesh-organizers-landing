@@ -1163,6 +1163,9 @@
       border: 0;
       box-shadow: none;
     }
+    .fees-rail {
+      display: contents;
+    }
     .island.calc-shell.fees-board {
       background: transparent;
       padding: 0;
@@ -1375,6 +1378,13 @@
     }
     @media (max-width: 800px) {
       .pain-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 900px) {
+      .pain-grid,
+      .aud-cards {
+        display: flex;
+        grid-template-columns: none;
+      }
     }
 
     /* Conversion */
@@ -2661,17 +2671,19 @@
     @media (max-width: 900px) {
       :root {
         --space-section-y: clamp(56px, 10vh, 88px);
-        --space-head-content: 20px;
+        --space-head-content: 16px;
         --space-hero-title: 18px;
         --space-hero-lead: 20px;
         --space-hero-bottom: 28px;
-        --space-card: 14px;
+        --space-card: 18px;
         --space-island: 18px;
         --text-display-lg: clamp(28px, 8vw, 36px);
-        --text-display-md: clamp(24px, 6.5vw, 30px);
-        --text-display-sm: clamp(22px, 5.5vw, 28px);
+        --text-display-md: clamp(26px, 7vw, 34px);
+        --text-display-sm: clamp(22px, 6vw, 28px);
         --text-display-xs: clamp(18px, 5vw, 22px);
-        --text-lead: clamp(14px, 3.8vw, 16px);
+        --text-lead: clamp(15px, 4vw, 17px);
+        --mobile-rail-pad: 14px;
+        --mobile-card-w: min(82vw, 320px);
       }
 
       html {
@@ -2680,38 +2692,52 @@
 
       .snap-panel {
         min-height: 100svh;
-        height: auto;
-        max-height: none;
+        height: 100svh;
+        max-height: 100svh;
         scroll-snap-align: start;
         scroll-snap-stop: always;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: stretch;
         align-items: stretch;
-        padding: 88px 0 28px;
-        overflow: visible;
+        padding: 88px 0 20px;
+        overflow: hidden;
         box-sizing: border-box;
       }
       .snap-panel > .wrap,
       .snap-panel > .feat-list-wrap {
+        width: 100%;
+        max-width: none;
+        margin-inline: 0;
+        padding-inline: 0;
+        flex: 1 1 auto;
+        min-height: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .snap-panel > .wrap > .section-head {
+        flex: 0 0 auto;
         width: min(100% - 28px, var(--max));
         margin-inline: auto;
-        flex: 0 1 auto;
-        max-height: none;
-        overflow: visible;
+        margin-bottom: var(--space-head-content);
+        text-align: center;
       }
 
       #why.snap-panel,
       #faq.snap-panel,
       #pains.snap-panel,
-      #tickettypes.snap-panel {
-        justify-content: flex-start;
-        padding-top: 96px;
+      #tickettypes.snap-panel,
+      #audience.snap-panel,
+      #flow.snap-panel {
+        justify-content: stretch;
+        padding-top: 88px;
       }
       #niches.snap-panel {
-        justify-content: center;
+        justify-content: stretch;
         padding-top: 88px;
-        padding-bottom: 28px;
+        padding-bottom: 20px;
       }
       #footer.snap-panel {
         height: 100svh;
@@ -2727,9 +2753,13 @@
         min-height: 0;
         gap: 16px;
         padding: 12px 0 8px;
+        width: min(100% - 28px, var(--max));
+        margin-inline: auto;
       }
       #footer.snap-panel > .site-footer__meta {
         flex: 0 0 auto;
+        width: min(100% - 28px, var(--max));
+        margin-inline: auto;
       }
       .site-footer__headline {
         font-size: clamp(22px, 6.5vw, 30px);
@@ -2740,6 +2770,44 @@
         min-height: 40px;
         padding: 0 14px;
         font-size: 13px;
+      }
+
+      /* Shared mobile rail: fill height, side-scroll when cards don't fit */
+      .mobile-rail,
+      .fees-rail,
+      .pain-grid,
+      .aud-cards,
+      .tt-layout {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        gap: 12px;
+        flex: 1 1 auto;
+        min-height: 0;
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: var(--mobile-rail-pad);
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
+        padding: 4px var(--mobile-rail-pad) 12px;
+        box-sizing: border-box;
+        scrollbar-width: thin;
+      }
+      .mobile-rail > *,
+      .fees-rail .calc-field,
+      .fees-rail .fees-result-card,
+      .pain-grid > *,
+      .aud-cards > *,
+      .tt-layout > * {
+        flex: 0 0 var(--mobile-card-w);
+        width: var(--mobile-card-w);
+        max-width: var(--mobile-card-w);
+        scroll-snap-align: center;
+        min-height: 100%;
+        box-sizing: border-box;
       }
 
       /* Hero: first screen = copy; video peeks; next snap centers video */
@@ -2757,7 +2825,10 @@
         width: min(100% - 28px, var(--max));
         margin-inline: auto;
         max-height: none;
+        height: auto;
         overflow: visible;
+        display: block;
+        padding-inline: 0;
       }
       #slide-hero .hero-copy {
         min-height: calc(100svh - 84px - clamp(96px, 16vh, 140px));
@@ -2779,9 +2850,9 @@
         gap: 10px;
       }
       #slide-hero .hero-copy .btn {
-        min-height: 44px;
-        padding: 10px 18px;
-        font-size: 14px;
+        min-height: 48px;
+        padding: 12px 20px;
+        font-size: 15px;
       }
       #slide-hero .hero-vibe {
         scroll-snap-align: center;
@@ -2789,9 +2860,6 @@
         border-radius: 22px;
       }
 
-      .section-head {
-        margin-bottom: var(--space-head-content);
-      }
       .section-head h2 {
         font-size: var(--text-display-md);
       }
@@ -2799,290 +2867,396 @@
         font-size: var(--text-lead);
       }
 
-      /* Fees: keep 2×2 so the block fits one snap screen */
-      #why .section-head { margin-bottom: 14px; }
+      /* Fees: stretch rail to fill screen; cards side-scroll at full size */
+      #why .section-head { margin-bottom: 12px; }
       .fees-board {
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        min-height: 0;
+        gap: 12px;
+        width: 100%;
+        max-width: none;
+        grid-template-columns: none;
+      }
+      .fees-rail {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        gap: 12px;
+        flex: 1 1 auto;
+        min-height: 0;
       }
       .fees-controls,
-      .fees-outcomes {
-        height: auto;
-        gap: 10px;
-      }
+      .fees-outcomes,
       .calc-sliders,
       .fees-result {
-        flex: none;
-        gap: 10px;
+        display: contents;
       }
+      .fees-result-arrow { display: none; }
       .fees-board .calc-field,
       .fees-result-card {
-        flex: none;
-        min-height: 0;
-        padding: 12px 10px;
+        flex: 0 0 var(--mobile-card-w);
+        width: var(--mobile-card-w);
+        max-width: var(--mobile-card-w);
+        min-height: 100%;
+        height: auto;
+        padding: 20px 18px;
+        scroll-snap-align: center;
       }
       .fees-board .calc-field-main {
-        margin-bottom: 6px;
+        margin-bottom: 12px;
+        flex: 1;
       }
       .fees-board .calc-field-main strong,
       .fees-result-card strong {
-        font-size: clamp(22px, 7vw, 28px);
+        font-size: clamp(28px, 9vw, 40px);
       }
       .fees-breakdown {
-        padding: 10px 12px;
-        font-size: 11px;
-      }
-      .fees-savings > div { padding: 10px 12px; }
-      .fees-result-arrow {
-        display: none;
-      }
-
-      /* Pains / audience / tickets / flow compact */
-      .pain-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-      .pain-card {
-        padding: 14px 14px;
-        gap: 6px;
-        flex-direction: row;
-        align-items: flex-start;
-        text-align: left;
-      }
-      .pain-ico {
-        width: 36px;
-        height: 36px;
-        border-radius: 12px;
-        margin-bottom: 0;
         flex: 0 0 auto;
+        width: min(100% - 28px, var(--max));
+        margin-inline: auto;
+        padding: 12px 16px;
+        font-size: 13px;
+        grid-column: auto;
       }
-      .pain-ico svg { width: 18px; height: 18px; }
-      .pain-card h3 { font-size: 16px; }
-      .pain-card p { font-size: 13px; }
-
-      .aud-cards {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-      .aud-card { padding: 16px; }
-      .aud-visual { min-height: 120px; }
-      .aud-copy h3 { font-size: clamp(20px, 5.5vw, 24px); }
-      .aud-copy p { font-size: 13px; }
-
-      .tt-layout {
-        grid-template-columns: 1fr 1fr;
+      .fees-savings {
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: row;
         gap: 10px;
+        width: min(100% - 28px, var(--max));
+        margin-inline: auto;
+        grid-column: auto;
       }
-      .tt-card {
+      .fees-savings > div {
+        flex: 1 1 0;
+        min-width: 0;
         padding: 14px 12px;
       }
-      .tt-card h3 { font-size: 15px; }
-      .tt-card p { font-size: 12px; }
-      .tt-when { font-size: 11px; }
+      .fees-savings .v {
+        font-size: clamp(20px, 6vw, 28px);
+      }
+
+      /* Pains / audience / tickets — full-height cards, side scroll */
+      .pain-card {
+        padding: 22px 20px;
+        gap: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        justify-content: center;
+      }
+      .pain-ico {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        margin-bottom: 4px;
+        flex: 0 0 auto;
+      }
+      .pain-ico svg { width: 22px; height: 22px; }
+      .pain-card h3 { font-size: clamp(20px, 5.5vw, 24px); }
+      .pain-card p { font-size: 15px; }
+
+      .aud-card {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+      .aud-visual { min-height: 140px; flex: 1 1 auto; }
+      .aud-copy h3 { font-size: clamp(22px, 6vw, 28px); }
+      .aud-copy p { font-size: 14px; }
+
+      .tt-card {
+        padding: 22px 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .tt-card h3 { font-size: clamp(18px, 5vw, 22px); }
+      .tt-card p { font-size: 14px; }
+      .tt-when { font-size: 12px; }
 
       #flow .flow-layout {
-        grid-template-columns: 1fr;
-        gap: 16px;
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        min-height: 0;
+        gap: 12px;
+        width: 100%;
+        max-width: none;
+        margin-inline: 0;
+        overflow: hidden;
+        grid-template-columns: none;
       }
-      .flow-step { padding: 10px 0; }
-      .flow-step-copy { font-size: 13px; }
-      .flow-pitch h2 { font-size: clamp(22px, 6vw, 28px); }
+      #flow .flow-pitch {
+        order: -1;
+        flex: 0 0 auto;
+        width: min(100% - 28px, var(--max));
+        margin-inline: auto;
+      }
+      #flow .flow-pitch-frame {
+        flex: none;
+        min-height: 0;
+        height: auto;
+        align-items: center;
+        text-align: center;
+        padding: 8px 0;
+      }
+      #flow .flow-steps {
+        flex: 1 1 auto;
+        min-height: 0;
+        max-width: none;
+        overflow-x: auto;
+        overflow-y: hidden;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 12px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding: 4px var(--mobile-rail-pad) 12px;
+        box-sizing: border-box;
+      }
+      #flow .flow-step {
+        flex: 0 0 var(--mobile-card-w);
+        scroll-snap-align: center;
+        padding: 16px;
+        background: var(--surface);
+        border-radius: var(--radius);
+        box-sizing: border-box;
+        min-height: 100%;
+        text-align: left;
+      }
+      .flow-step-copy { font-size: 14px; }
+      .flow-pitch h2 { font-size: clamp(24px, 6.5vw, 30px); }
 
+      #faq .wrap {
+        width: min(100% - 28px, var(--max));
+        margin-inline: auto;
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+      }
       #faq .faq-item summary {
-        font-size: 15px;
-        padding-block: 14px;
+        font-size: 16px;
+        padding-block: 16px;
       }
-      .faq-a { font-size: 13px; padding-bottom: 14px; }
+      .faq-a { font-size: 14px; padding-bottom: 16px; }
 
-      /* Features: one snap per row — copy + compact mock */
+      /* Features: fill screen; mock scrolls sideways if wider than viewport */
       .section--feat-list {
         padding-block: 0;
+        height: auto;
+        max-height: none;
+        overflow: visible;
       }
-      .section--feat-list .feat-list { gap: 0; }
+      .section--feat-list .feat-list {
+        gap: 0;
+        flex: 1;
+        min-height: 0;
+        display: block;
+        width: 100%;
+        overflow: visible;
+      }
       .feat-row,
       .feat-row.is-flip {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: stretch;
         align-items: stretch;
         gap: 14px;
         grid-template-columns: none;
         min-height: 100svh;
-        height: auto;
-        padding: 88px 0 24px;
+        height: 100svh;
+        max-height: 100svh;
+        padding: 88px 0 20px;
         scroll-snap-align: start;
         scroll-snap-stop: always;
         box-sizing: border-box;
+        overflow: hidden;
       }
       .feat-row.is-flip .feat-row__copy,
       .feat-row.is-flip .feat-row__visual { order: initial; }
       .feat-row__copy {
         text-align: center;
         flex: 0 0 auto;
+        width: min(100% - 28px, var(--max));
+        margin-inline: auto;
       }
       .feat-row__title {
         margin-inline: auto;
         max-width: none;
-        font-size: clamp(22px, 6vw, 28px);
+        font-size: clamp(24px, 6.5vw, 30px);
       }
       .feat-row__desc {
         margin-inline: auto;
-        font-size: 13px;
+        font-size: 14px;
         max-width: 34em;
       }
-      .feat-row__tag { font-size: 11px; }
+      .feat-row__tag { font-size: 12px; }
       .feat-row__visual {
         height: auto;
         min-height: 0;
-        flex: 0 1 auto;
-        max-height: min(52svh, 360px);
-      }
-      .feat-row[data-feat="pay"] .feat-row__visual,
-      .feat-row[data-feat="scanner"] .feat-row__visual,
-      .feat-row[data-feat="crm"] .feat-row__visual {
-        max-height: min(54svh, 380px);
-        min-height: 0;
-        height: auto;
+        flex: 1 1 auto;
+        max-height: none;
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x proximity;
+        padding-inline: var(--mobile-rail-pad);
+        box-sizing: border-box;
       }
       .feat-row__visual .fp-browser {
         height: 100%;
-        max-height: inherit;
+        min-height: 280px;
+        min-width: max(100%, 520px);
+        width: max(100%, 520px);
+        max-height: none;
         border-radius: 18px;
         overflow: hidden;
+        scroll-snap-align: start;
       }
-      .fp-browser__chrome { padding: 8px 10px; }
-      .fp-browser__url { font-size: 11px; padding: 5px 10px; }
+      .fp-browser__chrome { padding: 10px 12px; }
+      .fp-browser__url { font-size: 12px; padding: 6px 12px; }
 
       .fp-showcase {
-        grid-template-columns: 1fr;
-        min-height: 0;
+        grid-template-columns: 1.2fr 0.8fr;
+        min-height: 100%;
+        height: 100%;
       }
       .fp-showcase__main {
-        border-right: 0;
-        border-bottom: 1px solid var(--border);
-        padding: 14px 14px 12px;
-        gap: 8px;
-      }
-      .fp-showcase__side { padding: 12px 14px; gap: 8px; }
-      .fp-showcase__title { font-size: clamp(22px, 6vw, 28px); }
-      .fp-showcase__stat strong { font-size: 18px; }
-      .fp-showcase__cta { padding: 10px 14px; font-size: 13px; }
-
-      .fp-pay {
-        grid-template-columns: 1fr;
-        min-height: 0;
-      }
-      .fp-pay__main {
-        border-right: 0;
-        border-bottom: 1px solid var(--border);
-        padding: 12px;
-        gap: 8px;
-      }
-      .fp-pay__side { padding: 12px; gap: 6px; }
-      .fp-pay__head strong { font-size: 20px; }
-      .fp-pay__fields label { padding: 8px 10px; }
-      .fp-pay__method { padding: 8px 10px; }
-      .fp-pay__cta { min-height: 40px; font-size: 13px; }
-      .fp-pay__row { font-size: 12px; }
-      .fp-pay__row strong { font-size: 14px; }
-      .fp-pay__row.is-guest strong { font-size: 18px; }
-      .fp-pay__you { padding: 8px 10px; }
-      .fp-pay__you strong { font-size: 18px; }
-      .fp-pay__success { padding: 16px; gap: 6px; }
-      .fp-pay__success strong { font-size: 20px; }
-
-      .fp-crm { padding: 10px; gap: 8px; }
-      .fp-crm__search { font-size: 12px; padding: 8px 10px; }
-      .fp-crm__export { padding: 8px 10px; font-size: 11px; }
-      .fp-crm__head,
-      .fp-crm__row {
-        grid-template-columns: 1.3fr 0.8fr 0.7fr;
-        gap: 6px;
-        padding: 8px 8px;
-        font-size: 11px;
-      }
-      .fp-crm__head span:nth-child(3),
-      .fp-crm__row > span:nth-child(3) { display: none; }
-      .fp-crm__row .is-money { font-size: 14px; }
-      .fp-crm__row em { display: none; }
-
-      .fp-refund { padding: 12px; }
-      .fp-refund__card { padding: 14px; gap: 12px; }
-      .fp-refund__top strong { font-size: 18px; }
-      .fp-refund__amount strong { font-size: 24px; }
-      .fp-refund__btn { min-height: 40px; font-size: 13px; }
-
-      .fp-invite { padding: 12px; gap: 10px; }
-      .fp-invite__bar strong { font-size: 18px; }
-      .fp-invite__add { padding: 8px 12px; font-size: 11px; }
-      .fp-invite__item {
-        grid-template-columns: 32px minmax(0, 1fr) auto;
-        padding: 8px 10px;
-        gap: 8px;
-      }
-      .fp-invite__ava { width: 32px; height: 32px; font-size: 12px; }
-      .fp-invite__item b.is-vip { display: none; }
-      .fp-invite__item em { display: none; }
-
-      .fp-scan {
-        grid-template-columns: 1fr;
-        min-height: 0;
-      }
-      .fp-scan__stage {
-        border-right: 0;
-        border-bottom: 1px solid var(--border);
-        padding: 12px;
+        border-right: 1px solid var(--border);
+        border-bottom: 0;
+        padding: 18px;
         gap: 10px;
       }
-      .fp-scan__frame { max-width: 180px; }
-      .fp-scan__qr { width: 120px; height: 120px; }
-      .fp-scan__log { padding: 10px; gap: 6px; }
-      .fp-scan__log-item { padding: 8px 10px; font-size: 12px; }
-      .fp-scan__count { font-size: 12px; }
-      .fp-scan__count strong { font-size: 16px; }
+      .fp-showcase__side { padding: 16px; gap: 10px; }
+      .fp-showcase__title { font-size: clamp(24px, 4vw, 32px); }
+      .fp-showcase__stat strong { font-size: 20px; }
+      .fp-showcase__cta { padding: 12px 16px; font-size: 14px; }
 
-      #niches .formats-stream { margin-top: 12px; }
-      .formats-stream-bleed { gap: 8px; }
-      .formats-pill {
-        min-height: 34px;
-        padding: 0 12px;
+      .fp-pay {
+        grid-template-columns: 1.1fr 0.9fr;
+        min-height: 100%;
+        height: 100%;
+      }
+      .fp-pay__main {
+        border-right: 1px solid var(--border);
+        border-bottom: 0;
+        padding: 16px;
+        gap: 10px;
+      }
+      .fp-pay__side { padding: 16px; gap: 8px; }
+      .fp-pay__head strong { font-size: 22px; }
+      .fp-pay__fields label { padding: 10px 12px; }
+      .fp-pay__method { padding: 10px 12px; }
+      .fp-pay__cta { min-height: 44px; font-size: 14px; }
+      .fp-pay__row { font-size: 13px; }
+      .fp-pay__row strong { font-size: 15px; }
+      .fp-pay__row.is-guest strong { font-size: 20px; }
+      .fp-pay__you { padding: 10px 12px; }
+      .fp-pay__you strong { font-size: 20px; }
+      .fp-pay__success { padding: 20px; gap: 8px; }
+      .fp-pay__success strong { font-size: 22px; }
+
+      .fp-crm { padding: 14px; gap: 10px; height: 100%; box-sizing: border-box; }
+      .fp-crm__search { font-size: 13px; padding: 10px 12px; }
+      .fp-crm__export { padding: 10px 12px; font-size: 12px; }
+      .fp-crm__head,
+      .fp-crm__row {
+        grid-template-columns: 1.4fr 0.9fr 0.8fr 0.9fr;
+        gap: 8px;
+        padding: 10px 10px;
         font-size: 12px;
+      }
+      .fp-crm__row .is-money { font-size: 15px; }
+
+      .fp-refund { padding: 16px; height: 100%; box-sizing: border-box; }
+      .fp-refund__card { padding: 18px; gap: 14px; }
+      .fp-refund__top strong { font-size: 20px; }
+      .fp-refund__amount strong { font-size: 28px; }
+      .fp-refund__btn { min-height: 44px; font-size: 14px; }
+
+      .fp-invite { padding: 16px; gap: 12px; height: 100%; box-sizing: border-box; }
+      .fp-invite__bar strong { font-size: 20px; }
+      .fp-invite__add { padding: 10px 14px; font-size: 12px; }
+      .fp-invite__item {
+        grid-template-columns: 40px minmax(0, 1fr) auto;
+        padding: 10px 12px;
+        gap: 10px;
+      }
+      .fp-invite__ava { width: 40px; height: 40px; font-size: 13px; }
+
+      .fp-scan {
+        grid-template-columns: 1fr 1fr;
+        min-height: 100%;
+        height: 100%;
+      }
+      .fp-scan__stage {
+        border-right: 1px solid var(--border);
+        border-bottom: 0;
+        padding: 16px;
+        gap: 12px;
+      }
+      .fp-scan__frame { max-width: 200px; }
+      .fp-scan__qr { width: 140px; height: 140px; }
+      .fp-scan__log { padding: 14px; gap: 8px; }
+      .fp-scan__log-item { padding: 10px 12px; font-size: 13px; }
+      .fp-scan__count { font-size: 13px; }
+      .fp-scan__count strong { font-size: 18px; }
+
+      #niches .section-head { width: min(100% - 28px, var(--max)); margin-inline: auto; }
+      #niches .formats-stream {
+        margin-top: auto;
+        margin-bottom: auto;
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 0;
+      }
+      .formats-stream-bleed { gap: 10px; }
+      .formats-pill {
+        min-height: 40px;
+        padding: 0 16px;
+        font-size: 14px;
       }
     }
 
     @media (max-width: 560px) {
-      .tt-layout { grid-template-columns: 1fr; }
-      .feat-row__visual { max-height: min(48svh, 320px); }
-      .feat-row[data-feat="pay"] .feat-row__visual,
-      .feat-row[data-feat="scanner"] .feat-row__visual,
-      .feat-row[data-feat="crm"] .feat-row__visual {
-        max-height: min(50svh, 340px);
-      }
-      .fp-invite__item { grid-template-columns: 32px 1fr auto; }
-      .fees-board .calc-field-main strong,
-      .fees-result-card strong {
-        font-size: clamp(20px, 8vw, 24px);
-      }
       .header-pill { padding: 8px 8px 8px 12px; }
       .header-cta { padding: 8px 12px; font-size: 13px; min-height: 36px; }
+      .fees-savings {
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        width: 100%;
+        max-width: none;
+        padding-inline: var(--mobile-rail-pad);
+        box-sizing: border-box;
+      }
+      .fees-savings > div {
+        flex: 0 0 var(--mobile-card-w);
+        scroll-snap-align: center;
+      }
     }
 
-    /* On very short phones, allow panels to grow and scroll internally rather than clip */
+    /* Short phones: keep full-screen panels; rely on side-scroll, not shrink */
     @media (max-width: 900px) and (max-height: 700px) {
       .snap-panel,
-      .feat-row.snap-panel {
-        min-height: 100svh;
-        justify-content: flex-start;
-        padding-top: 80px;
-      }
-      .feat-row__visual,
-      .feat-row[data-feat="pay"] .feat-row__visual,
-      .feat-row[data-feat="scanner"] .feat-row__visual,
-      .feat-row[data-feat="crm"] .feat-row__visual {
-        max-height: min(42svh, 280px);
+      .feat-row.snap-panel,
+      .feat-row {
+        padding-top: 76px;
+        padding-bottom: 12px;
       }
       #slide-hero .hero-copy {
         min-height: calc(100svh - 72px - 88px);
+      }
+      .fees-savings .v {
+        font-size: clamp(18px, 5.5vw, 24px);
       }
     }
 
@@ -3243,9 +3417,17 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
+    @media (max-width: 900px) {
+      .tt-layout {
+        display: flex;
+        grid-template-columns: none;
+        grid-auto-rows: auto;
+      }
+    }
     @media (max-width: 560px) {
       .tt-layout {
-        grid-template-columns: 1fr;
+        display: flex;
+        grid-template-columns: none;
         grid-auto-rows: auto;
       }
     }
@@ -3841,8 +4023,6 @@
       .header-nav { display: none; }
       .hero-vibe,
       .hero-duo,
-      .calc-shell,
-      .aud-cards,
       .hero-card-app { order: -1; min-height: 0; max-height: none; }
       .metric-grid { grid-template-columns: 1fr 1fr; }
     }

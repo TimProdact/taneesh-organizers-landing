@@ -109,8 +109,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=1542700" />
-  <script src="assets/i18n.js?v=1542700"></script>
+  <link rel="stylesheet" href="styles.css?v=1542800" />
+  <script src="assets/i18n.js?v=1542800"></script>
 
   <!-- Analytics: fill in your Yandex.Metrika counter id and Meta Pixel id below to enable tracking -->
   <script>
@@ -231,38 +231,40 @@
           <p class="lead" data-i18n="feesTitle">Сбор платит гость — вам 100% цены билета</p>
         </div>
         <div class="island calc-shell fees-board">
-          <div class="fees-controls">
-            <div class="calc-sliders">
-              <div class="calc-field">
-                <div class="calc-field-main">
-                  <span class="calc-field-meta" data-i18n="feesTicket">Цена билета</span>
-                  <strong id="ticketLabel">100 000</strong>
+          <div class="fees-rail">
+            <div class="fees-controls">
+              <div class="calc-sliders">
+                <div class="calc-field">
+                  <div class="calc-field-main">
+                    <span class="calc-field-meta" data-i18n="feesTicket">Цена билета</span>
+                    <strong id="ticketLabel">100 000</strong>
+                  </div>
+                  <input type="range" id="ticketPrice" min="20000" max="500000" step="1000" value="100000" />
                 </div>
-                <input type="range" id="ticketPrice" min="20000" max="500000" step="1000" value="100000" />
-              </div>
-              <div class="calc-field">
-                <div class="calc-field-main">
-                  <span class="calc-field-meta" data-i18n="feesFix">FixedFee на гостя</span>
-                  <strong id="fixLabel">3 500</strong>
+                <div class="calc-field">
+                  <div class="calc-field-main">
+                    <span class="calc-field-meta" data-i18n="feesFix">FixedFee на гостя</span>
+                    <strong id="fixLabel">3 500</strong>
+                  </div>
+                  <input type="range" id="fixFee" min="1000" max="15000" step="100" value="3500" />
                 </div>
-                <input type="range" id="fixFee" min="1000" max="15000" step="100" value="3500" />
               </div>
             </div>
-          </div>
-          <div class="fees-outcomes">
-            <div class="fees-result">
-              <div class="fees-result-card is-you">
-                <span data-i18n="whyGood">Taneesh · онлайн вам 100%</span>
-                <strong id="tanPerTicket">100 000</strong>
-                <em data-i18n="currency">сум</em>
-              </div>
-              <div class="fees-result-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </div>
-              <div class="fees-result-card">
-                <span data-i18n="feesGuest">гость платит</span>
-                <strong id="feesPunchTotal">105 000</strong>
-                <em data-i18n="currency">сум</em>
+            <div class="fees-outcomes">
+              <div class="fees-result">
+                <div class="fees-result-card is-you">
+                  <span data-i18n="whyGood">Taneesh · онлайн вам 100%</span>
+                  <strong id="tanPerTicket">100 000</strong>
+                  <em data-i18n="currency">сум</em>
+                </div>
+                <div class="fees-result-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </div>
+                <div class="fees-result-card">
+                  <span data-i18n="feesGuest">гость платит</span>
+                  <strong id="feesPunchTotal">105 000</strong>
+                  <em data-i18n="currency">сум</em>
+                </div>
               </div>
             </div>
           </div>
