@@ -1321,68 +1321,6 @@
       }
     }
 
-    /* Three pains — statement cards */
-    .pain-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: var(--space-stack-md);
-      max-width: var(--max);
-      margin-inline: auto;
-    }
-    .pain-card {
-      position: relative;
-      background: var(--surface);
-      border: 0;
-      border-radius: calc(var(--radius) + 4px);
-      padding: clamp(22px, 2.4vw, 32px);
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      min-height: 100%;
-      overflow: hidden;
-    }
-    .pain-card__num {
-      font-family: var(--font-display);
-      font-size: clamp(40px, 4.5vw, 56px);
-      font-weight: 700;
-      letter-spacing: var(--track-display);
-      line-height: 1;
-      color: rgba(10, 10, 10, 0.08);
-      margin: 0;
-    }
-    .pain-ico {
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      background: rgba(10, 10, 10, 0.06);
-      color: var(--text);
-      flex: 0 0 auto;
-    }
-    .pain-ico svg { width: 26px; height: 26px; }
-    .pain-card__body {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: auto;
-    }
-    .pain-card h3 {
-      margin: 0;
-      font-family: var(--font-display);
-      font-size: var(--text-display-xs);
-      letter-spacing: var(--track-display);
-      line-height: 1.15;
-    }
-    .pain-card p {
-      margin: 0;
-      font-size: var(--text-body-sm);
-      color: var(--muted);
-      line-height: var(--leading-body);
-    }
-    @media (max-width: 800px) {
-      .pain-grid { grid-template-columns: 1fr; }
-    }
     @media (max-width: 900px) {
       .aud-cards {
         grid-template-columns: 1fr;
@@ -1814,6 +1752,8 @@
       flex-direction: column;
       background: #fff;
       color: var(--text);
+      border-radius: inherit;
+      overflow: hidden;
     }
     .fp-browser__chrome {
       flex: 0 0 auto;
@@ -2286,6 +2226,9 @@
       opacity: 0.65;
       transition: transform 320ms var(--ease), opacity 320ms var(--ease), box-shadow 320ms var(--ease);
     }
+    .is-demo-ready .fp-pay__you:not(.is-in) {
+      display: none;
+    }
     .fp-pay__you.is-glow {
       transform: scale(1);
       opacity: 1;
@@ -2756,15 +2699,16 @@
       #footer,
       #footer.snap-panel {
         height: auto;
-        min-height: 0 !important;
+        min-height: 100svh;
         max-height: none;
-        padding: 56px 0 24px;
+        padding: 72px 0 24px;
         overflow: hidden;
         scroll-snap-align: none;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: space-between;
         gap: 28px;
+        box-sizing: border-box;
       }
       #footer.snap-panel > .site-footer__main,
       #footer.snap-panel > .site-footer__meta {
@@ -2772,10 +2716,11 @@
         margin-inline: auto;
       }
       #footer .site-footer__main {
-        flex: 0 0 auto;
-        justify-content: flex-start;
+        flex: 1 1 auto;
+        justify-content: center;
         gap: 18px;
         padding: 0;
+        min-height: 0;
       }
       #footer .site-footer__watermark {
         font-size: clamp(3.5rem, 18vw, 8rem);
@@ -2818,7 +2763,7 @@
       }
       #footer .site-footer__meta {
         flex: 0 0 auto;
-        margin-top: 8px;
+        margin-top: 0;
         padding-top: 18px;
         padding-bottom: max(16px, env(safe-area-inset-bottom, 0px));
       }
@@ -2927,47 +2872,6 @@
       }
       .fees-savings > div { padding: 12px; }
       .fees-savings .v { font-size: clamp(18px, 5.5vw, 24px); }
-
-      /* Pains: stacked statement cards */
-      #pains .pain-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 12px;
-        width: 100%;
-        overflow: visible;
-      }
-      #pains .pain-card {
-        width: 100%;
-        max-width: none;
-        min-height: 0;
-        height: auto;
-        padding: 24px 20px;
-        gap: 16px;
-        border-radius: 24px;
-      }
-      #pains .pain-card:first-child {
-        background: #111;
-        color: #fff;
-      }
-      #pains .pain-card:first-child .pain-card__num { color: rgba(255, 255, 255, 0.14); }
-      #pains .pain-card:first-child .pain-ico {
-        background: rgba(30, 215, 96, 0.16);
-        color: var(--lime);
-      }
-      #pains .pain-card:first-child h3 { color: #fff; }
-      #pains .pain-card:first-child p { color: rgba(255, 255, 255, 0.62); }
-      #pains .pain-card__num { font-size: clamp(40px, 12vw, 56px); }
-      #pains .pain-ico {
-        width: 56px;
-        height: 56px;
-        border-radius: 16px;
-      }
-      #pains .pain-ico svg { width: 26px; height: 26px; }
-      #pains .pain-card h3 {
-        font-size: clamp(22px, 6vw, 28px);
-        max-width: none;
-      }
-      #pains .pain-card p { font-size: 15px; }
 
       /* Audience: stacked */
       #audience .aud-cards {
@@ -3089,7 +2993,8 @@
       }
       .feat-row.is-flip .feat-row__copy,
       .feat-row.is-flip .feat-row__visual { order: initial; }
-      .feat-row__copy {
+      .feat-row__copy,
+      .feat-row.is-flip .feat-row__copy {
         text-align: center;
         width: 100%;
         margin-inline: auto;
@@ -3123,7 +3028,7 @@
         min-height: 0 !important;
         max-height: none !important;
         width: 100%;
-        overflow: visible;
+        overflow: hidden;
         padding-inline: 0;
         margin-top: 0;
       }
@@ -3131,8 +3036,8 @@
         width: 100%;
         min-width: 0;
         height: auto !important;
-        border-radius: 18px;
-        overflow: visible;
+        border-radius: inherit;
+        overflow: hidden;
         display: flex;
         flex-direction: column;
       }
@@ -3167,6 +3072,7 @@
       .fp-showcase__side,
       .fp-pay__side,
       .fp-scan__log { padding: 16px; }
+      .fp-pay__you { margin-top: 0; }
       .fp-showcase__title { font-size: clamp(24px, 6.5vw, 30px); }
       .fp-pay__head strong { font-size: 22px; }
       .fp-pay__cta { min-height: 48px; }
@@ -3203,12 +3109,14 @@
       }
       .fp-crm { padding: 14px; height: auto; }
       .fp-crm__toolbar {
-        flex-direction: column;
-        align-items: stretch;
+        flex-direction: row;
+        align-items: center;
         gap: 8px;
       }
       .fp-crm__search {
-        width: 100%;
+        flex: 1;
+        min-width: 0;
+        width: auto;
         font-size: 12px;
         padding: 10px 12px;
         white-space: nowrap;
@@ -3216,7 +3124,8 @@
         text-overflow: ellipsis;
       }
       .fp-crm__export {
-        width: 100%;
+        flex: 0 0 auto;
+        width: auto;
         text-align: center;
         padding: 10px 12px;
         font-size: 12px;
