@@ -2299,9 +2299,9 @@
       margin: 0;
       width: 100%;
       box-sizing: border-box;
-      padding: 4px 0;
-      border-radius: 0;
-      background: transparent;
+      padding: 14px 18px;
+      border-radius: var(--radius);
+      background: var(--surface);
       font-size: var(--text-caption);
       line-height: 1.45;
       color: var(--muted);
