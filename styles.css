@@ -504,7 +504,69 @@
       .hero-proof__dot { animation: none; }
     }
 
-    /* Hero duo: phone + admin dashboard (Time2book-style) */
+    /* Hero vibe video (replaces admin mock) */
+    .hero-vibe {
+      position: relative;
+      width: 100%;
+      max-width: 640px;
+      margin-inline: auto;
+      aspect-ratio: 16 / 9;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #0a0a0a;
+      box-shadow: 0 18px 48px rgba(10, 10, 10, 0.14);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .hero-vibe__video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-vibe__play {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 72px;
+      height: 72px;
+      border: 0;
+      border-radius: 9999px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      background: rgba(45, 70, 78, 0.72);
+      color: #fff;
+      cursor: pointer;
+      z-index: 2;
+      transition:
+        opacity 220ms var(--ease),
+        transform 220ms var(--ease),
+        background 220ms var(--ease);
+    }
+    .hero-vibe__play svg {
+      width: 28px;
+      height: 28px;
+      fill: currentColor;
+      margin-left: 3px;
+    }
+    .hero-vibe__play:hover {
+      background: rgba(45, 70, 78, 0.88);
+      transform: scale(1.04);
+    }
+    .hero-vibe.is-playing .hero-vibe__play {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.92);
+    }
+    .hero-vibe:hover.is-playing .hero-vibe__play {
+      opacity: 0.85;
+      pointer-events: auto;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-vibe__play { transition: none; }
+    }
+    /* Legacy hero-duo kept for any leftover refs */
     .hero-duo {
       display: grid;
       grid-template-columns: 1fr;
@@ -4151,7 +4213,7 @@
       #slide-hero .hero-copy h1 { animation: rise-in 820ms var(--ease) 70ms both; }
       #slide-hero .hero-copy .lead { animation: rise-in 820ms var(--ease) 140ms both; }
       #slide-hero .hero-copy .btn-row { animation: rise-in 820ms var(--ease) 210ms both; }
-      #slide-hero .hero-duo { animation: rise-in 920ms var(--ease) 280ms both; }
+      #slide-hero .hero-vibe { animation: rise-in 920ms var(--ease) 280ms both; }
 
       .site-footer__glow--left { animation: glow-drift 14s ease-in-out infinite; }
       .site-footer__glow--right { animation: glow-drift 16s ease-in-out infinite reverse; }
@@ -4327,10 +4389,11 @@
     @media (max-width: 960px) {
       .header-nav { display: none; }
       .header-burger { display: flex; }
+      .hero-vibe,
       .hero-duo,
       .calc-shell,
       .aud-cards,
-      .hero-card-app { order: -1; min-height: 420px; max-height: none; }
+      .hero-card-app { order: -1; min-height: 0; max-height: none; }
       .metric-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 560px) {
