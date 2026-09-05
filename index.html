@@ -685,14 +685,83 @@
                         </nav>
                       </div>
                     </article>
-                    <article class="feat-slide" data-feat-slide="3">
-                      <div class="feat-slide__visual" style="--feat-img:url('assets/features/refund.jpg')">
-                        <span class="feat-slide__pill" data-i18n="o4tag">Возврат</span>
-                        <strong data-i18n="o4t">Возврат в 1 клик</strong>
-                      </div>
-                      <div class="feat-slide__body">
-                        <p data-i18n="o4p">Мгновенно отменяйте и возвращайте билеты без долгих переписок с поддержкой.</p>
-                        <button type="button" class="feat-slide__cta is-soft" tabindex="-1" data-i18n="o4t">Возврат в 1 клик</button>
+                    <article class="feat-slide feat-slide--refund" data-feat-slide="3">
+                      <div class="rf-screen">
+                        <header class="rf-screen__top">
+                          <div class="rf-screen__tg">
+                            <span>‹</span>
+                            <strong>Taneesh.org</strong>
+                            <span class="rf-screen__tg-actions" aria-hidden="true">⋯ ✕</span>
+                          </div>
+                          <div class="rf-screen__event">
+                            <div>
+                              <h4>Tashkent Digital Marke…</h4>
+                              <span class="rf-screen__pub">Опубликовано</span>
+                            </div>
+                            <span aria-hidden="true">⋯</span>
+                          </div>
+                          <div class="rf-screen__tabs" aria-hidden="true">
+                            <span>Обзор</span>
+                            <span class="is-on">Участники</span>
+                            <span>Платежи</span>
+                            <span>Статистика</span>
+                          </div>
+                          <div class="rf-screen__tools">
+                            <label class="rf-screen__search">
+                              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                              <span>Имя участника или ID заказа...</span>
+                            </label>
+                            <span class="rf-screen__filter" aria-hidden="true">
+                              <svg viewBox="0 0 24 24"><path d="M4 5h16l-6 7v5l-4 2v-7L4 5z"/></svg>
+                              <i>1</i>
+                            </span>
+                          </div>
+                        </header>
+                        <div class="rf-screen__list">
+                          <article class="rf-card is-focus">
+                            <div class="rf-card__head">
+                              <span class="rf-card__avatar">М</span>
+                              <div class="rf-card__who">
+                                <strong>Мадина Участник 56</strong>
+                                <em>guest56@mail.test</em>
+                              </div>
+                              <span class="rf-card__more" aria-hidden="true">⋯</span>
+                            </div>
+                            <div class="rf-card__tags">
+                              <span class="is-tariff">Standard</span>
+                              <span class="is-buy">Купил</span>
+                              <span class="is-mute">Не прошел</span>
+                            </div>
+                          </article>
+                          <article class="rf-card">
+                            <div class="rf-card__head">
+                              <span class="rf-card__avatar">Н</span>
+                              <div class="rf-card__who">
+                                <strong>Нозим Участник 57</strong>
+                                <em>guest57@mail.test</em>
+                              </div>
+                              <span class="rf-card__more" aria-hidden="true">⋯</span>
+                            </div>
+                            <div class="rf-card__tags">
+                              <span class="is-tariff">VIP</span>
+                              <span class="is-buy">Купил</span>
+                              <span class="is-mute">Не прошел</span>
+                            </div>
+                          </article>
+                        </div>
+                        <div class="rf-sheet" aria-hidden="true">
+                          <div class="rf-sheet__panel">
+                            <div class="rf-sheet__title">Действия</div>
+                            <button type="button" class="rf-sheet__btn is-pass" tabindex="-1">
+                              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M9 11l2 2 4-4"/></svg>
+                              Отметить проход
+                            </button>
+                            <button type="button" class="rf-sheet__btn is-cancel" tabindex="-1">
+                              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+                              Отменить билет
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </article>
                     <article class="feat-slide" data-feat-slide="4">
