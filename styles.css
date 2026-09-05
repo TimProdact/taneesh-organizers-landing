@@ -110,10 +110,19 @@
         height: 100svh;
         max-height: 100svh;
         justify-content: space-between;
-        padding: 72px 0 40px;
+        padding: 96px 0 40px;
         overflow: hidden;
         /* end-align so the dark finale can fully settle under the sticky header */
         scroll-snap-align: end;
+      }
+      /* Footer main must grow; generic .snap-panel > .wrap sets flex: 0 and pins it to the top */
+      #footer.snap-panel > .site-footer__main {
+        flex: 1 1 auto;
+        justify-content: center;
+        min-height: 0;
+      }
+      #footer.snap-panel > .site-footer__meta {
+        flex: 0 0 auto;
       }
       /* Title blocks that need room: start from the top under the header */
       #why.snap-panel,
