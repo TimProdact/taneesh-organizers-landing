@@ -4603,16 +4603,6 @@
       background: var(--border);
       margin-block: 8px;
     }
-    .paytrust-tech {
-      margin-top: var(--space-stack-md);
-      font-size: var(--text-body-sm);
-      color: var(--muted);
-      line-height: var(--leading-body);
-    }
-    .paytrust-tech strong {
-      color: var(--text);
-      font-weight: var(--weight-bold);
-    }
     @media (max-width: 720px) {
       .eco-cols { grid-template-columns: 1fr; }
       .eco-divider {
