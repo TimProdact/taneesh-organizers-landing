@@ -4047,18 +4047,6 @@
       }
       #footer.snap-panel { padding-block: var(--pad-y); }
       .section--feat-list { padding-block: var(--pad-y); }
-      .feat-list__head {
-        position: static;
-        top: auto;
-        z-index: auto;
-        margin: 0 auto var(--section-head-gap);
-        padding: 0;
-        background: transparent;
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-        border-radius: 0;
-      }
-      .feat-list__head h2 { font-size: clamp(28px, 4vw, 44px); }
       .section--feat-list .feat-list { gap: clamp(48px, 10vw, 72px); }
       .feat-row,
       .feat-row.is-flip {
