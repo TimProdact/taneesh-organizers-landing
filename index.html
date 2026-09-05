@@ -703,7 +703,20 @@
                 <div class="fp-scan" data-scan-demo>
                   <div class="fp-scan__stage">
                     <div class="fp-scan__frame" data-scan-frame>
-                      <img src="assets/hero-events/card-ticket-qr.png" alt="" width="200" height="200" decoding="async" loading="lazy" data-scan-qr />
+                      <div class="fp-scan__ticket" data-scan-qr>
+                        <img
+                          class="fp-scan__qr"
+                          src="assets/scan-ticket-qr.svg"
+                          alt="QR-код билета https://taneesh.uz/t/NG-4821"
+                          width="160"
+                          height="160"
+                          decoding="async"
+                        />
+                        <div class="fp-scan__ticket-meta">
+                          <span>Night Garden · Standard</span>
+                          <strong>NG-4821</strong>
+                        </div>
+                      </div>
                     </div>
                     <div class="fp-scan__result is-ok" data-scan-result>Гость пропущен</div>
                     <div class="fp-scan__count">Вход <strong data-scan-count>124</strong> / 200</div>
