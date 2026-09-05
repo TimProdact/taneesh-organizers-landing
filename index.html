@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Taneesh для организаторов — билеты за 5 минут</title>
-  <meta name="description" content="Тикетинг для организаторов: витрина за 5 минут, цена билета — вам целиком. Сервисный сбор платит гость." />
+  <meta name="description" content="Тикетинг для организаторов: витрина за 5 минут, цена билета — вам целиком. Сбор 1.5% + FixedFee платит гость. Для малых и крупных организаторов." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://timprodact.github.io/taneesh-organizers-landing/" />
   <meta property="og:title" content="Taneesh для организаторов — билеты за 5 минут" />
-  <meta property="og:description" content="Тикетинг для организаторов: витрина за 5 минут, цена билета — вам целиком. Сбор платит гость." />
+  <meta property="og:description" content="Тикетинг для организаторов: витрина за 5 минут, цена билета — вам целиком. Сбор 1.5% + FixedFee платит гость." />
   <meta property="og:image" content="https://timprodact.github.io/taneesh-organizers-landing/assets/og-image.png" />
   <meta property="og:locale" content="ru_RU" />
 
@@ -35,7 +35,7 @@
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "UZS",
-      "description": "Без абонентской платы. Сервисный сбор платит гость — организатору 100% цены билета."
+      "description": "Без абонентской платы. Сервисный сбор 1.5% + FixedFee платит гость."
     }
   }
   </script>
@@ -48,18 +48,26 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Можно ли продавать без ИП и кассы?",
+        "name": "Можно ли продавать без ИП и «большой» кассы?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Да. Частным организаторам достаточно кабинета — без ИП и кассового аппарата. Для ИП и компаний — официальная схема с документами."
+          "text": "Да. Частным организаторам достаточно кабинета — без ИП, ООО и кассового аппарата: объявили событие, выставили цену и продаёте вход с телефона."
         }
       },
       {
         "@type": "Question",
-        "name": "Кто платит сервисный сбор?",
+        "name": "Кто платит 1.5% и FixedFee?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Гость при оплате: 1.5% за приём карты + фиксированный сбор за билет. Вам уходит 100% цены билета."
+          "text": "Сервисный сбор платит гость при оплате: 1.5% эквайринга + FixedFee. Для бизнеса подключение бесплатно — вам уходит 100% цены билета."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Что я получаю с цены билета?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Поставили 100 000 — получили 100 000. Без комиссии с организатора и без наценки сверху на вашу цену."
         }
       },
       {
@@ -67,7 +75,15 @@
         "name": "Есть ли абонентка за кабинет?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Базовый кабинет и база гостей — 0 сум. Старт бесплатно. Масштаб — по желанию."
+          "text": "Нет. Кабинет и CRM — 0 сум. Без подписки: продаёте — зарабатываете."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Чем Taneesh отличается от обычных касс?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Обычные кассы берут 5–15% с билета. У Taneesh: 0% с вашей цены, горячий трафик платформы и эквайринг в сборе с гостя."
         }
       },
       {
@@ -75,7 +91,7 @@
         "name": "Сколько нужно, чтобы запуститься?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Обычно минуты: оставили заявку — перезвоним и поможем с кабинетом и первой витриной."
+          "text": "Обычно достаточно минут: создали кабинет и витрину, опубликовали первый ивент. Контакты: taneesh.uz."
         }
       }
     ]
@@ -141,10 +157,13 @@
         <img class="logo-wordmark" src="assets/taneesh-wordmark.svg" alt="Taneesh" width="130" height="24" />
       </a>
       <div class="header-actions">
-                <nav class="header-nav" data-i18n-aria="navAria" aria-label="Навигация">
-          <a href="#why" data-goto="why" data-i18n="navWhy">Экономика</a>
+        <nav class="header-nav" data-i18n-aria="navAria" aria-label="Навигация">
+          <a href="#why" data-goto="why" data-i18n="navWhy">Почему мы</a>
+          <a href="#included" data-goto="included" data-i18n="navIncluded">Что даём</a>
           <a href="#tickettypes" data-goto="tickettypes" data-i18n="navTickets">Типы билетов</a>
-          <a href="#flow" data-goto="flow" data-i18n="navFlow">Как запустить</a>
+          <a href="#ecosystem" data-goto="ecosystem" data-i18n="navEco">Экосистема</a>
+          <a href="#audience" data-goto="audience" data-i18n="navOrgs">Организаторы</a>
+          <a href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
         </nav>
         <button type="button" class="header-burger" id="burgerBtn" aria-label="Меню" aria-expanded="false" aria-controls="mobileMenu">
           <span></span><span></span><span></span>
@@ -176,11 +195,12 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
         </button>
       </div>
-            <nav class="mobile-menu__nav">
-        <a href="#why" data-goto="why" data-i18n="navWhy">Экономика</a>
+      <nav class="mobile-menu__nav">
+        <a href="#why" data-goto="why" data-i18n="navWhy">Почему мы</a>
+        <a href="#included" data-goto="included" data-i18n="navIncluded">Что даём</a>
         <a href="#tickettypes" data-goto="tickettypes" data-i18n="navTickets">Типы билетов</a>
-        <a href="#flow" data-goto="flow" data-i18n="navFlow">Как запустить</a>
-        <a href="#faq" data-goto="faq" data-i18n="faqTitle">FAQ</a>
+        <a href="#ecosystem" data-goto="ecosystem" data-i18n="navEco">Экосистема</a>
+        <a href="#audience" data-goto="audience" data-i18n="navOrgs">Организаторы</a>
         <a href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
       </nav>
       <a class="btn btn-accent mobile-menu__cta" href="#" data-lead-modal data-lead-source="mobileMenu" data-i18n="navStart">Запустить</a>
@@ -196,7 +216,7 @@
           <p class="lead" data-i18n="heroLead">Витрина за 5 минут. Сбор платит гость — вам 100% цены билета.</p>
           <div class="btn-row">
             <a class="btn btn-accent" href="#" data-lead-modal data-lead-source="heroCta" data-i18n="heroCta">Запустить продажи</a>
-            <a class="btn btn-ghost" href="#why" data-goto="why" data-i18n="heroSecondary">Как считаются деньги</a>
+            <a class="btn btn-ghost" href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
           </div>
           <div class="hero-proof" role="presentation">
             <span class="hero-proof__dot" aria-hidden="true"></span>
@@ -320,10 +340,10 @@
       </div>
     </section>
 
-        <section class="section" id="why">
+    <section class="section" id="why">
       <div class="wrap">
         <div class="section-head">
-          <span class="eyebrow" data-i18n="whyEyebrow">Экономика</span>
+          <span class="eyebrow" data-i18n="whyEyebrow">Экономика организатора</span>
           <h2 data-i18n="whyTitle">Не отдавайте 15% с билета</h2>
           <p class="lead" data-i18n="feesTitle">Сбор платит гость — вам 100% цены билета</p>
         </div>
@@ -355,7 +375,7 @@
               <div class="calc-field">
                 <div class="calc-field-main">
                   <strong id="fixLabel">3 500 сум</strong>
-                  <span class="calc-field-meta" data-i18n="feesFix">Фикс. сбор за билет</span>
+                  <span class="calc-field-meta" data-i18n="feesFix">FixedFee на гостя</span>
                 </div>
                 <input type="range" id="fixFee" min="1000" max="15000" step="100" value="3500" />
               </div>
@@ -365,7 +385,7 @@
               <strong>+<span id="outFee">5 000</span></strong>
               <em data-i18n="currency">сум</em>
               ·
-              <span data-i18n="feesAcq">1.5% за приём карты</span>
+              <span data-i18n="feesAcq">эквайринг 1.5%</span>
               <span class="fees-breakdown-math"><span id="outAcq">1 500</span> + <span id="outFix">3 500</span></span>
             </p>
             <div class="calc-summary">
@@ -383,14 +403,8 @@
           </div>
         </div>
 
-        <ul class="pain-line" aria-label="Боли касс">
-          <li><strong data-i18n="painLockTitle">Контакты гостей — не ваши</strong><span data-i18n="painLockShort">база остаётся у кассы</span></li>
-          <li><strong data-i18n="painCashTitle">Деньги зависают</strong><span data-i18n="painCashShort">выплаты после события</span></li>
-          <li><strong data-i18n="painExcelTitle">Excel и переводы</strong><span data-i18n="painExcelShort">вместо нормальных продаж</span></li>
-        </ul>
-
         <div class="why-compare" data-compare>
-          <h3 class="why-compare__title" data-i18n="cmpTitle">Касса забирает долю. Taneesh — нет</h3>
+          <h3 class="why-compare__title" data-i18n="cmpTitle">Не «ещё один агрегатор с наценкой» — а инфраструктура для ваших продаж</h3>
           <div class="why-compare__table">
             <div class="why-compare__row why-compare__head">
               <span></span>
@@ -404,161 +418,114 @@
             </div>
             <div class="why-compare__row">
               <span data-i18n="cmpStartLabel">Старт</span>
-              <span class="why-compare__bad" data-i18n="cmpStartOld">Договоры и ожидание</span>
-              <span class="why-compare__good" data-i18n="cmpStartNew">Кабинет за минуты</span>
+              <span class="why-compare__bad" data-i18n="cmpStartOld">Договоры, касса, ожидание</span>
+              <span class="why-compare__good" data-i18n="cmpStartNew">Self-service за минуты</span>
+            </div>
+            <div class="why-compare__row">
+              <span data-i18n="cmpSubLabel">Абонентка кабинета</span>
+              <span class="why-compare__bad" data-i18n="cmpSubOld">Часто есть</span>
+              <span class="why-compare__good" data-i18n="cmpSubNew">0 сум за базовый кабинет</span>
             </div>
             <div class="why-compare__row">
               <span data-i18n="cmpTransLabel">Прозрачность</span>
               <span class="why-compare__bad" data-i18n="cmpTransOld">Скрытые наценки</span>
-              <span class="why-compare__good" data-i18n="cmpTransNew">Сбор виден гостю в чеке</span>
+              <span class="why-compare__good" data-i18n="cmpTransNew">1.5% карта + FixedFee — видно в чеке</span>
+            </div>
+            <div class="why-compare__row">
+              <span data-i18n="cmpEcoLabel">Экосистема</span>
+              <span class="why-compare__bad" data-i18n="cmpEcoOld">Только билет</span>
+              <span class="why-compare__good" data-i18n="cmpEcoNew">Витрина · CRM · сканер · трафик приложения</span>
             </div>
           </div>
-        </div>
-
-        <div class="econ-case island">
-          <p class="econ-case__label" data-i18n="caseLabel">Пример</p>
-          <p class="econ-case__text" data-i18n-html="caseText">Стендап на <strong>80 человек</strong>, билет <strong>120 000</strong> сум. С кассой 15% вы отдаёте <strong>1 440 000</strong>. С Taneesh — <strong>0</strong> с вашей цены.</p>
-        </div>
-
-        <div class="econ-cta">
-          <a class="btn btn-accent" href="#" data-lead-modal data-lead-source="whyCta" data-i18n="heroCta">Запустить продажи</a>
-          <a class="btn btn-ghost" href="#tickettypes" data-goto="tickettypes" data-i18n="painBridge">Как продать вход →</a>
+          <p class="why-compare__foot" data-i18n="cmpFoot">Инфраструктура в духе Shopify и Eventbrite — сервисный сбор платит гость, а не съедает вашу маржу.</p>
         </div>
       </div>
     </section>
-    <section class="section" id="tickettypes">
+
+    <section class="section" id="pains">
       <div class="wrap">
         <div class="section-head">
-          <span class="eyebrow" data-i18n="ttEyebrow">Типы билетов</span>
-          <h2 data-i18n="ttTitle">Как продать вход под ваш формат</h2>
-          <p class="lead" data-i18n="ttLead">Один главный сценарий — и три режима рядом, когда нужен другой формат.</p>
+          <span class="eyebrow" data-i18n="painEyebrow">Знакомая картина?</span>
+          <h2 data-i18n="painTitle">Почему кассы съедают ваш ивент</h2>
+          <p class="lead" data-i18n="painLead">Три боли, которые остаются, даже если зал полный.</p>
         </div>
-        <div class="tt-layout">
-          <article class="tt-card tt-card--primary">
-            <span class="tt-kicker" data-i18n="ttOnlineKicker">Главный сценарий</span>
-            <h3 data-i18n="ttOnlineTitle">Платно онлайн</h3>
-            <p data-i18n="ttOnlineDesc">Гость оплачивает билет на витрине, сразу получает QR. Вам уходит вся цена билета.</p>
-            <span class="tt-badge" data-i18n="ttOnlineBadge">100% цены — вам</span>
-            <p class="tt-when" data-i18n="ttOnlineWhen">Когда: концерты, стендап, конференции, платный вход</p>
+        <div class="pain-grid">
+          <article class="pain-card">
+            <span class="pain-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 14l2-2 2 2 4-6"/></svg></span>
+            <h3 data-i18n="painLockTitle">Контакты гостей — не ваши</h3>
+            <p data-i18n="painLockDesc">База покупателей остаётся у кассы. Вы не можете сами писать гостям и возвращать их на следующий ивент.</p>
           </article>
-          <div class="tt-side">
-            <article class="tt-card">
-              <h3 data-i18n="ttDoorTitle">Оплата на входе</h3>
-              <p data-i18n="ttDoorDesc">Гость бронирует место заранее. Цену билета платит вам у двери.</p>
-              <span class="tt-badge" data-i18n="ttDoorBadge">Деньги — у двери</span>
-              <p class="tt-when" data-i18n="ttDoorWhen">Когда: вечеринки, open-air, оплата на месте</p>
-            </article>
-            <article class="tt-card">
-              <h3 data-i18n="ttFreeTitle">Бесплатно</h3>
-              <p data-i18n="ttFreeDesc">Регистрация без оплаты. QR — сразу или после вашего одобрения.</p>
-              <span class="tt-badge" data-i18n="ttFreeBadge">Без оплаты</span>
-              <p class="tt-when" data-i18n="ttFreeWhen">Когда: лекции, комьюнити, набор по заявкам</p>
-            </article>
-            <article class="tt-card">
-              <h3 data-i18n="ttVipTitle">Приглашение</h3>
-              <p data-i18n="ttVipDesc">Закрытая ссылка для партнёров и VIP. На сканере — «Приглашён».</p>
-              <span class="tt-badge" data-i18n="ttVipBadge">Только по ссылке</span>
-              <p class="tt-when" data-i18n="ttVipWhen">Когда: пресса, гости, команда, партнёры</p>
-            </article>
-          </div>
+          <article class="pain-card">
+            <span class="pain-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg></span>
+            <h3 data-i18n="painCashTitle">Деньги зависают до конца</h3>
+            <p data-i18n="painCashDesc">Выплаты «после события» — а аренду и рекламу нужно платить уже сейчас.</p>
+          </article>
+          <article class="pain-card">
+            <span class="pain-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 4h8v6H8zM3 14h18v6H3z"/><path d="M8 20v-4M16 20v-3"/></svg></span>
+            <h3 data-i18n="painExcelTitle">Excel и переводы на карту</h3>
+            <p data-i18n="painExcelDesc">Вместо нормальной продажи — таблицы, личные карты и списки у двери.</p>
+          </article>
         </div>
-      </div>
-      <div class="formats-stream formats-stream--under">
-        <p class="formats-caption type-caption" data-i18n="nicheLead">От стендапа до турнира — одна витрина, один чекаут, один сканер.</p>
-        <div class="formats-stream-bleed" data-format-stream></div>
+        <p class="pain-bridge">
+          <a href="#tickettypes" data-goto="tickettypes" data-i18n="painBridge">Дальше — как вы продаёте вход →</a>
+        </p>
       </div>
     </section>
-<section class="section" id="flow">
+
+    <section class="section" id="conversion">
       <div class="wrap">
         <div class="section-head">
-          <span class="eyebrow" data-i18n="flowEyebrow">Запуск</span>
-          <h2 data-i18n="flowStepsTitle">Как это работает</h2>
-          <p class="lead" data-i18n="flowStepsLead">Пять шагов — от кабинета до сканера на входе.</p>
+          <span class="eyebrow" data-i18n="convEyebrow">Прозрачность</span>
+          <h2 data-i18n="convTitle">Конверсия в реальном времени</h2>
         </div>
-        <div class="flow-layout">
-            <div class="flow-steps" aria-label="5 шагов">
-              <article class="flow-step">
-                <span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
-                <p class="flow-step-copy"><strong data-i18n="flow1t">Кабинет</strong> <span data-i18n="flow1d">Зарегистрируйте аккаунт организатора за пару минут.</span></p>
-              </article>
-              <article class="flow-step">
-                <span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
-                <p class="flow-step-copy"><strong data-i18n="flow2t">Событие</strong> <span data-i18n="flow2d">Добавьте описание мероприятия, типы билетов и их стоимость.</span></p>
-              </article>
-              <article class="flow-step">
-                <span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></span>
-                <p class="flow-step-copy"><strong data-i18n="flow3t">Витрина</strong> <span data-i18n="flow3d">Опубликуйте готовую ссылку на покупку в соцсетях или Telegram.</span></p>
-              </article>
-              <article class="flow-step">
-                <span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><circle cx="17" cy="15" r="1.2"/></svg></span>
-                <p class="flow-step-copy"><strong data-i18n="flow4t">Оплата</strong> <span data-i18n="flow4d">Гости покупают билеты картами Uzcard или Humo прямо со смартфона.</span></p>
-              </article>
-              <article class="flow-step">
-                <span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="4" width="14" height="16" rx="2"/><path d="M9 8h6v6H9z"/><path d="M9 17h4"/></svg></span>
-                <p class="flow-step-copy"><strong data-i18n="flow5t">Пропуск гостей</strong> <span data-i18n="flow5d">Сканируйте QR-коды на билетах прямо с телефона. Пропускайте гостей без очередей и списков.</span></p>
-              </article>
+        <div class="island calc-shell live-conv" data-live-conv>
+          <div class="calc-viz">
+            <div class="live-filters" role="tablist" aria-label="Период">
+              <button type="button" class="live-filter is-active" data-live-range="week" data-i18n="liveRangeWeek">За неделю</button>
+              <button type="button" class="live-filter" data-live-range="month" data-i18n="liveRangeMonth">За месяц</button>
+              <button type="button" class="live-filter" data-live-range="all" data-i18n="liveRangeAll">За всё время</button>
             </div>
-          <div class="flow-pitch">
-            <div class="flow-pitch-frame">
-              <h2 data-i18n="flowTitle">Запуск за 5 минут</h2>
-              <p class="lead" data-i18n="flowLead">От регистрации до пропуска гостей на входе — без кассы, без абонентки и без сложной настройки.</p>
-              <a class="btn btn-accent flow-cta" href="#" data-lead-modal data-lead-source="flowCta" data-i18n="flowCta">Начать продажи</a>
-              <p class="flow-tech" data-i18n-html="techText"><strong>Прямо в Telegram</strong> — гость покупает билет в мессенджере, без App Store и лишних приложений.</p>
+            <div class="calc-chart calc-chart-live" aria-hidden="true" data-spark>
+              <svg viewBox="0 0 320 90" preserveAspectRatio="none">
+                <line x1="0" y1="18" x2="320" y2="18" class="grid"/>
+                <line x1="0" y1="45" x2="320" y2="45" class="grid"/>
+                <line x1="0" y1="72" x2="320" y2="72" class="grid"/>
+                <path class="line-live" d="M0 62 C40 58, 70 48, 110 42 S180 28, 220 34 S270 18, 320 16"/>
+                <circle class="dot-live" cx="320" cy="16" r="4"/>
+              </svg>
+              <div class="calc-chart-labels">
+                <span data-live-range-label>7д</span>
+              </div>
+            </div>
+            <p class="calc-viz-note" data-i18n="liveDesc">Витрина → оплата — без приукрашивания.</p>
+          </div>
+          <div class="metric-grid">
+            <div class="metric-card">
+              <span class="k" data-i18n="liveViews">Просмотры сейчас</span>
+              <strong class="v"><span id="liveViews" data-live="1284">1 284</span></strong>
+            </div>
+            <div class="metric-card">
+              <span class="k" data-i18n="liveCheckout">До чекаута</span>
+              <strong class="v"><span id="liveCheckout" data-live="41">41</span>%</strong>
+            </div>
+            <div class="metric-card">
+              <span class="k" data-i18n="liveDrop">Бросили корзину</span>
+              <strong class="v"><span id="liveDrop" data-live="7">7</span>%</strong>
+            </div>
+            <div class="metric-card">
+              <span class="k" data-i18n="livePays">Оплаты / час</span>
+              <strong class="v"><span id="livePays" data-live="47">47</span></strong>
+            </div>
+            <div class="metric-card">
+              <span class="k" data-i18n="convRateLabel">Конверсия</span>
+              <strong class="v"><span id="liveConvRate" data-live="34">34</span>%</strong>
             </div>
           </div>
         </div>
       </div>
     </section>
-<section class="section" id="included">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="eyebrow" data-i18n="offerEyebrow">Возможности</span>
-          <h2 data-i18n="offerTitle">Возможности платформы</h2>
-        </div>
-      </div>
-      <div class="features-loop-bleed">
-        <div class="features-loop-mask">
-          <div class="features-loop" tabindex="0" data-features-loop data-i18n-aria="offerAria" aria-label="Возможности платформы" role="region" aria-roledescription="карусель">
-            <article class="features-card features-card-1" data-feature-card data-bg="assets/features/showcase.jpg">
-              <div class="features-card-copy">
-                <span class="offer-tag" data-i18n="o1tag">Витрина</span>
-                <h3 data-i18n="o1t">Личная витрина</h3>
-                <p data-i18n="o1p">Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
-              </div>
-            </article>
-            <article class="features-card features-card-2" data-feature-card data-bg="assets/features/payment.jpg">
-              <div class="features-card-copy">
-                <span class="offer-tag" data-i18n="o2tag">Оплата</span>
-                <h3 data-i18n="o2t">Оплата в 2 клика</h3>
-                <p data-i18n="o2p">Гость платит прямо в браузере телефона — ничего скачивать не нужно.</p>
-              </div>
-            </article>
-            <article class="features-card features-card-3" data-feature-card data-bg="assets/features/crm.jpg">
-              <div class="features-card-copy">
-                <span class="offer-tag" data-i18n="o3tag">База</span>
-                <h3 data-i18n="o3t">База гостей</h3>
-                <p data-i18n="o3p">Список покупателей, статусы оплат и контакты в одном месте.</p>
-              </div>
-            </article>
-            <article class="features-card features-card-4" data-feature-card data-bg="assets/features/refund.jpg">
-              <div class="features-card-copy">
-                <span class="offer-tag" data-i18n="o4tag">Возврат</span>
-                <h3 data-i18n="o4t">Возврат в 1 клик</h3>
-                <p data-i18n="o4p">Мгновенно отменяйте и возвращайте билеты без долгих переписок с поддержкой.</p>
-              </div>
-            </article>
-            <article class="features-card features-card-6" data-feature-card data-bg="assets/features/scanner.jpg">
-              <div class="features-card-copy">
-                <span class="offer-tag" data-i18n="o6tag">Сканер</span>
-                <h3 data-i18n="o6t">Быстрый, удобный сканер</h3>
-                <p data-i18n="o6p">Быстрый контроль на входе по QR-кодам. Исключает подделки и повторные проходы.</p>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-<section class="section" id="audience">
+
+    <section class="section" id="audience">
       <div class="wrap">
         <div class="section-head">
           <span class="eyebrow" data-i18n="audEyebrow">Аудитория</span>
@@ -609,13 +576,204 @@
         </div>
       </div>
     </section>
-<section class="section" id="paytrust">
+
+    <section class="section" id="niches">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="nicheEyebrow">Форматы событий</span>
+          <h2 data-i18n="nicheTitle">Тикетинг под любой формат</h2>
+          <p class="lead" data-i18n="nicheLead">От стендапа до турнира — одна витрина, один чекаут, один сканер на входе.</p>
+        </div>
+      </div>
+      <div class="formats-stream">
+        <div class="formats-stream-bleed" data-format-stream></div>
+      </div>
+    </section>
+
+    <section class="section" id="tickettypes">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="ttEyebrow">Типы билетов</span>
+          <h2 data-i18n="ttTitle">Как продать вход под ваш формат</h2>
+          <p class="lead" data-i18n="ttLead">Один главный сценарий оплаты — и три режима рядом, когда нужен другой формат.</p>
+        </div>
+        <div class="tt-layout">
+          <article class="tt-card tt-card--primary">
+            <span class="tt-kicker" data-i18n="ttOnlineKicker">Главный сценарий</span>
+            <h3 data-i18n="ttOnlineTitle">Платно онлайн</h3>
+            <p data-i18n="ttOnlineDesc">Гость оплачивает билет на витрине, сразу получает QR. Вам уходит вся цена билета.</p>
+            <span class="tt-badge" data-i18n="ttOnlineBadge">100% цены — вам</span>
+            <p class="tt-when" data-i18n="ttOnlineWhen">Когда выбирать: концерты, стендап, конференции, платный вход</p>
+          </article>
+          <div class="tt-side">
+            <article class="tt-card">
+              <h3 data-i18n="ttDoorTitle">Оплата на входе</h3>
+              <p data-i18n="ttDoorDesc">Гость бронирует место заранее. Цену билета платит вам у двери.</p>
+              <span class="tt-badge" data-i18n="ttDoorBadge">Деньги — у двери</span>
+              <p class="tt-when" data-i18n="ttDoorWhen">Когда: вечеринки, open-air, когда важна оплата на месте</p>
+            </article>
+            <article class="tt-card">
+              <h3 data-i18n="ttFreeTitle">Бесплатно</h3>
+              <p data-i18n="ttFreeDesc">Регистрация без оплаты. QR — сразу или после вашего одобрения.</p>
+              <span class="tt-badge" data-i18n="ttFreeBadge">Без оплаты</span>
+              <p class="tt-when" data-i18n="ttFreeWhen">Когда: лекции, комьюнити, набор по заявкам</p>
+            </article>
+            <article class="tt-card">
+              <h3 data-i18n="ttVipTitle">Приглашение</h3>
+              <p data-i18n="ttVipDesc">Закрытая ссылка для партнёров и VIP. На сканере — статус «Приглашён».</p>
+              <span class="tt-badge" data-i18n="ttVipBadge">Только по ссылке</span>
+              <p class="tt-when" data-i18n="ttVipWhen">Когда: пресса, гости, команда, партнёры</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="included">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="offerEyebrow">Возможности</span>
+          <h2 data-i18n="offerTitle">Возможности платформы</h2>
+        </div>
+      </div>
+      <div class="features-loop-bleed">
+        <div class="features-loop-mask">
+          <div class="features-loop" tabindex="0" data-features-loop data-i18n-aria="offerAria" aria-label="Возможности платформы" role="region" aria-roledescription="карусель">
+            <article class="features-card features-card-1" data-feature-card data-bg="assets/features/showcase.jpg">
+              <div class="features-card-copy">
+                <span class="offer-tag" data-i18n="o1tag">Витрина</span>
+                <h3 data-i18n="o1t">Личная витрина</h3>
+                <p data-i18n="o1p">Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
+              </div>
+            </article>
+            <article class="features-card features-card-2" data-feature-card data-bg="assets/features/payment.jpg">
+              <div class="features-card-copy">
+                <span class="offer-tag" data-i18n="o2tag">Оплата</span>
+                <h3 data-i18n="o2t">Оплата в 2 клика</h3>
+                <p data-i18n="o2p">Гость платит прямо в браузере телефона — ничего скачивать не нужно.</p>
+              </div>
+            </article>
+            <article class="features-card features-card-3" data-feature-card data-bg="assets/features/crm.jpg">
+              <div class="features-card-copy">
+                <span class="offer-tag" data-i18n="o3tag">CRM</span>
+                <h3 data-i18n="o3t">CRM для гостей</h3>
+                <p data-i18n="o3p">Список покупателей, статусы оплат и контактные данные в едином дашборде.</p>
+              </div>
+            </article>
+            <article class="features-card features-card-4" data-feature-card data-bg="assets/features/refund.jpg">
+              <div class="features-card-copy">
+                <span class="offer-tag" data-i18n="o4tag">Возврат</span>
+                <h3 data-i18n="o4t">Возврат в 1 клик</h3>
+                <p data-i18n="o4p">Мгновенно отменяйте и возвращайте билеты без долгих переписок с поддержкой.</p>
+              </div>
+            </article>
+            <article class="features-card features-card-5" data-feature-card data-bg="assets/features/invites.jpg">
+              <div class="features-card-copy">
+                <span class="offer-tag" data-i18n="o5tag">Приглашения</span>
+                <h3 data-i18n="o5t">VIP-приглашения</h3>
+                <p data-i18n="o5p">Генерируйте закрытые ссылки или бесплатные билеты для особых гостей и партнеров.</p>
+              </div>
+            </article>
+            <article class="features-card features-card-6" data-feature-card data-bg="assets/features/scanner.jpg">
+              <div class="features-card-copy">
+                <span class="offer-tag" data-i18n="o6tag">Сканер</span>
+                <h3 data-i18n="o6t">Быстрый, удобный сканер</h3>
+                <p data-i18n="o6p">Быстрый контроль на входе по QR-кодам. Исключает подделки и повторные проходы.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="flow">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="flowEyebrow">Запуск</span>
+          <h2 data-i18n="flowStepsTitle">Как это работает</h2>
+          <p class="lead" data-i18n="flowStepsLead">Пять шагов — от кабинета до сканера на входе.</p>
+        </div>
+        <div class="flow-layout">
+            <div class="flow-steps" aria-label="5 шагов">
+              <article class="flow-step">
+                <span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
+                <p class="flow-step-copy"><strong data-i18n="flow1t">Кабинет</strong> <span data-i18n="flow1d">Зарегистрируйте аккаунт организатора за пару минут.</span></p>
+              </article>
+              <article class="flow-step">
+                <span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
+                <p class="flow-step-copy"><strong data-i18n="flow2t">Событие</strong> <span data-i18n="flow2d">Добавьте описание мероприятия, типы билетов и их стоимость.</span></p>
+              </article>
+              <article class="flow-step">
+                <span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></span>
+                <p class="flow-step-copy"><strong data-i18n="flow3t">Витрина</strong> <span data-i18n="flow3d">Опубликуйте готовую ссылку на покупку в соцсетях или Telegram.</span></p>
+              </article>
+              <article class="flow-step">
+                <span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><circle cx="17" cy="15" r="1.2"/></svg></span>
+                <p class="flow-step-copy"><strong data-i18n="flow4t">Оплата</strong> <span data-i18n="flow4d">Гости покупают билеты картами Uzcard или Humo прямо со смартфона.</span></p>
+              </article>
+              <article class="flow-step">
+                <span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="4" width="14" height="16" rx="2"/><path d="M9 8h6v6H9z"/><path d="M9 17h4"/></svg></span>
+                <p class="flow-step-copy"><strong data-i18n="flow5t">Пропуск гостей</strong> <span data-i18n="flow5d">Сканируйте QR-коды на билетах прямо с телефона. Пропускайте гостей без очередей и списков.</span></p>
+              </article>
+            </div>
+          <div class="flow-pitch">
+            <div class="flow-pitch-frame">
+              <h2 data-i18n="flowTitle">Запуск за 5 минут</h2>
+              <p class="lead" data-i18n="flowLead">От регистрации до пропуска гостей на входе — без кассы, без абонентки и без сложной настройки.</p>
+              <a class="btn btn-accent flow-cta" href="#" data-lead-modal data-lead-source="flowCta" data-i18n="flowCta">Начать продажи</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="ecosystem">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="ecoEyebrow">Экосистема</span>
+          <h2 data-i18n="ecoTitle">Гость и организатор — в одном продукте</h2>
+          <p class="lead" data-i18n="ecoLead">Не восемь чатов и касс: событие, люди, общение, билет и вход связаны.</p>
+        </div>
+        <div class="island eco">
+          <div class="eco-cols">
+            <div class="eco-col">
+              <span class="eco-col-label" data-i18n="ecoGuestLabel">Гость</span>
+              <ol class="eco-steps">
+                <li data-i18n="ecoG1">Находит событие</li>
+                <li data-i18n="ecoG2">Смотрит, кто идёт</li>
+                <li data-i18n="ecoG3">Пишет в чат</li>
+                <li data-i18n="ecoG4">Покупает билет с QR</li>
+                <li data-i18n="ecoG5">Проходит на входе</li>
+              </ol>
+            </div>
+            <div class="eco-divider" aria-hidden="true"></div>
+            <div class="eco-col">
+              <span class="eco-col-label" data-i18n="ecoOrgLabel">Организатор</span>
+              <ol class="eco-steps">
+                <li data-i18n="ecoO1">Публикует витрину</li>
+                <li data-i18n="ecoO2">Видит интерес аудитории</li>
+                <li data-i18n="ecoO3">Ведёт чат ивента</li>
+                <li data-i18n="ecoO4">Получает 100% цены</li>
+                <li data-i18n="ecoO5">Сканирует QR на входе</li>
+              </ol>
+            </div>
+          </div>
+          <div class="eco-bridge">
+            <strong data-i18n="ecoFootTitle">«Я в пути»</strong>
+            <span data-i18n="ecoFoot">Организатор видит, кто уже едет на событие — до очереди у двери.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+        <section class="section" id="paytrust">
       <div class="wrap">
         <div class="island paytrust">
           <div class="paytrust-copy">
             <span class="eyebrow" data-i18n="payEyebrow">Платежи</span>
             <h3 data-i18n="payTitle">Безопасные оплаты и быстрая выплата</h3>
             <p data-i18n="payLead">Сейчас доступны Uzcard и Humo. Visa и Mastercard — скоро. Транзакции защищены, деньги приходят организатору по понятному графику.</p>
+            <p class="paytrust-tech" data-i18n-html="techText"><strong>Прямо в Telegram</strong> — гость покупает билет в мессенджере, без App Store и лишних приложений.</p>
           </div>
           <div class="paytrust-logos" aria-label="Платёжные системы">
             <span>Uzcard</span>
@@ -626,33 +784,43 @@
         </div>
       </div>
     </section>
-    <section class="section" id="faq">
+
+<section class="section" id="faq">
       <div class="wrap faq-wrap">
         <div class="section-head">
           <span class="eyebrow" data-i18n="faqEyebrow">FAQ</span>
-          <h2 data-i18n="faqTitle">Частые вопросы</h2>
+          <h2 data-i18n="faqTitle">Часто задаваемые вопросы</h2>
         </div>
         <div class="faq-list" id="faqList" data-faq-list>
           <details class="faq-item" data-faq="0">
-            <summary><span class="faq-q-text">Можно ли продавать без ИП и кассы?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+            <summary><span class="faq-q-text">Можно ли продавать без ИП и «большой» кассы?</span><span class="faq-icon" aria-hidden="true"></span></summary>
             <div class="faq-a" data-faq="0"></div>
           </details>
           <details class="faq-item" data-faq="1">
-            <summary><span class="faq-q-text">Кто платит сервисный сбор?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+            <summary><span class="faq-q-text">Кто платит 1.5% и FixedFee?</span><span class="faq-icon" aria-hidden="true"></span></summary>
             <div class="faq-a" data-faq="1"></div>
           </details>
           <details class="faq-item" data-faq="2">
-            <summary><span class="faq-q-text">Есть ли абонентка за кабинет?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+            <summary><span class="faq-q-text">Что я получаю с цены билета?</span><span class="faq-icon" aria-hidden="true"></span></summary>
             <div class="faq-a" data-faq="2"></div>
           </details>
           <details class="faq-item" data-faq="3">
-            <summary><span class="faq-q-text">Сколько нужно, чтобы запуститься?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+            <summary><span class="faq-q-text">Есть ли абонентка за кабинет?</span><span class="faq-icon" aria-hidden="true"></span></summary>
             <div class="faq-a" data-faq="3"></div>
+          </details>
+          <details class="faq-item" data-faq="4">
+            <summary><span class="faq-q-text">Чем Taneesh отличается от обычных касс?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+            <div class="faq-a" data-faq="4"></div>
+          </details>
+          <details class="faq-item" data-faq="5">
+            <summary><span class="faq-q-text">Сколько нужно, чтобы запуститься?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+            <div class="faq-a" data-faq="5"></div>
           </details>
         </div>
       </div>
     </section>
-<section class="section" id="cta">
+
+    <section class="section" id="cta">
       <div class="wrap">
         <div class="island cta-band">
           <div class="cta-copy">
@@ -663,8 +831,7 @@
               <a class="btn btn-dark" href="#" data-lead-modal data-lead-source="ctaStart" data-i18n="ctaStart">Запустить продажи</a>
               <a class="btn btn-soft" href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
             </div>
-            <p class="cta-after" data-i18n="ctaAfter">После заявки перезвоним и поможем запустить кабинет — обычно в тот же день.</p>
-            <p class="cta-note"><span data-i18n="heroNote">Старт бесплатно · без абонентки · за 5 минут</span> · <a href="tel:+998880348797">+998 88 034 87 97</a></p>
+            <p class="cta-note"><span data-i18n="heroNote">Без абонентки · подключение за 5 минут</span> · <a href="tel:+998880348797">+998 88 034 87 97</a></p>
           </div>
         </div>
       </div>
@@ -680,11 +847,11 @@
       <a class="site-footer__mark" href="#slide-hero" data-goto="slide-hero" aria-label="Taneesh">
         <img class="logo-wordmark is-on-dark" src="assets/taneesh-wordmark.svg" alt="Taneesh" width="130" height="24" />
       </a>
-      <h2 class="site-footer__headline" data-i18n="footHeadline">Тикетинг и витрина — для организаторов</h2>
-            <nav class="site-footer__nav" aria-label="Footer">
-        <a class="site-footer__pill" href="#why" data-goto="why" data-i18n="navWhy">Экономика</a>
+      <h2 class="site-footer__headline" data-i18n="footHeadline">Тикетинг, витрина и CRM — для организаторов</h2>
+      <nav class="site-footer__nav" aria-label="Footer">
+        <a class="site-footer__pill" href="#why" data-goto="why" data-i18n="navWhy">Почему мы</a>
+        <a class="site-footer__pill" href="#included" data-goto="included" data-i18n="navIncluded">Что даём</a>
         <a class="site-footer__pill" href="#tickettypes" data-goto="tickettypes" data-i18n="navTickets">Типы билетов</a>
-        <a class="site-footer__pill" href="#flow" data-goto="flow" data-i18n="navFlow">Как запустить</a>
         <a class="site-footer__pill" href="#faq" data-goto="faq" data-i18n="faqTitle">FAQ</a>
         <a class="site-footer__pill is-accent" href="#" data-lead-modal data-lead-source="footCta" data-i18n="footCta">Заявка</a>
         <a class="site-footer__pill" href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
@@ -1379,13 +1546,17 @@
         '.aud-card',
         '#flow .flow-pitch-frame',
         '#cta .cta-band',
+        '.quote-block',
         '#faq .faq-item',
         '#paytrust',
+        '#ecosystem .eco',
+        '#ecosystem .eco-col',
         '#tickettypes .tt-card',
-        '#why .pain-line',
-        '#why .econ-case',
+        '#pains .pain-card',
+        '#pains .pain-bridge',
         '.why-compare',
         '.island.calc-shell',
+        '#paytrust .paytrust-tech',
       ].join(',');
 
       const nodes = document.querySelectorAll(selector);
