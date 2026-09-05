@@ -74,7 +74,8 @@
     }
     @media (max-width: 900px) {
       html {
-        overscroll-behavior-y: contain;
+        overscroll-behavior-y: auto;
+        scroll-snap-type: none;
       }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -1384,10 +1385,8 @@
       .pain-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 900px) {
-      .pain-grid,
       .aud-cards {
-        display: flex;
-        grid-template-columns: none;
+        grid-template-columns: 1fr;
       }
     }
 
@@ -2682,93 +2681,62 @@
     @media (max-width: 900px) {
       :root {
         --space-section-y: clamp(56px, 10vh, 88px);
-        --space-head-content: 16px;
+        --space-head-content: 20px;
         --space-hero-title: 18px;
         --space-hero-lead: 20px;
         --space-hero-bottom: 28px;
-        --space-card: 18px;
+        --space-card: 16px;
         --space-island: 18px;
         --text-display-lg: clamp(28px, 8vw, 36px);
-        --text-display-md: clamp(26px, 7vw, 34px);
-        --text-display-sm: clamp(22px, 6vw, 28px);
+        --text-display-md: clamp(24px, 6.5vw, 30px);
+        --text-display-sm: clamp(22px, 5.5vw, 28px);
         --text-display-xs: clamp(18px, 5vw, 22px);
         --text-lead: clamp(15px, 4vw, 17px);
-        --mobile-rail-pad: 14px;
-        --mobile-card-w: min(82vw, 320px);
       }
 
       html {
-        scroll-snap-type: y mandatory;
+        scroll-snap-type: none;
       }
 
-      .snap-panel {
-        min-height: 100svh;
-        height: 100svh;
-        max-height: 100svh;
-        scroll-snap-align: start;
-        scroll-snap-stop: always;
-        display: flex;
-        flex-direction: column;
-        justify-content: stretch;
-        align-items: stretch;
-        padding: 88px 0 20px;
-        overflow: hidden;
+      .snap-panel,
+      .feat-row.snap-panel,
+      .feat-row {
+        min-height: 0;
+        height: auto;
+        max-height: none;
+        scroll-snap-align: none;
+        scroll-snap-stop: normal;
+        display: block;
+        padding: 72px 0 40px;
+        overflow: visible;
         box-sizing: border-box;
       }
       .snap-panel > .wrap,
-      .snap-panel > .feat-list-wrap {
-        width: 100%;
-        max-width: none;
-        margin-inline: 0;
-        padding-inline: 0;
-        flex: 1 1 auto;
-        min-height: 0;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-      }
-      .snap-panel > .wrap > .section-head {
-        flex: 0 0 auto;
+      .snap-panel > .feat-list-wrap,
+      .section--feat-list .feat-list-wrap {
         width: min(100% - 28px, var(--max));
         margin-inline: auto;
+        max-width: var(--max);
+        padding-inline: 0;
+        height: auto;
+        display: block;
+        overflow: visible;
+      }
+      .snap-panel > .wrap > .section-head {
+        width: 100%;
         margin-bottom: var(--space-head-content);
         text-align: center;
       }
 
-      #why.snap-panel,
-      #faq.snap-panel,
-      #pains.snap-panel,
-      #tickettypes.snap-panel,
-      #audience.snap-panel,
-      #flow.snap-panel {
-        justify-content: stretch;
-        padding-top: 88px;
-      }
-      #niches.snap-panel {
-        justify-content: stretch;
-        padding-top: 88px;
-        padding-bottom: 20px;
-      }
       #footer.snap-panel {
-        height: 100svh;
-        max-height: 100svh;
-        justify-content: space-between;
-        padding: 88px 0 24px;
-        overflow: hidden;
-        scroll-snap-align: end;
+        height: auto;
+        max-height: none;
+        padding: 72px 0 32px;
+        overflow: visible;
+        scroll-snap-align: none;
       }
-      #footer.snap-panel > .site-footer__main {
-        flex: 1 1 auto;
-        justify-content: center;
-        min-height: 0;
-        gap: 16px;
-        padding: 12px 0 8px;
-        width: min(100% - 28px, var(--max));
-        margin-inline: auto;
-      }
+      #footer.snap-panel > .site-footer__main,
       #footer.snap-panel > .site-footer__meta {
-        flex: 0 0 auto;
         width: min(100% - 28px, var(--max));
         margin-inline: auto;
       }
@@ -2783,78 +2751,30 @@
         font-size: 13px;
       }
 
-      /* Shared mobile rail: fill height, side-scroll when cards don't fit */
-      .mobile-rail,
-      .fees-rail,
-      .pain-grid,
-      .aud-cards,
-      .tt-layout {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-items: stretch;
-        gap: 12px;
-        flex: 1 1 auto;
-        min-height: 0;
-        width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
-        scroll-snap-type: x mandatory;
-        scroll-padding-inline: var(--mobile-rail-pad);
-        -webkit-overflow-scrolling: touch;
-        overscroll-behavior-x: contain;
-        padding: 4px var(--mobile-rail-pad) 12px;
-        box-sizing: border-box;
-        scrollbar-width: thin;
-      }
-      .mobile-rail > *,
-      .fees-rail .calc-field,
-      .fees-rail .fees-result-card,
-      .pain-grid > *,
-      .aud-cards > *,
-      .tt-layout > * {
-        flex: 0 0 var(--mobile-card-w);
-        width: var(--mobile-card-w);
-        max-width: var(--mobile-card-w);
-        scroll-snap-align: center;
-        min-height: 100%;
-        box-sizing: border-box;
-      }
-
-      /* Hero: tight stack — video + copy, no full-viewport gaps */
+      /* Hero: tight stack */
       #slide-hero {
         height: auto;
         min-height: 0;
-        max-height: none;
-        scroll-snap-align: start;
-        scroll-snap-stop: always;
-        display: block;
         padding: 72px 0 28px;
         overflow: visible;
+        scroll-snap-align: none;
+        scroll-snap-stop: normal;
+        display: block;
       }
       #slide-hero > .wrap {
         width: min(100% - 28px, var(--max));
         margin-inline: auto;
-        max-height: none;
-        height: auto;
-        overflow: visible;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 16px;
-        padding-inline: 0;
       }
       #slide-hero .hero-copy {
         min-height: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
         margin-bottom: 0;
         order: 2;
       }
-      #slide-hero .hero-copy .eyebrow {
-        margin-bottom: 10px;
-      }
+      #slide-hero .hero-copy .eyebrow { margin-bottom: 10px; }
       #slide-hero .hero-copy h1 {
         font-size: clamp(30px, 9vw, 40px);
         margin-bottom: 12px;
@@ -2878,275 +2798,162 @@
         order: -1;
         width: 100%;
         margin: 0;
-        scroll-snap-align: center;
-        scroll-snap-stop: always;
         border-radius: 22px;
+        scroll-snap-align: none;
+        scroll-snap-stop: normal;
       }
 
-      .section-head h2 {
-        font-size: var(--text-display-md);
-      }
-      .section-head .lead {
-        font-size: var(--text-lead);
-      }
+      .section-head h2 { font-size: var(--text-display-md); }
+      .section-head .lead { font-size: var(--text-lead); }
 
-      /* Fees: stretch rail to fill screen; cards side-scroll at full size */
-      #why .section-head { margin-bottom: 12px; }
+      /* Fees: keep 2×2 grid (no side-scroll) */
+      #why .section-head { margin-bottom: 14px; }
       .fees-board {
-        display: flex;
-        flex-direction: column;
-        flex: 1 1 auto;
-        min-height: 0;
-        gap: 12px;
         width: 100%;
         max-width: none;
-        grid-template-columns: none;
-        grid-template-rows: none;
+        gap: 10px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: minmax(120px, auto) minmax(120px, auto) auto auto;
       }
-      .fees-rail {
-        display: flex;
-        flex-direction: row;
-        align-items: stretch;
-        gap: 12px;
-        flex: 1 1 auto;
-        min-height: 0;
-      }
+      .fees-rail { display: contents; }
       .fees-controls,
       .fees-outcomes {
-        display: contents;
-        grid-row: auto;
-        grid-column: auto;
+        display: grid;
+        grid-template-rows: subgrid;
+        grid-row: 1 / span 2;
+        gap: 10px;
       }
+      .fees-controls { grid-column: 1; }
+      .fees-outcomes { grid-column: 2; }
       .calc-sliders,
-      .fees-result {
-        display: contents;
-      }
+      .fees-result { display: contents; }
       .fees-result-arrow { display: none; }
       .fees-board .calc-field,
       .fees-result-card {
-        flex: 0 0 var(--mobile-card-w);
-        width: var(--mobile-card-w);
-        max-width: var(--mobile-card-w);
-        min-height: 100%;
-        height: auto;
-        padding: 20px 18px;
-        scroll-snap-align: center;
-      }
-      .fees-board .calc-field-main {
-        margin-bottom: 12px;
-        flex: 1;
+        height: 100%;
+        min-height: 0;
+        padding: 14px 12px;
       }
       .fees-board .calc-field-main strong,
       .fees-result-card strong {
-        font-size: clamp(28px, 9vw, 40px);
+        font-size: clamp(22px, 7vw, 28px);
       }
       .fees-breakdown {
-        flex: 0 0 auto;
-        width: min(100% - 28px, var(--max));
-        margin-inline: auto;
-        padding: 12px 16px;
-        font-size: 13px;
-        grid-column: auto;
-        grid-row: auto;
+        grid-column: 1 / -1;
+        grid-row: 3;
+        width: 100%;
+        padding: 12px 14px;
+        font-size: 12px;
       }
       .fees-savings {
-        flex: 0 0 auto;
-        display: flex;
-        flex-direction: row;
+        grid-column: 1 / -1;
+        grid-row: 4;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 10px;
-        width: min(100% - 28px, var(--max));
-        margin-inline: auto;
-        grid-column: auto;
-        grid-row: auto;
       }
-      .fees-savings > div {
-        flex: 1 1 0;
-        min-width: 0;
-        padding: 14px 12px;
-      }
-      .fees-savings .v {
-        font-size: clamp(20px, 6vw, 28px);
-      }
+      .fees-savings > div { padding: 12px; }
+      .fees-savings .v { font-size: clamp(18px, 5.5vw, 24px); }
 
-      /* Pains — large statement cards, side-scroll */
+      /* Pains: stacked statement cards */
       #pains .pain-grid {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-items: stretch;
-        gap: 14px;
-        flex: 1 1 auto;
-        min-height: 0;
-        --pain-card-w: min(86vw, 360px);
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        width: 100%;
+        overflow: visible;
       }
       #pains .pain-card {
-        flex: 0 0 var(--pain-card-w);
-        width: var(--pain-card-w);
-        max-width: var(--pain-card-w);
-        min-height: 100%;
+        width: 100%;
+        max-width: none;
+        min-height: 0;
         height: auto;
-        padding: 28px 24px;
-        gap: 20px;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: space-between;
-        text-align: left;
-        scroll-snap-align: center;
-        border-radius: 28px;
-        box-sizing: border-box;
+        padding: 24px 20px;
+        gap: 16px;
+        border-radius: 24px;
       }
       #pains .pain-card:first-child {
         background: #111;
         color: #fff;
       }
-      #pains .pain-card:first-child .pain-card__num {
-        color: rgba(255, 255, 255, 0.14);
-      }
+      #pains .pain-card:first-child .pain-card__num { color: rgba(255, 255, 255, 0.14); }
       #pains .pain-card:first-child .pain-ico {
         background: rgba(30, 215, 96, 0.16);
         color: var(--lime);
       }
       #pains .pain-card:first-child h3 { color: #fff; }
       #pains .pain-card:first-child p { color: rgba(255, 255, 255, 0.62); }
-      #pains .pain-card__num {
-        font-size: clamp(52px, 14vw, 72px);
-      }
+      #pains .pain-card__num { font-size: clamp(40px, 12vw, 56px); }
       #pains .pain-ico {
-        width: 64px;
-        height: 64px;
-        border-radius: 18px;
-        margin-bottom: 0;
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
       }
-      #pains .pain-ico svg { width: 30px; height: 30px; }
-      #pains .pain-card__body { gap: 12px; }
+      #pains .pain-ico svg { width: 26px; height: 26px; }
       #pains .pain-card h3 {
-        font-size: clamp(26px, 7vw, 34px);
-        max-width: 12ch;
-      }
-      #pains .pain-card p {
-        font-size: 16px;
-        line-height: 1.45;
-      }
-
-      /* Audience — horizontal snap cards */
-      #audience .aud-cards {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-items: stretch;
-        gap: 14px;
-        flex: 1 1 auto;
-        min-height: 0;
-        width: 100%;
+        font-size: clamp(22px, 6vw, 28px);
         max-width: none;
-        overflow-x: auto;
-        overflow-y: hidden;
-        scroll-snap-type: x mandatory;
-        scroll-padding-inline: var(--mobile-rail-pad);
-        -webkit-overflow-scrolling: touch;
-        overscroll-behavior-x: contain;
-        padding: 4px var(--mobile-rail-pad) 12px;
-        box-sizing: border-box;
-        scrollbar-width: thin;
-        grid-template-columns: none;
+      }
+      #pains .pain-card p { font-size: 15px; }
+
+      /* Audience: stacked */
+      #audience .aud-cards {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+        width: 100%;
+        overflow: visible;
+        padding: 0;
       }
       #audience .aud-card {
-        flex: 0 0 min(88vw, 360px);
-        width: min(88vw, 360px);
-        max-width: min(88vw, 360px);
-        min-height: 100%;
+        width: 100%;
+        max-width: none;
+        min-height: 0;
         height: auto;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        scroll-snap-align: center;
-        box-sizing: border-box;
       }
       #audience .aud-visual {
-        min-height: 160px;
-        flex: 1 1 auto;
+        min-height: 140px;
         padding: 22px 22px 8px;
       }
-      #audience .aud-copy {
-        padding: 8px 22px 22px;
-      }
-      #audience .aud-copy h3 {
-        font-size: clamp(22px, 6vw, 28px);
-      }
-      #audience .aud-copy p {
-        font-size: 14px;
-      }
+      #audience .aud-copy { padding: 8px 22px 22px; }
+      #audience .aud-copy h3 { font-size: clamp(22px, 6vw, 28px); }
+      #audience .aud-copy p { font-size: 14px; }
 
-      /* Ticket types — horizontal snap cards */
+      /* Ticket types: stacked */
       #tickettypes .tt-layout {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-items: stretch;
-        gap: 14px;
-        flex: 1 1 auto;
-        min-height: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
         width: 100%;
-        max-width: none;
-        overflow-x: auto;
-        overflow-y: hidden;
-        scroll-snap-type: x mandatory;
-        scroll-padding-inline: var(--mobile-rail-pad);
-        -webkit-overflow-scrolling: touch;
-        overscroll-behavior-x: contain;
-        padding: 4px var(--mobile-rail-pad) 12px;
-        box-sizing: border-box;
-        scrollbar-width: thin;
-        grid-template-columns: none;
-        grid-auto-rows: auto;
+        overflow: visible;
+        padding: 0;
       }
       #tickettypes .tt-card {
-        flex: 0 0 min(88vw, 360px);
-        width: min(88vw, 360px);
-        max-width: min(88vw, 360px);
-        min-height: 100%;
-        height: auto;
-        padding: 28px 22px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 12px;
-        scroll-snap-align: center;
-        box-sizing: border-box;
-        border-radius: 28px;
-      }
-      #tickettypes .tt-card h3 {
-        font-size: clamp(24px, 6.5vw, 30px);
-      }
-      #tickettypes .tt-card > p:not(.tt-when) {
-        font-size: 15px;
-      }
-      #tickettypes .tt-when {
-        font-size: 13px;
-        margin-top: auto;
-      }
-
-      #flow .flow-layout {
-        display: flex;
-        flex-direction: column;
-        flex: 1 1 auto;
-        min-height: 0;
-        gap: 12px;
         width: 100%;
         max-width: none;
-        margin-inline: 0;
-        overflow: hidden;
-        grid-template-columns: none;
+        min-height: 0;
+        height: auto;
+        padding: 22px 18px;
+        border-radius: 22px;
+      }
+      #tickettypes .tt-card h3 { font-size: clamp(22px, 6vw, 28px); }
+      #tickettypes .tt-card > p:not(.tt-when) { font-size: 14px; }
+      #tickettypes .tt-when { font-size: 12px; }
+
+      /* Flow: normal vertical stack */
+      #flow .flow-layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+        width: 100%;
+        overflow: visible;
       }
       #flow .flow-pitch {
         order: -1;
-        flex: 0 0 auto;
-        width: min(100% - 28px, var(--max));
-        margin-inline: auto;
+        width: 100%;
       }
       #flow .flow-pitch-frame {
-        flex: none;
         min-height: 0;
         height: auto;
         align-items: center;
@@ -3154,87 +2961,62 @@
         padding: 8px 0;
       }
       #flow .flow-steps {
-        flex: 1 1 auto;
-        min-height: 0;
-        max-width: none;
-        overflow-x: auto;
-        overflow-y: hidden;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
+        display: grid;
         gap: 12px;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        padding: 4px var(--mobile-rail-pad) 12px;
-        box-sizing: border-box;
+        max-width: none;
+        width: 100%;
+        overflow: visible;
       }
       #flow .flow-step {
-        flex: 0 0 var(--mobile-card-w);
-        scroll-snap-align: center;
-        padding: 16px;
-        background: var(--surface);
-        border-radius: var(--radius);
-        box-sizing: border-box;
-        min-height: 100%;
+        padding: 0;
+        background: transparent;
+        border-radius: 0;
+        min-height: 0;
         text-align: left;
       }
       .flow-step-copy { font-size: 14px; }
       .flow-pitch h2 { font-size: clamp(24px, 6.5vw, 30px); }
 
-      #faq .wrap {
-        width: min(100% - 28px, var(--max));
-        margin-inline: auto;
-        overflow-y: auto;
-        overflow-x: hidden;
-        -webkit-overflow-scrolling: touch;
-      }
       #faq .faq-item summary {
         font-size: 16px;
         padding-block: 16px;
       }
       .faq-a { font-size: 14px; padding-bottom: 16px; }
 
-      /* Features: natural height, stack mock content vertically — no squeeze */
+      /* Features: natural vertical flow */
       .section--feat-list {
-        padding-block: 0;
+        padding-block: 24px 40px;
         height: auto;
-        max-height: none;
         overflow: visible;
       }
       .section--feat-list .feat-list {
-        gap: 0;
-        display: block;
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
         width: 100%;
-        overflow: visible;
       }
       .feat-row,
       .feat-row.is-flip {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: stretch;
         gap: 16px;
         grid-template-columns: none;
-        min-height: 100svh;
+        min-height: 0;
         height: auto;
-        max-height: none;
-        padding: 88px 0 32px;
-        scroll-snap-align: start;
-        scroll-snap-stop: always;
-        box-sizing: border-box;
+        padding: 0;
         overflow: visible;
+        scroll-snap-align: none;
+        scroll-snap-stop: normal;
       }
       .feat-row.is-flip .feat-row__copy,
       .feat-row.is-flip .feat-row__visual { order: initial; }
       .feat-row__copy {
         text-align: center;
-        flex: 0 0 auto;
-        width: min(100% - 28px, var(--max));
+        width: 100%;
         margin-inline: auto;
       }
       .feat-row__title {
         margin-inline: auto;
-        max-width: none;
         font-size: clamp(24px, 6.5vw, 30px);
       }
       .feat-row__desc {
@@ -3247,33 +3029,26 @@
       .feat-row[data-feat="pay"] .feat-row__visual,
       .feat-row[data-feat="scanner"] .feat-row__visual,
       .feat-row[data-feat="crm"] .feat-row__visual {
-        flex: 0 0 auto;
+        flex: none;
         height: auto !important;
         min-height: 0 !important;
         max-height: none !important;
         width: 100%;
         overflow: visible;
-        padding-inline: var(--mobile-rail-pad);
-        box-sizing: border-box;
+        padding-inline: 0;
       }
       .feat-row__visual .fp-browser {
         width: 100%;
         min-width: 0;
         height: auto !important;
-        min-height: 0;
-        max-height: none;
         border-radius: 18px;
         overflow: visible;
         display: flex;
         flex-direction: column;
       }
-      .fp-browser__chrome { padding: 10px 12px; flex: 0 0 auto; }
+      .fp-browser__chrome { padding: 10px 12px; }
       .fp-browser__url { font-size: 12px; padding: 6px 12px; }
-      .fp-browser > :not(.fp-browser__chrome) {
-        flex: 0 0 auto;
-        height: auto !important;
-        min-height: 0;
-      }
+      .fp-browser > :not(.fp-browser__chrome),
       .fp-browser:has(.fp-pay),
       .fp-browser:has(.fp-pay) .fp-browser__chrome + .fp-pay,
       .fp-pay,
@@ -3285,88 +3060,33 @@
         min-height: 0 !important;
       }
 
-      .fp-showcase {
+      .fp-showcase,
+      .fp-pay,
+      .fp-scan {
         grid-template-columns: 1fr;
         height: auto;
         min-height: 0;
       }
-      .fp-showcase__main {
-        border-right: 0;
-        border-bottom: 1px solid var(--border);
-        padding: 18px 16px;
-        gap: 12px;
-      }
-      .fp-showcase__side {
-        padding: 16px;
-        gap: 12px;
-      }
-      .fp-showcase__title { font-size: clamp(26px, 7vw, 34px); }
-      .fp-showcase__stat strong { font-size: 22px; }
-      .fp-showcase__cta { padding: 14px 16px; font-size: 15px; min-height: 48px; }
-
-      .fp-pay {
-        grid-template-columns: 1fr;
-        height: auto;
-        min-height: 0;
-      }
-      .fp-pay__main {
+      .fp-showcase__main,
+      .fp-pay__main,
+      .fp-scan__stage {
         border-right: 0;
         border-bottom: 1px solid var(--border);
         padding: 16px;
-        gap: 12px;
-        overflow: visible;
-        min-height: 0;
       }
-      .fp-pay__checkout {
-        position: static;
-        flex: none;
-        min-height: 0;
-      }
-      .fp-pay.is-paid .fp-pay__checkout {
-        position: static;
-      }
-      .fp-pay__side {
-        padding: 16px;
-        gap: 10px;
-      }
-      .fp-pay__head strong { font-size: 24px; }
-      .fp-pay__fields label { padding: 12px 14px; }
-      .fp-pay__method { padding: 12px 14px; }
-      .fp-pay__cta { min-height: 48px; font-size: 15px; }
-      .fp-pay__row { font-size: 14px; }
-      .fp-pay__row strong { font-size: 16px; }
-      .fp-pay__row.is-guest strong { font-size: 22px; }
-      .fp-pay__you { padding: 12px 14px; }
-      .fp-pay__you strong { font-size: 22px; }
-      .fp-pay__success { padding: 24px 16px; gap: 10px; position: static; }
-      .fp-pay__success strong { font-size: 24px; }
-
-      .fp-crm {
-        padding: 16px;
-        gap: 12px;
-        height: auto;
-        box-sizing: border-box;
-      }
-      .fp-crm__toolbar {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
-      }
-      .fp-crm__search {
-        font-size: 14px;
-        padding: 12px 14px;
-        width: 100%;
-      }
-      .fp-crm__export {
-        padding: 12px 16px;
-        font-size: 13px;
-        width: 100%;
-        text-align: center;
-      }
-      .fp-crm__table {
-        overflow: visible;
-        gap: 10px;
-      }
+      .fp-showcase__side,
+      .fp-pay__side,
+      .fp-scan__log { padding: 16px; }
+      .fp-showcase__title { font-size: clamp(24px, 6.5vw, 30px); }
+      .fp-pay__head strong { font-size: 22px; }
+      .fp-pay__cta { min-height: 48px; }
+      .fp-pay__checkout,
+      .fp-pay.is-paid .fp-pay__checkout,
+      .fp-pay__success { position: static; }
+      .fp-crm { padding: 14px; height: auto; }
+      .fp-crm__toolbar { flex-direction: column; align-items: stretch; }
+      .fp-crm__search,
+      .fp-crm__export { width: 100%; }
       .fp-crm__head { display: none; }
       .fp-crm__row {
         display: flex;
@@ -3374,77 +3094,20 @@
         align-items: flex-start;
         gap: 8px;
         padding: 14px 16px;
-        font-size: 14px;
         grid-template-columns: none;
       }
-      .fp-crm__row em { display: block; font-size: 12px; }
-      .fp-crm__row .is-money { font-size: 20px; }
-      .fp-crm__row > span {
-        font-size: 13px;
-        color: var(--muted);
-      }
-      .fp-crm__row > b {
-        justify-self: start;
-      }
+      .fp-crm__row .is-money { font-size: 18px; }
+      .fp-refund,
+      .fp-invite { padding: 16px; height: auto; }
+      .fp-scan__frame { max-width: 200px; margin-inline: auto; }
+      .fp-scan__qr { width: 140px; height: 140px; }
 
-      .fp-refund {
-        padding: 16px;
-        height: auto;
-        box-sizing: border-box;
-      }
-      .fp-refund__card { padding: 20px; gap: 16px; }
-      .fp-refund__top strong { font-size: 22px; }
-      .fp-refund__amount strong { font-size: 32px; }
-      .fp-refund__btn { min-height: 48px; font-size: 15px; }
-
-      .fp-invite {
-        padding: 16px;
-        gap: 12px;
-        height: auto;
-        box-sizing: border-box;
-      }
-      .fp-invite__bar strong { font-size: 20px; }
-      .fp-invite__add { padding: 10px 14px; font-size: 13px; }
-      .fp-invite__item {
-        grid-template-columns: 40px minmax(0, 1fr) auto;
-        padding: 12px 14px;
-        gap: 10px;
-      }
-      .fp-invite__ava { width: 40px; height: 40px; font-size: 13px; }
-
-      .fp-scan {
-        grid-template-columns: 1fr;
-        height: auto;
-        min-height: 0;
-      }
-      .fp-scan__stage {
-        border-right: 0;
-        border-bottom: 1px solid var(--border);
-        padding: 16px;
-        gap: 14px;
-      }
-      .fp-scan__frame { max-width: 220px; margin-inline: auto; }
-      .fp-scan__qr { width: 160px; height: 160px; }
-      .fp-scan__log { padding: 14px; gap: 8px; }
-      .fp-scan__log-item { padding: 12px 14px; font-size: 14px; }
-      .fp-scan__count { font-size: 14px; }
-      .fp-scan__count strong { font-size: 20px; }
-
-      #niches .section-head { width: min(100% - 28px, var(--max)); margin-inline: auto; }
-      #niches .formats-stream {
-        margin-top: auto;
-        margin-bottom: auto;
-        flex: 1 1 auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        min-height: 0;
-      }
+      #niches .formats-stream { margin-top: 16px; }
       .formats-stream-bleed { gap: 10px; }
       .formats-pill {
-        min-height: 40px;
-        padding: 0 16px;
-        font-size: 14px;
+        min-height: 38px;
+        padding: 0 14px;
+        font-size: 13px;
       }
     }
 
@@ -3452,39 +3115,7 @@
       .header-pill { padding: 8px 8px 8px 12px; }
       .header-cta { padding: 8px 12px; font-size: 13px; min-height: 36px; }
       .fees-savings {
-        flex-direction: row;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        width: 100%;
-        max-width: none;
-        padding-inline: var(--mobile-rail-pad);
-        box-sizing: border-box;
-      }
-      .fees-savings > div {
-        flex: 0 0 var(--mobile-card-w);
-        scroll-snap-align: center;
-      }
-    }
-
-    /* Short phones: keep full-screen panels; rely on side-scroll, not shrink */
-    @media (max-width: 900px) and (max-height: 700px) {
-      .snap-panel {
-        padding-top: 76px;
-        padding-bottom: 12px;
-      }
-      .feat-row,
-      .feat-row.is-flip {
-        padding-top: 76px;
-        padding-bottom: 24px;
-        height: auto;
-        max-height: none;
-        overflow: visible;
-      }
-      #slide-hero .hero-copy {
-        min-height: 0;
-      }
-      .fees-savings .v {
-        font-size: clamp(18px, 5.5vw, 24px);
+        grid-template-columns: 1fr;
       }
     }
 
@@ -3646,22 +3277,16 @@
       }
     }
     @media (max-width: 900px) {
-      #tickettypes .tt-layout,
       .tt-layout {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        grid-template-columns: none;
+        display: grid;
+        grid-template-columns: 1fr;
         grid-auto-rows: auto;
       }
     }
     @media (max-width: 560px) {
-      #tickettypes .tt-layout,
       .tt-layout {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        grid-template-columns: none;
+        display: grid;
+        grid-template-columns: 1fr;
         grid-auto-rows: auto;
       }
     }
