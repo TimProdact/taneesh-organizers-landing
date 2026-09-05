@@ -2101,8 +2101,11 @@
       text-align: center;
     }
     .calc-field-main strong {
+      font-family: var(--font-display);
       font-size: var(--text-display-xs);
-      letter-spacing: var(--track-heading);
+      font-weight: var(--weight-heavy);
+      letter-spacing: var(--track-display);
+      line-height: 1;
     }
     .calc-field-meta {
       font-size: var(--text-caption);
@@ -2293,6 +2296,12 @@
       background: var(--surface);
       border-radius: var(--radius);
       padding: var(--space-card);
+    }
+    .fees-board .calc-field-main strong {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4.2vw, 44px);
+      letter-spacing: var(--track-display);
+      line-height: 1;
     }
     .fees-breakdown {
       grid-column: 1 / -1;
