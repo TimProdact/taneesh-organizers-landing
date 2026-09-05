@@ -549,7 +549,12 @@
       background: rgba(32, 48, 54, 0.92);
       transform: translate(-50%, -50%) scale(1.05);
     }
-    .hero-vibe.is-playing .hero-vibe__play {
+    .hero-vibe.is-playing:not(.is-unmuted) .hero-vibe__play {
+      opacity: 0.55;
+      pointer-events: auto;
+      transform: translate(-50%, -50%) scale(0.92);
+    }
+    .hero-vibe.is-playing.is-unmuted .hero-vibe__play {
       opacity: 0;
       pointer-events: none;
       transform: translate(-50%, -50%) scale(0.92);
