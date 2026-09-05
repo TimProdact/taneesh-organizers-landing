@@ -84,10 +84,10 @@
         scroll-snap-type: y mandatory;
       }
       .snap-panel {
-        /* start-align (not center): last panel stays reachable at document end */
-        height: 100svh;
+        /* Fill at least one screen, but never clip taller content */
         min-height: 100svh;
-        max-height: 100svh;
+        height: auto;
+        max-height: none;
         scroll-snap-align: start;
         scroll-snap-stop: always;
         box-sizing: border-box;
@@ -95,19 +95,20 @@
         flex-direction: column;
         justify-content: center;
         align-items: stretch;
-        padding: 96px 0 36px;
-        overflow: hidden;
+        padding: 96px 0 48px;
+        overflow: visible;
       }
       .snap-panel > .wrap,
       .snap-panel > .feat-list-wrap {
         width: min(100% - 40px, var(--max));
         margin-inline: auto;
         flex: 0 1 auto;
-        max-height: 100%;
-        overflow: auto;
-        -webkit-overflow-scrolling: touch;
+        max-height: none;
+        overflow: visible;
       }
       #footer.snap-panel {
+        height: 100svh;
+        max-height: 100svh;
         justify-content: space-between;
         padding: 72px 0 40px;
         overflow: hidden;
@@ -115,6 +116,7 @@
         scroll-snap-align: end;
       }
       /* Title + content from the top — avoid a huge empty band under the header */
+      #why.snap-panel,
       #niches.snap-panel,
       #faq.snap-panel {
         justify-content: flex-start;
@@ -3094,11 +3096,11 @@
         align-items: center;
         align-content: center;
         justify-content: center;
-        height: 100svh;
+        height: auto;
         min-height: 100svh;
-        max-height: 100svh;
-        padding: 120px 0 36px;
-        overflow: hidden;
+        max-height: none;
+        padding: 120px 0 48px;
+        overflow: visible;
         scroll-snap-align: start;
       }
       .feat-row.is-flip.snap-panel {
