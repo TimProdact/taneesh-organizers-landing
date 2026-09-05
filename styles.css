@@ -1398,7 +1398,10 @@
       align-items: stretch;
       gap: 20px;
       grid-template-columns: none;
-      max-width: min(calc(100% - 40px), 1180px);
+      max-width: min(100%, 1180px);
+      width: 100%;
+      margin-inline: auto;
+      box-sizing: border-box;
     }
     .live-conv .calc-viz { gap: 16px; width: 100%; }
     .calc-rate .rate small { font-size: 0.45em; }
@@ -3109,6 +3112,29 @@
         padding: 0 14px;
         font-size: 13px;
       }
+
+      /* Conversion: wider on mobile */
+      #conversion > .wrap {
+        width: min(100% - 16px, var(--max));
+      }
+      #conversion .island.live-conv {
+        max-width: none;
+        width: 100%;
+        padding: 0;
+        gap: 14px;
+      }
+      #conversion .metric-grid {
+        gap: 10px;
+      }
+      #conversion .metric-card {
+        padding: 18px 14px;
+      }
+      #conversion .live-conv .calc-chart-live {
+        padding: 18px 16px 14px;
+      }
+      #conversion .live-conv .calc-chart-live svg {
+        height: 128px;
+      }
     }
 
     @media (max-width: 560px) {
@@ -3888,7 +3914,8 @@
       .wrap { width: min(100% - 28px, var(--max)); }
       .header-pill { padding: 8px 8px 8px 14px; }
       .island.calc-shell { padding: clamp(24px, 4vw, 32px); }
-      .island.calc-shell.fees-board { padding: 0; background: transparent; }
+      .island.calc-shell.fees-board,
+      #conversion .island.live-conv { padding: 0; background: transparent; }
       .calc-summary { grid-template-columns: 1fr; }
       .btn { width: 100%; }
       .btn-row { flex-direction: column; }
