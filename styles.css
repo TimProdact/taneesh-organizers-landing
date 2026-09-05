@@ -115,12 +115,16 @@
         /* end-align so the dark finale can fully settle under the sticky header */
         scroll-snap-align: end;
       }
-      /* Title + content from the top — avoid a huge empty band under the header */
+      /* Title blocks that need room: start from the top under the header */
       #why.snap-panel,
-      #niches.snap-panel,
       #faq.snap-panel {
         justify-content: flex-start;
         padding-top: 112px;
+      }
+      #niches.snap-panel {
+        justify-content: center;
+        padding-top: 96px;
+        padding-bottom: 48px;
       }
       /* Hero stays natural height: video peeks below the fold; first snap is the vibe block */
       #slide-hero {
