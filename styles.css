@@ -72,6 +72,11 @@
       scroll-behavior: smooth;
       scroll-padding-top: 0;
     }
+    @media (max-width: 900px) {
+      html {
+        overscroll-behavior-y: contain;
+      }
+    }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; scroll-snap-type: none !important; }
       .formats-track-inner,
@@ -1380,40 +1385,32 @@
 
     @media (max-width: 760px) {
       .fees-board {
-        grid-template-columns: 1fr;
-        gap: 22px;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
       }
       .fees-controls,
       .fees-outcomes {
         height: auto;
+        gap: 10px;
       }
       .calc-sliders,
       .fees-result {
         flex: none;
+        gap: 10px;
       }
       .fees-board .calc-field,
       .fees-result-card {
         flex: none;
-        min-height: 168px;
+        min-height: 0;
       }
       .fees-result {
-        display: grid;
-        grid-template-columns: 1fr auto 1fr;
-        align-items: stretch;
-        gap: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
       }
       .fees-result-arrow {
-        display: grid;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        background: rgba(28, 25, 23, 0.06);
-        place-items: center;
-        color: var(--muted);
-        flex-shrink: 0;
-        align-self: center;
+        display: none;
       }
-      .fees-result-arrow svg { width: 16px; height: 16px; }
     }
     @media (max-width: 560px) {
       .fees-result {
@@ -2751,56 +2748,433 @@
     }
 
     @media (max-width: 900px) {
-      html { scroll-snap-type: none; }
-      .snap-panel {
-        min-height: 0;
-        scroll-snap-align: none;
-        scroll-snap-stop: normal;
-        display: block;
-        padding-block: var(--pad-y);
+      :root {
+        --space-section-y: clamp(56px, 10vh, 88px);
+        --space-head-content: 20px;
+        --space-hero-title: 18px;
+        --space-hero-lead: 20px;
+        --space-hero-bottom: 28px;
+        --space-card: 14px;
+        --space-island: 18px;
+        --text-display-lg: clamp(28px, 8vw, 36px);
+        --text-display-md: clamp(24px, 6.5vw, 30px);
+        --text-display-sm: clamp(22px, 5.5vw, 28px);
+        --text-display-xs: clamp(18px, 5vw, 22px);
+        --text-lead: clamp(14px, 3.8vw, 16px);
       }
-      #slide-hero .hero-vibe {
-        scroll-snap-align: none;
-        scroll-snap-stop: normal;
+
+      html {
+        scroll-snap-type: y mandatory;
+      }
+
+      .snap-panel {
+        min-height: 100svh;
+        height: auto;
+        max-height: none;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch;
+        padding: 88px 0 28px;
+        overflow: visible;
+        box-sizing: border-box;
+      }
+      .snap-panel > .wrap,
+      .snap-panel > .feat-list-wrap {
+        width: min(100% - 28px, var(--max));
+        margin-inline: auto;
+        flex: 0 1 auto;
+        max-height: none;
+        overflow: visible;
+      }
+
+      #why.snap-panel,
+      #faq.snap-panel,
+      #pains.snap-panel,
+      #tickettypes.snap-panel {
+        justify-content: flex-start;
+        padding-top: 96px;
+      }
+      #niches.snap-panel {
+        justify-content: center;
+        padding-top: 88px;
+        padding-bottom: 28px;
+      }
+      #footer.snap-panel {
+        height: 100svh;
+        max-height: 100svh;
+        justify-content: space-between;
+        padding: 88px 0 24px;
+        overflow: hidden;
+        scroll-snap-align: end;
+      }
+      #footer.snap-panel > .site-footer__main {
+        flex: 1 1 auto;
+        justify-content: center;
+        min-height: 0;
+        gap: 16px;
+        padding: 12px 0 8px;
+      }
+      #footer.snap-panel > .site-footer__meta {
+        flex: 0 0 auto;
+      }
+      .site-footer__headline {
+        font-size: clamp(22px, 6.5vw, 30px);
+        max-width: 14ch;
+      }
+      .site-footer__nav { gap: 8px; }
+      .site-footer__pill {
+        min-height: 40px;
+        padding: 0 14px;
+        font-size: 13px;
+      }
+
+      /* Hero: first screen = copy; video peeks; next snap centers video */
+      #slide-hero {
+        height: auto;
+        min-height: 0;
+        max-height: none;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        display: block;
+        padding: 84px 0 0;
+        overflow: visible;
+      }
+      #slide-hero > .wrap {
+        width: min(100% - 28px, var(--max));
+        margin-inline: auto;
+        max-height: none;
+        overflow: visible;
       }
       #slide-hero .hero-copy {
-        min-height: 0;
-        display: block;
-        margin-bottom: var(--space-hero-bottom);
+        min-height: calc(100svh - 84px - clamp(96px, 16vh, 140px));
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 16px;
       }
-      #footer.snap-panel { padding-block: var(--pad-y); }
-      .section--feat-list { padding-block: var(--pad-y); }
-      .section--feat-list .feat-list { gap: clamp(48px, 10vw, 72px); }
+      #slide-hero .hero-copy h1 {
+        font-size: clamp(30px, 9vw, 40px);
+      }
+      #slide-hero .hero-copy .lead {
+        font-size: var(--text-lead);
+        max-width: 28em;
+      }
+      #slide-hero .hero-copy .btn-row {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+      #slide-hero .hero-copy .btn {
+        min-height: 44px;
+        padding: 10px 18px;
+        font-size: 14px;
+      }
+      #slide-hero .hero-vibe {
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+        border-radius: 22px;
+      }
+
+      .section-head {
+        margin-bottom: var(--space-head-content);
+      }
+      .section-head h2 {
+        font-size: var(--text-display-md);
+      }
+      .section-head .lead {
+        font-size: var(--text-lead);
+      }
+
+      /* Fees: keep 2×2 so the block fits one snap screen */
+      #why .section-head { margin-bottom: 14px; }
+      .fees-board {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .fees-controls,
+      .fees-outcomes {
+        height: auto;
+        gap: 10px;
+      }
+      .calc-sliders,
+      .fees-result {
+        flex: none;
+        gap: 10px;
+      }
+      .fees-board .calc-field,
+      .fees-result-card {
+        flex: none;
+        min-height: 0;
+        padding: 12px 10px;
+      }
+      .fees-board .calc-field-main {
+        margin-bottom: 6px;
+      }
+      .fees-board .calc-field-main strong,
+      .fees-result-card strong {
+        font-size: clamp(22px, 7vw, 28px);
+      }
+      .fees-breakdown {
+        padding: 10px 12px;
+        font-size: 11px;
+      }
+      .fees-savings > div { padding: 10px 12px; }
+      .fees-result-arrow {
+        display: none;
+      }
+
+      /* Pains / audience / tickets / flow compact */
+      .pain-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .pain-card {
+        padding: 14px 14px;
+        gap: 6px;
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+      }
+      .pain-ico {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        margin-bottom: 0;
+        flex: 0 0 auto;
+      }
+      .pain-ico svg { width: 18px; height: 18px; }
+      .pain-card h3 { font-size: 16px; }
+      .pain-card p { font-size: 13px; }
+
+      .aud-cards {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .aud-card { padding: 16px; }
+      .aud-visual { min-height: 120px; }
+      .aud-copy h3 { font-size: clamp(20px, 5.5vw, 24px); }
+      .aud-copy p { font-size: 13px; }
+
+      .tt-layout {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .tt-card {
+        padding: 14px 12px;
+      }
+      .tt-card h3 { font-size: 15px; }
+      .tt-card p { font-size: 12px; }
+      .tt-when { font-size: 11px; }
+
+      #flow .flow-layout {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .flow-step { padding: 10px 0; }
+      .flow-step-copy { font-size: 13px; }
+      .flow-pitch h2 { font-size: clamp(22px, 6vw, 28px); }
+
+      #faq .faq-item summary {
+        font-size: 15px;
+        padding-block: 14px;
+      }
+      .faq-a { font-size: 13px; padding-bottom: 14px; }
+
+      /* Features: one snap per row — copy + compact mock */
+      .section--feat-list {
+        padding-block: 0;
+      }
+      .section--feat-list .feat-list { gap: 0; }
       .feat-row,
       .feat-row.is-flip {
-        grid-template-columns: 1fr;
-        min-height: 0;
-        padding-block: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch;
+        gap: 14px;
+        grid-template-columns: none;
+        min-height: 100svh;
+        height: auto;
+        padding: 88px 0 24px;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        box-sizing: border-box;
       }
       .feat-row.is-flip .feat-row__copy,
       .feat-row.is-flip .feat-row__visual { order: initial; }
-      .feat-row__copy { text-align: center; }
-      .feat-row__title { margin-inline: auto; max-width: none; }
-      .feat-row__desc { margin-inline: auto; }
-      .feat-row__visual { height: auto; min-height: 380px; }
+      .feat-row__copy {
+        text-align: center;
+        flex: 0 0 auto;
+      }
+      .feat-row__title {
+        margin-inline: auto;
+        max-width: none;
+        font-size: clamp(22px, 6vw, 28px);
+      }
+      .feat-row__desc {
+        margin-inline: auto;
+        font-size: 13px;
+        max-width: 34em;
+      }
+      .feat-row__tag { font-size: 11px; }
+      .feat-row__visual {
+        height: auto;
+        min-height: 0;
+        flex: 0 1 auto;
+        max-height: min(52svh, 360px);
+      }
       .feat-row[data-feat="pay"] .feat-row__visual,
-      .feat-row[data-feat="scanner"] .feat-row__visual { min-height: 420px; height: auto; }
-      .fp-showcase { grid-template-columns: 1fr; }
-      .fp-showcase__main { border-right: 0; border-bottom: 1px solid var(--border); }
-      .fp-pay { grid-template-columns: 1fr; }
-      .fp-pay__main { border-right: 0; border-bottom: 1px solid var(--border); }
-      .fp-scan { grid-template-columns: 1fr; }
-      .fp-scan__stage { border-right: 0; border-bottom: 1px solid var(--border); }
+      .feat-row[data-feat="scanner"] .feat-row__visual,
+      .feat-row[data-feat="crm"] .feat-row__visual {
+        max-height: min(54svh, 380px);
+        min-height: 0;
+        height: auto;
+      }
+      .feat-row__visual .fp-browser {
+        height: 100%;
+        max-height: inherit;
+        border-radius: 18px;
+        overflow: hidden;
+      }
+      .fp-browser__chrome { padding: 8px 10px; }
+      .fp-browser__url { font-size: 11px; padding: 5px 10px; }
+
+      .fp-showcase {
+        grid-template-columns: 1fr;
+        min-height: 0;
+      }
+      .fp-showcase__main {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+        padding: 14px 14px 12px;
+        gap: 8px;
+      }
+      .fp-showcase__side { padding: 12px 14px; gap: 8px; }
+      .fp-showcase__title { font-size: clamp(22px, 6vw, 28px); }
+      .fp-showcase__stat strong { font-size: 18px; }
+      .fp-showcase__cta { padding: 10px 14px; font-size: 13px; }
+
+      .fp-pay {
+        grid-template-columns: 1fr;
+        min-height: 0;
+      }
+      .fp-pay__main {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+        padding: 12px;
+        gap: 8px;
+      }
+      .fp-pay__side { padding: 12px; gap: 6px; }
+      .fp-pay__head strong { font-size: 20px; }
+      .fp-pay__fields label { padding: 8px 10px; }
+      .fp-pay__method { padding: 8px 10px; }
+      .fp-pay__cta { min-height: 40px; font-size: 13px; }
+      .fp-pay__row { font-size: 12px; }
+      .fp-pay__row strong { font-size: 14px; }
+      .fp-pay__row.is-guest strong { font-size: 18px; }
+      .fp-pay__you { padding: 8px 10px; }
+      .fp-pay__you strong { font-size: 18px; }
+      .fp-pay__success { padding: 16px; gap: 6px; }
+      .fp-pay__success strong { font-size: 20px; }
+
+      .fp-crm { padding: 10px; gap: 8px; }
+      .fp-crm__search { font-size: 12px; padding: 8px 10px; }
+      .fp-crm__export { padding: 8px 10px; font-size: 11px; }
       .fp-crm__head,
-      .fp-crm__row { grid-template-columns: 1.2fr 0.7fr 0.5fr; }
+      .fp-crm__row {
+        grid-template-columns: 1.3fr 0.8fr 0.7fr;
+        gap: 6px;
+        padding: 8px 8px;
+        font-size: 11px;
+      }
       .fp-crm__head span:nth-child(3),
       .fp-crm__row > span:nth-child(3) { display: none; }
+      .fp-crm__row .is-money { font-size: 14px; }
+      .fp-crm__row em { display: none; }
+
+      .fp-refund { padding: 12px; }
+      .fp-refund__card { padding: 14px; gap: 12px; }
+      .fp-refund__top strong { font-size: 18px; }
+      .fp-refund__amount strong { font-size: 24px; }
+      .fp-refund__btn { min-height: 40px; font-size: 13px; }
+
+      .fp-invite { padding: 12px; gap: 10px; }
+      .fp-invite__bar strong { font-size: 18px; }
+      .fp-invite__add { padding: 8px 12px; font-size: 11px; }
+      .fp-invite__item {
+        grid-template-columns: 32px minmax(0, 1fr) auto;
+        padding: 8px 10px;
+        gap: 8px;
+      }
+      .fp-invite__ava { width: 32px; height: 32px; font-size: 12px; }
+      .fp-invite__item b.is-vip { display: none; }
+      .fp-invite__item em { display: none; }
+
+      .fp-scan {
+        grid-template-columns: 1fr;
+        min-height: 0;
+      }
+      .fp-scan__stage {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+        padding: 12px;
+        gap: 10px;
+      }
+      .fp-scan__frame { max-width: 180px; }
+      .fp-scan__qr { width: 120px; height: 120px; }
+      .fp-scan__log { padding: 10px; gap: 6px; }
+      .fp-scan__log-item { padding: 8px 10px; font-size: 12px; }
+      .fp-scan__count { font-size: 12px; }
+      .fp-scan__count strong { font-size: 16px; }
+
+      #niches .formats-stream { margin-top: 12px; }
+      .formats-stream-bleed { gap: 8px; }
+      .formats-pill {
+        min-height: 34px;
+        padding: 0 12px;
+        font-size: 12px;
+      }
     }
+
     @media (max-width: 560px) {
-      .feat-row__visual { min-height: 420px; }
-      .fp-invite__item { grid-template-columns: 36px 1fr; }
-      .fp-invite__item b { display: none; }
+      .tt-layout { grid-template-columns: 1fr; }
+      .feat-row__visual { max-height: min(48svh, 320px); }
+      .feat-row[data-feat="pay"] .feat-row__visual,
+      .feat-row[data-feat="scanner"] .feat-row__visual,
+      .feat-row[data-feat="crm"] .feat-row__visual {
+        max-height: min(50svh, 340px);
+      }
+      .fp-invite__item { grid-template-columns: 32px 1fr auto; }
+      .fees-board .calc-field-main strong,
+      .fees-result-card strong {
+        font-size: clamp(20px, 8vw, 24px);
+      }
+      .header-pill { padding: 8px 8px 8px 12px; }
+      .header-cta { padding: 8px 12px; font-size: 13px; min-height: 36px; }
     }
+
+    /* On very short phones, allow panels to grow and scroll internally rather than clip */
+    @media (max-width: 900px) and (max-height: 700px) {
+      .snap-panel,
+      .feat-row.snap-panel {
+        min-height: 100svh;
+        justify-content: flex-start;
+        padding-top: 80px;
+      }
+      .feat-row__visual,
+      .feat-row[data-feat="pay"] .feat-row__visual,
+      .feat-row[data-feat="scanner"] .feat-row__visual,
+      .feat-row[data-feat="crm"] .feat-row__visual {
+        max-height: min(42svh, 280px);
+      }
+      #slide-hero .hero-copy {
+        min-height: calc(100svh - 72px - 88px);
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .fp-invite__item.is-new,
       .fp-scan__ticket { animation: none; transition: none; }
