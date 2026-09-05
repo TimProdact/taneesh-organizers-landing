@@ -1391,12 +1391,17 @@
       }
     }
 
-    /* Conversion */
-    .live-conv { grid-template-columns: 1fr; gap: 32px; }
+    /* Conversion — chart on top, metrics in 2 columns below */
+    .live-conv.calc-shell,
     #conversion .island.live-conv {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 20px;
+      grid-template-columns: none;
       max-width: min(calc(100% - 40px), 1180px);
     }
-    .live-conv .calc-viz { gap: 20px; }
+    .live-conv .calc-viz { gap: 16px; width: 100%; }
     .calc-rate .rate small { font-size: 0.45em; }
     .live-filters {
       display: flex;
@@ -1433,10 +1438,12 @@
       height: 112px;
       width: 100%;
     }
-    .metric-grid {
+    #conversion .metric-grid,
+    .live-conv .metric-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 14px;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      width: 100%;
     }
     .live-actions { display: flex; justify-content: center; margin-top: 4px; }
 
@@ -4166,15 +4173,13 @@
       .hero-vibe,
       .hero-duo,
       .hero-card-app { order: -1; min-height: 0; max-height: none; }
-      .metric-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 560px) {
       .wrap { width: min(100% - 28px, var(--max)); }
       .header-pill { padding: 8px 8px 8px 14px; }
       .island.calc-shell { padding: clamp(24px, 4vw, 32px); }
       .island.calc-shell.fees-board { padding: 0; background: transparent; }
-      .calc-summary,
-      .metric-grid { grid-template-columns: 1fr; }
+      .calc-summary { grid-template-columns: 1fr; }
       .btn { width: 100%; }
       .btn-row { flex-direction: column; }
     }
