@@ -1,2 +1,3 @@
 Hero montage from Mixkit free stock (Mixkit Stock Video Free License).
-Formats: stage/mic, DJ, speaker, workshop, dance, venue, show, festival.
+Fast cuts (~1s): dance, DJ, festival, audience, speaker, workshop,
+standup/stage, conference, venue, masterclass.

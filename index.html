@@ -218,12 +218,15 @@
           </div>
         </div>
 
-        <div class="hero-vibe" data-hero-vibe>
+        <div class="hero-vibe is-playing" data-hero-vibe>
           <video
             class="hero-vibe__video"
             poster="assets/vibe/poster.jpg"
+            autoplay
+            muted
+            loop
             playsinline
-            preload="metadata"
+            preload="auto"
             aria-label="Nightclub vibe"
           >
             <source src="assets/vibe/hero-vibe.mp4" type="video/mp4" />
@@ -233,7 +236,7 @@
             type="button"
             class="hero-vibe__play"
             data-hero-vibe-play
-            aria-label="Play video"
+            aria-label="Unmute video"
           >
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path d="M8 5.5v13l11-6.5L8 5.5z" />
@@ -1063,7 +1066,7 @@
       });
     });
 
-    // Hero vibe video — click play / pause
+    // Hero vibe video — muted autoplay loop; click toggles sound / pause
     (function initHeroVibe() {
       const root = document.querySelector('[data-hero-vibe]');
       if (!root) return;
@@ -1071,19 +1074,47 @@
       const playBtn = root.querySelector('[data-hero-vibe-play]');
       if (!video || !playBtn) return;
 
-      const setPlaying = (playing) => {
+      let unmuted = false;
+
+      const setUi = () => {
+        const playing = !video.paused;
         root.classList.toggle('is-playing', playing);
-        playBtn.setAttribute('aria-label', playing ? 'Pause video' : 'Play video');
+        root.classList.toggle('is-unmuted', unmuted && playing);
+        playBtn.setAttribute(
+          'aria-label',
+          !playing ? 'Play video' : unmuted ? 'Mute video' : 'Unmute video'
+        );
+      };
+
+      const tryAutoplay = () => {
+        video.muted = true;
+        video.loop = true;
+        const p = video.play();
+        if (p && typeof p.catch === 'function') {
+          p.catch(() => {
+            root.classList.remove('is-playing');
+            setUi();
+          });
+        }
       };
 
       const toggle = () => {
         if (video.paused) {
           video.muted = false;
+          unmuted = true;
           const p = video.play();
-          if (p && typeof p.catch === 'function') p.catch(() => setPlaying(false));
-        } else {
-          video.pause();
+          if (p && typeof p.catch === 'function') p.catch(() => setUi());
+          return;
         }
+        if (!unmuted) {
+          video.muted = false;
+          unmuted = true;
+          setUi();
+          return;
+        }
+        video.muted = true;
+        unmuted = false;
+        setUi();
       };
 
       playBtn.addEventListener('click', (e) => {
@@ -1091,11 +1122,13 @@
         toggle();
       });
       video.addEventListener('click', toggle);
-      video.addEventListener('play', () => setPlaying(true));
-      video.addEventListener('pause', () => setPlaying(false));
-      video.addEventListener('ended', () => {
-        setPlaying(false);
-        video.currentTime = 0;
+      video.addEventListener('play', setUi);
+      video.addEventListener('pause', setUi);
+
+      tryAutoplay();
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) return;
+        if (video.paused) tryAutoplay();
       });
     })();
 
