@@ -3065,6 +3065,13 @@
       -webkit-backdrop-filter: blur(10px);
       border-radius: 16px;
     }
+    @media (min-width: 901px) {
+      .feat-list__head {
+        /* Sit lower under the header, just above the centered feature row */
+        top: clamp(128px, 20vh, 188px);
+        margin-bottom: 0;
+      }
+    }
     .feat-list__head .eyebrow {
       margin-bottom: 6px;
       color: var(--muted);
@@ -3100,12 +3107,17 @@
         align-items: center;
         align-content: center;
         justify-content: center;
+        justify-items: stretch;
+        width: 100%;
         height: auto;
         min-height: 100svh;
         max-height: none;
-        padding: 120px 0 48px;
+        /* Equal padding so the row stays optically centered (was 120/48 → pushed down) */
+        padding-block: clamp(168px, 22vh, 220px);
+        padding-inline: 0;
         overflow: visible;
         scroll-snap-align: start;
+        box-sizing: border-box;
       }
       .feat-row.is-flip.snap-panel {
         grid-template-columns: minmax(0, 1.35fr) minmax(220px, 0.85fr);
