@@ -1764,8 +1764,12 @@
       font-weight: var(--weight-display);
       line-height: 1.08;
       letter-spacing: var(--track-heading);
-      max-width: 12ch;
+      max-width: 18ch;
       color: var(--text);
+      text-wrap: balance;
+      overflow-wrap: normal;
+      word-break: normal;
+      hyphens: none;
     }
     .feat-row__desc {
       margin: 0 0 8px;
@@ -3022,7 +3026,11 @@
       .feat-row__title {
         margin-inline: auto;
         margin-bottom: 16px;
+        max-width: none;
+        width: 100%;
         font-size: clamp(24px, 6.5vw, 30px);
+        white-space: normal;
+        text-wrap: balance;
       }
       .feat-row__desc {
         margin-inline: auto;
