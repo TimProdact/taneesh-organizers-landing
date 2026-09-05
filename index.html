@@ -506,16 +506,7 @@
             <h2 data-i18n="offerTitle">Возможности платформы</h2>
           </div>
 
-          <div class="feat-cinema" data-feat-cinema>
-            <div class="feat-cinema__copy" aria-live="polite">
-              <span class="feat-cinema__tag" data-feat-cinema-tag>Витрина</span>
-              <div class="feat-cinema__line">
-                <h3 class="feat-cinema__title" data-feat-cinema-title>Личная витрина</h3>
-              </div>
-              <p class="feat-cinema__desc" data-feat-cinema-desc>Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
-            </div>
-
-          <div class="feat-scroll__stage">
+          <div class="feat-scroll__stage" data-feat-cinema>
             <div class="feat-scroll__rail feat-scroll__rail--left" data-feat-rail="left" aria-live="polite">
               <article class="feat-scroll__card is-active" data-feat-card="0" data-side="left">
                 <span class="feat-scroll__tag" data-i18n="o1tag">Витрина</span>
@@ -866,7 +857,6 @@
               <h3 class="feat-scroll__title" data-feat-m-title>Личная витрина</h3>
               <p class="feat-scroll__desc" data-feat-m-desc>Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
             </div>
-          </div>
           </div>
         </div>
       </div>
@@ -1431,128 +1421,97 @@
       });
     })();
 
-    // Features cinematic demo (#included) — GSAP timeline + cursor
+    // Features demo (#included) — side rails + phone slides + GSAP cursor
     (function initFeatCinema() {
       const root = document.querySelector('[data-feat-scroll]');
       if (!root || root.dataset.ready) return;
       root.dataset.ready = '1';
 
       const slides = [...root.querySelectorAll('[data-feat-slide]')];
-      const cards = [...root.querySelectorAll('[data-feat-card]')].sort(
-        (a, b) => Number(a.getAttribute('data-feat-card')) - Number(b.getAttribute('data-feat-card'))
-      );
-      const tagEl = root.querySelector('[data-feat-cinema-tag]');
-      const titleEl = root.querySelector('[data-feat-cinema-title]');
-      const descEl = root.querySelector('[data-feat-cinema-desc]');
-      const titleLine = root.querySelector('.feat-cinema__line');
+      const cards = [...root.querySelectorAll('[data-feat-card]')];
+      const mobile = root.querySelector('[data-feat-mobile]');
+      const mTag = root.querySelector('[data-feat-m-tag]');
+      const mTitle = root.querySelector('[data-feat-m-title]');
+      const mDesc = root.querySelector('[data-feat-m-desc]');
       const cursor = root.querySelector('[data-feat-cursor]');
       const phone = root.querySelector('[data-feat-phone]');
       const count = slides.length;
-      if (!count || !window.gsap) {
-        // Fallback without GSAP: simple interval
+      if (!count) return;
+
+      const syncMobile = (n) => {
+        const card = cards.find((c) => Number(c.getAttribute('data-feat-card')) === n);
+        if (!card || !mobile) return;
+        const tag = card.querySelector('.feat-scroll__tag');
+        const title = card.querySelector('.feat-scroll__title');
+        const desc = card.querySelector('.feat-scroll__desc');
+        if (mTag && tag) mTag.textContent = tag.textContent;
+        if (mTitle && title) mTitle.textContent = title.textContent;
+        if (mDesc && desc) mDesc.textContent = desc.textContent;
+      };
+
+      const setActive = (n) => {
+        const i = ((n % count) + count) % count;
+        root.dataset.active = String(i);
+        root.dataset.side = i % 2 === 0 ? 'left' : 'right';
+        slides.forEach((s, idx) => s.classList.toggle('is-active', idx === i));
+        cards.forEach((c) => {
+          c.classList.toggle('is-active', Number(c.getAttribute('data-feat-card')) === i);
+        });
+        syncMobile(i);
+      };
+
+      const clicks = [
+        { x: '54%', y: '78%' },
+        { x: '50%', y: '86%' },
+        { x: '62%', y: '42%' },
+        { x: '55%', y: '70%' },
+        { x: '50%', y: '82%' },
+        { x: '50%', y: '48%' },
+      ];
+
+      setActive(0);
+
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !window.gsap) {
         let i = 0;
-        const apply = (n) => {
-          slides.forEach((s, idx) => s.classList.toggle('is-active', idx === n));
-          const card = cards.find((c) => Number(c.getAttribute('data-feat-card')) === n) || cards[0];
-          if (!card) return;
-          if (tagEl) tagEl.textContent = card.querySelector('.feat-scroll__tag')?.textContent || '';
-          if (titleEl) titleEl.textContent = card.querySelector('.feat-scroll__title')?.textContent || '';
-          if (descEl) descEl.textContent = card.querySelector('.feat-scroll__desc')?.textContent || '';
-        };
-        apply(0);
-        setInterval(() => { i = (i + 1) % count; apply(i); }, 3200);
+        setInterval(() => {
+          i = (i + 1) % count;
+          setActive(i);
+        }, 2800);
+        window.addEventListener('taneesh:locale', () => syncMobile(Number(root.dataset.active || 0)));
         return;
       }
 
       const gsap = window.gsap;
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      // Cursor click targets per slide (percent of phone box)
-      const clicks = [
-        { x: '54%', y: '78%' }, // showcase CTA
-        { x: '50%', y: '86%' }, // pay button
-        { x: '62%', y: '42%' }, // CRM card
-        { x: '55%', y: '70%' }, // refund sheet
-        { x: '50%', y: '82%' }, // invite CTA
-        { x: '50%', y: '48%' }, // scanner center
-      ];
-
-      const readCard = (n) => {
-        const card = cards.find((c) => Number(c.getAttribute('data-feat-card')) === n);
-        if (!card) return { tag: '', title: '', desc: '' };
-        return {
-          tag: card.querySelector('.feat-scroll__tag')?.textContent?.trim() || '',
-          title: card.querySelector('.feat-scroll__title')?.textContent?.trim() || '',
-          desc: card.querySelector('.feat-scroll__desc')?.textContent?.trim() || '',
-        };
-      };
-
-      const setSlide = (n) => {
-        slides.forEach((s, idx) => s.classList.toggle('is-active', idx === n));
-        root.dataset.active = String(n);
-      };
-
-      const showCopy = (n) => {
-        const { tag, title, desc } = readCard(n);
-        if (tagEl) tagEl.textContent = tag;
-        if (titleEl) titleEl.textContent = title;
-        if (descEl) descEl.textContent = desc;
-      };
-
-      showCopy(0);
-      setSlide(0);
-
-      if (reduce) {
-        let i = 0;
-        setInterval(() => {
-          i = (i + 1) % count;
-          showCopy(i);
-          setSlide(i);
-        }, 2800);
-        return;
-      }
-
       if (cursor) gsap.set(cursor, { opacity: 0, scale: 1, xPercent: -20, yPercent: -10 });
-      if (titleEl) gsap.set(titleEl, { yPercent: 110 });
-      if (tagEl) gsap.set(tagEl, { opacity: 0, y: 8 });
-      if (descEl) gsap.set(descEl, { opacity: 0, y: 10 });
 
       const tl = gsap.timeline({
         repeat: -1,
         defaults: { ease: 'power3.out' },
       });
-
       const sceneHold = 2.4;
 
       for (let n = 0; n < count; n += 1) {
         const click = clicks[n] || { x: '50%', y: '70%' };
         const at = n === 0 ? 0 : '>';
 
-        tl.call(() => { showCopy(n); setSlide(n); }, null, at);
-
-        tl.fromTo(tagEl, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35 }, '<');
-        tl.fromTo(titleEl, { yPercent: 110 }, { yPercent: 0, duration: 0.55, ease: 'power4.out' }, '<0.05');
-        tl.fromTo(descEl, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4 }, '<0.12');
+        tl.call(() => setActive(n), null, at);
 
         if (cursor && phone) {
           tl.fromTo(
             cursor,
             { opacity: 0, left: '40%', top: '40%', scale: 1 },
             { opacity: 1, left: click.x, top: click.y, duration: 0.7, ease: 'power2.inOut' },
-            '<0.25'
+            '<0.2'
           );
           tl.to(cursor, { scale: 0.86, duration: 0.1, yoyo: true, repeat: 1 }, '>-0.05');
           tl.to(phone, { scale: 0.985, duration: 0.1, yoyo: true, repeat: 1, transformOrigin: '50% 50%' }, '<');
         }
 
         tl.to({}, { duration: sceneHold });
-
-        tl.to([tagEl, descEl], { opacity: 0, y: -6, duration: 0.28, stagger: 0.04 }, '>-0.15');
-        tl.to(titleEl, { yPercent: -110, duration: 0.35, ease: 'power3.in' }, '<');
-        if (cursor) tl.to(cursor, { opacity: 0, duration: 0.2 }, '<');
+        if (cursor) tl.to(cursor, { opacity: 0, duration: 0.2 }, '>-0.15');
       }
 
-      // Pause when off-screen
       const io = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -1564,10 +1523,7 @@
       );
       io.observe(root);
 
-      window.addEventListener('taneesh:locale', () => {
-        const active = Number(root.dataset.active || 0);
-        showCopy(active);
-      });
+      window.addEventListener('taneesh:locale', () => syncMobile(Number(root.dataset.active || 0)));
     })();
 
     // Lazy-load feature card background images when they enter viewport
