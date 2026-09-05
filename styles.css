@@ -480,15 +480,15 @@
     .hero-vibe {
       position: relative;
       display: block;
-      width: min(100%, 720px);
-      max-width: 720px;
+      width: 100%;
+      max-width: var(--max);
       margin: 0 auto;
       aspect-ratio: 16 / 9;
       border-radius: var(--radius);
       overflow: hidden;
       isolation: isolate;
       background: #0a0a0a;
-      box-shadow: 0 18px 48px rgba(10, 10, 10, 0.14);
+      box-shadow: 0 22px 56px rgba(10, 10, 10, 0.16);
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
     }
