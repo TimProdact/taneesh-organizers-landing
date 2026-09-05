@@ -3060,35 +3060,6 @@
       max-width: 1120px;
       position: relative;
     }
-    .feat-list__head {
-      text-align: center;
-      margin: 0 auto 28px;
-      max-width: 40em;
-      padding: 12px 16px;
-      position: sticky;
-      top: 88px;
-      z-index: 6;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 16px;
-    }
-    @media (min-width: 901px) {
-      .feat-list__head {
-        /* Sit lower under the header, just above the centered feature row */
-        top: clamp(128px, 20vh, 188px);
-        margin-bottom: 0;
-      }
-    }
-    .feat-list__head .eyebrow {
-      margin-bottom: 6px;
-      color: var(--muted);
-    }
-    .feat-list__head h2 {
-      margin: 0;
-      font-size: clamp(26px, 3.4vw, 40px);
-      color: var(--text);
-    }
     .section--feat-list .feat-list {
       display: grid;
       gap: clamp(64px, 9vw, 112px);
@@ -3120,8 +3091,8 @@
         height: auto;
         min-height: 100svh;
         max-height: none;
-        /* Equal padding so the row stays optically centered (was 120/48 → pushed down) */
-        padding-block: clamp(168px, 22vh, 220px);
+        /* Equal padding so the row stays optically centered under the sticky header */
+        padding-block: clamp(96px, 14vh, 140px);
         padding-inline: 0;
         overflow: visible;
         scroll-snap-align: start;
