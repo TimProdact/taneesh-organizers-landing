@@ -1454,8 +1454,8 @@
       });
     })();
 
-    // Features demo (#included) — side rails + phone slides + GSAP cursor
-    (function initFeatCinema() {
+    // Features scroll phone (#included) — sticky device, each feature on scroll
+    (function initFeatScroll() {
       const root = document.querySelector('[data-feat-scroll]');
       if (!root || root.dataset.ready) return;
       root.dataset.ready = '1';
@@ -1466,13 +1466,13 @@
       const mTag = root.querySelector('[data-feat-m-tag]');
       const mTitle = root.querySelector('[data-feat-m-title]');
       const mDesc = root.querySelector('[data-feat-m-desc]');
-      const cursor = root.querySelector('[data-feat-cursor]');
-      const phone = root.querySelector('[data-feat-phone]');
       const count = slides.length;
       if (!count) return;
 
-      const syncMobile = (n) => {
-        const card = cards.find((c) => Number(c.getAttribute('data-feat-card')) === n);
+      let index = 0;
+
+      const syncMobile = (i) => {
+        const card = cards.find((c) => Number(c.getAttribute('data-feat-card')) === i);
         if (!card || !mobile) return;
         const tag = card.querySelector('.feat-scroll__tag');
         const title = card.querySelector('.feat-scroll__title');
@@ -1482,81 +1482,46 @@
         if (mDesc && desc) mDesc.textContent = desc.textContent;
       };
 
-      const setActive = (n) => {
-        const i = ((n % count) + count) % count;
+      const setActive = (next) => {
+        const i = Math.max(0, Math.min(count - 1, next));
+        if (i === index && root.dataset.boot) return;
+        index = i;
+        root.dataset.boot = '1';
         root.dataset.active = String(i);
         root.dataset.side = i % 2 === 0 ? 'left' : 'right';
-        slides.forEach((s, idx) => s.classList.toggle('is-active', idx === i));
+
+        slides.forEach((s, n) => s.classList.toggle('is-active', n === i));
         cards.forEach((c) => {
-          c.classList.toggle('is-active', Number(c.getAttribute('data-feat-card')) === i);
+          const n = Number(c.getAttribute('data-feat-card'));
+          c.classList.toggle('is-active', n === i);
         });
         syncMobile(i);
       };
 
-      const clicks = [
-        { x: '54%', y: '78%' },
-        { x: '50%', y: '86%' },
-        { x: '62%', y: '42%' },
-        { x: '55%', y: '70%' },
-        { x: '50%', y: '82%' },
-        { x: '50%', y: '48%' },
-      ];
+      const progressToIndex = () => {
+        const rect = root.getBoundingClientRect();
+        const travel = Math.max(1, root.offsetHeight - window.innerHeight);
+        const scrolled = Math.min(Math.max(-rect.top, 0), travel);
+        const t = scrolled / travel;
+        return Math.round(t * (count - 1));
+      };
+
+      let ticking = false;
+      const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          ticking = false;
+          setActive(progressToIndex());
+        });
+      };
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      window.addEventListener('taneesh:locale', () => syncMobile(index));
 
       setActive(0);
-
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduce || !window.gsap) {
-        let i = 0;
-        setInterval(() => {
-          i = (i + 1) % count;
-          setActive(i);
-        }, 2800);
-        window.addEventListener('taneesh:locale', () => syncMobile(Number(root.dataset.active || 0)));
-        return;
-      }
-
-      const gsap = window.gsap;
-      if (cursor) gsap.set(cursor, { opacity: 0, scale: 1, xPercent: -20, yPercent: -10 });
-
-      const tl = gsap.timeline({
-        repeat: -1,
-        defaults: { ease: 'power3.out' },
-      });
-      const sceneHold = 2.4;
-
-      for (let n = 0; n < count; n += 1) {
-        const click = clicks[n] || { x: '50%', y: '70%' };
-        const at = n === 0 ? 0 : '>';
-
-        tl.call(() => setActive(n), null, at);
-
-        if (cursor && phone) {
-          tl.fromTo(
-            cursor,
-            { opacity: 0, left: '40%', top: '40%', scale: 1 },
-            { opacity: 1, left: click.x, top: click.y, duration: 0.7, ease: 'power2.inOut' },
-            '<0.2'
-          );
-          tl.to(cursor, { scale: 0.86, duration: 0.1, yoyo: true, repeat: 1 }, '>-0.05');
-          tl.to(phone, { scale: 0.985, duration: 0.1, yoyo: true, repeat: 1, transformOrigin: '50% 50%' }, '<');
-        }
-
-        tl.to({}, { duration: sceneHold });
-        if (cursor) tl.to(cursor, { opacity: 0, duration: 0.2 }, '>-0.15');
-      }
-
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) tl.play();
-            else tl.pause();
-          });
-        },
-        { threshold: 0.35 }
-      );
-      io.observe(root);
-
-      window.addEventListener('taneesh:locale', () => syncMobile(Number(root.dataset.active || 0)));
+      onScroll();
     })();
 
     // Lazy-load feature card background images when they enter viewport
