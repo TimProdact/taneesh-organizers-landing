@@ -126,13 +126,13 @@
         padding-top: 96px;
         padding-bottom: 48px;
       }
-      /* Hero stays natural height: video peeks below the fold; first snap is the vibe block */
+      /* Hero: first screen = copy (snap start). Video only peeks; next snap centers it. */
       #slide-hero {
         height: auto;
         min-height: 0;
         max-height: none;
-        scroll-snap-align: none;
-        scroll-snap-stop: normal;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
         display: block;
         padding: clamp(88px, 12vw, 120px) 0 0;
         overflow: visible;
@@ -143,8 +143,16 @@
         max-height: none;
         overflow: visible;
       }
+      #slide-hero .hero-copy {
+        /* Fill the first viewport so only a slice of the video peeks below */
+        min-height: calc(100svh - clamp(88px, 12vw, 120px) - clamp(120px, 18vh, 180px));
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: clamp(20px, 3vh, 32px);
+      }
       #slide-hero .hero-vibe {
-        scroll-snap-align: start;
+        scroll-snap-align: center;
         scroll-snap-stop: always;
       }
     }
@@ -4060,6 +4068,11 @@
       #slide-hero .hero-vibe {
         scroll-snap-align: none;
         scroll-snap-stop: normal;
+      }
+      #slide-hero .hero-copy {
+        min-height: 0;
+        display: block;
+        margin-bottom: var(--space-hero-bottom);
       }
       #footer.snap-panel { padding-block: var(--pad-y); }
       .section--feat-list { padding-block: var(--pad-y); }
