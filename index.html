@@ -253,22 +253,8 @@
           <p class="lead" data-i18n="feesTitle">Сбор платит гость — вам 100% цены билета</p>
         </div>
         <div class="island calc-shell fees-board">
-          <div class="fees-result">
-            <div class="fees-result-card is-you">
-              <span data-i18n="whyGood">Taneesh · вам 100%</span>
-              <strong id="tanPerTicket">100 000</strong>
-              <em data-i18n="currency">сум</em>
-            </div>
-            <div class="fees-result-arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </div>
-            <div class="fees-result-card">
-              <span data-i18n="feesGuest">гость платит</span>
-              <strong id="feesPunchTotal">105 000</strong>
-              <em data-i18n="currency">сум</em>
-            </div>
-          </div>
-          <div class="calc-side fees-panel">
+          <div class="fees-controls">
+            <p class="fees-group-label" data-i18n="feesControlsLabel">Параметры</p>
             <div class="calc-sliders">
               <div class="calc-field">
                 <div class="calc-field-main">
@@ -293,17 +279,35 @@
               <span data-i18n="feesAcq">эквайринг 1.5%</span>
               <span class="fees-breakdown-math"><span id="outAcq">1 500</span> + <span id="outFix">3 500</span></span>
             </p>
-            <div class="calc-summary">
-              <div>
-                <span class="k" data-i18n="whySaveLabel">экономия с 1 билета vs 15% касса</span>
-                <strong class="v" id="saveAmount">+15 000</strong>
+          </div>
+          <div class="fees-outcomes">
+            <p class="fees-group-label" data-i18n="feesOutcomesLabel">Итог</p>
+            <div class="fees-result">
+              <div class="fees-result-card is-you">
+                <span data-i18n="whyGood">Taneesh · вам 100%</span>
+                <strong id="tanPerTicket">100 000</strong>
                 <em data-i18n="currency">сум</em>
               </div>
-              <div>
-                <span class="k" data-i18n="whySavePack">Экономия на 100 билетах</span>
-                <strong class="v" id="savePack">1 500 000</strong>
+              <div class="fees-result-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </div>
+              <div class="fees-result-card">
+                <span data-i18n="feesGuest">гость платит</span>
+                <strong id="feesPunchTotal">105 000</strong>
                 <em data-i18n="currency">сум</em>
               </div>
+            </div>
+          </div>
+          <div class="calc-summary fees-savings">
+            <div>
+              <span class="k" data-i18n="whySaveLabel">экономия с 1 билета vs 15% касса</span>
+              <strong class="v" id="saveAmount">+15 000</strong>
+              <em data-i18n="currency">сум</em>
+            </div>
+            <div>
+              <span class="k" data-i18n="whySavePack">Экономия на 100 билетах</span>
+              <strong class="v" id="savePack">1 500 000</strong>
+              <em data-i18n="currency">сум</em>
             </div>
           </div>
         </div>
