@@ -2290,7 +2290,7 @@
       padding-block: var(--pad-y);
     }
     #why .section-head {
-      margin-bottom: var(--section-head-gap);
+      margin-bottom: clamp(16px, 2.5vw, 28px);
     }
     #why .section-head h2 + .lead {
       margin-top: var(--space-title-lead);
