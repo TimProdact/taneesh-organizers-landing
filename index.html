@@ -567,8 +567,8 @@
                     <div class="fp-pay__checkout" data-pay-checkout>
                       <header class="fp-pay__head fp-stage" data-fp-stage="1"><span>Регистрация</span><strong>Night Garden</strong></header>
                       <div class="fp-pay__fields fp-stage" data-fp-stage="2">
-                        <label><span>Кому билеты</span><em data-pay-name>Мун Тимур</em></label>
-                        <label><span>Телефон</span><em data-pay-phone>+998 90 123 45 67</em></label>
+                        <label><span>Кому билеты</span><b class="fp-pay__value" data-pay-name></b></label>
+                        <label><span>Телефон</span><b class="fp-pay__value" data-pay-phone></b></label>
                       </div>
                       <div class="fp-pay__methods fp-stage" data-fp-stage="3">
                         <span class="fp-pay__methods-label">Способ оплаты</span>
@@ -1363,11 +1363,12 @@
             resolve();
             return;
           }
+          const gen = row._featGen || 0;
           el.textContent = '';
           el.classList.add('is-typing');
           let i = 0;
           const tick = () => {
-            if (!row._featActive) {
+            if (!row._featActive || row._featGen !== gen) {
               el.classList.remove('is-typing');
               resolve();
               return;
@@ -1376,6 +1377,7 @@
             el.textContent = text.slice(0, i);
             if (i >= text.length) {
               el.classList.remove('is-typing');
+              el.textContent = text;
               resolve();
               return;
             }
@@ -1435,8 +1437,8 @@
       };
 
       const runPay = (row) => {
+        clearTimers(row);
         const host = row.querySelector('[data-pay-demo]');
-        const checkout = row.querySelector('[data-pay-checkout]');
         const cta = row.querySelector('[data-pay-cta]');
         const success = row.querySelector('[data-pay-success]');
         const you = row.querySelector('[data-pay-you]');
@@ -1451,9 +1453,11 @@
         };
         if (!host) return;
 
+        const NAME = 'Мун Тимур';
+        const PHONE = '+998 90 123 45 67';
+
         resetStages(host);
         host.classList.remove('is-paid');
-        if (checkout) checkout.hidden = false;
         if (cta) {
           cta.classList.remove('is-busy', 'is-hidden');
           cta.textContent = 'Оплатить 105 000';
@@ -1464,8 +1468,14 @@
         Object.values(lines).forEach((el) => {
           if (el) el.textContent = '0';
         });
-        if (nameEl) nameEl.textContent = '';
-        if (phoneEl) phoneEl.textContent = '';
+        if (nameEl) {
+          nameEl.classList.remove('is-typing');
+          nameEl.textContent = '';
+        }
+        if (phoneEl) {
+          phoneEl.classList.remove('is-typing');
+          phoneEl.textContent = '';
+        }
 
         if (reduce) {
           host.querySelectorAll('.fp-stage').forEach((el) => el.classList.add('is-in'));
@@ -1474,63 +1484,69 @@
           if (lines.acq) lines.acq.textContent = '1 500';
           if (lines.fee) lines.fee.textContent = '3 500';
           if (lines.guest) lines.guest.textContent = '105 000';
-          if (nameEl) nameEl.textContent = 'Мун Тимур';
-          if (phoneEl) phoneEl.textContent = '+998 90 123 45 67';
+          if (nameEl) nameEl.textContent = NAME;
+          if (phoneEl) phoneEl.textContent = PHONE;
           host.classList.add('is-paid');
           if (success) success.hidden = false;
           if (you) you.classList.add('is-glow');
           return;
         }
 
+        const gen = row._featGen || 0;
+        const alive = () => row._featActive && row._featGen === gen;
+
         showStage(row, host, 1, 60);
 
-        later(row, 280, async () => {
-          if (!row._featActive) return;
+        later(row, 320, async () => {
+          if (!alive()) return;
           showStage(row, host, 2, 0);
-          await typeText(nameEl, 'Мун Тимур', row, 32);
-          if (!row._featActive) return;
-          await typeText(phoneEl, '+998 90 123 45 67', row, 22);
-        });
+          await typeText(nameEl, NAME, row, 36);
+          if (!alive()) return;
+          if (nameEl) nameEl.textContent = NAME;
+          await typeText(phoneEl, PHONE, row, 24);
+          if (!alive()) return;
+          if (phoneEl) phoneEl.textContent = PHONE;
 
-        later(row, 1600, () => {
-          if (!row._featActive) return;
-          showStage(row, host, 3, 0);
-          later(row, 280, () => methods[0]?.classList.add('is-on'));
-          later(row, 520, () => {
-            methods[0]?.classList.remove('is-on');
-            methods[1]?.classList.add('is-on');
+          later(row, 280, () => {
+            if (!alive()) return;
+            showStage(row, host, 3, 0);
+            later(row, 200, () => countTo(lines.ticket, 100000, row, 480));
+            later(row, 360, () => countTo(lines.acq, 1500, row, 420));
+            later(row, 520, () => countTo(lines.fee, 3500, row, 420));
+            later(row, 280, () => methods[0]?.classList.add('is-on'));
+            later(row, 700, () => {
+              methods[0]?.classList.remove('is-on');
+              methods[1]?.classList.add('is-on');
+            });
+            later(row, 1100, () => {
+              methods[1]?.classList.remove('is-on');
+              methods[0]?.classList.add('is-on');
+            });
           });
-          later(row, 820, () => {
-            methods[1]?.classList.remove('is-on');
-            methods[0]?.classList.add('is-on');
+
+          later(row, 1600, () => {
+            if (!alive()) return;
+            showStage(row, host, 4, 0);
+            countTo(lines.guest, 105000, row, 480);
           });
-          later(row, 200, () => countTo(lines.ticket, 100000, row, 480));
-          later(row, 360, () => countTo(lines.acq, 1500, row, 420));
-          later(row, 520, () => countTo(lines.fee, 3500, row, 420));
-        });
 
-        later(row, 2700, () => {
-          if (!row._featActive) return;
-          showStage(row, host, 4, 0);
-          countTo(lines.guest, 105000, row, 480);
-        });
+          later(row, 2300, () => {
+            if (!alive()) return;
+            cta?.classList.add('is-busy');
+            if (cta) cta.textContent = 'Оплата…';
+          });
 
-        later(row, 3400, () => {
-          if (!row._featActive) return;
-          cta?.classList.add('is-busy');
-          if (cta) cta.textContent = 'Оплата…';
-        });
+          later(row, 3000, () => {
+            if (!alive()) return;
+            host.classList.add('is-paid');
+            if (success) success.hidden = false;
+            showStage(row, host, 5, 0);
+            later(row, 120, () => you?.classList.add('is-glow'));
+          });
 
-        later(row, 4100, () => {
-          if (!row._featActive) return;
-          host.classList.add('is-paid');
-          if (success) success.hidden = false;
-          showStage(row, host, 5, 0);
-          later(row, 120, () => you?.classList.add('is-glow'));
-        });
-
-        later(row, 7000, () => {
-          if (row._featActive) runPay(row);
+          later(row, 5600, () => {
+            if (alive()) runPay(row);
+          });
         });
       };
 
@@ -1665,12 +1681,14 @@
 
       const startRow = (row) => {
         clearTimers(row);
+        row._featGen = (row._featGen || 0) + 1;
         row._featActive = true;
         runners[row.getAttribute('data-feat')]?.(row);
       };
 
       const stopRow = (row) => {
         row._featActive = false;
+        row._featGen = (row._featGen || 0) + 1;
         clearTimers(row);
       };
 
