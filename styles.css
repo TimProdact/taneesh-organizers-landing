@@ -1152,6 +1152,7 @@
     .fees-board {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-rows: minmax(148px, 1fr) minmax(148px, 1fr) auto auto;
       gap: 16px 20px;
       align-items: stretch;
       width: 100%;
@@ -1174,27 +1175,24 @@
     }
     .fees-controls,
     .fees-outcomes {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+      display: grid;
+      grid-template-rows: subgrid;
+      grid-row: 1 / span 2;
+      gap: 16px;
       min-width: 0;
       min-height: 0;
-      height: 100%;
+      height: auto;
     }
+    .fees-controls { grid-column: 1; }
+    .fees-outcomes { grid-column: 2; }
     .calc-sliders,
     .fees-result {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      flex: 1;
-      min-height: 0;
-      width: 100%;
+      display: contents;
     }
     .fees-result-arrow {
       display: none;
     }
     .fees-result-card {
-      flex: 1;
       padding: var(--space-card);
       border-radius: var(--radius);
       background: var(--surface);
@@ -1206,6 +1204,7 @@
       gap: 8px;
       box-sizing: border-box;
       min-height: 0;
+      height: 100%;
     }
     .fees-result-card.is-you {
       background: rgba(30, 215, 96, 0.12);
@@ -1235,15 +1234,16 @@
     }
     .fees-panel { width: 100%; }
     .fees-board .calc-field {
-      flex: 1;
       background: var(--surface);
       border-radius: var(--radius);
       padding: var(--space-card);
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
+      align-items: stretch;
       min-height: 0;
+      height: 100%;
     }
     .fees-board .calc-field-main {
       flex: 1;
@@ -1252,6 +1252,7 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 10px;
+      gap: 8px;
     }
     .fees-board .calc-field-main strong {
       font-family: var(--font-display);
@@ -1261,10 +1262,12 @@
     }
     .fees-board .calc-field input[type="range"] {
       flex-shrink: 0;
+      width: 100%;
       margin-top: auto;
     }
     .fees-breakdown {
       grid-column: 1 / -1;
+      grid-row: 3;
       margin: 0;
       width: 100%;
       box-sizing: border-box;
@@ -1290,6 +1293,7 @@
     }
     .fees-savings {
       grid-column: 1 / -1;
+      grid-row: 4;
       gap: 12px;
     }
     .fees-savings > div {
@@ -1300,26 +1304,11 @@
     @media (max-width: 760px) {
       .fees-board {
         grid-template-columns: 1fr 1fr;
+        grid-template-rows: minmax(132px, 1fr) minmax(132px, 1fr) auto auto;
         gap: 10px;
       }
       .fees-controls,
       .fees-outcomes {
-        height: auto;
-        gap: 10px;
-      }
-      .calc-sliders,
-      .fees-result {
-        flex: none;
-        gap: 10px;
-      }
-      .fees-board .calc-field,
-      .fees-result-card {
-        flex: none;
-        min-height: 0;
-      }
-      .fees-result {
-        display: flex;
-        flex-direction: column;
         gap: 10px;
       }
       .fees-result-arrow {
@@ -1327,13 +1316,8 @@
       }
     }
     @media (max-width: 560px) {
-      .fees-result {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
       .fees-result-arrow {
-        transform: rotate(90deg);
-        margin-inline: auto;
+        display: none;
       }
     }
 
@@ -2890,6 +2874,7 @@
         width: 100%;
         max-width: none;
         grid-template-columns: none;
+        grid-template-rows: none;
       }
       .fees-rail {
         display: flex;
@@ -2900,7 +2885,11 @@
         min-height: 0;
       }
       .fees-controls,
-      .fees-outcomes,
+      .fees-outcomes {
+        display: contents;
+        grid-row: auto;
+        grid-column: auto;
+      }
       .calc-sliders,
       .fees-result {
         display: contents;
@@ -2931,6 +2920,7 @@
         padding: 12px 16px;
         font-size: 13px;
         grid-column: auto;
+        grid-row: auto;
       }
       .fees-savings {
         flex: 0 0 auto;
@@ -2940,6 +2930,7 @@
         width: min(100% - 28px, var(--max));
         margin-inline: auto;
         grid-column: auto;
+        grid-row: auto;
       }
       .fees-savings > div {
         flex: 1 1 0;
