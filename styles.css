@@ -79,11 +79,6 @@
       .features-loop { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
-    @media (min-width: 901px) {
-      html {
-        scroll-snap-type: y mandatory;
-      }
-    }
     body {
       font-family: var(--font-ui);
       font-size: var(--text-body);
@@ -2969,9 +2964,9 @@
       margin-inline: 0;
     }
 
-    /* Features list: one full-viewport panel per feature */
+    /* Features list: sticky section title + alternating rows */
     .section--feat-list {
-      padding-block: 0;
+      padding-block: var(--pad-y) clamp(64px, 8vw, 100px);
       background: #fff;
       color: var(--text);
       overflow: visible;
@@ -2982,14 +2977,16 @@
     }
     .feat-list__head {
       text-align: center;
-      margin: 0 auto;
+      margin: 0 auto 28px;
       max-width: 40em;
-      padding: 14px 16px 12px;
+      padding: 12px 16px;
       position: sticky;
       top: 88px;
       z-index: 6;
-      background: #fff;
-      box-shadow: 0 12px 24px -16px rgba(10, 10, 10, 0.12);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 16px;
     }
     .feat-list__head .eyebrow {
       margin-bottom: 6px;
@@ -2997,12 +2994,12 @@
     }
     .feat-list__head h2 {
       margin: 0;
-      font-size: clamp(24px, 3.2vw, 36px);
+      font-size: clamp(26px, 3.4vw, 40px);
       color: var(--text);
     }
     .section--feat-list .feat-list {
       display: grid;
-      gap: 0;
+      gap: clamp(64px, 9vw, 112px);
       list-style: none;
       margin: 0;
       padding: 0;
@@ -3012,12 +3009,6 @@
       grid-template-columns: minmax(220px, 0.85fr) minmax(0, 1.35fr);
       gap: clamp(24px, 4vw, 48px);
       align-items: center;
-      align-content: center;
-      box-sizing: border-box;
-      min-height: 100svh;
-      padding-block: 168px 48px;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
     }
     .feat-row.is-flip {
       grid-template-columns: minmax(0, 1.35fr) minmax(220px, 0.85fr);
@@ -3059,8 +3050,8 @@
       background: var(--cream-2);
       border: 1px solid var(--border);
       box-shadow: 0 18px 48px rgba(10, 10, 10, 0.06);
-      min-height: min(400px, calc(100svh - 280px));
-      height: min(400px, calc(100svh - 280px));
+      min-height: 420px;
+      height: 420px;
     }
     .feat-row__visual .fp-browser {
       height: 100%;
@@ -3301,12 +3292,12 @@
 
     /* Feature 2 — Checkout / payment */
     .feat-row[data-feat="pay"] .feat-row__visual {
-      height: min(420px, calc(100svh - 260px));
-      min-height: min(360px, calc(100svh - 280px));
+      height: 460px;
+      min-height: 460px;
     }
     .feat-row[data-feat="scanner"] .feat-row__visual {
-      height: min(460px, calc(100svh - 240px));
-      min-height: min(420px, calc(100svh - 260px));
+      height: 460px;
+      min-height: 460px;
     }
     .fp-pay {
       flex: 1;
@@ -3943,26 +3934,23 @@
     }
 
     @media (max-width: 900px) {
-      html { scroll-snap-type: none; }
       .section--feat-list { padding-block: var(--pad-y); }
       .feat-list__head {
         position: static;
         top: auto;
         z-index: auto;
-        margin-bottom: var(--section-head-gap);
+        margin: 0 auto var(--section-head-gap);
         padding: 0;
-        box-shadow: none;
         background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border-radius: 0;
       }
       .feat-list__head h2 { font-size: clamp(28px, 4vw, 44px); }
       .section--feat-list .feat-list { gap: clamp(48px, 10vw, 72px); }
       .feat-row,
       .feat-row.is-flip {
         grid-template-columns: 1fr;
-        min-height: 0;
-        padding-block: 0;
-        scroll-snap-align: none;
-        scroll-snap-stop: normal;
       }
       .feat-row.is-flip .feat-row__copy,
       .feat-row.is-flip .feat-row__visual { order: initial; }
@@ -3970,7 +3958,8 @@
       .feat-row__title { margin-inline: auto; max-width: none; }
       .feat-row__desc { margin-inline: auto; }
       .feat-row__visual { height: auto; min-height: 380px; }
-      .feat-row[data-feat="pay"] .feat-row__visual { min-height: 420px; height: auto; }
+      .feat-row[data-feat="pay"] .feat-row__visual,
+      .feat-row[data-feat="scanner"] .feat-row__visual { min-height: 420px; height: auto; }
       .fp-showcase { grid-template-columns: 1fr; }
       .fp-showcase__main { border-right: 0; border-bottom: 1px solid var(--border); }
       .fp-pay { grid-template-columns: 1fr; }
@@ -3988,7 +3977,6 @@
       .fp-invite__item b { display: none; }
     }
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-snap-type: none; }
       .fp-invite__item.is-new,
       .fp-scan__ticket { animation: none; transition: none; }
     }
