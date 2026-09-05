@@ -3093,19 +3093,43 @@
       .fp-pay.is-paid .fp-pay__checkout,
       .fp-pay__success { position: static; }
       .fp-crm { padding: 14px; height: auto; }
-      .fp-crm__toolbar { flex-direction: column; align-items: stretch; }
-      .fp-crm__search,
-      .fp-crm__export { width: 100%; }
-      .fp-crm__head { display: none; }
-      .fp-crm__row {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+      .fp-crm__toolbar {
+        flex-direction: row;
+        align-items: center;
         gap: 8px;
-        padding: 14px 16px;
-        grid-template-columns: none;
       }
-      .fp-crm__row .is-money { font-size: 18px; }
+      .fp-crm__search {
+        flex: 1;
+        width: auto;
+        min-width: 0;
+        font-size: 12px;
+        padding: 10px 12px;
+      }
+      .fp-crm__export {
+        width: auto;
+        flex: 0 0 auto;
+        padding: 10px 12px;
+        font-size: 12px;
+      }
+      .fp-crm__head {
+        display: grid;
+        grid-template-columns: minmax(0, 1.3fr) 0.85fr 0.55fr 0.75fr;
+        gap: 8px;
+        padding: 4px 12px;
+        font-size: 10px;
+      }
+      .fp-crm__row {
+        display: grid;
+        grid-template-columns: minmax(0, 1.3fr) 0.85fr 0.55fr 0.75fr;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px;
+        flex-direction: unset;
+      }
+      .fp-crm__row em { display: none; }
+      .fp-crm__row .is-money { font-size: 15px; }
+      .fp-crm__row > span { font-size: 13px; color: var(--text); }
+      .fp-crm__row > b { font-size: 11px; }
       .fp-refund,
       .fp-invite { padding: 16px; height: auto; }
       .fp-scan__frame { max-width: 200px; margin-inline: auto; }
