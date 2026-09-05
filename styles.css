@@ -3148,7 +3148,9 @@
     .phone-mock:has(.feat-slide--crm.is-active) .phone-mock__island,
     .phone-mock:has(.feat-slide--crm.is-active) .phone-mock__home,
     .phone-mock:has(.feat-slide--refund.is-active) .phone-mock__island,
-    .phone-mock:has(.feat-slide--refund.is-active) .phone-mock__home {
+    .phone-mock:has(.feat-slide--refund.is-active) .phone-mock__home,
+    .phone-mock:has(.feat-slide--invite.is-active) .phone-mock__island,
+    .phone-mock:has(.feat-slide--invite.is-active) .phone-mock__home {
       opacity: 0;
     }
     .feat-slide--shot {
