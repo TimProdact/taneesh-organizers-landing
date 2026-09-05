@@ -3455,17 +3455,23 @@
     }
     .fp-pay__cta.is-hidden { display: none; }
     .fp-pay__success {
-      margin: auto 0;
+      flex: 1;
+      align-self: stretch;
+      width: 100%;
+      min-height: 0;
+      margin: 0;
       display: grid;
+      place-content: center;
       justify-items: center;
-      gap: 8px;
+      gap: 10px;
       text-align: center;
-      padding: 28px 16px;
+      padding: clamp(24px, 4vh, 40px) 16px;
       border-radius: 18px;
       background: rgba(30, 215, 96, 0.1);
       border: 1px solid rgba(30, 215, 96, 0.28);
+      box-sizing: border-box;
       opacity: 0;
-      transform: scale(0.96);
+      transform: scale(0.98);
       transition: opacity 360ms var(--ease), transform 360ms var(--ease);
     }
     .fp-pay__success[hidden] { display: none !important; }
@@ -3474,24 +3480,24 @@
       transform: scale(1);
     }
     .fp-pay__ok {
-      width: 42px;
-      height: 42px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       display: grid;
       place-items: center;
       background: rgba(30, 215, 96, 0.2);
       color: #0f7a38;
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 700;
     }
     .fp-pay__success strong {
-      font-size: 18px;
+      font-size: 20px;
       color: var(--text);
     }
     .fp-pay__success em {
       font-style: normal;
-      font-size: 13px;
-      color: var(--muted);
+      font-size: 14px;
+      color: #0f7a38;
     }
     .fp-pay__side {
       padding: clamp(14px, 1.8vw, 22px);
