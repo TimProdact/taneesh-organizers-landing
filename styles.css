@@ -517,8 +517,8 @@
       top: 50%;
       left: 50%;
       z-index: 2;
-      width: 76px;
-      height: 76px;
+      width: 88px;
+      height: 88px;
       margin: 0;
       padding: 0;
       border: 0;
@@ -3584,18 +3584,14 @@
       font-weight: 700;
     }
 
-    /* Ticket types — primary scenario + secondary modes */
+    /* Ticket types — 4 equal cards in a row */
     .tt-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: var(--space-stack-md);
       max-width: var(--max);
       margin-inline: auto;
       align-items: stretch;
-    }
-    .tt-side {
-      display: grid;
-      gap: var(--space-stack-md);
     }
     .tt-card {
       background: var(--surface);
@@ -3608,8 +3604,6 @@
       min-height: 100%;
     }
     .tt-card--primary {
-      padding: clamp(28px, 4vw, 40px);
-      justify-content: center;
       background: var(--black);
       color: #fff;
     }
@@ -3628,7 +3622,7 @@
       font-size: var(--text-display-xs);
     }
     .tt-card--primary h3 {
-      font-size: var(--text-display-sm);
+      font-size: var(--text-display-xs);
       max-width: 12ch;
     }
     .tt-card p {
@@ -3639,8 +3633,6 @@
     }
     .tt-card--primary p {
       color: rgba(255, 255, 255, 0.68);
-      font-size: var(--text-body);
-      max-width: 28em;
     }
     .tt-badge {
       align-self: flex-start;
@@ -3660,15 +3652,25 @@
     }
     .tt-when {
       margin-top: auto !important;
-      padding-top: 8px;
+      padding-top: 12px;
       font-size: var(--text-caption) !important;
       color: var(--muted);
     }
     .tt-card--primary .tt-when {
       color: rgba(255, 255, 255, 0.45) !important;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 16px;
-      margin-top: 20px !important;
+      padding-top: 14px;
+      margin-top: auto !important;
+    }
+    @media (max-width: 980px) {
+      .tt-layout {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 560px) {
+      .tt-layout {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* Ecosystem — guest / organizer split */
@@ -3764,9 +3766,6 @@
     .paytrust-tech strong {
       color: var(--text);
       font-weight: var(--weight-bold);
-    }
-    @media (max-width: 900px) {
-      .tt-layout { grid-template-columns: 1fr; }
     }
     @media (max-width: 720px) {
       .eco-cols { grid-template-columns: 1fr; }
