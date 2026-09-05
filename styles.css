@@ -3071,8 +3071,7 @@
     }
     .fp-crm,
     .fp-refund,
-    .fp-invite,
-    .fp-scan {
+    .fp-invite {
       height: auto;
     }
 
@@ -3302,8 +3301,12 @@
 
     /* Feature 2 — Checkout / payment */
     .feat-row[data-feat="pay"] .feat-row__visual {
-      height: min(460px, calc(100svh - 200px));
-      min-height: min(380px, calc(100svh - 220px));
+      height: min(420px, calc(100svh - 260px));
+      min-height: min(360px, calc(100svh - 280px));
+    }
+    .feat-row[data-feat="scanner"] .feat-row__visual {
+      height: min(460px, calc(100svh - 240px));
+      min-height: min(420px, calc(100svh - 260px));
     }
     .fp-pay {
       flex: 1;
@@ -3823,27 +3826,33 @@
 
     /* Feature 6 — Scanner */
     .fp-scan {
-      height: calc(100% - 41px);
+      flex: 1 1 auto;
+      min-height: 0;
+      height: auto;
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
       background: #fff;
     }
     .fp-scan__stage {
       display: grid;
-      place-items: center;
-      gap: 12px;
-      padding: 20px;
+      place-content: center;
+      justify-items: center;
+      align-content: center;
+      gap: 10px;
+      padding: 16px 16px 20px;
       border-right: 1px solid var(--border);
+      min-height: 0;
+      box-sizing: border-box;
     }
     .fp-scan__frame {
-      width: min(78%, 240px);
+      width: min(68%, 190px);
       aspect-ratio: auto;
-      border-radius: 18px;
+      border-radius: 16px;
       border: 2px solid rgba(10,10,10,0.16);
       overflow: hidden;
       position: relative;
       background: #fff;
-      padding: 14px;
+      padding: 12px;
       box-sizing: border-box;
       transition: border-color 240ms var(--ease), box-shadow 240ms var(--ease), transform 500ms var(--ease);
     }
@@ -3851,14 +3860,14 @@
     .fp-scan__frame.is-bad { border-color: #ef4444; box-shadow: 0 0 0 4px rgba(239,68,68,0.14); }
     .fp-scan__ticket {
       display: grid;
-      gap: 10px;
+      gap: 8px;
       justify-items: center;
-      transform: scale(1.03);
+      transform: scale(1.02);
       transition: transform 500ms var(--ease);
     }
     .fp-scan__frame.is-pulse .fp-scan__ticket { transform: scale(1); }
     .fp-scan__qr {
-      width: min(100%, 160px);
+      width: min(100%, 132px);
       height: auto;
       aspect-ratio: 1;
       display: block;
@@ -3870,7 +3879,7 @@
       display: grid;
       gap: 2px;
       text-align: center;
-      padding-top: 8px;
+      padding-top: 6px;
       border-top: 1px solid var(--border);
     }
     .fp-scan__ticket-meta span {
@@ -3880,15 +3889,15 @@
     }
     .fp-scan__ticket-meta strong {
       font-family: var(--font-display);
-      font-size: 18px;
+      font-size: 16px;
       font-weight: var(--weight-display);
       color: var(--text);
       letter-spacing: var(--track-display);
     }
     .fp-scan__result {
-      padding: 8px 14px;
+      padding: 7px 12px;
       border-radius: 999px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       opacity: 0;
       transition: opacity 240ms var(--ease);
@@ -3896,15 +3905,21 @@
     .fp-scan__result.is-show { opacity: 1; }
     .fp-scan__result.is-ok { background: rgba(30,215,96,0.14); color: #0f7a38; }
     .fp-scan__result.is-bad { background: rgba(239,68,68,0.12); color: #b91c1c; }
-    .fp-scan__count { color: var(--muted); font-size: 13px; }
-    .fp-scan__count strong { color: var(--text); font-family: var(--font-display); font-size: 22px; }
+    .fp-scan__count {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.3;
+      padding-bottom: 2px;
+    }
+    .fp-scan__count strong { color: var(--text); font-family: var(--font-display); font-size: 20px; }
     .fp-scan__log {
-      padding: 16px;
+      padding: 14px;
       display: grid;
       gap: 8px;
       align-content: start;
       background: var(--cream-2);
       overflow: auto;
+      min-height: 0;
     }
     .fp-scan__log-item {
       display: flex;
@@ -3931,10 +3946,15 @@
       html { scroll-snap-type: none; }
       .section--feat-list { padding-block: var(--pad-y); }
       .feat-list__head {
+        position: static;
+        top: auto;
+        z-index: auto;
         margin-bottom: var(--section-head-gap);
         padding: 0;
-        scroll-snap-align: none;
+        box-shadow: none;
+        background: transparent;
       }
+      .feat-list__head h2 { font-size: clamp(28px, 4vw, 44px); }
       .section--feat-list .feat-list { gap: clamp(48px, 10vw, 72px); }
       .feat-row,
       .feat-row.is-flip {
