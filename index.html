@@ -494,133 +494,219 @@
       </div>
     </section>
 
-    <section class="section section--feat-scroll" id="included">
-      <div
-        class="feat-scroll"
-        data-feat-scroll
-        data-i18n-aria="offerAria"
-        aria-label="Возможности платформы"
-        role="region"
-        style="--feat-count: 2"
-      >
-        <div class="feat-scroll__sticky">
-          <div class="section-head feat-scroll__head">
-            <span class="eyebrow" data-i18n="offerEyebrow">Возможности</span>
-            <h2 data-i18n="offerTitle">Возможности платформы</h2>
-          </div>
+    <section class="section section--feat-list" id="included">
+      <div class="wrap feat-list-wrap" data-feat-list data-i18n-aria="offerAria" aria-label="Возможности платформы" role="region">
+        <div class="section-head feat-list__head">
+          <span class="eyebrow" data-i18n="offerEyebrow">Возможности</span>
+          <h2 data-i18n="offerTitle">Возможности платформы</h2>
+        </div>
 
-          <div class="feat-scroll__stage">
-            <div class="feat-scroll__copy" aria-live="polite">
-              <article class="feat-scroll__card is-active" data-feat-card="0">
-                <span class="feat-scroll__tag" data-i18n="o1tag">Витрина</span>
-                <h3 class="feat-scroll__title" data-i18n="o1t">Личная витрина</h3>
-                <p class="feat-scroll__desc" data-i18n="o1p">Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
-              </article>
-              <article class="feat-scroll__card" data-feat-card="1">
-                <span class="feat-scroll__tag" data-i18n="o2tag">Оплата</span>
-                <h3 class="feat-scroll__title" data-i18n="o2t">Оплата в 2 клика</h3>
-                <p class="feat-scroll__desc" data-i18n="o2p">Гость платит прямо в браузере — ничего скачивать не нужно.</p>
-              </article>
+        <div class="feat-list">
+          <!-- 1 Showcase: text left / visual right -->
+          <article class="feat-row" data-feat="showcase">
+            <div class="feat-row__copy">
+              <span class="feat-row__tag" data-i18n="o1tag">Витрина</span>
+              <h3 class="feat-row__title" data-i18n="o1t">Личная витрина</h3>
+              <p class="feat-row__desc" data-i18n="o1p">Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
             </div>
-
-            <div class="feat-scroll__panel" aria-hidden="true">
-              <article class="feat-panel is-active" data-feat-slide="0" data-feat="showcase">
-                <div class="fp-browser">
-                  <div class="fp-browser__chrome">
-                    <span class="fp-browser__dots" aria-hidden="true"></span>
-                    <div class="fp-browser__url">taneesh.uz/e/night-garden</div>
-                  </div>
-                  <div class="fp-showcase">
-                    <figure class="fp-showcase__cover">
-                      <img src="assets/hero-events/card-event-detail.png" alt="" width="720" height="900" decoding="async" />
-                    </figure>
-                    <div class="fp-showcase__body">
-                      <span class="fp-showcase__badge">Опубликовано</span>
-                      <h4 class="fp-showcase__title">Night Garden</h4>
-                      <p class="fp-showcase__meta">12 апр · 20:00 · Ташкент</p>
-                      <div class="fp-showcase__price">
-                        <strong>100 000</strong>
-                        <span>от билета</span>
-                      </div>
-                      <button type="button" class="fp-showcase__cta" tabindex="-1">Купить билет</button>
-                      <div class="fp-showcase__link" data-feat-copy>
-                        <span>Смарт-ссылка</span>
-                        <code>taneesh.uz/e/night-garden</code>
-                        <em class="fp-showcase__copied" hidden>Скопировано</em>
-                      </div>
-                      <div class="fp-showcase__share" aria-hidden="true">
-                        <span>TG</span><span>IG</span><span>Ads</span>
-                      </div>
+            <div class="feat-row__visual">
+              <div class="fp-browser">
+                <div class="fp-browser__chrome">
+                  <span class="fp-browser__dots" aria-hidden="true"></span>
+                  <div class="fp-browser__url">taneesh.uz/e/night-garden</div>
+                </div>
+                <div class="fp-showcase">
+                  <figure class="fp-showcase__cover">
+                    <img src="assets/hero-events/card-event-detail.png" alt="" width="720" height="900" decoding="async" loading="lazy" />
+                  </figure>
+                  <div class="fp-showcase__body">
+                    <span class="fp-showcase__badge">Опубликовано</span>
+                    <h4 class="fp-showcase__title">Night Garden</h4>
+                    <p class="fp-showcase__meta">12 апр · 20:00 · Ташкент</p>
+                    <div class="fp-showcase__price"><strong>100 000</strong><span>от билета</span></div>
+                    <button type="button" class="fp-showcase__cta" tabindex="-1">Купить билет</button>
+                    <div class="fp-showcase__link">
+                      <span>Смарт-ссылка</span>
+                      <code>taneesh.uz/e/night-garden</code>
+                      <em class="fp-showcase__copied" data-demo-copied hidden>Скопировано</em>
                     </div>
+                    <div class="fp-showcase__share" aria-hidden="true"><span>TG</span><span>IG</span><span>Ads</span></div>
                   </div>
                 </div>
-              </article>
+              </div>
+            </div>
+          </article>
 
-              <article class="feat-panel" data-feat-slide="1" data-feat="pay">
-                <div class="fp-browser">
-                  <div class="fp-browser__chrome">
-                    <span class="fp-browser__dots" aria-hidden="true"></span>
-                    <div class="fp-browser__url">taneesh.uz/checkout/night-garden</div>
-                  </div>
-                  <div class="fp-pay" data-pay-demo>
-                    <div class="fp-pay__main">
-                      <header class="fp-pay__head">
-                        <span>Регистрация</span>
-                        <strong>Night Garden</strong>
-                      </header>
-                      <div class="fp-pay__fields">
-                        <label>
-                          <span>Кому билеты</span>
-                          <em>Мун Тимур</em>
-                        </label>
-                        <label>
-                          <span>Телефон</span>
-                          <em>+998 90 123 45 67</em>
-                        </label>
-                      </div>
-                      <div class="fp-pay__methods">
-                        <span class="fp-pay__methods-label">Способ оплаты</span>
-                        <button type="button" class="fp-pay__method is-on" data-pay-method="humo" tabindex="-1">
-                          <i></i><strong>Humo</strong><span>•• 4242</span>
-                        </button>
-                        <button type="button" class="fp-pay__method" data-pay-method="uzcard" tabindex="-1">
-                          <i></i><strong>Uzcard</strong><span>•• 8811</span>
-                        </button>
-                      </div>
-                      <button type="button" class="fp-pay__cta" data-pay-cta tabindex="-1">Оплатить 105 000</button>
-                      <div class="fp-pay__success" data-pay-success hidden>
-                        <span class="fp-pay__ok">✓</span>
-                        <strong>Оплачено</strong>
-                        <em>Билет уже в приложении гостя</em>
-                      </div>
+          <!-- 2 Pay: visual left / text right -->
+          <article class="feat-row is-flip" data-feat="pay">
+            <div class="feat-row__copy">
+              <span class="feat-row__tag" data-i18n="o2tag">Оплата</span>
+              <h3 class="feat-row__title" data-i18n="o2t">Оплата в 2 клика</h3>
+              <p class="feat-row__desc" data-i18n="o2p">Гость платит прямо в браузере — ничего скачивать не нужно.</p>
+            </div>
+            <div class="feat-row__visual">
+              <div class="fp-browser">
+                <div class="fp-browser__chrome">
+                  <span class="fp-browser__dots" aria-hidden="true"></span>
+                  <div class="fp-browser__url">taneesh.uz/checkout/night-garden</div>
+                </div>
+                <div class="fp-pay" data-pay-demo>
+                  <div class="fp-pay__main">
+                    <header class="fp-pay__head"><span>Регистрация</span><strong>Night Garden</strong></header>
+                    <div class="fp-pay__fields">
+                      <label><span>Кому билеты</span><em>Мун Тимур</em></label>
+                      <label><span>Телефон</span><em>+998 90 123 45 67</em></label>
                     </div>
-                    <aside class="fp-pay__side">
-                      <div class="fp-pay__row">
-                        <span>Цена билета</span>
-                        <strong>100 000</strong>
+                    <div class="fp-pay__methods">
+                      <span class="fp-pay__methods-label">Способ оплаты</span>
+                      <button type="button" class="fp-pay__method is-on" tabindex="-1"><i></i><strong>Humo</strong><span>•• 4242</span></button>
+                      <button type="button" class="fp-pay__method" tabindex="-1"><i></i><strong>Uzcard</strong><span>•• 8811</span></button>
+                    </div>
+                    <button type="button" class="fp-pay__cta" data-pay-cta tabindex="-1">Оплатить 105 000</button>
+                    <div class="fp-pay__success" data-pay-success hidden>
+                      <span class="fp-pay__ok">✓</span><strong>Оплачено</strong><em>Билет уже у гостя</em>
+                    </div>
+                  </div>
+                  <aside class="fp-pay__side">
+                    <div class="fp-pay__row"><span>Цена билета</span><strong>100 000</strong></div>
+                    <div class="fp-pay__row"><span>Эквайринг 1.5%</span><strong>1 500</strong></div>
+                    <div class="fp-pay__row"><span>FixedFee на гостя</span><strong>3 500</strong></div>
+                    <div class="fp-pay__row is-guest"><span>Гость платит</span><strong>105 000</strong></div>
+                    <div class="fp-pay__you" data-pay-you><span>Taneesh · вам 100%</span><strong>100 000</strong></div>
+                  </aside>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3 CRM -->
+          <article class="feat-row" data-feat="crm">
+            <div class="feat-row__copy">
+              <span class="feat-row__tag" data-i18n="o3tag">CRM</span>
+              <h3 class="feat-row__title" data-i18n="o3t">CRM для гостей</h3>
+              <p class="feat-row__desc" data-i18n="o3p">Список покупателей, статусы оплат и контакты — всё ваше, с выгрузкой базы. Стройте свой LTV, а не отдавайте данные кассе.</p>
+            </div>
+            <div class="feat-row__visual">
+              <div class="fp-browser">
+                <div class="fp-browser__chrome">
+                  <span class="fp-browser__dots" aria-hidden="true"></span>
+                  <div class="fp-browser__url">cabinet.taneesh.uz/audience</div>
+                </div>
+                <div class="fp-crm" data-crm-demo>
+                  <div class="fp-crm__toolbar">
+                    <div class="fp-crm__search">Поиск по имени, телефону или email…</div>
+                    <button type="button" class="fp-crm__export" data-crm-export tabindex="-1">Экспорт CSV</button>
+                  </div>
+                  <div class="fp-crm__table">
+                    <div class="fp-crm__head"><span>Гость</span><span>Сумма</span><span>Билеты</span><span>Статус</span></div>
+                    <div class="fp-crm__row"><div><strong>Timur Mun</strong><em>timur@example.com</em></div><strong class="is-money">1 200 000</strong><span>6</span><b class="is-ok">Оплачен</b></div>
+                    <div class="fp-crm__row"><div><strong>Alice Smith</strong><em>alice@example.com</em></div><strong class="is-money">450 000</strong><span>2</span><b class="is-ok">Оплачен</b></div>
+                    <div class="fp-crm__row"><div><strong>Диана Ким</strong><em>diana@startup.uz</em></div><strong class="is-money">0</strong><span>1</span><b class="is-vip">VIP</b></div>
+                    <div class="fp-crm__row"><div><strong>Bob Johnson</strong><em>bob@example.com</em></div><strong>0</strong><span>0</span><b class="is-mute">—</b></div>
+                  </div>
+                  <div class="fp-crm__toast" data-crm-toast hidden>CSV скачан</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 4 Refund flip -->
+          <article class="feat-row is-flip" data-feat="refund">
+            <div class="feat-row__copy">
+              <span class="feat-row__tag" data-i18n="o4tag">Возврат</span>
+              <h3 class="feat-row__title" data-i18n="o4t">Возврат в 1 клик</h3>
+              <p class="feat-row__desc" data-i18n="o4p">Мгновенно отменяйте и возвращайте билеты без долгих переписок с поддержкой.</p>
+            </div>
+            <div class="feat-row__visual">
+              <div class="fp-browser">
+                <div class="fp-browser__chrome">
+                  <span class="fp-browser__dots" aria-hidden="true"></span>
+                  <div class="fp-browser__url">cabinet.taneesh.uz/orders/4821</div>
+                </div>
+                <div class="fp-refund" data-refund-demo>
+                  <div class="fp-refund__card">
+                    <div class="fp-refund__top">
+                      <div>
+                        <span>Заказ #4821</span>
+                        <strong>Мадина Каримова</strong>
+                        <em>guest56@mail.test · Night Garden · Standard</em>
                       </div>
-                      <div class="fp-pay__row">
-                        <span>Эквайринг 1.5%</span>
-                        <strong>1 500</strong>
-                      </div>
-                      <div class="fp-pay__row">
-                        <span>FixedFee на гостя</span>
-                        <strong>3 500</strong>
-                      </div>
-                      <div class="fp-pay__row is-guest">
-                        <span>Гость платит</span>
-                        <strong>105 000</strong>
-                      </div>
-                      <div class="fp-pay__you" data-pay-you>
-                        <span>Taneesh · вам 100%</span>
-                        <strong>100 000</strong>
-                      </div>
-                    </aside>
+                      <b class="fp-refund__status" data-refund-status>Оплачен</b>
+                    </div>
+                    <div class="fp-refund__amount"><span>К возврату</span><strong data-refund-amount>100 000</strong></div>
+                    <button type="button" class="fp-refund__btn" data-refund-btn tabindex="-1">Вернуть билет</button>
+                  </div>
+                  <div class="fp-refund__sheet" data-refund-sheet hidden>
+                    <p>Подтвердить возврат?</p>
+                    <button type="button" class="fp-refund__confirm" data-refund-confirm tabindex="-1">Подтвердить</button>
                   </div>
                 </div>
-              </article>
+              </div>
             </div>
-          </div>
+          </article>
+
+          <!-- 5 VIP -->
+          <article class="feat-row" data-feat="invite">
+            <div class="feat-row__copy">
+              <span class="feat-row__tag" data-i18n="o5tag">Приглашения</span>
+              <h3 class="feat-row__title" data-i18n="o5t">VIP-приглашения</h3>
+              <p class="feat-row__desc" data-i18n="o5p">Генерируйте закрытые ссылки или бесплатные билеты для особых гостей и партнеров.</p>
+            </div>
+            <div class="feat-row__visual">
+              <div class="fp-browser">
+                <div class="fp-browser__chrome">
+                  <span class="fp-browser__dots" aria-hidden="true"></span>
+                  <div class="fp-browser__url">cabinet.taneesh.uz/events/night-garden/guests</div>
+                </div>
+                <div class="fp-invite" data-invite-demo>
+                  <div class="fp-invite__bar">
+                    <strong>Night Garden VIP</strong>
+                    <button type="button" class="fp-invite__add" data-invite-add tabindex="-1">+ Пригласить</button>
+                  </div>
+                  <div class="fp-invite__list" data-invite-list>
+                    <div class="fp-invite__item"><span class="fp-invite__ava">Д</span><div><strong>Диана Ким</strong><em>diana@startup.uz</em></div><b class="is-vip">VIP</b><b class="is-invited">Приглашён</b></div>
+                    <div class="fp-invite__item"><span class="fp-invite__ava">С</span><div><strong>Сардор Азизов</strong><em>sardor@gym.com</em></div><b class="is-vip">VIP</b><b class="is-invited">Приглашён</b></div>
+                    <div class="fp-invite__item"><span class="fp-invite__ava">Е</span><div><strong>Елена Волкова</strong><em>elena@agency.com</em></div><b>Guest</b><b class="is-ok">Прошел</b></div>
+                  </div>
+                  <div class="fp-invite__link">
+                    <span>Закрытая VIP-ссылка</span>
+                    <code>taneesh.uz/i/vip-night</code>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 6 Scanner flip -->
+          <article class="feat-row is-flip" data-feat="scanner">
+            <div class="feat-row__copy">
+              <span class="feat-row__tag" data-i18n="o6tag">Сканер</span>
+              <h3 class="feat-row__title" data-i18n="o6t">Быстрый, удобный сканер</h3>
+              <p class="feat-row__desc" data-i18n="o6p">Быстрый контроль на входе по QR-кодам. Исключает подделки и повторные проходы.</p>
+            </div>
+            <div class="feat-row__visual">
+              <div class="fp-browser">
+                <div class="fp-browser__chrome">
+                  <span class="fp-browser__dots" aria-hidden="true"></span>
+                  <div class="fp-browser__url">cabinet.taneesh.uz/scanner</div>
+                </div>
+                <div class="fp-scan" data-scan-demo>
+                  <div class="fp-scan__stage">
+                    <div class="fp-scan__frame" data-scan-frame>
+                      <img src="assets/hero-events/card-ticket-qr.png" alt="" width="200" height="200" decoding="async" loading="lazy" data-scan-qr />
+                    </div>
+                    <div class="fp-scan__result is-ok" data-scan-result>Гость пропущен</div>
+                    <div class="fp-scan__count">Вход <strong data-scan-count>124</strong> / 200</div>
+                  </div>
+                  <div class="fp-scan__log" data-scan-log>
+                    <div class="fp-scan__log-item is-ok"><strong>Тимур Мун</strong><span>Online · OK</span></div>
+                    <div class="fp-scan__log-item is-ok"><strong>Диана Ким</strong><span>VIP · OK</span></div>
+                    <div class="fp-scan__log-item is-bad" data-scan-bad hidden><strong>Повторный QR</strong><span>Уже прошёл</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -1214,101 +1300,175 @@
       });
     })();
 
-    // Features scroll (#included) — left copy + right panel, scroll scrub
-    (function initFeatScroll() {
-      const root = document.querySelector('[data-feat-scroll]');
+    // Features list (#included) — micro-demos when rows enter view
+    (function initFeatList() {
+      const root = document.querySelector('[data-feat-list]');
       if (!root || root.dataset.ready) return;
       root.dataset.ready = '1';
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      const slides = [...root.querySelectorAll('[data-feat-slide]')];
-      const cards = [...root.querySelectorAll('[data-feat-card]')];
-      const count = Math.max(slides.length, cards.length, 1);
-      root.style.setProperty('--feat-count', String(count));
+      const runShowcase = (row) => {
+        const tip = row.querySelector('[data-demo-copied]');
+        const host = row.querySelector('.fp-showcase');
+        if (!host || !tip) return;
+        tip.hidden = true;
+        host.classList.remove('is-copied');
+        window.setTimeout(() => {
+          tip.hidden = false;
+          host.classList.add('is-copied');
+        }, 500);
+      };
 
-      let index = 0;
-
-      const setActive = (next) => {
-        const i = Math.max(0, Math.min(count - 1, next));
-        if (i === index && root.dataset.boot) return;
-        index = i;
-        root.dataset.boot = '1';
-        root.dataset.active = String(i);
-        slides.forEach((s, n) => s.classList.toggle('is-active', n === i));
-        cards.forEach((c) => {
-          c.classList.toggle('is-active', Number(c.getAttribute('data-feat-card')) === i);
-        });
-
-        // Showcase micro-demo: pulse copy toast when scene is active
-        const showcase = root.querySelector('.feat-panel[data-feat="showcase"]');
-        if (showcase && i === 0) {
-          const host = showcase.querySelector('.fp-showcase');
-          if (host) {
-            host.classList.remove('is-copied');
-            window.clearTimeout(host._copyTimer);
-            host._copyTimer = window.setTimeout(() => {
-              host.classList.add('is-copied');
-              const tip = host.querySelector('.fp-showcase__copied');
-              if (tip) tip.hidden = false;
-            }, 700);
-          }
+      const runPay = (row) => {
+        const cta = row.querySelector('[data-pay-cta]');
+        const success = row.querySelector('[data-pay-success]');
+        const you = row.querySelector('[data-pay-you]');
+        if (cta) {
+          cta.classList.remove('is-busy', 'is-hidden');
+          cta.textContent = 'Оплатить 105 000';
         }
-
-        // Payment micro-demo: select Humo → pay → success + you 100% glow
-        const pay = root.querySelector('.feat-panel[data-feat="pay"]');
-        if (pay) {
-          const demo = pay.querySelector('[data-pay-demo]');
-          const cta = pay.querySelector('[data-pay-cta]');
-          const success = pay.querySelector('[data-pay-success]');
-          const you = pay.querySelector('[data-pay-you]');
-          const methods = [...pay.querySelectorAll('[data-pay-method]')];
-          window.clearTimeout(pay._payTimer1);
-          window.clearTimeout(pay._payTimer2);
-          window.clearTimeout(pay._payTimer3);
-          if (demo) demo.classList.remove('is-done');
-          if (cta) {
-            cta.classList.remove('is-busy', 'is-hidden');
-            cta.textContent = 'Оплатить 105 000';
-          }
-          if (success) success.hidden = true;
-          if (you) you.classList.remove('is-glow');
-          methods.forEach((m) => m.classList.toggle('is-on', m.getAttribute('data-pay-method') === 'humo'));
-
-          if (i === 1) {
-            pay._payTimer1 = window.setTimeout(() => {
-              if (cta) cta.classList.add('is-busy');
-            }, 600);
-            pay._payTimer2 = window.setTimeout(() => {
-              if (cta) cta.classList.add('is-hidden');
-              if (success) success.hidden = false;
-              if (you) you.classList.add('is-glow');
-              if (demo) demo.classList.add('is-done');
-            }, 1400);
-          }
+        if (success) success.hidden = true;
+        if (you) you.classList.remove('is-glow');
+        if (reduce) {
+          if (cta) cta.classList.add('is-hidden');
+          if (success) success.hidden = false;
+          if (you) you.classList.add('is-glow');
+          return;
         }
+        window.setTimeout(() => cta && cta.classList.add('is-busy'), 400);
+        window.setTimeout(() => {
+          if (cta) cta.classList.add('is-hidden');
+          if (success) success.hidden = false;
+          if (you) you.classList.add('is-glow');
+        }, 1100);
       };
 
-      const progressToIndex = () => {
-        if (count <= 1) return 0;
-        const rect = root.getBoundingClientRect();
-        const travel = Math.max(1, root.offsetHeight - window.innerHeight);
-        const scrolled = Math.min(Math.max(-rect.top, 0), travel);
-        return Math.round((scrolled / travel) * (count - 1));
+      const runCrm = (row) => {
+        const toast = row.querySelector('[data-crm-toast]');
+        const btn = row.querySelector('[data-crm-export]');
+        if (toast) toast.hidden = true;
+        if (reduce) {
+          if (toast) toast.hidden = false;
+          return;
+        }
+        window.setTimeout(() => {
+          if (btn) btn.style.transform = 'scale(0.96)';
+        }, 350);
+        window.setTimeout(() => {
+          if (btn) btn.style.transform = '';
+          if (toast) toast.hidden = false;
+        }, 700);
       };
 
-      let ticking = false;
-      const onScroll = () => {
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(() => {
-          ticking = false;
-          setActive(progressToIndex());
-        });
+      const runRefund = (row) => {
+        const btn = row.querySelector('[data-refund-btn]');
+        const sheet = row.querySelector('[data-refund-sheet]');
+        const confirm = row.querySelector('[data-refund-confirm]');
+        const status = row.querySelector('[data-refund-status]');
+        const amount = row.querySelector('[data-refund-amount]');
+        if (btn) btn.classList.remove('is-hidden');
+        if (sheet) sheet.hidden = true;
+        if (status) {
+          status.textContent = 'Оплачен';
+          status.classList.remove('is-done');
+        }
+        if (amount) amount.textContent = '100 000';
+        if (reduce) {
+          if (btn) btn.classList.add('is-hidden');
+          if (status) {
+            status.textContent = 'Возвращён';
+            status.classList.add('is-done');
+          }
+          if (amount) amount.textContent = '0';
+          return;
+        }
+        window.setTimeout(() => { if (sheet) sheet.hidden = false; }, 500);
+        window.setTimeout(() => {
+          if (sheet) sheet.hidden = true;
+          if (btn) btn.classList.add('is-hidden');
+          if (status) {
+            status.textContent = 'Возвращён';
+            status.classList.add('is-done');
+          }
+          if (amount) amount.textContent = '0';
+        }, 1400);
       };
 
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll, { passive: true });
-      setActive(0);
-      onScroll();
+      const runInvite = (row) => {
+        const list = row.querySelector('[data-invite-list]');
+        if (!list) return;
+        list.querySelectorAll('.fp-invite__item.is-new').forEach((n) => n.remove());
+        if (reduce) return;
+        window.setTimeout(() => {
+          const item = document.createElement('div');
+          item.className = 'fp-invite__item is-new';
+          item.innerHTML = '<span class="fp-invite__ava">А</span><div><strong>Алина К.</strong><em>press@media.uz</em></div><b class="is-vip">VIP</b><b class="is-invited">Приглашён</b>';
+          list.prepend(item);
+        }, 600);
+      };
+
+      const runScanner = (row) => {
+        const frame = row.querySelector('[data-scan-frame]');
+        const result = row.querySelector('[data-scan-result]');
+        const count = row.querySelector('[data-scan-count]');
+        const bad = row.querySelector('[data-scan-bad]');
+        if (frame) frame.classList.remove('is-ok', 'is-bad', 'is-pulse');
+        if (result) {
+          result.className = 'fp-scan__result is-ok';
+          result.textContent = 'Гость пропущен';
+        }
+        if (count) count.textContent = '124';
+        if (bad) bad.hidden = true;
+        if (reduce) {
+          if (frame) frame.classList.add('is-ok', 'is-pulse');
+          if (result) result.classList.add('is-show');
+          return;
+        }
+        window.setTimeout(() => {
+          if (frame) frame.classList.add('is-pulse', 'is-ok');
+          if (result) result.classList.add('is-show');
+          if (count) count.textContent = '125';
+        }, 450);
+        window.setTimeout(() => {
+          if (frame) {
+            frame.classList.remove('is-ok');
+            frame.classList.add('is-bad');
+          }
+          if (result) {
+            result.className = 'fp-scan__result is-bad is-show';
+            result.textContent = 'Уже прошёл';
+          }
+          if (bad) bad.hidden = false;
+        }, 1800);
+      };
+
+      const runners = {
+        showcase: runShowcase,
+        pay: runPay,
+        crm: runCrm,
+        refund: runRefund,
+        invite: runInvite,
+        scanner: runScanner,
+      };
+
+      const rows = [...root.querySelectorAll('.feat-row[data-feat]')];
+      if (!('IntersectionObserver' in window)) {
+        rows.forEach((row) => runners[row.getAttribute('data-feat')]?.(row));
+        return;
+      }
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const row = entry.target;
+            if (row.dataset.played) return;
+            row.dataset.played = '1';
+            runners[row.getAttribute('data-feat')]?.(row);
+          });
+        },
+        { threshold: 0.45 }
+      );
+      rows.forEach((row) => io.observe(row));
     })();
 
     // Lazy-load feature card background images when they enter viewport
