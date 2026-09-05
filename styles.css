@@ -108,7 +108,7 @@
         -webkit-overflow-scrolling: touch;
       }
       #footer.snap-panel {
-        justify-content: center;
+        justify-content: space-between;
         padding: 72px 0 40px;
         overflow: hidden;
         /* end-align so the dark finale can fully settle under the sticky header */
