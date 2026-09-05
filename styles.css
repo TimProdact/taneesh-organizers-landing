@@ -3260,6 +3260,215 @@
       border-color: rgba(30, 215, 96, 0.35);
     }
 
+    /* Feature 2 — Checkout / payment */
+    .fp-pay {
+      flex: 1;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      background: #141414;
+    }
+    .fp-browser:has(.fp-pay) { min-height: 0; }
+    .fp-browser:has(.fp-pay) .fp-browser__chrome + .fp-pay,
+    .fp-pay { height: calc(100% - 0px); }
+    .fp-pay__main {
+      padding: clamp(16px, 2vw, 26px);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
+      min-width: 0;
+    }
+    .fp-pay__head {
+      display: grid;
+      gap: 4px;
+    }
+    .fp-pay__head > span {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+    }
+    .fp-pay__head strong {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 2.6vw, 32px);
+      font-weight: var(--weight-display);
+      letter-spacing: var(--track-heading);
+    }
+    .fp-pay__fields {
+      display: grid;
+      gap: 8px;
+    }
+    .fp-pay__fields label {
+      display: grid;
+      gap: 4px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .fp-pay__fields span {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.4);
+      font-weight: 600;
+    }
+    .fp-pay__fields em {
+      font-style: normal;
+      font-size: 14px;
+      color: #fff;
+    }
+    .fp-pay__methods {
+      display: grid;
+      gap: 8px;
+    }
+    .fp-pay__methods-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+    }
+    .fp-pay__method {
+      display: grid;
+      grid-template-columns: 18px 1fr auto;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+      color: #fff;
+      text-align: left;
+      cursor: default;
+    }
+    .fp-pay__method i {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
+      box-sizing: border-box;
+    }
+    .fp-pay__method.is-on {
+      border-color: rgba(30, 215, 96, 0.45);
+      background: rgba(30, 215, 96, 0.08);
+    }
+    .fp-pay__method.is-on i {
+      border-color: #1ed760;
+      box-shadow: inset 0 0 0 3.5px #1ed760;
+    }
+    .fp-pay__method strong { font-size: 14px; }
+    .fp-pay__method span {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.45);
+    }
+    .fp-pay__cta {
+      margin-top: auto;
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 18px;
+      background: #fff;
+      color: #0a0a0a;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: default;
+      transition: transform 180ms var(--ease), opacity 180ms var(--ease);
+    }
+    .fp-pay__cta.is-busy {
+      opacity: 0.55;
+      pointer-events: none;
+    }
+    .fp-pay__cta.is-hidden { display: none; }
+    .fp-pay__success {
+      margin-top: auto;
+      display: grid;
+      justify-items: center;
+      gap: 6px;
+      text-align: center;
+      padding: 18px 12px;
+      border-radius: 18px;
+      background: rgba(30, 215, 96, 0.1);
+      border: 1px solid rgba(30, 215, 96, 0.28);
+    }
+    .fp-pay__success[hidden] { display: none !important; }
+    .fp-pay__ok {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(30, 215, 96, 0.2);
+      color: #1ed760;
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .fp-pay__success strong {
+      font-size: 18px;
+    }
+    .fp-pay__success em {
+      font-style: normal;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.55);
+    }
+    .fp-pay__side {
+      padding: clamp(16px, 2vw, 26px);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: #101010;
+    }
+    .fp-pay__row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    .fp-pay__row strong {
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: var(--weight-display);
+      letter-spacing: var(--track-display);
+    }
+    .fp-pay__row.is-guest {
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .fp-pay__you {
+      margin-top: auto;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(30, 215, 96, 0.12);
+      display: grid;
+      gap: 6px;
+      justify-items: center;
+      text-align: center;
+      transform: scale(0.98);
+      opacity: 0.75;
+      transition: transform 320ms var(--ease), opacity 320ms var(--ease), box-shadow 320ms var(--ease);
+    }
+    .fp-pay__you.is-glow {
+      transform: scale(1);
+      opacity: 1;
+      box-shadow: 0 0 0 1px rgba(30, 215, 96, 0.35), 0 12px 32px rgba(30, 215, 96, 0.18);
+    }
+    .fp-pay__you span {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0f7a38;
+    }
+    .fp-pay__you strong {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3vw, 36px);
+      font-weight: var(--weight-display);
+      letter-spacing: var(--track-display);
+      color: #fff;
+      line-height: 1;
+    }
+
     @media (max-width: 900px) {
       .feat-scroll__stage {
         grid-template-columns: 1fr;
@@ -3288,13 +3497,20 @@
       .fp-showcase {
         grid-template-columns: 0.9fr 1.1fr;
       }
+      .fp-pay {
+        grid-template-columns: 1fr;
+      }
+      .fp-pay__main {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
     }
     @media (max-width: 560px) {
       .fp-showcase { grid-template-columns: 1fr; }
       .fp-showcase__cover { max-height: 160px; }
       .feat-scroll__panel {
         aspect-ratio: auto;
-        min-height: 420px;
+        min-height: 480px;
       }
     }
     @media (prefers-reduced-motion: reduce) {

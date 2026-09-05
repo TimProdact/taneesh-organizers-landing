@@ -501,7 +501,7 @@
         data-i18n-aria="offerAria"
         aria-label="Возможности платформы"
         role="region"
-        style="--feat-count: 1"
+        style="--feat-count: 2"
       >
         <div class="feat-scroll__sticky">
           <div class="section-head feat-scroll__head">
@@ -515,6 +515,11 @@
                 <span class="feat-scroll__tag" data-i18n="o1tag">Витрина</span>
                 <h3 class="feat-scroll__title" data-i18n="o1t">Личная витрина</h3>
                 <p class="feat-scroll__desc" data-i18n="o1p">Страница события и смарт-ссылка для таргета и соцсетей в одном месте.</p>
+              </article>
+              <article class="feat-scroll__card" data-feat-card="1">
+                <span class="feat-scroll__tag" data-i18n="o2tag">Оплата</span>
+                <h3 class="feat-scroll__title" data-i18n="o2t">Оплата в 2 клика</h3>
+                <p class="feat-scroll__desc" data-i18n="o2p">Гость платит прямо в браузере — ничего скачивать не нужно.</p>
               </article>
             </div>
 
@@ -547,6 +552,70 @@
                         <span>TG</span><span>IG</span><span>Ads</span>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="feat-panel" data-feat-slide="1" data-feat="pay">
+                <div class="fp-browser">
+                  <div class="fp-browser__chrome">
+                    <span class="fp-browser__dots" aria-hidden="true"></span>
+                    <div class="fp-browser__url">taneesh.uz/checkout/night-garden</div>
+                  </div>
+                  <div class="fp-pay" data-pay-demo>
+                    <div class="fp-pay__main">
+                      <header class="fp-pay__head">
+                        <span>Регистрация</span>
+                        <strong>Night Garden</strong>
+                      </header>
+                      <div class="fp-pay__fields">
+                        <label>
+                          <span>Кому билеты</span>
+                          <em>Мун Тимур</em>
+                        </label>
+                        <label>
+                          <span>Телефон</span>
+                          <em>+998 90 123 45 67</em>
+                        </label>
+                      </div>
+                      <div class="fp-pay__methods">
+                        <span class="fp-pay__methods-label">Способ оплаты</span>
+                        <button type="button" class="fp-pay__method is-on" data-pay-method="humo" tabindex="-1">
+                          <i></i><strong>Humo</strong><span>•• 4242</span>
+                        </button>
+                        <button type="button" class="fp-pay__method" data-pay-method="uzcard" tabindex="-1">
+                          <i></i><strong>Uzcard</strong><span>•• 8811</span>
+                        </button>
+                      </div>
+                      <button type="button" class="fp-pay__cta" data-pay-cta tabindex="-1">Оплатить 105 000</button>
+                      <div class="fp-pay__success" data-pay-success hidden>
+                        <span class="fp-pay__ok">✓</span>
+                        <strong>Оплачено</strong>
+                        <em>Билет уже в приложении гостя</em>
+                      </div>
+                    </div>
+                    <aside class="fp-pay__side">
+                      <div class="fp-pay__row">
+                        <span>Цена билета</span>
+                        <strong>100 000</strong>
+                      </div>
+                      <div class="fp-pay__row">
+                        <span>Эквайринг 1.5%</span>
+                        <strong>1 500</strong>
+                      </div>
+                      <div class="fp-pay__row">
+                        <span>FixedFee на гостя</span>
+                        <strong>3 500</strong>
+                      </div>
+                      <div class="fp-pay__row is-guest">
+                        <span>Гость платит</span>
+                        <strong>105 000</strong>
+                      </div>
+                      <div class="fp-pay__you" data-pay-you>
+                        <span>Taneesh · вам 100%</span>
+                        <strong>100 000</strong>
+                      </div>
+                    </aside>
                   </div>
                 </div>
               </article>
@@ -1181,6 +1250,39 @@
               const tip = host.querySelector('.fp-showcase__copied');
               if (tip) tip.hidden = false;
             }, 700);
+          }
+        }
+
+        // Payment micro-demo: select Humo → pay → success + you 100% glow
+        const pay = root.querySelector('.feat-panel[data-feat="pay"]');
+        if (pay) {
+          const demo = pay.querySelector('[data-pay-demo]');
+          const cta = pay.querySelector('[data-pay-cta]');
+          const success = pay.querySelector('[data-pay-success]');
+          const you = pay.querySelector('[data-pay-you]');
+          const methods = [...pay.querySelectorAll('[data-pay-method]')];
+          window.clearTimeout(pay._payTimer1);
+          window.clearTimeout(pay._payTimer2);
+          window.clearTimeout(pay._payTimer3);
+          if (demo) demo.classList.remove('is-done');
+          if (cta) {
+            cta.classList.remove('is-busy', 'is-hidden');
+            cta.textContent = 'Оплатить 105 000';
+          }
+          if (success) success.hidden = true;
+          if (you) you.classList.remove('is-glow');
+          methods.forEach((m) => m.classList.toggle('is-on', m.getAttribute('data-pay-method') === 'humo'));
+
+          if (i === 1) {
+            pay._payTimer1 = window.setTimeout(() => {
+              if (cta) cta.classList.add('is-busy');
+            }, 600);
+            pay._payTimer2 = window.setTimeout(() => {
+              if (cta) cta.classList.add('is-hidden');
+              if (success) success.hidden = false;
+              if (you) you.classList.add('is-glow');
+              if (demo) demo.classList.add('is-done');
+            }, 1400);
           }
         }
       };
