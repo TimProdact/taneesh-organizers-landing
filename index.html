@@ -1033,11 +1033,10 @@
       }
     })();
 
-    // Header theme over full-screen footer
+    // Header theme over dark full-bleed sections
     (function initHeaderFooterTheme() {
       const header = document.querySelector('.header');
       const darkSections = [
-        document.getElementById('included'),
         document.getElementById('footer'),
       ].filter(Boolean);
       if (!header || !darkSections.length) return;
