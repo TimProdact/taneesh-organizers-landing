@@ -2214,13 +2214,14 @@
     .fees-board {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: 28px 32px;
+      gap: 24px 28px;
       align-items: start;
-      max-width: 920px;
+      width: 100%;
+      max-width: var(--max);
       margin-inline: auto;
-      padding: clamp(24px, 4vw, 40px);
-      background: var(--surface);
-      border-radius: var(--radius);
+      padding: 0;
+      background: transparent;
+      border-radius: 0;
       border: 0;
       box-shadow: none;
     }
@@ -2252,7 +2253,7 @@
     .fees-result-card {
       padding: 22px 18px;
       border-radius: 20px;
-      background: #fff;
+      background: var(--surface);
       text-align: center;
       display: grid;
       gap: 8px;
@@ -2292,19 +2293,22 @@
       width: 100%;
     }
     .fees-board .calc-field {
-      background: #fff;
+      background: var(--surface);
       border-radius: 18px;
       padding: 18px 16px;
     }
     .fees-breakdown {
+      grid-column: 1 / -1;
       margin: 0;
-      padding: 12px 14px;
-      border-radius: 14px;
-      background: #fff;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 14px 20px;
+      border-radius: 18px;
+      background: var(--surface);
       font-size: 13px;
       line-height: 1.45;
       color: var(--muted);
-      text-align: left;
+      text-align: center;
     }
     .fees-breakdown strong {
       color: var(--text);
@@ -2323,7 +2327,7 @@
       gap: 12px;
     }
     .fees-savings > div {
-      background: #fff;
+      background: var(--surface);
     }
 
     @media (max-width: 760px) {
