@@ -201,7 +201,7 @@
         border-color 280ms var(--ease),
         box-shadow 280ms var(--ease);
     }
-    .header.is-over-footer .header-pill {
+    .header.is-over-dark .header-pill {
       background: rgba(17, 24, 39, 0.88);
       border-color: rgba(255, 255, 255, 0.12);
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
@@ -218,7 +218,7 @@
       height: 24px;
       transition: filter 280ms var(--ease);
     }
-    .header.is-over-footer .logo-wordmark {
+    .header.is-over-dark .logo-wordmark {
       filter: brightness(0) invert(1);
     }
     .logo-wordmark.is-on-dark {
@@ -243,10 +243,10 @@
       transition: color 160ms var(--ease), background 160ms var(--ease);
     }
     .header-nav a:hover { color: var(--text); background: rgba(28, 25, 23, 0.05); }
-    .header.is-over-footer .header-nav a {
+    .header.is-over-dark .header-nav a {
       color: rgba(255, 255, 255, 0.65);
     }
-    .header.is-over-footer .header-nav a:hover {
+    .header.is-over-dark .header-nav a:hover {
       color: #fff;
       background: rgba(255, 255, 255, 0.08);
     }
@@ -262,11 +262,11 @@
       font-weight: 700;
       transition: background 160ms var(--ease), color 160ms var(--ease);
     }
-    .header.is-over-footer .header-cta {
+    .header.is-over-dark .header-cta {
       background: #fff;
       color: #111827;
     }
-    .header.is-over-footer .header-cta:hover {
+    .header.is-over-dark .header-cta:hover {
       background: #f3f4f6;
     }
     .header-lang { position: relative; }
@@ -282,11 +282,11 @@
       color: var(--text);
       transition: color 160ms var(--ease), border-color 160ms var(--ease), background 160ms var(--ease);
     }
-    .header.is-over-footer .header-lang-btn {
+    .header.is-over-dark .header-lang-btn {
       border-color: rgba(255, 255, 255, 0.22);
       color: #fff;
     }
-    .header.is-over-footer .header-lang-btn:hover {
+    .header.is-over-dark .header-lang-btn:hover {
       background: rgba(255, 255, 255, 0.08);
     }
     .header-lang-btn svg { width: 18px; height: 18px; }
@@ -344,6 +344,9 @@
     .header-burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .header-burger.is-open span:nth-child(2) { opacity: 0; }
     .header-burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .header.is-over-dark .header-burger span {
+      background: #fff;
+    }
 
     .mobile-menu {
       display: none;
@@ -2863,6 +2866,8 @@
     .section--feat-scroll {
       padding-block: 0;
       overflow: clip;
+      background: #050505;
+      color: #fff;
     }
     .feat-scroll {
       --feat-count: 6;
@@ -2882,7 +2887,8 @@
       justify-content: center;
       gap: 16px;
       padding: calc(var(--feat-header) + 12px) 20px 24px;
-      background: #fff;
+      background: #050505;
+      color: #fff;
     }
     .feat-scroll__head {
       text-align: center;
@@ -2892,10 +2898,12 @@
     }
     .feat-scroll__head .eyebrow {
       margin-bottom: 8px;
+      color: rgba(255, 255, 255, 0.45);
     }
     .feat-scroll__head h2 {
       margin: 0;
       font-size: clamp(28px, 4vw, 44px);
+      color: #fff;
     }
     .feat-scroll__stage {
       position: relative;
@@ -2952,20 +2960,21 @@
       font-weight: var(--weight-bold);
       letter-spacing: var(--track-eyebrow);
       text-transform: uppercase;
-      color: var(--muted);
+      color: rgba(255, 255, 255, 0.45);
     }
     .feat-scroll__title {
       margin: 0 0 10px;
       font-size: clamp(26px, 3vw, 40px);
       line-height: 1.1;
       max-width: 11ch;
+      color: #fff;
     }
     .feat-scroll__rail--left .feat-scroll__title { margin-left: auto; }
     .feat-scroll__desc {
       margin: 0;
       font-size: var(--text-lead);
       line-height: var(--leading-relaxed);
-      color: var(--muted);
+      color: rgba(255, 255, 255, 0.58);
       max-width: 28em;
     }
     .feat-scroll__rail--left .feat-scroll__desc { margin-left: auto; }
@@ -2985,7 +2994,7 @@
       --phone-bezel: 11px;
       position: relative;
       width: var(--phone-w);
-      filter: drop-shadow(0 28px 48px rgba(10, 10, 10, 0.28));
+      filter: drop-shadow(0 28px 56px rgba(0, 0, 0, 0.55));
     }
     .phone-mock__shell {
       position: relative;
@@ -3830,13 +3839,13 @@
       border-radius: 999px;
       border: 0;
       padding: 0;
-      background: rgba(10, 10, 10, 0.18);
+      background: rgba(255, 255, 255, 0.22);
       cursor: pointer;
       transition: width 200ms var(--ease), background 200ms var(--ease);
     }
     .feat-scroll__dot.is-active {
       width: 22px;
-      background: var(--text);
+      background: #fff;
     }
 
     .feat-slide__visual {

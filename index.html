@@ -1128,13 +1128,19 @@
     // Header theme over full-screen footer
     (function initHeaderFooterTheme() {
       const header = document.querySelector('.header');
-      const footer = document.getElementById('footer');
-      if (!header || !footer) return;
+      const darkSections = [
+        document.getElementById('included'),
+        document.getElementById('footer'),
+      ].filter(Boolean);
+      if (!header || !darkSections.length) return;
 
       const update = () => {
         const headerBottom = header.getBoundingClientRect().bottom;
-        const footerTop = footer.getBoundingClientRect().top;
-        header.classList.toggle('is-over-footer', footerTop <= headerBottom + 4);
+        const overDark = darkSections.some((section) => {
+          const rect = section.getBoundingClientRect();
+          return rect.top <= headerBottom + 4 && rect.bottom >= headerBottom - 4;
+        });
+        header.classList.toggle('is-over-dark', overDark);
       };
 
       update();
