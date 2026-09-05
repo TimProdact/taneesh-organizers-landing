@@ -549,7 +549,7 @@
             <h2 data-i18n="offerTitle">Возможности платформы</h2>
           </div>
 
-          <div class="wrap feat-scroll__stage">
+          <div class="feat-scroll__stage">
             <div class="feat-scroll__rail feat-scroll__rail--left" data-feat-rail="left" aria-live="polite">
               <article class="feat-scroll__card is-active" data-feat-card="0" data-side="left">
                 <span class="feat-scroll__tag" data-i18n="o1tag">Витрина</span>
@@ -1640,7 +1640,7 @@
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
       const selector = [
-        '.section:not(#slide-hero):not(#footer) .section-head',
+        '.section:not(#slide-hero):not(#footer):not(#included) .section-head',
         '#flow .flow-step',
         '.aud-card',
         '#flow .flow-pitch-frame',
@@ -1651,7 +1651,6 @@
         '#ecosystem .eco',
         '#ecosystem .eco-col',
         '#tickettypes .tt-card',
-        '#included .feat-scroll',
         '#pains .pain-card',
         '#pains .pain-bridge',
         '.why-compare',

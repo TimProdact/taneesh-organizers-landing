@@ -2915,73 +2915,92 @@
 
     /* Features scroll: sticky phone, alternating side copy */
     .section--feat-scroll {
-      padding-bottom: 0;
-    }
-    .feat-scroll__head {
-      text-align: center;
-      margin: 0 auto 8px;
-      max-width: 40em;
-    }
-    .feat-scroll__head h2 {
-      margin-bottom: 0;
+      padding-block: 0;
+      overflow: clip;
     }
     .feat-scroll {
       --feat-count: 6;
+      --feat-header: 88px;
       position: relative;
-      height: calc(var(--feat-count) * 88vh);
+      height: calc(var(--feat-count) * 100vh);
     }
     .feat-scroll__sticky {
       position: sticky;
       top: 0;
+      z-index: 1;
       height: 100vh;
+      box-sizing: border-box;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 18px;
-      padding: 88px 0 28px;
-      box-sizing: border-box;
-      overflow: hidden;
+      gap: 16px;
+      padding: calc(var(--feat-header) + 12px) 20px 24px;
+      background: #fff;
+    }
+    .feat-scroll__head {
+      text-align: center;
+      margin: 0;
+      max-width: 40em;
+      flex: 0 0 auto;
+    }
+    .feat-scroll__head .eyebrow {
+      margin-bottom: 8px;
+    }
+    .feat-scroll__head h2 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 44px);
     }
     .feat-scroll__stage {
+      position: relative;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      grid-template-columns: minmax(180px, 1fr) auto minmax(180px, 1fr);
       align-items: center;
-      gap: clamp(20px, 4vw, 56px);
-      width: 100%;
-      max-width: 1100px;
+      gap: clamp(16px, 3vw, 48px);
+      width: min(100%, 1100px);
+      flex: 1 1 auto;
+      min-height: 0;
     }
     .feat-scroll__rail {
       position: relative;
-      min-height: 220px;
-      display: grid;
-      align-items: center;
+      min-height: 200px;
+      height: 100%;
+      max-height: 280px;
     }
-    .feat-scroll__rail--left { justify-items: end; text-align: right; }
-    .feat-scroll__rail--right { justify-items: start; text-align: left; }
+    .feat-scroll__rail--left { text-align: right; }
+    .feat-scroll__rail--right { text-align: left; }
     .feat-scroll__card {
-      grid-area: 1 / 1;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translateY(-50%) translateX(0);
       max-width: 22em;
       opacity: 0;
+      visibility: hidden;
       pointer-events: none;
       transition:
-        opacity 420ms var(--ease),
-        transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+        opacity 360ms var(--ease),
+        transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+        visibility 360ms var(--ease);
     }
     .feat-scroll__rail--left .feat-scroll__card {
-      transform: translateX(-28px) translateY(8px);
+      margin-left: auto;
+      transform: translateY(-50%) translateX(-24px);
     }
     .feat-scroll__rail--right .feat-scroll__card {
-      transform: translateX(28px) translateY(8px);
+      margin-right: auto;
+      transform: translateY(-50%) translateX(24px);
     }
     .feat-scroll__card.is-active {
       opacity: 1;
-      transform: translate(0, 0);
+      visibility: visible;
       pointer-events: auto;
+      transform: translateY(-50%) translateX(0);
     }
     .feat-scroll__tag {
       display: inline-block;
-      margin-bottom: var(--space-eyebrow-title);
+      margin-bottom: 8px;
       font-family: var(--font-ui);
       font-size: var(--text-caption);
       font-weight: var(--weight-bold);
@@ -2990,8 +3009,8 @@
       color: var(--muted);
     }
     .feat-scroll__title {
-      margin: 0 0 var(--space-title-lead);
-      font-size: clamp(28px, 3.2vw, 42px);
+      margin: 0 0 10px;
+      font-size: clamp(26px, 3vw, 40px);
       line-height: 1.1;
       max-width: 11ch;
     }
@@ -3008,42 +3027,46 @@
     .feat-scroll__device {
       display: flex;
       justify-content: center;
+      align-items: center;
       z-index: 2;
+      flex: 0 0 auto;
     }
     .feat-scroll__bezel {
-      width: min(248px, 58vw);
+      width: 230px;
       background: #0a0a0a;
-      border-radius: 40px;
-      padding: 11px;
+      border-radius: 36px;
+      padding: 10px;
       box-shadow:
-        0 40px 80px rgba(10, 10, 10, 0.22),
+        0 28px 64px rgba(10, 10, 10, 0.22),
         0 0 0 1px rgba(255, 255, 255, 0.06) inset;
     }
     .feat-scroll__notch {
-      width: 108px;
-      height: 24px;
-      margin: 2px auto 10px;
-      border-radius: 0 0 16px 16px;
+      width: 96px;
+      height: 20px;
+      margin: 0 auto 8px;
+      border-radius: 0 0 14px 14px;
       background: #0a0a0a;
     }
     .feat-scroll__screen {
       position: relative;
-      border-radius: 30px;
+      width: 100%;
+      height: 400px;
+      border-radius: 26px;
       overflow: hidden;
       background: #111;
-      aspect-ratio: 9 / 17.5;
     }
     .feat-scroll__screen .feat-slide {
       position: absolute;
       inset: 0;
+      z-index: 0;
       opacity: 0;
+      visibility: hidden;
       transform: scale(1.02);
       transition:
-        opacity 380ms var(--ease),
-        transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+        opacity 320ms var(--ease),
+        transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+        visibility 320ms var(--ease);
       pointer-events: none;
-      width: 100%;
-      height: 100%;
       display: flex;
       flex-direction: column;
       color: #fff;
@@ -3051,6 +3074,7 @@
     }
     .feat-scroll__screen .feat-slide.is-active {
       opacity: 1;
+      visibility: visible;
       transform: scale(1);
       pointer-events: auto;
       z-index: 1;
@@ -3063,6 +3087,7 @@
       gap: 8px;
       align-items: center;
       justify-content: center;
+      flex: 0 0 auto;
     }
     .feat-scroll__dot {
       width: 8px;
@@ -3081,20 +3106,20 @@
 
     .feat-slide__visual {
       position: relative;
-      flex: 1.15;
+      flex: 1.1;
       min-height: 0;
-      padding: 18px;
+      padding: 16px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      gap: 8px;
+      gap: 6px;
       background:
         linear-gradient(180deg, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.78) 100%),
         var(--feat-img) center / cover no-repeat;
     }
     .feat-slide__visual strong {
       font-family: var(--font-display);
-      font-size: 26px;
+      font-size: 22px;
       font-weight: var(--weight-display);
       letter-spacing: var(--track-heading);
       line-height: 1.1;
@@ -3112,16 +3137,18 @@
       text-transform: uppercase;
     }
     .feat-slide__body {
-      flex: 0.95;
-      padding: 16px 16px 18px;
+      flex: 0.9;
+      min-height: 0;
+      padding: 14px 14px 16px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
       background: #0f0f0f;
+      overflow: hidden;
     }
     .feat-slide__body > p {
       margin: 0;
-      font-size: 13px;
+      font-size: 12px;
       line-height: 1.45;
       color: rgba(255, 255, 255, 0.72);
     }
@@ -3133,21 +3160,21 @@
       gap: 10px;
       padding-top: 10px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 13px;
+      font-size: 12px;
     }
     .feat-slide__row em {
       font-style: normal;
-      padding: 8px 12px;
+      padding: 7px 11px;
       border-radius: 999px;
       background: var(--accent);
       color: #04140a;
       font-weight: 700;
-      font-size: 12px;
+      font-size: 11px;
     }
     .feat-pay {
       display: grid;
       gap: 8px;
-      font-size: 13px;
+      font-size: 12px;
     }
     .feat-pay > div {
       display: flex;
@@ -3166,11 +3193,11 @@
       margin-top: auto;
       border: 0;
       border-radius: 999px;
-      min-height: 42px;
+      min-height: 40px;
       background: var(--accent);
       color: #04140a;
       font-weight: 700;
-      font-size: 13px;
+      font-size: 12px;
       pointer-events: none;
     }
     .feat-slide__cta.is-soft {
@@ -3180,91 +3207,94 @@
     .feat-list {
       list-style: none;
       display: grid;
-      gap: 10px;
+      gap: 8px;
       margin: 0;
       padding: 0;
     }
     .feat-list li {
       display: grid;
-      grid-template-columns: 28px 1fr auto;
-      gap: 10px;
+      grid-template-columns: 24px 1fr auto;
+      gap: 8px;
       align-items: center;
-      font-size: 13px;
+      font-size: 12px;
     }
     .feat-list i {
-      width: 28px;
-      height: 28px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       background: linear-gradient(135deg, #9fe870, #19c248);
     }
     .feat-list em {
       font-style: normal;
-      font-size: 11px;
+      font-size: 10px;
       color: rgba(255, 255, 255, 0.5);
     }
     .feat-invite {
       margin-top: auto;
-      padding: 12px 14px;
-      border-radius: 14px;
+      padding: 10px 12px;
+      border-radius: 12px;
       background: rgba(255, 255, 255, 0.08);
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 12px;
+      font-size: 11px;
       color: var(--lime);
       word-break: break-all;
     }
     .feat-scan {
       text-align: center;
       display: grid;
-      gap: 8px;
+      gap: 6px;
       justify-items: center;
-      margin-top: 8px;
+      margin-top: 4px;
     }
     .feat-scan__ok {
-      width: 48px;
-      height: 48px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       display: grid;
       place-items: center;
       background: rgba(159, 232, 112, 0.2);
       color: var(--lime);
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
     }
-    .feat-scan strong { font-size: 15px; }
+    .feat-scan strong { font-size: 14px; }
     .feat-scan p {
       margin: 0;
-      font-size: 12px;
+      font-size: 11px;
       color: rgba(255, 255, 255, 0.65);
       line-height: 1.45;
     }
 
     @media (max-width: 900px) {
-      .feat-scroll {
-        height: calc(var(--feat-count) * 92vh);
-      }
       .feat-scroll__stage {
         grid-template-columns: 1fr;
         justify-items: center;
-        gap: 20px;
+        gap: 14px;
+        align-content: center;
       }
       .feat-scroll__rail { display: none; }
       .feat-scroll__mobile {
         display: block;
+        position: relative;
         text-align: center;
         max-width: 28em;
-        min-height: 140px;
+        min-height: 120px;
       }
       .feat-scroll__mobile .feat-scroll__title {
         margin-inline: auto;
         max-width: 14ch;
       }
-      .feat-scroll__bezel {
-        width: min(240px, 62vw);
-      }
+      .feat-scroll__bezel { width: 210px; }
+      .feat-scroll__screen { height: 360px; }
       .feat-scroll__sticky {
-        padding-top: 64px;
-        gap: 18px;
+        padding-top: calc(var(--feat-header) + 8px);
+        gap: 12px;
       }
+    }
+    @media (max-height: 780px) {
+      .feat-scroll__bezel { width: 200px; }
+      .feat-scroll__screen { height: 340px; }
+      .feat-scroll__head h2 { font-size: clamp(24px, 3.5vw, 34px); }
     }
     @media (prefers-reduced-motion: reduce) {
       .feat-scroll__card,
