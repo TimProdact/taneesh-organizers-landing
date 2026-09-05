@@ -2349,23 +2349,6 @@
       color: var(--muted);
       line-height: var(--leading-body);
     }
-    .pain-bridge {
-      margin: var(--space-stack-xl) 0 0;
-      text-align: center;
-    }
-    .pain-bridge a {
-      font-family: var(--font-ui);
-      font-size: var(--text-body);
-      font-weight: var(--weight-semibold);
-      color: var(--text);
-      border-bottom: 1px solid rgba(10, 10, 10, 0.2);
-      padding-bottom: 2px;
-      transition: color 160ms var(--ease), border-color 160ms var(--ease);
-    }
-    .pain-bridge a:hover {
-      color: #0f7a38;
-      border-color: rgba(15, 122, 56, 0.4);
-    }
     @media (max-width: 800px) {
       .pain-grid { grid-template-columns: 1fr; }
     }
