@@ -1389,7 +1389,7 @@
       }
     }
 
-    /* Conversion — chart on top, metrics in 2 columns below */
+    /* Conversion — chart on top, metrics below */
     .live-conv.calc-shell,
     #conversion .island.live-conv {
       display: flex;
@@ -1439,12 +1439,18 @@
       height: 112px;
       width: 100%;
     }
+    /* Desktop: 5 metrics in one row (do not change for mobile adapters) */
     #conversion .metric-grid,
     .live-conv .metric-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
       width: 100%;
+      align-items: start;
+    }
+    #conversion .metric-card {
+      min-height: 0;
+      height: auto;
     }
     .live-actions { display: flex; justify-content: center; margin-top: 4px; }
 
@@ -3176,7 +3182,7 @@
         font-size: 13px;
       }
 
-      /* Conversion: same gutters as other sections */
+      /* Conversion: 2 columns only on mobile */
       #conversion > .wrap {
         width: min(100% - 28px, var(--max));
       }
@@ -3186,7 +3192,9 @@
         padding: 0;
         gap: 14px;
       }
-      #conversion .metric-grid {
+      #conversion .metric-grid,
+      .live-conv .metric-grid {
+        grid-template-columns: 1fr 1fr;
         gap: 10px;
       }
       #conversion .metric-card {
