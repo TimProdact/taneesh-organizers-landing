@@ -3031,30 +3031,133 @@
       z-index: 2;
       flex: 0 0 auto;
     }
-    .feat-scroll__bezel {
-      width: 230px;
-      background: #0a0a0a;
-      border-radius: 36px;
-      padding: 10px;
+
+    /* Realistic iPhone Pro mockup */
+    .phone-mock {
+      --phone-w: 248px;
+      --phone-radius: 42px;
+      --phone-bezel: 11px;
+      position: relative;
+      width: var(--phone-w);
+      filter: drop-shadow(0 28px 48px rgba(10, 10, 10, 0.28));
+    }
+    .phone-mock__shell {
+      position: relative;
+      border-radius: var(--phone-radius);
+      padding: var(--phone-bezel);
+      background:
+        linear-gradient(145deg, #3a3a3c 0%, #1c1c1e 42%, #0a0a0a 100%);
       box-shadow:
-        0 28px 64px rgba(10, 10, 10, 0.22),
-        0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+        inset 0 0 0 1.5px rgba(255, 255, 255, 0.22),
+        inset 0 0 0 3px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
     }
-    .feat-scroll__notch {
-      width: 96px;
-      height: 20px;
-      margin: 0 auto 8px;
-      border-radius: 0 0 14px 14px;
-      background: #0a0a0a;
+    .phone-mock__shell::before {
+      content: "";
+      position: absolute;
+      inset: 5px;
+      border-radius: calc(var(--phone-radius) - 5px);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+      pointer-events: none;
+      z-index: 3;
     }
+    .phone-mock__side {
+      position: absolute;
+      background: linear-gradient(180deg, #6b6b6f, #2c2c2e 40%, #1a1a1c);
+      border-radius: 2px;
+      z-index: 0;
+    }
+    .phone-mock__side--silent {
+      left: -2px;
+      top: 96px;
+      width: 3px;
+      height: 28px;
+      border-radius: 2px 0 0 2px;
+    }
+    .phone-mock__side--vol-up {
+      left: -2px;
+      top: 140px;
+      width: 3px;
+      height: 46px;
+      border-radius: 2px 0 0 2px;
+    }
+    .phone-mock__side--vol-down {
+      left: -2px;
+      top: 196px;
+      width: 3px;
+      height: 46px;
+      border-radius: 2px 0 0 2px;
+    }
+    .phone-mock__side--power {
+      right: -2px;
+      top: 168px;
+      width: 3px;
+      height: 72px;
+      border-radius: 0 2px 2px 0;
+    }
+    .phone-mock__screen,
     .feat-scroll__screen {
       position: relative;
       width: 100%;
-      height: 400px;
-      border-radius: 26px;
+      height: 460px;
+      border-radius: calc(var(--phone-radius) - var(--phone-bezel));
       overflow: hidden;
-      background: #111;
+      background: #0a0a0a;
+      isolation: isolate;
     }
+    .phone-mock__island {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      z-index: 5;
+      width: 92px;
+      height: 28px;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background: #0a0a0a;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+      pointer-events: none;
+    }
+    .phone-mock__island::after {
+      content: "";
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      transform: translateY(-50%);
+      background: radial-gradient(circle at 35% 35%, #1a2a3a, #05080c 70%);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+    .phone-mock__home {
+      position: absolute;
+      left: 50%;
+      bottom: 8px;
+      z-index: 5;
+      width: 108px;
+      height: 4px;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.35);
+      pointer-events: none;
+      transition: opacity 200ms var(--ease);
+    }
+    .phone-mock:has(.feat-slide--shot.is-active) .phone-mock__island,
+    .phone-mock:has(.feat-slide--shot.is-active) .phone-mock__home {
+      opacity: 0;
+    }
+    .feat-slide--shot {
+      background: #fff;
+    }
+    .feat-slide__shot {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
     .feat-scroll__screen .feat-slide {
       position: absolute;
       inset: 0;
@@ -3284,16 +3387,18 @@
         margin-inline: auto;
         max-width: 14ch;
       }
-      .feat-scroll__bezel { width: 210px; }
-      .feat-scroll__screen { height: 360px; }
+      .phone-mock { --phone-w: 210px; --phone-radius: 38px; --phone-bezel: 10px; }
+      .phone-mock__screen,
+      .feat-scroll__screen { height: 390px; }
       .feat-scroll__sticky {
         padding-top: calc(var(--feat-header) + 8px);
         gap: 12px;
       }
     }
     @media (max-height: 780px) {
-      .feat-scroll__bezel { width: 200px; }
-      .feat-scroll__screen { height: 340px; }
+      .phone-mock { --phone-w: 200px; --phone-radius: 36px; --phone-bezel: 9px; }
+      .phone-mock__screen,
+      .feat-scroll__screen { height: 360px; }
       .feat-scroll__head h2 { font-size: clamp(24px, 3.5vw, 34px); }
     }
     @media (prefers-reduced-motion: reduce) {
