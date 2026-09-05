@@ -3002,7 +3002,7 @@
       .feat-row.is-flip {
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 36px;
         grid-template-columns: none;
         min-height: 0;
         height: auto;
@@ -3017,17 +3017,23 @@
         text-align: center;
         width: 100%;
         margin-inline: auto;
+        margin-bottom: 4px;
       }
       .feat-row__title {
         margin-inline: auto;
+        margin-bottom: 16px;
         font-size: clamp(24px, 6.5vw, 30px);
       }
       .feat-row__desc {
         margin-inline: auto;
+        margin-bottom: 0;
         font-size: 14px;
         max-width: 34em;
       }
-      .feat-row__tag { font-size: 12px; }
+      .feat-row__tag {
+        font-size: 12px;
+        margin-bottom: 12px;
+      }
       .feat-row__visual,
       .feat-row[data-feat="pay"] .feat-row__visual,
       .feat-row[data-feat="scanner"] .feat-row__visual,
