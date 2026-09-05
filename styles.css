@@ -2737,10 +2737,14 @@
 
       #footer.snap-panel {
         height: auto;
+        min-height: 100svh;
         max-height: none;
-        padding: 72px 0 32px;
-        overflow: visible;
+        padding: 88px 0 28px;
+        overflow: hidden;
         scroll-snap-align: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
       #footer.snap-panel > .site-footer__main,
       #footer.snap-panel > .site-footer__meta {
@@ -2748,13 +2752,26 @@
         margin-inline: auto;
       }
       .site-footer__headline {
-        font-size: clamp(22px, 6.5vw, 30px);
-        max-width: 14ch;
+        font-size: clamp(26px, 7vw, 34px);
+        max-width: none;
+        width: 100%;
+        text-wrap: balance;
+        overflow-wrap: normal;
+        word-break: normal;
+        hyphens: none;
+        line-height: 1.12;
       }
       .site-footer__nav { gap: 8px; }
       .site-footer__pill {
         min-height: 40px;
         padding: 0 14px;
+        font-size: 13px;
+      }
+      .site-footer__contact {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        gap: 6px 8px;
         font-size: 13px;
       }
 
@@ -3605,7 +3622,10 @@
         align-items: center;
         text-align: center;
       }
-      .site-footer__headline { max-width: 12ch; }
+      .site-footer__headline {
+        max-width: none;
+        text-wrap: balance;
+      }
     }
 
     /* Lead modal */
