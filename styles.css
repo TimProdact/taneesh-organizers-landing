@@ -2198,11 +2198,24 @@
       font-weight: var(--weight-bold);
       color: var(--muted);
     }
+    /* Fit calculator in one viewport: tighter section chrome, same card sizes */
+    #why {
+      padding-block: clamp(40px, 5vw, 64px);
+    }
+    #why .section-head {
+      margin-bottom: 24px;
+    }
+    #why .section-head h2 + .lead {
+      margin-top: 10px;
+    }
     .fees-board {
       grid-template-columns: 1fr;
       max-width: 720px;
       margin-inline: auto;
-      gap: 20px;
+      gap: 12px;
+    }
+    .fees-board .fees-panel {
+      gap: 10px;
     }
     .fees-result {
       display: grid;
@@ -2259,17 +2272,17 @@
     .fees-panel { width: 100%; }
     .calc-sliders {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
       width: 100%;
     }
     .fees-breakdown {
       margin: 0;
-      padding: 14px 16px;
-      border-radius: 14px;
-      background: rgba(28, 25, 23, 0.03);
+      padding: 4px 8px;
+      border-radius: 0;
+      background: transparent;
       font-size: 13px;
-      line-height: 1.5;
+      line-height: 1.4;
       color: var(--muted);
       text-align: center;
     }
@@ -2292,6 +2305,9 @@
         gap: 10px;
       }
       .fees-result-arrow { transform: rotate(90deg); margin-inline: auto; }
+      .calc-sliders {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* Four pains — cards on surface, display titles, flow-like icons */
