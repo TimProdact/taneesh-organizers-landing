@@ -3248,7 +3248,37 @@
       border-color: rgba(30, 215, 96, 0.45);
     }
 
+    /* Staged UI reveal inside feature mocks */
+    .fp-stage {
+      transition:
+        opacity 420ms var(--ease),
+        transform 420ms var(--ease);
+    }
+    .is-demo-ready .fp-stage:not(.is-in) {
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+    }
+    .is-demo-ready .fp-stage.is-in {
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .is-demo-ready .fp-stage:not(.is-in),
+      .is-demo-ready .fp-stage.is-in {
+        opacity: 1;
+        transform: none;
+        transition: none;
+        pointer-events: auto;
+      }
+    }
+
     /* Feature 2 — Checkout / payment */
+    .feat-row[data-feat="pay"] .feat-row__visual {
+      height: 460px;
+      min-height: 460px;
+    }
     .fp-pay {
       flex: 1;
       min-height: 0;
@@ -3260,16 +3290,34 @@
     .fp-browser:has(.fp-pay) .fp-browser__chrome + .fp-pay,
     .fp-pay { height: calc(100% - 0px); }
     .fp-pay__main {
-      padding: clamp(16px, 2vw, 26px);
+      padding: clamp(14px, 1.8vw, 22px);
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 10px;
       border-right: 1px solid var(--border);
       min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .fp-pay__checkout {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+      min-height: 0;
+      transition: opacity 280ms var(--ease), transform 280ms var(--ease);
+    }
+    .fp-pay.is-paid .fp-pay__checkout {
+      opacity: 0;
+      transform: translateY(-8px);
+      pointer-events: none;
+      position: absolute;
+      inset: clamp(14px, 1.8vw, 22px);
     }
     .fp-pay__head {
       display: grid;
-      gap: 4px;
+      gap: 2px;
     }
     .fp-pay__head > span {
       font-size: 11px;
@@ -3280,20 +3328,20 @@
     }
     .fp-pay__head strong {
       font-family: var(--font-display);
-      font-size: clamp(24px, 2.6vw, 32px);
+      font-size: clamp(22px, 2.4vw, 30px);
       font-weight: var(--weight-display);
       letter-spacing: var(--track-heading);
       color: var(--text);
     }
     .fp-pay__fields {
       display: grid;
-      gap: 8px;
+      gap: 6px;
     }
     .fp-pay__fields label {
       display: grid;
-      gap: 4px;
-      padding: 10px 12px;
-      border-radius: 14px;
+      gap: 2px;
+      padding: 8px 12px;
+      border-radius: 12px;
       background: var(--cream-2);
       border: 1px solid var(--border);
     }
@@ -3306,10 +3354,24 @@
       font-style: normal;
       font-size: 14px;
       color: var(--text);
+      min-height: 1.2em;
+    }
+    .fp-pay__fields em.is-typing::after {
+      content: "";
+      display: inline-block;
+      width: 1px;
+      height: 0.9em;
+      margin-left: 2px;
+      background: var(--text);
+      vertical-align: -1px;
+      animation: fp-caret 0.8s steps(1) infinite;
+    }
+    @keyframes fp-caret {
+      50% { opacity: 0; }
     }
     .fp-pay__methods {
       display: grid;
-      gap: 8px;
+      gap: 6px;
     }
     .fp-pay__methods-label {
       font-size: 11px;
@@ -3323,13 +3385,14 @@
       grid-template-columns: 18px 1fr auto;
       align-items: center;
       gap: 10px;
-      padding: 12px 14px;
-      border-radius: 14px;
+      padding: 10px 12px;
+      border-radius: 12px;
       border: 1px solid var(--border);
       background: #fff;
       color: var(--text);
       text-align: left;
       cursor: default;
+      transition: border-color 220ms var(--ease), background 220ms var(--ease), transform 220ms var(--ease);
     }
     .fp-pay__method i {
       width: 14px;
@@ -3337,6 +3400,7 @@
       border-radius: 50%;
       border: 1.5px solid rgba(10, 10, 10, 0.25);
       box-sizing: border-box;
+      transition: border-color 220ms var(--ease), box-shadow 220ms var(--ease);
     }
     .fp-pay__method.is-on {
       border-color: rgba(30, 215, 96, 0.45);
@@ -3355,7 +3419,7 @@
       margin-top: auto;
       border: 0;
       border-radius: 999px;
-      padding: 14px 18px;
+      padding: 12px 16px;
       background: var(--black);
       color: #fff;
       font-weight: 800;
@@ -3369,17 +3433,24 @@
     }
     .fp-pay__cta.is-hidden { display: none; }
     .fp-pay__success {
-      margin-top: auto;
+      margin: auto 0;
       display: grid;
       justify-items: center;
-      gap: 6px;
+      gap: 8px;
       text-align: center;
-      padding: 18px 12px;
+      padding: 28px 16px;
       border-radius: 18px;
       background: rgba(30, 215, 96, 0.1);
       border: 1px solid rgba(30, 215, 96, 0.28);
+      opacity: 0;
+      transform: scale(0.96);
+      transition: opacity 360ms var(--ease), transform 360ms var(--ease);
     }
     .fp-pay__success[hidden] { display: none !important; }
+    .fp-pay.is-paid .fp-pay__success {
+      opacity: 1;
+      transform: scale(1);
+    }
     .fp-pay__ok {
       width: 42px;
       height: 42px;
@@ -3401,11 +3472,12 @@
       color: var(--muted);
     }
     .fp-pay__side {
-      padding: clamp(16px, 2vw, 26px);
+      padding: clamp(14px, 1.8vw, 22px);
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
       background: var(--cream-2);
+      min-height: 0;
     }
     .fp-pay__row {
       display: flex;
@@ -3421,6 +3493,7 @@
       font-size: 20px;
       font-weight: var(--weight-display);
       letter-spacing: var(--track-display);
+      font-variant-numeric: tabular-nums;
     }
     .fp-pay__row.is-guest {
       padding-top: 10px;
@@ -3429,15 +3502,15 @@
     }
     .fp-pay__you {
       margin-top: auto;
-      padding: 16px;
-      border-radius: 18px;
+      padding: 14px;
+      border-radius: 16px;
       background: rgba(30, 215, 96, 0.12);
       display: grid;
-      gap: 6px;
+      gap: 4px;
       justify-items: center;
       text-align: center;
       transform: scale(0.98);
-      opacity: 0.75;
+      opacity: 0.65;
       transition: transform 320ms var(--ease), opacity 320ms var(--ease), box-shadow 320ms var(--ease);
     }
     .fp-pay__you.is-glow {
@@ -3452,7 +3525,7 @@
     }
     .fp-pay__you strong {
       font-family: var(--font-display);
-      font-size: clamp(28px, 3vw, 36px);
+      font-size: clamp(26px, 2.8vw, 34px);
       font-weight: var(--weight-display);
       letter-spacing: var(--track-display);
       color: var(--text);
@@ -3815,6 +3888,7 @@
       .feat-row__title { margin-inline: auto; max-width: none; }
       .feat-row__desc { margin-inline: auto; }
       .feat-row__visual { height: auto; min-height: 380px; }
+      .feat-row[data-feat="pay"] .feat-row__visual { min-height: 420px; height: auto; }
       .fp-showcase { grid-template-columns: 1fr; }
       .fp-showcase__main { border-right: 0; border-bottom: 1px solid var(--border); }
       .fp-pay { grid-template-columns: 1fr; }

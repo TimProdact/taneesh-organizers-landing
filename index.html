@@ -515,34 +515,34 @@
                   <span class="fp-browser__dots" aria-hidden="true"></span>
                   <div class="fp-browser__url">taneesh.uz/e/night-garden</div>
                 </div>
-                <div class="fp-showcase">
+                <div class="fp-showcase" data-showcase-demo>
                   <div class="fp-showcase__main">
-                    <span class="fp-showcase__badge">Опубликовано</span>
-                    <h4 class="fp-showcase__title">Night Garden</h4>
-                    <p class="fp-showcase__meta">12 апр · 20:00 · Ташкент</p>
-                    <div class="fp-showcase__chips" aria-hidden="true">
+                    <span class="fp-showcase__badge fp-stage" data-fp-stage="1">Опубликовано</span>
+                    <h4 class="fp-showcase__title fp-stage" data-fp-stage="1" data-fp-delay="1">Night Garden</h4>
+                    <p class="fp-showcase__meta fp-stage" data-fp-stage="1" data-fp-delay="2">12 апр · 20:00 · Ташкент</p>
+                    <div class="fp-showcase__chips fp-stage" data-fp-stage="2" aria-hidden="true">
                       <span>Standard</span>
                       <span>VIP</span>
                       <span>At door</span>
                     </div>
-                    <div class="fp-showcase__price"><strong>100 000</strong><span>от билета</span></div>
-                    <button type="button" class="fp-showcase__cta" tabindex="-1">Купить билет</button>
+                    <div class="fp-showcase__price fp-stage" data-fp-stage="2" data-fp-delay="1"><strong>100 000</strong><span>от билета</span></div>
+                    <button type="button" class="fp-showcase__cta fp-stage" data-fp-stage="3" tabindex="-1">Купить билет</button>
                   </div>
                   <aside class="fp-showcase__side">
-                    <div class="fp-showcase__stat">
+                    <div class="fp-showcase__stat fp-stage" data-fp-stage="2">
                       <span>Просмотры</span>
-                      <strong>3 456</strong>
+                      <strong data-show-views>0</strong>
                     </div>
-                    <div class="fp-showcase__stat">
+                    <div class="fp-showcase__stat fp-stage" data-fp-stage="2" data-fp-delay="1">
                       <span>Переходы</span>
-                      <strong>812</strong>
+                      <strong data-show-clicks>0</strong>
                     </div>
-                    <div class="fp-showcase__link">
+                    <div class="fp-showcase__link fp-stage" data-fp-stage="3">
                       <span>Смарт-ссылка</span>
                       <code>taneesh.uz/e/night-garden</code>
                       <em class="fp-showcase__copied" data-demo-copied hidden>Скопировано</em>
                     </div>
-                    <div class="fp-showcase__share" aria-hidden="true"><span>TG</span><span>IG</span><span>Ads</span></div>
+                    <div class="fp-showcase__share fp-stage" data-fp-stage="3" data-fp-delay="1" aria-hidden="true"><span>TG</span><span>IG</span><span>Ads</span></div>
                   </aside>
                 </div>
               </div>
@@ -564,27 +564,29 @@
                 </div>
                 <div class="fp-pay" data-pay-demo>
                   <div class="fp-pay__main">
-                    <header class="fp-pay__head"><span>Регистрация</span><strong>Night Garden</strong></header>
-                    <div class="fp-pay__fields">
-                      <label><span>Кому билеты</span><em>Мун Тимур</em></label>
-                      <label><span>Телефон</span><em>+998 90 123 45 67</em></label>
+                    <div class="fp-pay__checkout" data-pay-checkout>
+                      <header class="fp-pay__head fp-stage" data-fp-stage="1"><span>Регистрация</span><strong>Night Garden</strong></header>
+                      <div class="fp-pay__fields fp-stage" data-fp-stage="2">
+                        <label><span>Кому билеты</span><em data-pay-name>Мун Тимур</em></label>
+                        <label><span>Телефон</span><em data-pay-phone>+998 90 123 45 67</em></label>
+                      </div>
+                      <div class="fp-pay__methods fp-stage" data-fp-stage="3">
+                        <span class="fp-pay__methods-label">Способ оплаты</span>
+                        <button type="button" class="fp-pay__method" data-pay-method="humo" tabindex="-1"><i></i><strong>Humo</strong><span>•• 4242</span></button>
+                        <button type="button" class="fp-pay__method" data-pay-method="uzcard" tabindex="-1"><i></i><strong>Uzcard</strong><span>•• 8811</span></button>
+                      </div>
+                      <button type="button" class="fp-pay__cta fp-stage" data-pay-cta data-fp-stage="4" tabindex="-1">Оплатить 105 000</button>
                     </div>
-                    <div class="fp-pay__methods">
-                      <span class="fp-pay__methods-label">Способ оплаты</span>
-                      <button type="button" class="fp-pay__method is-on" tabindex="-1"><i></i><strong>Humo</strong><span>•• 4242</span></button>
-                      <button type="button" class="fp-pay__method" tabindex="-1"><i></i><strong>Uzcard</strong><span>•• 8811</span></button>
-                    </div>
-                    <button type="button" class="fp-pay__cta" data-pay-cta tabindex="-1">Оплатить 105 000</button>
                     <div class="fp-pay__success" data-pay-success hidden>
                       <span class="fp-pay__ok">✓</span><strong>Оплачено</strong><em>Билет уже у гостя</em>
                     </div>
                   </div>
                   <aside class="fp-pay__side">
-                    <div class="fp-pay__row"><span>Цена билета</span><strong>100 000</strong></div>
-                    <div class="fp-pay__row"><span>Эквайринг 1.5%</span><strong>1 500</strong></div>
-                    <div class="fp-pay__row"><span>FixedFee на гостя</span><strong>3 500</strong></div>
-                    <div class="fp-pay__row is-guest"><span>Гость платит</span><strong>105 000</strong></div>
-                    <div class="fp-pay__you" data-pay-you><span>Taneesh · вам 100%</span><strong>100 000</strong></div>
+                    <div class="fp-pay__row fp-stage" data-fp-stage="3"><span>Цена билета</span><strong data-pay-line="ticket">0</strong></div>
+                    <div class="fp-pay__row fp-stage" data-fp-stage="3" data-fp-delay="1"><span>Эквайринг 1.5%</span><strong data-pay-line="acq">0</strong></div>
+                    <div class="fp-pay__row fp-stage" data-fp-stage="3" data-fp-delay="2"><span>FixedFee на гостя</span><strong data-pay-line="fee">0</strong></div>
+                    <div class="fp-pay__row is-guest fp-stage" data-fp-stage="4"><span>Гость платит</span><strong data-pay-line="guest">0</strong></div>
+                    <div class="fp-pay__you fp-stage" data-pay-you data-fp-stage="5"><span>Taneesh · вам 100%</span><strong>100 000</strong></div>
                   </aside>
                 </div>
               </div>
@@ -605,16 +607,16 @@
                   <div class="fp-browser__url">cabinet.taneesh.uz/audience</div>
                 </div>
                 <div class="fp-crm" data-crm-demo>
-                  <div class="fp-crm__toolbar">
+                  <div class="fp-crm__toolbar fp-stage" data-fp-stage="1">
                     <div class="fp-crm__search">Поиск по имени, телефону или email…</div>
                     <button type="button" class="fp-crm__export" data-crm-export tabindex="-1">Экспорт CSV</button>
                   </div>
                   <div class="fp-crm__table">
-                    <div class="fp-crm__head"><span>Гость</span><span>Сумма</span><span>Билеты</span><span>Статус</span></div>
-                    <div class="fp-crm__row"><div><strong>Timur Mun</strong><em>timur@example.com</em></div><strong class="is-money">1 200 000</strong><span>6</span><b class="is-ok">Оплачен</b></div>
-                    <div class="fp-crm__row"><div><strong>Alice Smith</strong><em>alice@example.com</em></div><strong class="is-money">450 000</strong><span>2</span><b class="is-ok">Оплачен</b></div>
-                    <div class="fp-crm__row"><div><strong>Диана Ким</strong><em>diana@startup.uz</em></div><strong class="is-money">0</strong><span>1</span><b class="is-vip">VIP</b></div>
-                    <div class="fp-crm__row"><div><strong>Bob Johnson</strong><em>bob@example.com</em></div><strong>0</strong><span>0</span><b class="is-mute">—</b></div>
+                    <div class="fp-crm__head fp-stage" data-fp-stage="1"><span>Гость</span><span>Сумма</span><span>Билеты</span><span>Статус</span></div>
+                    <div class="fp-crm__row fp-stage" data-fp-stage="2"><div><strong>Timur Mun</strong><em>timur@example.com</em></div><strong class="is-money">1 200 000</strong><span>6</span><b class="is-ok">Оплачен</b></div>
+                    <div class="fp-crm__row fp-stage" data-fp-stage="2" data-fp-delay="1"><div><strong>Alice Smith</strong><em>alice@example.com</em></div><strong class="is-money">450 000</strong><span>2</span><b class="is-ok">Оплачен</b></div>
+                    <div class="fp-crm__row fp-stage" data-fp-stage="2" data-fp-delay="2"><div><strong>Диана Ким</strong><em>diana@startup.uz</em></div><strong class="is-money">0</strong><span>1</span><b class="is-vip">VIP</b></div>
+                    <div class="fp-crm__row fp-stage" data-fp-stage="2" data-fp-delay="3"><div><strong>Bob Johnson</strong><em>bob@example.com</em></div><strong>0</strong><span>0</span><b class="is-mute">—</b></div>
                   </div>
                   <div class="fp-crm__toast" data-crm-toast hidden>CSV скачан</div>
                 </div>
@@ -1312,70 +1314,247 @@
       });
     })();
 
-    // Features list (#included) — micro-demos when rows enter view
+    // Features list (#included) — staged micro-demos when rows enter view
     (function initFeatList() {
       const root = document.querySelector('[data-feat-list]');
       if (!root || root.dataset.ready) return;
       root.dataset.ready = '1';
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+      const fmt = (n) => Math.round(n).toLocaleString('ru-RU').replace(/,/g, ' ');
+
+      const clearTimers = (row) => {
+        (row._featTimers || []).forEach((id) => window.clearTimeout(id));
+        row._featTimers = [];
+      };
+
+      const later = (row, ms, fn) => {
+        const id = window.setTimeout(fn, ms);
+        (row._featTimers || (row._featTimers = [])).push(id);
+        return id;
+      };
+
+      const resetStages = (host) => {
+        if (!host) return;
+        host.classList.add('is-demo-ready');
+        host.querySelectorAll('.fp-stage').forEach((el) => el.classList.remove('is-in'));
+      };
+
+      const showStage = (row, host, stage, baseDelay = 0) => {
+        if (!host) return;
+        host.querySelectorAll(`.fp-stage[data-fp-stage="${stage}"]`).forEach((el) => {
+          const extra = Number(el.getAttribute('data-fp-delay') || 0) * 120;
+          later(row, baseDelay + extra, () => el.classList.add('is-in'));
+        });
+      };
+
+      const typeText = (el, text, row, step = 28) =>
+        new Promise((resolve) => {
+          if (!el) {
+            resolve();
+            return;
+          }
+          el.textContent = '';
+          el.classList.add('is-typing');
+          let i = 0;
+          const tick = () => {
+            if (!row._featActive) {
+              el.classList.remove('is-typing');
+              resolve();
+              return;
+            }
+            i += 1;
+            el.textContent = text.slice(0, i);
+            if (i >= text.length) {
+              el.classList.remove('is-typing');
+              resolve();
+              return;
+            }
+            later(row, step, tick);
+          };
+          tick();
+        });
+
+      const countTo = (el, target, row, duration = 520) => {
+        if (!el) return;
+        const start = performance.now();
+        const from = 0;
+        const step = (now) => {
+          if (!row._featActive) return;
+          const t = Math.min(1, (now - start) / duration);
+          const eased = 1 - Math.pow(1 - t, 3);
+          el.textContent = fmt(from + (target - from) * eased);
+          if (t < 1) requestAnimationFrame(step);
+          else el.textContent = fmt(target);
+        };
+        requestAnimationFrame(step);
+      };
+
       const runShowcase = (row) => {
+        const host = row.querySelector('[data-showcase-demo]') || row.querySelector('.fp-showcase');
         const tip = row.querySelector('[data-demo-copied]');
-        const host = row.querySelector('.fp-showcase');
-        if (!host || !tip) return;
-        tip.hidden = true;
+        const views = row.querySelector('[data-show-views]');
+        const clicks = row.querySelector('[data-show-clicks]');
+        if (!host) return;
+        resetStages(host);
         host.classList.remove('is-copied');
-        window.setTimeout(() => {
-          tip.hidden = false;
+        if (tip) tip.hidden = true;
+        if (views) views.textContent = '0';
+        if (clicks) clicks.textContent = '0';
+        if (reduce) {
+          host.querySelectorAll('.fp-stage').forEach((el) => el.classList.add('is-in'));
+          if (views) views.textContent = '3 456';
+          if (clicks) clicks.textContent = '812';
+          if (tip) tip.hidden = false;
           host.classList.add('is-copied');
-        }, 500);
+          return;
+        }
+        showStage(row, host, 1, 80);
+        later(row, 420, () => {
+          showStage(row, host, 2, 0);
+          countTo(views, 3456, row, 700);
+          countTo(clicks, 812, row, 700);
+        });
+        later(row, 900, () => showStage(row, host, 3, 0));
+        later(row, 1400, () => {
+          if (tip) tip.hidden = false;
+          host.classList.add('is-copied');
+        });
+        later(row, 4200, () => {
+          if (row._featActive) runShowcase(row);
+        });
       };
 
       const runPay = (row) => {
+        const host = row.querySelector('[data-pay-demo]');
+        const checkout = row.querySelector('[data-pay-checkout]');
         const cta = row.querySelector('[data-pay-cta]');
         const success = row.querySelector('[data-pay-success]');
         const you = row.querySelector('[data-pay-you]');
+        const nameEl = row.querySelector('[data-pay-name]');
+        const phoneEl = row.querySelector('[data-pay-phone]');
+        const methods = [...row.querySelectorAll('[data-pay-method]')];
+        const lines = {
+          ticket: row.querySelector('[data-pay-line="ticket"]'),
+          acq: row.querySelector('[data-pay-line="acq"]'),
+          fee: row.querySelector('[data-pay-line="fee"]'),
+          guest: row.querySelector('[data-pay-line="guest"]'),
+        };
+        if (!host) return;
+
+        resetStages(host);
+        host.classList.remove('is-paid');
+        if (checkout) checkout.hidden = false;
         if (cta) {
           cta.classList.remove('is-busy', 'is-hidden');
           cta.textContent = 'Оплатить 105 000';
         }
         if (success) success.hidden = true;
         if (you) you.classList.remove('is-glow');
+        methods.forEach((m) => m.classList.remove('is-on'));
+        Object.values(lines).forEach((el) => {
+          if (el) el.textContent = '0';
+        });
+        if (nameEl) nameEl.textContent = '';
+        if (phoneEl) phoneEl.textContent = '';
+
         if (reduce) {
-          if (cta) cta.classList.add('is-hidden');
+          host.querySelectorAll('.fp-stage').forEach((el) => el.classList.add('is-in'));
+          methods[0]?.classList.add('is-on');
+          if (lines.ticket) lines.ticket.textContent = '100 000';
+          if (lines.acq) lines.acq.textContent = '1 500';
+          if (lines.fee) lines.fee.textContent = '3 500';
+          if (lines.guest) lines.guest.textContent = '105 000';
+          if (nameEl) nameEl.textContent = 'Мун Тимур';
+          if (phoneEl) phoneEl.textContent = '+998 90 123 45 67';
+          host.classList.add('is-paid');
           if (success) success.hidden = false;
           if (you) you.classList.add('is-glow');
           return;
         }
-        window.setTimeout(() => cta && cta.classList.add('is-busy'), 400);
-        window.setTimeout(() => {
-          if (cta) cta.classList.add('is-hidden');
+
+        showStage(row, host, 1, 60);
+
+        later(row, 280, async () => {
+          if (!row._featActive) return;
+          showStage(row, host, 2, 0);
+          await typeText(nameEl, 'Мун Тимур', row, 32);
+          if (!row._featActive) return;
+          await typeText(phoneEl, '+998 90 123 45 67', row, 22);
+        });
+
+        later(row, 1600, () => {
+          if (!row._featActive) return;
+          showStage(row, host, 3, 0);
+          later(row, 280, () => methods[0]?.classList.add('is-on'));
+          later(row, 520, () => {
+            methods[0]?.classList.remove('is-on');
+            methods[1]?.classList.add('is-on');
+          });
+          later(row, 820, () => {
+            methods[1]?.classList.remove('is-on');
+            methods[0]?.classList.add('is-on');
+          });
+          later(row, 200, () => countTo(lines.ticket, 100000, row, 480));
+          later(row, 360, () => countTo(lines.acq, 1500, row, 420));
+          later(row, 520, () => countTo(lines.fee, 3500, row, 420));
+        });
+
+        later(row, 2700, () => {
+          if (!row._featActive) return;
+          showStage(row, host, 4, 0);
+          countTo(lines.guest, 105000, row, 480);
+        });
+
+        later(row, 3400, () => {
+          if (!row._featActive) return;
+          cta?.classList.add('is-busy');
+          if (cta) cta.textContent = 'Оплата…';
+        });
+
+        later(row, 4100, () => {
+          if (!row._featActive) return;
+          host.classList.add('is-paid');
           if (success) success.hidden = false;
-          if (you) you.classList.add('is-glow');
-        }, 1100);
+          showStage(row, host, 5, 0);
+          later(row, 120, () => you?.classList.add('is-glow'));
+        });
+
+        later(row, 7000, () => {
+          if (row._featActive) runPay(row);
+        });
       };
 
       const runCrm = (row) => {
+        const host = row.querySelector('[data-crm-demo]');
         const toast = row.querySelector('[data-crm-toast]');
         const btn = row.querySelector('[data-crm-export]');
+        if (!host) return;
+        resetStages(host);
         if (toast) toast.hidden = true;
+        if (btn) btn.style.transform = '';
         if (reduce) {
+          host.querySelectorAll('.fp-stage').forEach((el) => el.classList.add('is-in'));
           if (toast) toast.hidden = false;
           return;
         }
-        window.setTimeout(() => {
+        showStage(row, host, 1, 80);
+        later(row, 360, () => showStage(row, host, 2, 0));
+        later(row, 1400, () => {
           if (btn) btn.style.transform = 'scale(0.96)';
-        }, 350);
-        window.setTimeout(() => {
+        });
+        later(row, 1700, () => {
           if (btn) btn.style.transform = '';
           if (toast) toast.hidden = false;
-        }, 700);
+        });
+        later(row, 4800, () => {
+          if (row._featActive) runCrm(row);
+        });
       };
 
       const runRefund = (row) => {
         const btn = row.querySelector('[data-refund-btn]');
         const sheet = row.querySelector('[data-refund-sheet]');
-        const confirm = row.querySelector('[data-refund-confirm]');
         const status = row.querySelector('[data-refund-status]');
         const amount = row.querySelector('[data-refund-amount]');
         if (btn) btn.classList.remove('is-hidden');
@@ -1394,8 +1573,10 @@
           if (amount) amount.textContent = '0';
           return;
         }
-        window.setTimeout(() => { if (sheet) sheet.hidden = false; }, 500);
-        window.setTimeout(() => {
+        later(row, 500, () => {
+          if (sheet) sheet.hidden = false;
+        });
+        later(row, 1400, () => {
           if (sheet) sheet.hidden = true;
           if (btn) btn.classList.add('is-hidden');
           if (status) {
@@ -1403,7 +1584,10 @@
             status.classList.add('is-done');
           }
           if (amount) amount.textContent = '0';
-        }, 1400);
+        });
+        later(row, 4200, () => {
+          if (row._featActive) runRefund(row);
+        });
       };
 
       const runInvite = (row) => {
@@ -1411,12 +1595,16 @@
         if (!list) return;
         list.querySelectorAll('.fp-invite__item.is-new').forEach((n) => n.remove());
         if (reduce) return;
-        window.setTimeout(() => {
+        later(row, 500, () => {
           const item = document.createElement('div');
           item.className = 'fp-invite__item is-new';
-          item.innerHTML = '<span class="fp-invite__ava">А</span><div><strong>Алина К.</strong><em>press@media.uz</em></div><b class="is-vip">VIP</b><b class="is-invited">Приглашён</b>';
+          item.innerHTML =
+            '<span class="fp-invite__ava">А</span><div><strong>Алина К.</strong><em>press@media.uz</em></div><b class="is-vip">VIP</b><b class="is-invited">Приглашён</b>';
           list.prepend(item);
-        }, 600);
+        });
+        later(row, 4500, () => {
+          if (row._featActive) runInvite(row);
+        });
       };
 
       const runScanner = (row) => {
@@ -1436,12 +1624,12 @@
           if (result) result.classList.add('is-show');
           return;
         }
-        window.setTimeout(() => {
+        later(row, 400, () => {
           if (frame) frame.classList.add('is-pulse', 'is-ok');
           if (result) result.classList.add('is-show');
           if (count) count.textContent = '125';
-        }, 450);
-        window.setTimeout(() => {
+        });
+        later(row, 1700, () => {
           if (frame) {
             frame.classList.remove('is-ok');
             frame.classList.add('is-bad');
@@ -1451,7 +1639,10 @@
             result.textContent = 'Уже прошёл';
           }
           if (bad) bad.hidden = false;
-        }, 1800);
+        });
+        later(row, 4200, () => {
+          if (row._featActive) runScanner(row);
+        });
       };
 
       const runners = {
@@ -1463,22 +1654,31 @@
         scanner: runScanner,
       };
 
+      const startRow = (row) => {
+        clearTimers(row);
+        row._featActive = true;
+        runners[row.getAttribute('data-feat')]?.(row);
+      };
+
+      const stopRow = (row) => {
+        row._featActive = false;
+        clearTimers(row);
+      };
+
       const rows = [...root.querySelectorAll('.feat-row[data-feat]')];
       if (!('IntersectionObserver' in window)) {
-        rows.forEach((row) => runners[row.getAttribute('data-feat')]?.(row));
+        rows.forEach(startRow);
         return;
       }
       const io = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
             const row = entry.target;
-            if (row.dataset.played) return;
-            row.dataset.played = '1';
-            runners[row.getAttribute('data-feat')]?.(row);
+            if (entry.isIntersecting) startRow(row);
+            else stopRow(row);
           });
         },
-        { threshold: 0.45 }
+        { threshold: 0.4 }
       );
       rows.forEach((row) => io.observe(row));
     })();
