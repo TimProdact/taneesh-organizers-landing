@@ -7,9 +7,9 @@
 | Роль | Переменная | Шрифт | Где |
 |------|------------|-------|-----|
 | Display | `--font-display` | Instrument Serif | `h1`, `h2`, `h3`, цитаты, крупные цифры в калькуляторах |
-| UI / body | `--font-ui` | Satoshi | body, `.lead`, `.eyebrow`, кнопки, FAQ, подписи |
+| UI / body | `--font-ui` | Outfit | body, `.lead`, `.eyebrow`, кнопки, FAQ, подписи |
 
-**Правило:** заголовки секций — только Instrument Serif. Satoshi — для всего интерактива и текста абзацев.
+**Правило:** заголовки секций — только Instrument Serif. Outfit — для всего интерактива и текста абзацев.
 
 ## Шкала размеров
 
@@ -86,7 +86,7 @@
 
 | Класс | Описание |
 |-------|----------|
-| `.eyebrow` | Kicker секции, Satoshi 13px bold uppercase |
+| `.eyebrow` | Kicker секции, Outfit 13px bold uppercase |
 | `.lead` | Подзаголовок, muted, max-width ~34em, по центру в `.section-head` |
 | `.card-title` | Display-заголовок карточки (или `h3` на фото-картах) |
 | `.type-caption` | Мuted подпись 13px semibold |
@@ -101,7 +101,7 @@
 ## FAQ
 
 - `.section-head`: eyebrow + h2
-- Вопрос (`summary`): Satoshi 17px semibold
+- Вопрос (`summary`): Outfit 17px semibold
 - Ответ (`.faq-a`): `--text-body`, `--leading-loose`
 
 ## Калькуляторы
@@ -115,4 +115,4 @@
 - [ ] Нет локальных `font-size: 26px` / `clamp(...)` у h2/h3 без причины
 - [ ] Секция использует `.section-head` + 48px gap
 - [ ] Lead — класс `.lead`, не кастомный `.flow-lead` / `.quote-badge`
-- [ ] Display-текст — Instrument Serif, UI — Satoshi
+- [ ] Display-текст — Instrument Serif, UI — Outfit

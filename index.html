@@ -108,9 +108,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=1542410" />
-  <script src="assets/i18n.js?v=1542410"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=1542500" />
+  <script src="assets/i18n.js?v=1542500"></script>
 
   <!-- Analytics: fill in your Yandex.Metrika counter id and Meta Pixel id below to enable tracking -->
   <script>
@@ -161,10 +161,10 @@
           <a href="#why" data-goto="why" data-i18n="navWhy">Почему мы</a>
           <a href="#included" data-goto="included" data-i18n="navIncluded">Что даём</a>
           <a href="#tickettypes" data-goto="tickettypes" data-i18n="navTickets">Типы билетов</a>
-          <a href="#audience" data-goto="audience" data-i18n="navOrgs">Организаторы</a>
+          <a href="#audience" data-goto="audience" data-i18n="navOrgs">Для кого</a>
           <a href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
         </nav>
-        <button type="button" class="header-burger" id="burgerBtn" aria-label="Меню" aria-expanded="false" aria-controls="mobileMenu">
+        <button type="button" class="header-burger" id="burgerBtn" data-i18n-aria="menuOpen" aria-label="Меню" aria-expanded="false" aria-controls="mobileMenu">
           <span></span><span></span><span></span>
         </button>
         <div class="header-lang" id="langWrap">
@@ -190,7 +190,7 @@
     <div class="mobile-menu__panel">
       <div class="mobile-menu__head">
         <img class="logo-wordmark" src="assets/taneesh-wordmark.svg" alt="Taneesh" width="130" height="24" />
-        <button type="button" class="mobile-menu__close" id="mobileMenuClose" aria-label="Закрыть">
+        <button type="button" class="mobile-menu__close" id="mobileMenuClose" data-i18n-aria="menuClose" aria-label="Закрыть">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
         </button>
       </div>
@@ -198,7 +198,7 @@
         <a href="#why" data-goto="why" data-i18n="navWhy">Почему мы</a>
         <a href="#included" data-goto="included" data-i18n="navIncluded">Что даём</a>
         <a href="#tickettypes" data-goto="tickettypes" data-i18n="navTickets">Типы билетов</a>
-        <a href="#audience" data-goto="audience" data-i18n="navOrgs">Организаторы</a>
+        <a href="#audience" data-goto="audience" data-i18n="navOrgs">Для кого</a>
         <a href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
       </nav>
       <a class="btn btn-accent mobile-menu__cta" href="#" data-lead-modal data-lead-source="mobileMenu" data-i18n="navStart">Запустить</a>
@@ -211,7 +211,7 @@
         <div class="hero-copy">
           <span class="eyebrow" data-i18n="heroEyebrow">Тикетинг для организаторов</span>
           <h1 data-i18n-html="heroTitle">Продавайте билеты.<br />Получайте <span class="accent">100%</span> цены</h1>
-          <p class="lead" data-i18n="heroLead">Витрина за 5 минут. Сбор платит гость — вам 100% цены билета.</p>
+          <p class="lead" data-i18n="heroLead">Не «ещё одна касса-посредник», а инфраструктура: витрина за 5 минут, честный чекаут и 100% цены билета — вам.</p>
           <div class="btn-row">
             <a class="btn btn-accent" href="#" data-lead-modal data-lead-source="heroCta" data-i18n="heroCta">Запустить продажи</a>
             <a class="btn btn-ghost" href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
@@ -275,7 +275,7 @@
           <div class="fees-outcomes">
             <div class="fees-result">
               <div class="fees-result-card is-you">
-                <span data-i18n="whyGood">Taneesh · вам 100%</span>
+                <span data-i18n="whyGood">Taneesh · онлайн вам 100%</span>
                 <strong id="tanPerTicket">100 000</strong>
                 <em data-i18n="currency">сум</em>
               </div>
@@ -348,7 +348,7 @@
         </div>
         <div class="island calc-shell live-conv" data-live-conv>
           <div class="calc-viz">
-            <div class="live-filters" role="tablist" aria-label="Период">
+            <div class="live-filters" role="tablist" data-i18n-aria="livePeriodAria" aria-label="Период">
               <button type="button" class="live-filter is-active" data-live-range="week" data-i18n="liveRangeWeek">За неделю</button>
               <button type="button" class="live-filter" data-live-range="month" data-i18n="liveRangeMonth">За месяц</button>
               <button type="button" class="live-filter" data-live-range="all" data-i18n="liveRangeAll">За всё время</button>
@@ -422,7 +422,6 @@
               <div class="aud-stack">
                 <div class="aud-glass aud-glass-back"></div>
                 <div class="aud-glass aud-glass-mid">
-                  <span class="aud-pill soft" data-i18n="audLargeTag">Бизнес</span>
                   <div class="aud-glass-lines"><i></i><i></i><i></i></div>
                 </div>
                 <div class="aud-glass aud-glass-front">
@@ -495,7 +494,7 @@
     </section>
 
     <section class="section section--feat-list" id="included">
-      <div class="wrap feat-list-wrap" data-feat-list data-i18n-aria="offerAria" aria-label="Возможности платформы" role="region">
+      <div class="wrap feat-list-wrap" data-feat-list data-i18n-aria="offerAria" aria-label="Возможности" role="region">
         <div class="feat-list">
           <!-- 1 Showcase: text left / visual right -->
           <article class="feat-row snap-panel" data-feat="showcase">
@@ -581,7 +580,7 @@
                     <div class="fp-pay__row fp-stage" data-fp-stage="3" data-fp-delay="2"><span data-i18n="fpPayFee">FixedFee на гостя</span><strong data-pay-line="fee">0</strong></div>
                     <div class="fp-pay__row is-guest fp-stage" data-fp-stage="4"><span data-i18n="fpPayGuestPays">Гость платит</span><strong data-pay-line="guest">0</strong></div>
                     <button type="button" class="fp-pay__cta fp-stage" data-pay-cta data-fp-stage="4" data-fp-delay="1" tabindex="-1" data-i18n="fpPayCta">Оплатить 105 000</button>
-                    <div class="fp-pay__you fp-stage" data-pay-you data-fp-stage="5"><span data-i18n="whyGood">Taneesh · вам 100%</span><strong>100 000</strong></div>
+                    <div class="fp-pay__you fp-stage" data-pay-you data-fp-stage="5"><span data-i18n="whyGood">Taneesh · онлайн вам 100%</span><strong>100 000</strong></div>
                   </aside>
                 </div>
               </div>
@@ -738,7 +737,7 @@
           <p class="lead" data-i18n="flowStepsLead">Пять шагов — от кабинета до сканера на входе.</p>
         </div>
         <div class="flow-layout">
-            <div class="flow-steps" aria-label="5 шагов">
+            <div class="flow-steps" data-i18n-aria="flowStepsAria" aria-label="5 шагов">
               <article class="flow-step">
                 <span class="flow-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
                 <p class="flow-step-copy"><strong data-i18n="flow1t">Кабинет</strong> <span data-i18n="flow1d">Зарегистрируйте аккаунт организатора за пару минут.</span></p>
@@ -822,7 +821,7 @@
         <img class="logo-wordmark is-on-dark" src="assets/taneesh-wordmark.svg" alt="Taneesh" width="130" height="24" />
       </a>
       <h2 class="site-footer__headline" data-i18n="footHeadline">Тикетинг, витрина и CRM — для организаторов</h2>
-      <nav class="site-footer__nav" aria-label="Footer">
+      <nav class="site-footer__nav" data-i18n-aria="footerNavAria" aria-label="Навигация">
         <a class="site-footer__pill is-accent" href="#" data-lead-modal data-lead-source="footCta" data-i18n="footCta">Заявка</a>
         <a class="site-footer__pill" href="assets/Taneesh-KP-organizatoram.pdf" download="Taneesh-KP-organizatoram.pdf" data-i18n="ctaKp">Скачать КП</a>
       </nav>
@@ -900,8 +899,10 @@
     // Hero vibe video — muted autoplay loop; click toggles sound / pause
     (function initHeroVibe() {
       const root = document.querySelector('[data-hero-vibe]');
+      const heroVibeReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (!root) return;
       const video = root.querySelector('.hero-vibe__video');
+      if (heroVibeReduce && video) { video.removeAttribute('autoplay'); video.pause(); }
       const playBtn = root.querySelector('[data-hero-vibe-play]');
       if (!video || !playBtn) return;
 
@@ -1160,136 +1161,6 @@
       }, 3200);
     }
 
-    // Features loop (#included) — infinite horizontal carousel
-    (function initFeaturesLoop() {
-      const rail = document.querySelector('[data-features-loop]');
-      if (!rail || rail.dataset.loopReady) return;
-      rail.dataset.loopReady = '1';
-
-      const originals = [...rail.querySelectorAll('[data-feature-card]')];
-      const count = originals.length;
-      if (!count) return;
-
-      const before = document.createDocumentFragment();
-      const after = document.createDocumentFragment();
-      originals.forEach((card) => {
-        const c1 = card.cloneNode(true);
-        c1.setAttribute('aria-hidden', 'true');
-        before.appendChild(c1);
-        const c2 = card.cloneNode(true);
-        c2.setAttribute('aria-hidden', 'true');
-        after.appendChild(c2);
-      });
-      rail.insertBefore(before, rail.firstChild);
-      rail.appendChild(after);
-
-      let loopWidth = 0;
-      let dragging = false;
-      let dragStartX = 0;
-      let dragStartScroll = 0;
-      let scrollTimer = 0;
-      let focusFrame = 0;
-      const motionOk = () => !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      const cards = () => [...rail.querySelectorAll('[data-feature-card]')];
-
-      const updateFocus = () => {
-        if (!motionOk()) return;
-        const railRect = rail.getBoundingClientRect();
-        const centerX = railRect.left + railRect.width * 0.5;
-        const falloff = Math.max(railRect.width * 0.55, 420);
-        cards().forEach((card) => {
-          const rect = card.getBoundingClientRect();
-          const cardCenter = rect.left + rect.width * 0.5;
-          const dist = Math.abs(cardCenter - centerX);
-          const t = Math.min(1, dist / falloff);
-          const eased = t * t;
-          const scale = 1 - eased * 0.14;
-          const opacity = 1 - eased * 0.22;
-          card.style.transform = `scale(${scale.toFixed(3)})`;
-          card.style.opacity = opacity.toFixed(3);
-          card.style.zIndex = String(Math.round((1 - t) * 20));
-        });
-      };
-
-      const scheduleFocus = () => {
-        if (focusFrame) return;
-        focusFrame = requestAnimationFrame(() => {
-          focusFrame = 0;
-          updateFocus();
-        });
-      };
-
-      const measureLoop = () => {
-        const list = cards();
-        if (list.length < count * 2) return 0;
-        return list[count].offsetLeft - list[0].offsetLeft;
-      };
-
-      const jumpToMiddle = () => {
-        loopWidth = measureLoop();
-        if (!loopWidth) return;
-        rail.scrollLeft = loopWidth;
-      };
-
-      const normalize = () => {
-        if (!loopWidth || dragging) return;
-        if (rail.scrollLeft <= loopWidth * 0.2) {
-          rail.scrollLeft += loopWidth;
-        } else if (rail.scrollLeft >= loopWidth * 1.8) {
-          rail.scrollLeft -= loopWidth;
-        }
-      };
-
-      const onScroll = () => {
-        scheduleFocus();
-        window.clearTimeout(scrollTimer);
-        scrollTimer = window.setTimeout(normalize, 90);
-      };
-
-      rail.addEventListener('scroll', onScroll, { passive: true });
-      if ('onscrollend' in window) {
-        rail.addEventListener('scrollend', normalize);
-      }
-
-      rail.addEventListener('pointerdown', (event) => {
-        if (event.button !== 0) return;
-        dragging = true;
-        dragStartX = event.clientX;
-        dragStartScroll = rail.scrollLeft;
-        rail.classList.add('is-dragging');
-        rail.setPointerCapture(event.pointerId);
-      });
-
-      rail.addEventListener('pointermove', (event) => {
-        if (!dragging) return;
-        rail.scrollLeft = dragStartScroll - (event.clientX - dragStartX);
-        scheduleFocus();
-      });
-
-      const endDrag = () => {
-        if (!dragging) return;
-        dragging = false;
-        rail.classList.remove('is-dragging');
-        normalize();
-        scheduleFocus();
-      };
-
-      rail.addEventListener('pointerup', endDrag);
-      rail.addEventListener('pointercancel', endDrag);
-
-      window.addEventListener('resize', () => {
-        const ratio = loopWidth ? rail.scrollLeft / loopWidth : 1;
-        jumpToMiddle();
-        if (loopWidth) rail.scrollLeft = loopWidth * ratio;
-        scheduleFocus();
-      });
-
-      requestAnimationFrame(() => {
-        jumpToMiddle();
-        updateFocus();
-      });
-    })();
 
     // Features list (#included) — staged micro-demos when rows enter view
     (function initFeatList() {
@@ -1685,271 +1556,6 @@
       rows.forEach((row) => io.observe(row));
     })();
 
-    // Lazy-load feature card background images when they enter viewport
-    (function lazyFeatureBgs() {
-      const cards = document.querySelectorAll('.features-card[data-bg]');
-      if (!cards.length) return;
-      if (!('IntersectionObserver' in window)) {
-        cards.forEach((c) => c.classList.add('is-bg-loaded'));
-        return;
-      }
-      const io = new IntersectionObserver(
-        (entries, obs) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add('is-bg-loaded');
-            obs.unobserve(entry.target);
-          });
-        },
-        { rootMargin: '200px 0px' }
-      );
-      cards.forEach((c) => io.observe(c));
-    })();
-
-    // Hero dashboard demo (periods, KPI tap, scroll tour) + admin nav
-    const dashRoot = document.querySelector('[data-dash]');
-    if (dashRoot && !dashRoot.dataset.ready) {
-      dashRoot.dataset.ready = '1';
-      const scrollEl = dashRoot.querySelector('[data-dash-scroll]');
-      const dashPanel = dashRoot.querySelector('[data-admin-panel="dashboard"]');
-      const barsEl = dashPanel?.querySelector('[data-dash-bars]');
-      const xEl = dashPanel?.querySelector('[data-dash-x]');
-      const yEl = dashPanel?.querySelector('[data-dash-y]');
-      const topEl = dashPanel?.querySelector('[data-dash-top]');
-      const titleEl = dashPanel?.querySelector('[data-dash-chart-title]');
-      const navItems = dashRoot.querySelectorAll('[data-admin-screen]');
-      const panels = dashRoot.querySelectorAll('[data-admin-panel]');
-      let activeScreen = 'events';
-      let scrollTour = null;
-
-      const setScreen = (id) => {
-        activeScreen = id;
-        navItems.forEach((btn) => {
-          const on = btn.getAttribute('data-admin-screen') === id;
-          btn.classList.toggle('is-active', on);
-          btn.toggleAttribute('aria-current', on ? 'page' : false);
-        });
-        panels.forEach((panel) => {
-          const on = panel.getAttribute('data-admin-panel') === id;
-          panel.classList.toggle('is-active', on);
-          panel.hidden = !on;
-        });
-        if (scrollEl) {
-          scrollEl.classList.toggle('is-screen-alt', id !== 'dashboard' && id !== 'events');
-          scrollEl.classList.toggle('is-screen-events', id === 'events');
-          scrollEl.scrollLeft = 0;
-          scrollEl.scrollTop = 0;
-        }
-        if (scrollTour) scrollTour.setEnabled(id === 'dashboard');
-      };
-
-      navItems.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          setScreen(btn.getAttribute('data-admin-screen'));
-        });
-      });
-      const ranges = {
-        today: {
-          y: ['4.5M', '3.4M', '2.3M', '1.1M', '0'],
-          labels: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
-          bars: [28, 42, 55, 48, 70, 88, 100, 62],
-          kpis: {
-            rev: '18.4M UZS', revDelta: '+12% ↑',
-            tix: '312', tixDelta: '+8% ↑',
-            ref: '0 UZS', refDelta: '0% →',
-            views: '9 840', viewsDelta: '+15% ↑',
-            chk: '2 180', chkDelta: '+11% ↑',
-            conv: '3.2%', convDelta: '+0.4% ↑',
-          },
-          funnel: { v: '100%', c: '22.1%', p: '3.2%', cw: 22, pw: 3.2 },
-          top: [
-            ['Summer Open Air', '6.2M'],
-            ['Morning Trek', '4.1M'],
-            ['Networking Meetup', '2.8M'],
-            ['Business Talk', '1.9M'],
-          ],
-        },
-        week: {
-          y: ['22M', '16.5M', '11M', '5.5M', '0'],
-          labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
-          bars: [48, 62, 70, 55, 82, 94, 100],
-          kpis: {
-            rev: '125M UZS', revDelta: '+22% ↑',
-            tix: '450', tixDelta: '+5% ↑',
-            ref: '0 UZS', refDelta: '0% →',
-            views: '15 840', viewsDelta: '+18% ↑',
-            chk: '3 420', chkDelta: '+14% ↑',
-            conv: '2.8%', convDelta: '−1% ↓',
-          },
-          funnel: { v: '100%', c: '21.6%', p: '2.8%', cw: 22, pw: 2.8 },
-          top: [
-            ['IT Conference 2024', '45M'],
-            ['Design Meetup', '32M'],
-            ['Marketing Forum', '28M'],
-            ['Startup Weekend', '19M'],
-          ],
-        },
-        month: {
-          y: ['48M', '36M', '24M', '12M', '0'],
-          labels: ['1', '5', '10', '15', '20', '25', '30'],
-          bars: [40, 52, 68, 58, 74, 90, 100],
-          kpis: {
-            rev: '412M UZS', revDelta: '+18% ↑',
-            tix: '1 840', tixDelta: '+9% ↑',
-            ref: '1.2M UZS', refDelta: '+2% ↑',
-            views: '62 400', viewsDelta: '+21% ↑',
-            chk: '12 800', chkDelta: '+13% ↑',
-            conv: '3.0%', convDelta: '+0.2% ↑',
-          },
-          funnel: { v: '100%', c: '20.5%', p: '3.0%', cw: 21, pw: 3 },
-          top: [
-            ['Summer Open Air', '86M'],
-            ['IT Conference 2024', '72M'],
-            ['Jazz Night', '54M'],
-            ['Morning Trek', '41M'],
-          ],
-        },
-        all: {
-          y: ['180M', '135M', '90M', '45M', '0'],
-          labels: ['Янв', 'Мар', 'Май', 'Июл', 'Сен', 'Ноя'],
-          bars: [35, 48, 62, 78, 88, 100],
-          kpis: {
-            rev: '1.2B UZS', revDelta: '+34% ↑',
-            tix: '8 420', tixDelta: '+27% ↑',
-            ref: '4.8M UZS', refDelta: '+4% ↑',
-            views: '286K', viewsDelta: '+41% ↑',
-            chk: '54 200', chkDelta: '+29% ↑',
-            conv: '2.9%', convDelta: '+0.1% ↑',
-          },
-          funnel: { v: '100%', c: '19%', p: '2.9%', cw: 19, pw: 2.9 },
-          top: [
-            ['City Live Festival', '210M'],
-            ['IT Conference 2024', '168M'],
-            ['Summer Open Air', '142M'],
-            ['Design Week', '98M'],
-          ],
-        },
-      };
-
-      const chartTitles = {
-        rev: 'Общая выручка',
-        tix: 'Продажи билетов',
-        ref: 'Возвраты',
-        views: 'Просмотры витрины',
-        chk: 'Оформление',
-        conv: 'Конверсия',
-      };
-
-      const applyRange = (key) => {
-        const cfg = ranges[key] || ranges.today;
-        if (yEl) {
-          yEl.innerHTML = cfg.y.map((v) => `<span>${v}</span>`).join('');
-        }
-        if (barsEl) {
-          barsEl.innerHTML = cfg.bars.map((h) => (
-            `<div class="dash-hour"><i style="--h:${h}%"></i></div>`
-          )).join('');
-        }
-        if (xEl) {
-          xEl.innerHTML = cfg.labels.map((label) => `<span>${label}</span>`).join('');
-        }
-        Object.entries(cfg.kpis).forEach(([k, v]) => {
-          const el = dashPanel?.querySelector(`[data-k="${k}"]`);
-          if (!el) return;
-          el.textContent = v;
-          if (k.endsWith('Delta')) {
-            el.classList.toggle('down', v.includes('−') || v.includes('-'));
-            el.classList.toggle('flat', v.includes('→') || v.startsWith('0%'));
-          }
-        });
-        if (topEl) {
-          topEl.innerHTML = cfg.top.map((row, i) => (
-            `<div class="dash-top-row"><span class="rank">${i + 1}</span><span class="name">${row[0]}</span><span class="rev">${row[1]}</span></div>`
-          )).join('');
-        }
-        const f = cfg.funnel;
-        const setF = (sel, text) => {
-          const el = dashPanel?.querySelector(`[data-f="${sel}"]`);
-          if (el) el.textContent = text;
-        };
-        setF('v', f.v);
-        setF('c', f.c);
-        setF('p', f.p);
-        const bars = dashPanel?.querySelectorAll('[data-dash-funnel] .bar i');
-        if (bars[0]) bars[0].style.width = '100%';
-        if (bars[1]) bars[1].style.width = f.cw + '%';
-        if (bars[2]) bars[2].style.width = f.pw + '%';
-      };
-
-      dashPanel?.querySelectorAll('[data-dash-range]').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          dashPanel.querySelectorAll('[data-dash-range]').forEach((b) => b.classList.remove('on'));
-          btn.classList.add('on');
-          applyRange(btn.getAttribute('data-dash-range'));
-        });
-      });
-
-      dashPanel?.querySelectorAll('[data-dash-kpi]').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          dashPanel.querySelectorAll('[data-dash-kpi]').forEach((b) => b.classList.remove('is-active'));
-          btn.classList.add('is-active');
-          const key = btn.getAttribute('data-dash-kpi');
-          if (titleEl && chartTitles[key]) titleEl.textContent = chartTitles[key];
-          // subtle bar remix on metric tap
-          if (barsEl) {
-            barsEl.querySelectorAll('.dash-hour i').forEach((bar, i) => {
-              const base = parseFloat(getComputedStyle(bar).getPropertyValue('--h')) || 50;
-              const next = Math.max(18, Math.min(100, base + ((i % 2 === 0 ? 1 : -1) * (8 + (i * 3) % 12))));
-              bar.style.setProperty('--h', next + '%');
-            });
-          }
-        });
-      });
-
-      applyRange('today');
-      setScreen('events');
-
-      // Soft horizontal scroll tour on dashboard when hero is visible
-      if (scrollEl && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        let dir = 1;
-        let paused = false;
-        let enabled = true;
-        let timer = null;
-        const tick = () => {
-          if (paused || !enabled || activeScreen !== 'dashboard') return;
-          const maxX = scrollEl.scrollWidth - scrollEl.clientWidth;
-          if (maxX > 8) {
-            scrollEl.scrollLeft += dir * 0.45;
-            if (scrollEl.scrollLeft >= maxX - 1) dir = -1;
-            if (scrollEl.scrollLeft <= 1) dir = 1;
-          }
-        };
-        const start = () => {
-          if (timer || !enabled) return;
-          timer = setInterval(tick, 32);
-        };
-        const stop = () => {
-          if (timer) clearInterval(timer);
-          timer = null;
-        };
-        const pause = () => { paused = true; };
-        const resume = () => { paused = false; };
-        scrollEl.addEventListener('pointerdown', pause);
-        scrollEl.addEventListener('wheel', pause, { passive: true });
-        scrollEl.addEventListener('pointerleave', () => setTimeout(resume, 1800));
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach((e) => (e.isIntersecting && enabled ? start() : stop()));
-        }, { threshold: 0.35 });
-        io.observe(dashRoot);
-        scrollTour = {
-          setEnabled(on) {
-            enabled = on;
-            if (!on) stop();
-            else if (dashRoot.getBoundingClientRect().height) start();
-          },
-        };
-      }
-    }
 
     window.addEventListener('taneesh:locale', () => {
       recalcAll();
@@ -1964,7 +1570,6 @@
         '#flow .flow-step',
         '.aud-card',
         '#flow .flow-pitch-frame',
-        '.quote-block',
         '#faq .faq-item',
         '#tickettypes .tt-card',
         '#pains .pain-card',
