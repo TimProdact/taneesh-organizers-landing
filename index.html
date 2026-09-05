@@ -109,8 +109,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=1545600" />
-  <script src="assets/i18n.js?v=1545600"></script>
+  <link rel="stylesheet" href="styles.css?v=1545700" />
+  <script src="assets/i18n.js?v=1545700"></script>
 
   <!-- Analytics: fill in your Yandex.Metrika counter id and Meta Pixel id below to enable tracking -->
   <script>
@@ -1130,6 +1130,37 @@
         return id;
       };
 
+      /* Mobile: lock demo box to the tallest state so later shorter states don't jump */
+      const mobileDemoMq = window.matchMedia('(max-width: 900px)');
+      const lockDemoMinHeight = (el) => {
+        if (!el) return;
+        if (!mobileDemoMq.matches) {
+          el.style.minHeight = '';
+          delete el.dataset.demoLockH;
+          return;
+        }
+        const apply = () => {
+          if (!mobileDemoMq.matches) {
+            el.style.minHeight = '';
+            delete el.dataset.demoLockH;
+            return;
+          }
+          const h = Math.ceil(el.getBoundingClientRect().height);
+          const prev = Number(el.dataset.demoLockH || 0);
+          if (h > prev) {
+            el.dataset.demoLockH = String(h);
+            el.style.minHeight = h + 'px';
+          }
+        };
+        apply();
+        requestAnimationFrame(apply);
+      };
+      const clearDemoMinHeight = (el) => {
+        if (!el) return;
+        el.style.minHeight = '';
+        delete el.dataset.demoLockH;
+      };
+
       const resetStages = (host) => {
         if (!host) return;
         host.classList.add('is-demo-ready');
@@ -1266,6 +1297,7 @@
           phoneEl.classList.remove('is-typing');
           phoneEl.textContent = '';
         }
+        lockDemoMinHeight(host);
 
         if (reduce) {
           host.querySelectorAll('.fp-stage').forEach((el) => el.classList.add('is-in'));
@@ -1276,6 +1308,7 @@
           if (lines.guest) lines.guest.textContent = '105 000';
           if (nameEl) nameEl.textContent = NAME;
           if (phoneEl) phoneEl.textContent = PHONE;
+          lockDemoMinHeight(host);
           host.classList.add('is-paid');
           if (success) success.hidden = false;
           if (you) you.classList.add('is-glow');
@@ -1318,16 +1351,19 @@
             if (!alive()) return;
             showStage(row, host, 4, 0);
             countTo(lines.guest, 105000, row, 480);
+            later(row, 80, () => lockDemoMinHeight(host));
           });
 
           later(row, 2300, () => {
             if (!alive()) return;
+            lockDemoMinHeight(host);
             cta?.classList.add('is-busy');
             if (cta) cta.textContent = d.fpPayPaying || 'Оплата…';
           });
 
           later(row, 3000, () => {
             if (!alive()) return;
+            lockDemoMinHeight(host);
             host.classList.add('is-paid');
             if (success) success.hidden = false;
             showStage(row, host, 5, 0);
@@ -1369,6 +1405,8 @@
 
       const runRefund = (row) => {
         const d = tt();
+        const host = row.querySelector('[data-refund-demo]');
+        const card = row.querySelector('.fp-refund__card');
         const btn = row.querySelector('[data-refund-btn]');
         const sheet = row.querySelector('[data-refund-sheet]');
         const status = row.querySelector('[data-refund-status]');
@@ -1380,7 +1418,11 @@
           status.classList.remove('is-done');
         }
         if (amount) amount.textContent = '100 000';
+        lockDemoMinHeight(card);
+        lockDemoMinHeight(host);
         if (reduce) {
+          lockDemoMinHeight(card);
+          lockDemoMinHeight(host);
           if (btn) btn.classList.add('is-hidden');
           if (status) {
             status.textContent = d.fpRefundDone || 'Возвращён';
@@ -1391,8 +1433,11 @@
         }
         later(row, 500, () => {
           if (sheet) sheet.hidden = false;
+          lockDemoMinHeight(host);
         });
         later(row, 1400, () => {
+          lockDemoMinHeight(card);
+          lockDemoMinHeight(host);
           if (sheet) sheet.hidden = true;
           if (btn) btn.classList.add('is-hidden');
           if (status) {
@@ -1484,6 +1529,9 @@
         row._featActive = false;
         row._featGen = (row._featGen || 0) + 1;
         clearTimers(row);
+        clearDemoMinHeight(row.querySelector('[data-pay-demo]'));
+        clearDemoMinHeight(row.querySelector('[data-refund-demo]'));
+        clearDemoMinHeight(row.querySelector('.fp-refund__card'));
       };
 
       const rows = [...root.querySelectorAll('.feat-row[data-feat]')];

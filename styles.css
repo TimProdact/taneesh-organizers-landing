@@ -3096,6 +3096,16 @@
       .fp-pay.is-paid .fp-pay__checkout {
         display: none;
       }
+      /* Keep demo box height after state change; fill leftover space with content */
+      .fp-pay {
+        display: flex;
+        flex-direction: column;
+      }
+      .fp-pay.is-paid {
+        justify-content: space-between;
+        min-height: 0;
+        height: auto !important;
+      }
       .fp-pay__success {
         position: static;
         flex: 0 0 auto;
@@ -3109,17 +3119,46 @@
         place-content: center;
       }
       .fp-pay.is-paid .fp-pay__main {
+        flex: 1 1 auto;
         min-height: 0;
         padding: 16px;
-        display: block;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
       }
-      .fp-pay.is-paid {
-        min-height: 0;
-        height: auto !important;
+      .fp-pay.is-paid .fp-pay__success {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        place-content: unset;
+        gap: 12px;
+        box-sizing: border-box;
       }
       .fp-pay.is-paid .fp-pay__side {
-        /* keep side summary below success, no extra stretch */
-        flex: none;
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .fp-refund__card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 18px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .fp-refund__top {
+        flex: 1 1 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      .fp-refund__amount {
+        margin-top: auto;
       }
       .fp-crm { padding: 14px; height: auto; }
       .fp-crm__toolbar {
