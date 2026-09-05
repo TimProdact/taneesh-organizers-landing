@@ -3045,7 +3045,7 @@
       }
       .faq-a { font-size: 14px; padding-bottom: 16px; }
 
-      /* Features: fill screen; mock scrolls sideways if wider than viewport */
+      /* Features: natural height, stack mock content vertically — no squeeze */
       .section--feat-list {
         padding-block: 0;
         height: auto;
@@ -3054,8 +3054,6 @@
       }
       .section--feat-list .feat-list {
         gap: 0;
-        flex: 1;
-        min-height: 0;
         display: block;
         width: 100%;
         overflow: visible;
@@ -3064,18 +3062,18 @@
       .feat-row.is-flip {
         display: flex;
         flex-direction: column;
-        justify-content: stretch;
+        justify-content: center;
         align-items: stretch;
-        gap: 14px;
+        gap: 16px;
         grid-template-columns: none;
         min-height: 100svh;
-        height: 100svh;
-        max-height: 100svh;
-        padding: 88px 0 20px;
+        height: auto;
+        max-height: none;
+        padding: 88px 0 32px;
         scroll-snap-align: start;
         scroll-snap-stop: always;
         box-sizing: border-box;
-        overflow: hidden;
+        overflow: visible;
       }
       .feat-row.is-flip .feat-row__copy,
       .feat-row.is-flip .feat-row__visual { order: initial; }
@@ -3096,117 +3094,192 @@
         max-width: 34em;
       }
       .feat-row__tag { font-size: 12px; }
-      .feat-row__visual {
-        height: auto;
-        min-height: 0;
-        flex: 1 1 auto;
-        max-height: none;
+      .feat-row__visual,
+      .feat-row[data-feat="pay"] .feat-row__visual,
+      .feat-row[data-feat="scanner"] .feat-row__visual,
+      .feat-row[data-feat="crm"] .feat-row__visual {
+        flex: 0 0 auto;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
         width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;
-        scroll-snap-type: x proximity;
+        overflow: visible;
         padding-inline: var(--mobile-rail-pad);
         box-sizing: border-box;
       }
       .feat-row__visual .fp-browser {
-        height: 100%;
-        min-height: 280px;
-        min-width: max(100%, 520px);
-        width: max(100%, 520px);
+        width: 100%;
+        min-width: 0;
+        height: auto !important;
+        min-height: 0;
         max-height: none;
         border-radius: 18px;
-        overflow: hidden;
-        scroll-snap-align: start;
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
       }
-      .fp-browser__chrome { padding: 10px 12px; }
+      .fp-browser__chrome { padding: 10px 12px; flex: 0 0 auto; }
       .fp-browser__url { font-size: 12px; padding: 6px 12px; }
+      .fp-browser > :not(.fp-browser__chrome) {
+        flex: 0 0 auto;
+        height: auto !important;
+        min-height: 0;
+      }
+      .fp-browser:has(.fp-pay),
+      .fp-browser:has(.fp-pay) .fp-browser__chrome + .fp-pay,
+      .fp-pay,
+      .fp-crm,
+      .fp-refund,
+      .fp-invite,
+      .fp-scan {
+        height: auto !important;
+        min-height: 0 !important;
+      }
 
       .fp-showcase {
-        grid-template-columns: 1.2fr 0.8fr;
-        min-height: 100%;
-        height: 100%;
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 0;
       }
       .fp-showcase__main {
-        border-right: 1px solid var(--border);
-        border-bottom: 0;
-        padding: 18px;
-        gap: 10px;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+        padding: 18px 16px;
+        gap: 12px;
       }
-      .fp-showcase__side { padding: 16px; gap: 10px; }
-      .fp-showcase__title { font-size: clamp(24px, 4vw, 32px); }
-      .fp-showcase__stat strong { font-size: 20px; }
-      .fp-showcase__cta { padding: 12px 16px; font-size: 14px; }
+      .fp-showcase__side {
+        padding: 16px;
+        gap: 12px;
+      }
+      .fp-showcase__title { font-size: clamp(26px, 7vw, 34px); }
+      .fp-showcase__stat strong { font-size: 22px; }
+      .fp-showcase__cta { padding: 14px 16px; font-size: 15px; min-height: 48px; }
 
       .fp-pay {
-        grid-template-columns: 1.1fr 0.9fr;
-        min-height: 100%;
-        height: 100%;
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 0;
       }
       .fp-pay__main {
-        border-right: 1px solid var(--border);
-        border-bottom: 0;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+        padding: 16px;
+        gap: 12px;
+        overflow: visible;
+        min-height: 0;
+      }
+      .fp-pay__checkout {
+        position: static;
+        flex: none;
+        min-height: 0;
+      }
+      .fp-pay.is-paid .fp-pay__checkout {
+        position: static;
+      }
+      .fp-pay__side {
         padding: 16px;
         gap: 10px;
       }
-      .fp-pay__side { padding: 16px; gap: 8px; }
-      .fp-pay__head strong { font-size: 22px; }
-      .fp-pay__fields label { padding: 10px 12px; }
-      .fp-pay__method { padding: 10px 12px; }
-      .fp-pay__cta { min-height: 44px; font-size: 14px; }
-      .fp-pay__row { font-size: 13px; }
-      .fp-pay__row strong { font-size: 15px; }
-      .fp-pay__row.is-guest strong { font-size: 20px; }
-      .fp-pay__you { padding: 10px 12px; }
-      .fp-pay__you strong { font-size: 20px; }
-      .fp-pay__success { padding: 20px; gap: 8px; }
-      .fp-pay__success strong { font-size: 22px; }
+      .fp-pay__head strong { font-size: 24px; }
+      .fp-pay__fields label { padding: 12px 14px; }
+      .fp-pay__method { padding: 12px 14px; }
+      .fp-pay__cta { min-height: 48px; font-size: 15px; }
+      .fp-pay__row { font-size: 14px; }
+      .fp-pay__row strong { font-size: 16px; }
+      .fp-pay__row.is-guest strong { font-size: 22px; }
+      .fp-pay__you { padding: 12px 14px; }
+      .fp-pay__you strong { font-size: 22px; }
+      .fp-pay__success { padding: 24px 16px; gap: 10px; position: static; }
+      .fp-pay__success strong { font-size: 24px; }
 
-      .fp-crm { padding: 14px; gap: 10px; height: 100%; box-sizing: border-box; }
-      .fp-crm__search { font-size: 13px; padding: 10px 12px; }
-      .fp-crm__export { padding: 10px 12px; font-size: 12px; }
-      .fp-crm__head,
-      .fp-crm__row {
-        grid-template-columns: 1.4fr 0.9fr 0.8fr 0.9fr;
-        gap: 8px;
-        padding: 10px 10px;
-        font-size: 12px;
+      .fp-crm {
+        padding: 16px;
+        gap: 12px;
+        height: auto;
+        box-sizing: border-box;
       }
-      .fp-crm__row .is-money { font-size: 15px; }
+      .fp-crm__toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .fp-crm__search {
+        font-size: 14px;
+        padding: 12px 14px;
+        width: 100%;
+      }
+      .fp-crm__export {
+        padding: 12px 16px;
+        font-size: 13px;
+        width: 100%;
+        text-align: center;
+      }
+      .fp-crm__table {
+        overflow: visible;
+        gap: 10px;
+      }
+      .fp-crm__head { display: none; }
+      .fp-crm__row {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 14px 16px;
+        font-size: 14px;
+        grid-template-columns: none;
+      }
+      .fp-crm__row em { display: block; font-size: 12px; }
+      .fp-crm__row .is-money { font-size: 20px; }
+      .fp-crm__row > span {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .fp-crm__row > b {
+        justify-self: start;
+      }
 
-      .fp-refund { padding: 16px; height: 100%; box-sizing: border-box; }
-      .fp-refund__card { padding: 18px; gap: 14px; }
-      .fp-refund__top strong { font-size: 20px; }
-      .fp-refund__amount strong { font-size: 28px; }
-      .fp-refund__btn { min-height: 44px; font-size: 14px; }
+      .fp-refund {
+        padding: 16px;
+        height: auto;
+        box-sizing: border-box;
+      }
+      .fp-refund__card { padding: 20px; gap: 16px; }
+      .fp-refund__top strong { font-size: 22px; }
+      .fp-refund__amount strong { font-size: 32px; }
+      .fp-refund__btn { min-height: 48px; font-size: 15px; }
 
-      .fp-invite { padding: 16px; gap: 12px; height: 100%; box-sizing: border-box; }
+      .fp-invite {
+        padding: 16px;
+        gap: 12px;
+        height: auto;
+        box-sizing: border-box;
+      }
       .fp-invite__bar strong { font-size: 20px; }
-      .fp-invite__add { padding: 10px 14px; font-size: 12px; }
+      .fp-invite__add { padding: 10px 14px; font-size: 13px; }
       .fp-invite__item {
         grid-template-columns: 40px minmax(0, 1fr) auto;
-        padding: 10px 12px;
+        padding: 12px 14px;
         gap: 10px;
       }
       .fp-invite__ava { width: 40px; height: 40px; font-size: 13px; }
 
       .fp-scan {
-        grid-template-columns: 1fr 1fr;
-        min-height: 100%;
-        height: 100%;
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 0;
       }
       .fp-scan__stage {
-        border-right: 1px solid var(--border);
-        border-bottom: 0;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
         padding: 16px;
-        gap: 12px;
+        gap: 14px;
       }
-      .fp-scan__frame { max-width: 200px; }
-      .fp-scan__qr { width: 140px; height: 140px; }
+      .fp-scan__frame { max-width: 220px; margin-inline: auto; }
+      .fp-scan__qr { width: 160px; height: 160px; }
       .fp-scan__log { padding: 14px; gap: 8px; }
-      .fp-scan__log-item { padding: 10px 12px; font-size: 13px; }
-      .fp-scan__count { font-size: 13px; }
-      .fp-scan__count strong { font-size: 18px; }
+      .fp-scan__log-item { padding: 12px 14px; font-size: 14px; }
+      .fp-scan__count { font-size: 14px; }
+      .fp-scan__count strong { font-size: 20px; }
 
       #niches .section-head { width: min(100% - 28px, var(--max)); margin-inline: auto; }
       #niches .formats-stream {
@@ -3246,11 +3319,17 @@
 
     /* Short phones: keep full-screen panels; rely on side-scroll, not shrink */
     @media (max-width: 900px) and (max-height: 700px) {
-      .snap-panel,
-      .feat-row.snap-panel,
-      .feat-row {
+      .snap-panel {
         padding-top: 76px;
         padding-bottom: 12px;
+      }
+      .feat-row,
+      .feat-row.is-flip {
+        padding-top: 76px;
+        padding-bottom: 24px;
+        height: auto;
+        max-height: none;
+        overflow: visible;
       }
       #slide-hero .hero-copy {
         min-height: calc(100svh - 72px - 88px);
