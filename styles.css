@@ -3785,22 +3785,6 @@
     .fp-invite__item b.is-vip { background: rgba(10,10,10,0.08); }
     .fp-invite__item b.is-invited { background: rgba(59,130,246,0.12); color: #1d4ed8; }
     .fp-invite__item b.is-ok { background: rgba(30,215,96,0.14); color: #0f7a38; }
-    .fp-invite__link {
-      padding: 10px 12px;
-      border-radius: 14px;
-      background: var(--cream-2);
-      border: 1px solid var(--border);
-      display: grid;
-      gap: 4px;
-    }
-    .fp-invite__link span {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .fp-invite__link code { font-family: var(--font-ui); font-size: 13px; color: var(--text); }
 
     /* Feature 6 — Scanner */
     .fp-scan {
