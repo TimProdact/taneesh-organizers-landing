@@ -324,6 +324,10 @@ window.TaneeshI18n = (function () {
           a: 'Обычные кассы берут 5–15% с билета, ждут трафик и продают по 1–2 билета. У Taneesh: 0% с вашей цены, горячий трафик платформы, групповые чеки и эквайринг в сборе с гостя — не из вашего кармана.',
         },
         {
+          q: 'Какие оплаты доступны и когда выплата?',
+          a: 'Сейчас доступны Uzcard и Humo. Visa и Mastercard — скоро. Транзакции защищены, деньги приходят организатору по понятному графику.',
+        },
+        {
           q: 'Сколько нужно, чтобы запуститься?',
           a: 'Обычно достаточно минут: связались с нами, создали кабинет и витрину, опубликовали первый ивент. Контакты: taneesh.uz, @taneeshuz, +998 88 034 87 97.',
         },
@@ -645,6 +649,10 @@ window.TaneeshI18n = (function () {
           a: 'Oddiy kassalar chiptadan 5–15% oladi, trafik kutadi va 1–2 chipta sotadi. Taneeshda: narxingizdan 0%, issiq trafik, guruh cheklari va ekvayring mehmon yig‘imida — cho‘ntagingizdan emas.',
         },
         {
+          q: 'Qanday to‘lovlar bor va pul qachon tushadi?',
+          a: 'Hozir Uzcard va Humo mavjud. Visa va Mastercard — tez orada. Tranzaksiyalar himoyalangan, pul tashkilotchiga tushunarli jadval bo‘yicha keladi.',
+        },
+        {
           q: 'Boshlash uchun qancha vaqt kerak?',
           a: 'Odatda bir necha daqiqa yetadi: bog‘landingiz, kabinet va vitrina yaratdingiz, birinchi tadbirni e’lon qildingiz. Aloqa: taneesh.uz, @taneeshuz, +998 88 034 87 97.',
         },
@@ -964,6 +972,10 @@ window.TaneeshI18n = (function () {
         {
           q: 'How is Taneesh different from regular box offices?',
           a: 'Regular offices take 5–15% per ticket, wait for traffic, and sell 1–2 tickets. With Taneesh: 0% of your price, hot platform traffic, group checks, and acquiring in the guest fee — not from your pocket.',
+        },
+        {
+          q: 'Which payments are available and when is payout?',
+          a: 'Currently available: Uzcard and Humo. Visa and Mastercard coming soon. Transactions are protected; funds reach organizers on a clear schedule.',
         },
         {
           q: 'How long does it take to launch?',
