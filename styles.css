@@ -2810,7 +2810,7 @@
         box-sizing: border-box;
       }
 
-      /* Hero: first screen = copy; video peeks; next snap centers video */
+      /* Hero: tight stack — video + copy, no full-viewport gaps */
       #slide-hero {
         height: auto;
         min-height: 0;
@@ -2818,7 +2818,7 @@
         scroll-snap-align: start;
         scroll-snap-stop: always;
         display: block;
-        padding: 84px 0 0;
+        padding: 72px 0 28px;
         overflow: visible;
       }
       #slide-hero > .wrap {
@@ -2827,18 +2827,26 @@
         max-height: none;
         height: auto;
         overflow: visible;
-        display: block;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
         padding-inline: 0;
       }
       #slide-hero .hero-copy {
-        min-height: calc(100svh - 84px - clamp(96px, 16vh, 140px));
+        min-height: 0;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        margin-bottom: 16px;
+        justify-content: flex-start;
+        margin-bottom: 0;
+        order: 2;
+      }
+      #slide-hero .hero-copy .eyebrow {
+        margin-bottom: 10px;
       }
       #slide-hero .hero-copy h1 {
         font-size: clamp(30px, 9vw, 40px);
+        margin-bottom: 12px;
       }
       #slide-hero .hero-copy .lead {
         font-size: var(--text-lead);
@@ -2848,6 +2856,7 @@
         flex-wrap: wrap;
         justify-content: center;
         gap: 10px;
+        margin-top: 16px;
       }
       #slide-hero .hero-copy .btn {
         min-height: 48px;
@@ -2855,6 +2864,9 @@
         font-size: 15px;
       }
       #slide-hero .hero-vibe {
+        order: -1;
+        width: 100%;
+        margin: 0;
         scroll-snap-align: center;
         scroll-snap-stop: always;
         border-radius: 22px;
@@ -3332,7 +3344,7 @@
         overflow: visible;
       }
       #slide-hero .hero-copy {
-        min-height: calc(100svh - 72px - 88px);
+        min-height: 0;
       }
       .fees-savings .v {
         font-size: clamp(18px, 5.5vw, 24px);
